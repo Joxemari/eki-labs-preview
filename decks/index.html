@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Slides · Eki.Labs · Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500&family=Work+Sans:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+:root{--noche:#0a100c;--panel:#141b16;--linea:#2b332d;--arena:#f4f2ec;--niebla:#a1a69f;--yerba:#58e9ae;--sol:#ffd54a;
+--fh:'Zilla Slab',Georgia,serif;--fb:'Work Sans',Arial,sans-serif;--fm:'Geist Mono',Menlo,monospace;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--noche);color:var(--arena);font-family:var(--fb)}
+button{font:inherit;color:inherit}
+.hidden{display:none!important}
+.label{font-family:var(--fm);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--niebla)}
+/* gate */
+#gate{min-height:100%;display:flex;align-items:center;justify-content:center;padding:24px}
+.gate-card{width:min(440px,100%);display:flex;flex-direction:column;gap:22px;padding:36px;border-radius:16px;background:var(--panel)}
+.gate-card h1{margin:0;font-family:var(--fh);font-weight:400;font-size:40px;line-height:1.05}
+.gate-card p{margin:0;color:var(--niebla);font-size:16px;line-height:24px}
+.gate-row{display:flex;gap:10px}
+.gate-row input{flex:1;min-width:0;height:48px;padding:0 14px;border-radius:6px;border:1px solid var(--linea);background:var(--noche);color:var(--arena);font:500 15px var(--fm)}
+.gate-row input:focus-visible,.btn:focus-visible,.icon:focus-visible,.card:focus-visible{outline:2px solid var(--yerba);outline-offset:2px}
+.btn{height:48px;padding:0 18px;border:0;border-radius:6px;background:var(--yerba);color:var(--noche);font:500 14px var(--fm);cursor:pointer}
+.err{color:#e89a80;font-size:14px;min-height:20px}
+/* top bar */
+.bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:20px;height:64px;padding:0 24px;background:rgba(10,16,12,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+.bar .sp{flex:1}
+.lang{display:inline-flex;border:1px solid var(--linea);border-radius:6px;overflow:hidden}
+.lang span{padding:7px 10px;font:500 12px var(--fm);letter-spacing:.04em}
+.lang .on{background:var(--arena);color:var(--noche)}
+.lang .off{color:var(--niebla)}
+.icon{height:40px;min-width:40px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--linea);border-radius:6px;background:transparent;cursor:pointer;font:500 13px var(--fm)}
+/* home */
+#home main{max-width:1280px;margin:0 auto;padding:48px 24px 64px;display:flex;flex-direction:column;gap:32px}
+#home h1{margin:0;font-family:var(--fh);font-weight:400;font-size:clamp(40px,5vw,64px);line-height:1.02}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.card{display:flex;flex-direction:column;gap:14px;padding:14px 14px 18px;border-radius:14px;background:var(--panel);border:1px solid transparent;cursor:pointer;text-align:left}
+.card:hover{border-color:var(--linea)}
+.card h2{margin:0;font-family:var(--fh);font-weight:400;font-size:28px}
+.card p{margin:0;color:var(--niebla);font-size:15px;line-height:22px}
+.thumb{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:8px;background:#000}
+.thumb .slide{position:absolute;left:0;top:0;transform-origin:0 0;pointer-events:none}
+/* viewer */
+#viewer{height:100%;display:flex;flex-direction:column}
+#stage{flex:1;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#frame{position:relative;width:1920px;height:1080px;transform-origin:center;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid var(--linea);background:rgba(10,16,12,.7);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3}
+.nav.prev{left:16px}.nav.next{right:16px}
+.foot{display:flex;align-items:center;gap:16px;height:52px;padding:0 24px;border-top:1px solid var(--linea)}
+#grid{position:fixed;inset:64px 0 0 0;z-index:6;background:rgba(10,16,12,.97);overflow:auto;padding:24px}
+#grid .g{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;max-width:1600px;margin:0 auto}
+#grid button{padding:0;border:2px solid transparent;border-radius:8px;background:none;cursor:pointer;display:flex;flex-direction:column;gap:6px;text-align:left}
+#grid button[aria-current]{border-color:var(--yerba)}
+#grid .n{font:500 12px var(--fm);color:var(--niebla);padding:0 4px 4px}
+/* slide content: the same base the decks use */
+.slide{width:1920px;height:1080px}
+.slide *{margin:0;padding:0;box-sizing:border-box}
+.slide section{position:relative;width:1920px;height:1080px;overflow:hidden}
+.slide section > *:not([style*="position:absolute"]){position:relative}
+.slide td,.slide th{padding:.35em .6em;border-bottom:1px solid rgba(128,128,128,.35)}
+.slide aside{display:none}
+@media (max-width:640px){.bar{gap:10px;padding:0 12px}.bar .hide-s{display:none}.nav{width:40px;height:40px}}
+</style>
+</head>
+<body>
+
+<section id="gate">
+  <form class="gate-card" id="gateForm">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -816.5 5042 923" width="120" height="22" role="img" aria-label="eki.labs"><g transform="translate(0 -816.5) scale(9.23)"><path d="M0 50A50 50 0 0 1 100 50Z" fill="#ffd54a"/><path d="M0.38 56.14L99.62 56.14A50 50 0 0 1 97.14 66.67L2.86 66.67A50 50 0 0 1 0.38 56.14Z" fill="#f4f2ec"/><path d="M5.5 72.81L94.5 72.81A50 50 0 0 1 87.27 83.33L12.73 83.33A50 50 0 0 1 5.5 72.81Z" fill="#f4f2ec"/><path d="M19.31 89.47L80.69 89.47A50 50 0 0 1 50 100L50 100A50 50 0 0 1 19.31 89.47Z" fill="#f4f2ec"/></g><g transform="translate(1278 0)"><path d="M300.6 12Q220.8 12 162.1 -22.4Q103.4 -56.8 71.3 -119.7Q39.2 -182.6 39.2 -267Q39.2 -351.4 71.3 -413.8Q103.4 -476.2 161.5 -511.1Q219.6 -546 298.2 -546Q374.4 -546 431.6 -511.9Q488.8 -477.8 520.1 -413.8Q551.4 -349.8 551.4 -260V-231.4H172Q175.8 -160.8 210.3 -125.6Q244.8 -90.4 302.2 -90.4Q345 -90.4 373.3 -109.5Q401.6 -128.6 413 -163.8L543.8 -155.6Q522.4 -78.2 457.7 -33.1Q393 12 300.6 12ZM172 -317.4H418.6Q414.6 -382.4 381.9 -413.8Q349.2 -445.2 298.2 -445.2Q246.8 -445.2 213.3 -412.3Q179.8 -379.4 172 -317.4Z" fill="#f4f2ec"/><path d="M661.4 0V-710H789.4V-292.6L1008.2 -534H1165.8L957.2 -311.8L1172.8 0H1029.2L873.4 -236L789.4 -146.8V0Z" fill="#f4f2ec"/><path d="M1289.4 0V-534H1417.4V0ZM1287 -605.4V-718.6H1419.8V-605.4Z" fill="#f4f2ec"/><path d="M1527.2 0V-139.8H1673.4V0Z" fill="#f4f2ec"/><path d="M1911.4 0Q1852.6 0 1818 -30Q1783.4 -60 1783.4 -126.4V-710H1911.4V-139.4Q1911.4 -118.6 1921.7 -108.9Q1932 -99.2 1951.2 -99.2H1990.4V0Z" fill="#f4f2ec"/><path d="M2234.6 12Q2151.4 12 2100.3 -26.4Q2049.2 -64.8 2049.2 -133.6Q2049.2 -203.2 2092.2 -242Q2135.2 -280.8 2222.6 -298L2400.2 -332.6Q2400.2 -389.6 2374.1 -418.2Q2348 -446.8 2297.4 -446.8Q2250.8 -446.8 2224.2 -425.5Q2197.6 -404.2 2188.4 -363.8L2058.2 -370.4Q2073.6 -454.6 2135.7 -500.3Q2197.8 -546 2297.4 -546Q2411.4 -546 2469.8 -488.7Q2528.2 -431.4 2528.2 -324.4V-129.8Q2528.2 -108.6 2535.5 -100.9Q2542.8 -93.2 2557.8 -93.2H2574.8V0Q2568.8 1.8 2555.4 3.1Q2542 4.4 2528.4 4.4Q2495.2 4.4 2469.3 -6.5Q2443.4 -17.4 2429 -43.5Q2414.6 -69.6 2414.6 -115.6L2426.2 -108Q2417.6 -72.8 2391.4 -45.5Q2365.2 -18.2 2325 -3.1Q2284.8 12 2234.6 12ZM2261 -81.2Q2303.6 -81.2 2334.7 -97.9Q2365.8 -114.6 2383 -144.9Q2400.2 -175.2 2400.2 -215.6V-245.6L2261.8 -217.6Q2219.4 -209.2 2200.5 -191.5Q2181.6 -173.8 2181.6 -145.6Q2181.6 -115 2202.3 -98.1Q2223 -81.2 2261 -81.2Z" fill="#f4f2ec"/><path d="M2947 12Q2891.2 12 2849.4 -12.1Q2807.6 -36.2 2784.6 -79.2L2781.6 0H2660.4V-710H2788.4V-458.4Q2809.6 -494.6 2850.8 -520.3Q2892 -546 2947 -546Q3015.8 -546 3066.2 -511.6Q3116.6 -477.2 3144.2 -414.6Q3171.8 -352 3171.8 -267Q3171.8 -182 3144.2 -119.4Q3116.6 -56.8 3066.2 -22.4Q3015.8 12 2947 12ZM2917.6 -91.6Q2973 -91.6 3006.2 -138.2Q3039.4 -184.8 3039.4 -267Q3039.4 -349.8 3006.6 -396.1Q2973.8 -442.4 2918.8 -442.4Q2877.8 -442.4 2848.4 -421.7Q2819 -401 2803.7 -361.8Q2788.4 -322.6 2788.4 -267Q2788.4 -213 2803.7 -173.5Q2819 -134 2848.1 -112.8Q2877.2 -91.6 2917.6 -91.6Z" fill="#f4f2ec"/><path d="M3498.4 12Q3416.6 12 3363.1 -11.2Q3309.6 -34.4 3281.9 -75.1Q3254.2 -115.8 3250.2 -168.2L3381 -173.8Q3388.2 -132.2 3414.9 -108.9Q3441.6 -85.6 3498.8 -85.6Q3543.6 -85.6 3567.5 -100.3Q3591.4 -115 3591.4 -146Q3591.4 -164.2 3582.9 -176.2Q3574.4 -188.2 3549.8 -197.3Q3525.2 -206.4 3477.6 -214.8Q3396.8 -229.2 3351 -249.8Q3305.2 -270.4 3286.6 -301.4Q3268 -332.4 3268 -377.6Q3268 -452.6 3325.5 -499.3Q3383 -546 3494.2 -546Q3571.4 -546 3620.7 -521.7Q3670 -497.4 3695.4 -456.6Q3720.8 -415.8 3725 -366.4L3595.4 -360.4Q3594.2 -385.4 3583 -405.4Q3571.8 -425.4 3549.8 -436.9Q3527.8 -448.4 3492.2 -448.4Q3446.8 -448.4 3423.6 -430.2Q3400.4 -412 3400.4 -382.4Q3400.4 -360.8 3409.7 -346.9Q3419 -333 3442.1 -324.3Q3465.2 -315.6 3504.8 -309.2Q3587.2 -297 3635.2 -276.2Q3683.2 -255.4 3703.5 -223.9Q3723.8 -192.4 3723.8 -147.6Q3723.8 -71 3662.5 -29.5Q3601.2 12 3498.4 12Z" fill="#f4f2ec"/></g></svg>
+    <h1>Slides</h1>
+    <p>Private preview of the Eki.Labs decks. Enter the password to open them.</p>
+    <div class="gate-row"><input id="pw" type="password" autocomplete="current-password" aria-label="Password" placeholder="Password" required><button class="btn" type="submit">Open</button></div>
+    <div class="err" id="err" role="alert"></div>
+  </form>
+</section>
+
+<section id="home" class="hidden">
+  <div class="bar"><a href="../" aria-label="Eki.Labs home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -816.5 5042 923" width="120" height="22" role="img" aria-label="eki.labs"><g transform="translate(0 -816.5) scale(9.23)"><path d="M0 50A50 50 0 0 1 100 50Z" fill="#ffd54a"/><path d="M0.38 56.14L99.62 56.14A50 50 0 0 1 97.14 66.67L2.86 66.67A50 50 0 0 1 0.38 56.14Z" fill="#f4f2ec"/><path d="M5.5 72.81L94.5 72.81A50 50 0 0 1 87.27 83.33L12.73 83.33A50 50 0 0 1 5.5 72.81Z" fill="#f4f2ec"/><path d="M19.31 89.47L80.69 89.47A50 50 0 0 1 50 100L50 100A50 50 0 0 1 19.31 89.47Z" fill="#f4f2ec"/></g><g transform="translate(1278 0)"><path d="M300.6 12Q220.8 12 162.1 -22.4Q103.4 -56.8 71.3 -119.7Q39.2 -182.6 39.2 -267Q39.2 -351.4 71.3 -413.8Q103.4 -476.2 161.5 -511.1Q219.6 -546 298.2 -546Q374.4 -546 431.6 -511.9Q488.8 -477.8 520.1 -413.8Q551.4 -349.8 551.4 -260V-231.4H172Q175.8 -160.8 210.3 -125.6Q244.8 -90.4 302.2 -90.4Q345 -90.4 373.3 -109.5Q401.6 -128.6 413 -163.8L543.8 -155.6Q522.4 -78.2 457.7 -33.1Q393 12 300.6 12ZM172 -317.4H418.6Q414.6 -382.4 381.9 -413.8Q349.2 -445.2 298.2 -445.2Q246.8 -445.2 213.3 -412.3Q179.8 -379.4 172 -317.4Z" fill="#f4f2ec"/><path d="M661.4 0V-710H789.4V-292.6L1008.2 -534H1165.8L957.2 -311.8L1172.8 0H1029.2L873.4 -236L789.4 -146.8V0Z" fill="#f4f2ec"/><path d="M1289.4 0V-534H1417.4V0ZM1287 -605.4V-718.6H1419.8V-605.4Z" fill="#f4f2ec"/><path d="M1527.2 0V-139.8H1673.4V0Z" fill="#f4f2ec"/><path d="M1911.4 0Q1852.6 0 1818 -30Q1783.4 -60 1783.4 -126.4V-710H1911.4V-139.4Q1911.4 -118.6 1921.7 -108.9Q1932 -99.2 1951.2 -99.2H1990.4V0Z" fill="#f4f2ec"/><path d="M2234.6 12Q2151.4 12 2100.3 -26.4Q2049.2 -64.8 2049.2 -133.6Q2049.2 -203.2 2092.2 -242Q2135.2 -280.8 2222.6 -298L2400.2 -332.6Q2400.2 -389.6 2374.1 -418.2Q2348 -446.8 2297.4 -446.8Q2250.8 -446.8 2224.2 -425.5Q2197.6 -404.2 2188.4 -363.8L2058.2 -370.4Q2073.6 -454.6 2135.7 -500.3Q2197.8 -546 2297.4 -546Q2411.4 -546 2469.8 -488.7Q2528.2 -431.4 2528.2 -324.4V-129.8Q2528.2 -108.6 2535.5 -100.9Q2542.8 -93.2 2557.8 -93.2H2574.8V0Q2568.8 1.8 2555.4 3.1Q2542 4.4 2528.4 4.4Q2495.2 4.4 2469.3 -6.5Q2443.4 -17.4 2429 -43.5Q2414.6 -69.6 2414.6 -115.6L2426.2 -108Q2417.6 -72.8 2391.4 -45.5Q2365.2 -18.2 2325 -3.1Q2284.8 12 2234.6 12ZM2261 -81.2Q2303.6 -81.2 2334.7 -97.9Q2365.8 -114.6 2383 -144.9Q2400.2 -175.2 2400.2 -215.6V-245.6L2261.8 -217.6Q2219.4 -209.2 2200.5 -191.5Q2181.6 -173.8 2181.6 -145.6Q2181.6 -115 2202.3 -98.1Q2223 -81.2 2261 -81.2Z" fill="#f4f2ec"/><path d="M2947 12Q2891.2 12 2849.4 -12.1Q2807.6 -36.2 2784.6 -79.2L2781.6 0H2660.4V-710H2788.4V-458.4Q2809.6 -494.6 2850.8 -520.3Q2892 -546 2947 -546Q3015.8 -546 3066.2 -511.6Q3116.6 -477.2 3144.2 -414.6Q3171.8 -352 3171.8 -267Q3171.8 -182 3144.2 -119.4Q3116.6 -56.8 3066.2 -22.4Q3015.8 12 2947 12ZM2917.6 -91.6Q2973 -91.6 3006.2 -138.2Q3039.4 -184.8 3039.4 -267Q3039.4 -349.8 3006.6 -396.1Q2973.8 -442.4 2918.8 -442.4Q2877.8 -442.4 2848.4 -421.7Q2819 -401 2803.7 -361.8Q2788.4 -322.6 2788.4 -267Q2788.4 -213 2803.7 -173.5Q2819 -134 2848.1 -112.8Q2877.2 -91.6 2917.6 -91.6Z" fill="#f4f2ec"/><path d="M3498.4 12Q3416.6 12 3363.1 -11.2Q3309.6 -34.4 3281.9 -75.1Q3254.2 -115.8 3250.2 -168.2L3381 -173.8Q3388.2 -132.2 3414.9 -108.9Q3441.6 -85.6 3498.8 -85.6Q3543.6 -85.6 3567.5 -100.3Q3591.4 -115 3591.4 -146Q3591.4 -164.2 3582.9 -176.2Q3574.4 -188.2 3549.8 -197.3Q3525.2 -206.4 3477.6 -214.8Q3396.8 -229.2 3351 -249.8Q3305.2 -270.4 3286.6 -301.4Q3268 -332.4 3268 -377.6Q3268 -452.6 3325.5 -499.3Q3383 -546 3494.2 -546Q3571.4 -546 3620.7 -521.7Q3670 -497.4 3695.4 -456.6Q3720.8 -415.8 3725 -366.4L3595.4 -360.4Q3594.2 -385.4 3583 -405.4Q3571.8 -425.4 3549.8 -436.9Q3527.8 -448.4 3492.2 -448.4Q3446.8 -448.4 3423.6 -430.2Q3400.4 -412 3400.4 -382.4Q3400.4 -360.8 3409.7 -346.9Q3419 -333 3442.1 -324.3Q3465.2 -315.6 3504.8 -309.2Q3587.2 -297 3635.2 -276.2Q3683.2 -255.4 3703.5 -223.9Q3723.8 -192.4 3723.8 -147.6Q3723.8 -71 3662.5 -29.5Q3601.2 12 3498.4 12Z" fill="#f4f2ec"/></g></svg></a><span class="label">Slides</span><span class="sp"></span>
+    <span class="lang" title="Spanish version coming soon"><span class="on">EN</span><span class="off">ES · soon</span></span></div>
+  <main>
+    <div style="display:flex;flex-direction:column;gap:12px"><span class="label">Private preview · confidential</span><h1>Eki.Labs decks</h1></div>
+    <div class="cards" id="cards"></div>
+  </main>
+</section>
+
+<section id="viewer" class="hidden">
+  <div class="bar">
+    <button class="icon" id="back" aria-label="All decks">←<span class="hide-s">Decks</span></button>
+    <strong id="dtitle" style="font-family:var(--fh);font-weight:400;font-size:22px"></strong>
+    <span class="label hide-s" id="dsection"></span>
+    <span class="sp"></span>
+    <span class="lang hide-s" title="Spanish version coming soon"><span class="on">EN</span><span class="off">ES · soon</span></span>
+    <button class="icon" id="gridBtn" aria-label="All slides">▦</button>
+  </div>
+  <div id="stage">
+    <button class="nav prev" id="prev" aria-label="Previous slide">‹</button>
+    <div id="frame" class="slide"></div>
+    <button class="nav next" id="next" aria-label="Next slide">›</button>
+  </div>
+  <div class="foot"><span class="label" id="counter"></span><span class="sp" style="flex:1"></span><span class="label hide-s">← → to move · G for all slides</span></div>
+</section>
+
+<section id="grid" class="hidden" aria-label="All slides"><div class="g" id="gridList"></div></section>
+
+<script>
+(function () {
+  var DATA = null, deck = null, idx = 0;
+  var $ = function (id) { return document.getElementById(id); };
+  var b64 = function (s) { var bin = atob(s), u = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return u; };
+  function store(k, v) { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; } }
+
+  async function unlock(pw) {
+    var r = await fetch('bundle.enc.json', { cache: 'no-store' }); var j = await r.json();
+    var base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
+    var key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt: b64(j.salt), iterations: j.iter, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+    var plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(j.iv) }, key, b64(j.ct));
+    return JSON.parse(new TextDecoder().decode(plain));
+  }
+
+  function videos(root, play) {
+    root.querySelectorAll('img[data-video]').forEach(function (img) {
+      if (!play) return;
+      var v = document.createElement('video');
+      v.setAttribute('style', img.getAttribute('style') || ''); v.poster = img.getAttribute('src'); v.src = img.getAttribute('data-video');
+      v.muted = true; v.autoplay = true; v.loop = true; v.playsInline = true; v.setAttribute('aria-label', img.alt || '');
+      img.replaceWith(v); var p = v.play(); if (p && p.catch) p.catch(function () {});
+    });
+  }
+  function mini(html, box, w) {
+    var s = document.createElement('div'); s.className = 'slide'; s.innerHTML = html; s.style.transform = 'scale(' + (w / 1920) + ')';
+    box.appendChild(s);
+  }
+
+  function showHome() {
+    $('gate').classList.add('hidden'); $('viewer').classList.add('hidden'); $('grid').classList.add('hidden'); $('home').classList.remove('hidden');
+    var c = $('cards'); if (c.childElementCount) return;
+    DATA.decks.forEach(function (d) {
+      var b = document.createElement('button'); b.className = 'card'; b.type = 'button';
+      b.innerHTML = '<div class="thumb"></div><div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h2></h2><span class="label"></span></div><p></p>';
+      b.querySelector('h2').textContent = d.title; b.querySelector('.label').textContent = d.slides.length + ' slides'; b.querySelector('p').textContent = d.desc;
+      b.addEventListener('click', function () { location.hash = d.id + '/1'; });
+      c.appendChild(b);
+      var box = b.querySelector('.thumb'); requestAnimationFrame(function () { mini(d.slides[0].html, box, box.clientWidth || 300); });
+    });
+  }
+
+  function fit() { var st = $('stage'), f = $('frame'); var s = Math.min((st.clientWidth - 24) / 1920, (st.clientHeight - 24) / 1080); f.style.transform = 'scale(' + s + ')'; }
+
+  function render() {
+    var sl = deck.slides[idx]; var f = $('frame'); f.innerHTML = sl.html; videos(f, true);
+    var sec = ''; for (var i = idx; i >= 0; i--) if (deck.slides[i].section) { sec = deck.slides[i].section; break; }
+    $('dtitle').textContent = deck.title; $('dsection').textContent = sec.split(':')[0];
+    $('counter').textContent = (idx + 1) + ' / ' + deck.slides.length;
+    $('prev').disabled = idx === 0; $('next').disabled = idx === deck.slides.length - 1;
+  }
+
+  function route() {
+    if (!DATA) return;
+    var h = location.hash.replace('#', '').split('/');
+    var d = DATA.decks.filter(function (x) { return x.id === h[0]; })[0];
+    if (!d) return showHome();
+    deck = d; idx = Math.max(0, Math.min(d.slides.length - 1, (parseInt(h[1], 10) || 1) - 1));
+    $('gate').classList.add('hidden'); $('home').classList.add('hidden'); $('viewer').classList.remove('hidden'); $('grid').classList.add('hidden');
+    render(); fit();
+  }
+  function go(n) { if (!deck) return; var i = Math.max(0, Math.min(deck.slides.length - 1, idx + n)); if (i !== idx) location.hash = deck.id + '/' + (i + 1); }
+
+  function toggleGrid() {
+    var g = $('grid'); if (!g.classList.contains('hidden')) { g.classList.add('hidden'); return; }
+    var list = $('gridList'); list.innerHTML = '';
+    deck.slides.forEach(function (s, i) {
+      var b = document.createElement('button'); b.type = 'button'; if (i === idx) b.setAttribute('aria-current', 'true');
+      b.innerHTML = '<div class="thumb"></div><span class="n"></span>'; b.querySelector('.n').textContent = (i + 1) + ' · ' + s.id;
+      b.addEventListener('click', function () { g.classList.add('hidden'); location.hash = deck.id + '/' + (i + 1); });
+      list.appendChild(b);
+    });
+    g.classList.remove('hidden');
+    list.querySelectorAll('.thumb').forEach(function (box, i) { mini(deck.slides[i].html, box, box.clientWidth || 240); });
+  }
+
+  $('gateForm').addEventListener('submit', function (e) {
+    e.preventDefault(); var pw = $('pw').value; $('err').textContent = 'Opening…';
+    unlock(pw).then(function (d) { DATA = d; store('eki-decks', pw); $('err').textContent = ''; route(); if (!location.hash) showHome(); })
+      .catch(function () { $('err').textContent = 'That password did not work. Check it and try again.'; });
+  });
+  $('back').addEventListener('click', function () { location.hash = ''; showHome(); });
+  $('prev').addEventListener('click', function () { go(-1); });
+  $('next').addEventListener('click', function () { go(1); });
+  $('gridBtn').addEventListener('click', toggleGrid);
+  window.addEventListener('hashchange', route);
+  window.addEventListener('resize', function () { if (deck) fit(); });
+  document.addEventListener('keydown', function (e) {
+    if ($('viewer').classList.contains('hidden') || e.target.tagName === 'INPUT') return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(-1); }
+    else if (e.key === 'g' || e.key === 'G') toggleGrid();
+    else if (e.key === 'Escape') $('grid').classList.add('hidden');
+  });
+  var saved = store('eki-decks');
+  if (saved) unlock(saved).then(function (d) { DATA = d; route(); if (!location.hash) showHome(); }).catch(function () {});
+})();
+</script>
+</body>
+</html>

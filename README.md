@@ -3,6 +3,7 @@
 Static preview of the new Eki.Labs website, published with GitHub Pages so the team can review it. It is **not** the production site: the pages are exported from the design canvas and are laid out at a fixed 1280 px width.
 
 - `/` Home · `/technology/` · `/model/` · `/video/` (the film, 52 s)
+- `/decks/` the presentations (Teaser, Inversores, Triodos, Biblioteca). The slide content is encrypted and opens with a password.
 - The preview carries `noindex` and a `robots.txt` that blocks crawlers.
 - Photos marked «Foto provisional» are stock placeholders to be replaced with Eki photos.
 
