@@ -22,3 +22,8 @@ Goal: turn this preview into the production website of Eki.Labs (agrivoltaics: b
 - Static site (Astro or plain HTML/CSS), responsive from 360 px, `prefers-reduced-motion` respected.
 - Animations (photon hero, counters, plan views, day simulation) as small vanilla JS or canvas modules; the preview uses recorded clips for some of them.
 - Deploy: GitHub Pages for previews; production host to decide (Cloudflare Pages supports private repos on the free plan).
+
+## Slides microsite (decks.ekilabs.com, later)
+- Lists the decks: Teaser, Inversores, Triodos and Biblioteca. Every slide rendered in HTML (16:9), not as images.
+- Language toggle ES / EN on every deck: same slide, both languages, switched in place; the choice is remembered per viewer.
+- Access control (e.g. Cloudflare Access): the decks carry confidential figures.
