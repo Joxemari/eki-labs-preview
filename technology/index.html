@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<meta name="robots" content="noindex, nofollow">
+<title>Technology · Eki.Labs · Preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Montserrat:wght@700;800&family=Manrope:wght@400;500&family=Roboto+Slab:wght@300;400&family=Work+Sans:wght@400;500&family=Zilla+Slab:wght@400;500&family=Newsreader:opsz,wght@6..72,300..600&family=Instrument+Serif&family=Instrument+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Work+Sans:wght@400;500&family=Zilla+Slab:wght@400&display=swap">
+<style>
+    .sc-placeholder{background:color-mix(in srgb,currentColor 8%,transparent);
+      border:1px solid color-mix(in srgb,currentColor 50%,transparent);
+      border-radius:2px;box-sizing:border-box;overflow:hidden}
+    @keyframes sc-shine{0%{background-position:100% 50%}100%{background-position:0% 50%}}
+    html.sc-dc-streaming .sc-placeholder,
+    html.sc-dc-streaming .sc-interp.sc-missing{position:relative;
+      background:color-mix(in srgb,currentColor 5%,transparent);
+      border-color:transparent}
+    html.sc-dc-streaming .sc-placeholder::before,
+    html.sc-dc-streaming .sc-interp.sc-missing::before{content:'';
+      position:absolute;inset:0;pointer-events:none;
+      background:linear-gradient(90deg,rgba(217,119,87,0) 25%,rgba(247,225,211,.95) 37%,rgba(217,119,87,0) 63%);
+      background-size:400% 100%;animation:sc-shine 1.4s ease infinite}
+    html.sc-dc-streaming .sc-placeholder:nth-child(n+9 of .sc-placeholder)::before,
+    html.sc-dc-streaming .sc-interp.sc-missing:nth-child(n+9 of .sc-interp.sc-missing)::before{animation:none;
+      background:color-mix(in srgb,currentColor 8%,transparent)}
+    .sc-placeholder-error{padding:4px 8px;font:11px/1.4 ui-monospace,monospace;
+      color:color-mix(in srgb,currentColor 70%,transparent);word-break:break-word}
+    .sc-interp.sc-missing{display:inline-block;width:2em;height:1em;overflow:hidden;
+      vertical-align:text-bottom;background:rgba(255,255,255,.3);border:1px solid rgba(0,0,0,.5);
+      border-radius:2px;box-sizing:border-box;color:transparent;
+      user-select:none}
+    .sc-interp.sc-unresolved{font-family:ui-monospace,monospace;font-size:.85em;
+      color:color-mix(in srgb,currentColor 50%,transparent);
+      background:color-mix(in srgb,currentColor 10%,transparent);border-radius:3px;
+      padding:0 3px}
+    .sc-host.sc-has-error{position:relative}
+    .sc-logic-error{position:absolute;top:8px;left:8px;z-index:2147483647;max-width:60ch;
+      padding:6px 10px;background:#b00020;color:#fff;font:12px/1.4 ui-monospace,monospace;
+      border-radius:4px;white-space:pre-wrap;pointer-events:none}
+    /* Mirrors PRINT_BASELINE_CSS in apps/web deck-stage-export.ts — keep both
+       in sync until dc-runtime regains a build step. */
+    @media print {
+      @page { margin: 0.5cm; }
+      figure, table { break-inside: avoid; }
+      #dc-root, #dc-root > .sc-host { height: auto; }
+      *, *::before, *::after {
+        print-color-adjust: exact; -webkit-print-color-adjust: exact;
+        backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+        animation-delay: -99s !important; animation-duration: .001s !important;
+        animation-iteration-count: 1 !important; animation-fill-mode: both !important;
+        animation-play-state: running !important; transition-duration: 0s !important;
+      }
+    }
+  
+x-dc{display:none!important}
+
+body{margin:0}
+@property --n { syntax: '<integer>'; initial-value: 0; inherits: false; }
+.cnt{counter-reset:c var(--n);font-variant-numeric:tabular-nums;animation:cnt0 1.8s cubic-bezier(0.16,1,0.3,1) 0.15s both paused}
+.cnt::before{content:counter(c)}
+.cnt-1{animation-name:cnt1}
+.contar-on .cnt{animation-play-state:running}
+.n3{--n:3}.n5{--n:5}.n8{--n:8}.n10{--n:10}.n13{--n:13}.n16{--n:16}.n36{--n:36}.n95{--n:95}
+@keyframes cnt0{from{--n:0}}
+@keyframes cnt1{from{--n:1}}
+@media (prefers-reduced-motion: reduce){.cnt{animation:none}}
+
+
+body{margin:0}
+@property --c{syntax:'<integer>';initial-value:0;inherits:false}
+.cp-cnt{counter-reset:c var(--c);font-variant-numeric:tabular-nums}.cp-cnt::before{content:counter(c)}
+@keyframes cp-borde{0.0%{stroke-dashoffset:1880}0.833%{stroke-dashoffset:1880;animation-timing-function:cubic-bezier(0.65,0,0.35,1)}7.5%{stroke-dashoffset:0}100.0%{stroke-dashoffset:0}}
+.cp-borde{animation:cp-borde 12.0s infinite}
+@keyframes cp-s0{0.0%{transform:scaleX(0)}7.5%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}12.5%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
+.cp-s0{animation:cp-s0 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
+@keyframes cp-s1{0.0%{transform:scaleX(0)}8.75%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}13.75%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
+.cp-s1{animation:cp-s1 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
+@keyframes cp-s2{0.0%{transform:scaleX(0)}10.0%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}15.0%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
+.cp-s2{animation:cp-s2 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
+@keyframes cp-s3{0.0%{transform:scaleX(0)}11.25%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}16.25%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
+.cp-s3{animation:cp-s3 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
+@keyframes cp-s4{0.0%{transform:scaleX(0)}12.5%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}17.5%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
+.cp-s4{animation:cp-s4 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
+@keyframes cp-s5{0.0%{transform:scaleX(0)}13.75%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}18.75%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
+.cp-s5{animation:cp-s5 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
+@keyframes cp-s6{0.0%{transform:scaleX(0)}15.0%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}20.0%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
+.cp-s6{animation:cp-s6 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
+@keyframes cp-s7{0.0%{transform:scaleX(0)}16.25%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}21.25%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
+.cp-s7{animation:cp-s7 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
+@keyframes cp-s8{0.0%{transform:scaleX(0)}17.5%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}22.5%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
+.cp-s8{animation:cp-s8 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
+@keyframes cp-s9{0.0%{transform:scaleX(0)}18.75%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}23.75%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
+.cp-s9{animation:cp-s9 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
+@keyframes cp-s10{0.0%{transform:scaleX(0)}20.0%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}25.0%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
+.cp-s10{animation:cp-s10 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
+@keyframes cp-s11{0.0%{transform:scaleX(0)}21.25%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}26.25%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
+.cp-s11{animation:cp-s11 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
+@keyframes cp-s12{0.0%{transform:scaleX(0)}22.5%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}27.5%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
+.cp-s12{animation:cp-s12 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
+@keyframes cp-r0{0.0%{transform:scaleY(0)}25.833%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}31.667%{transform:scaleY(1)}100.0%{transform:scaleY(1)}}
+.cp-r0{animation:cp-r0 12.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes cp-r1{0.0%{transform:scaleY(0)}26.833%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}32.667%{transform:scaleY(1)}100.0%{transform:scaleY(1)}}
+.cp-r1{animation:cp-r1 12.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes cp-r2{0.0%{transform:scaleY(0)}27.833%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}33.667%{transform:scaleY(1)}100.0%{transform:scaleY(1)}}
+.cp-r2{animation:cp-r2 12.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes cp-r3{0.0%{transform:scaleY(0)}28.833%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}34.667%{transform:scaleY(1)}100.0%{transform:scaleY(1)}}
+.cp-r3{animation:cp-r3 12.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes cp-r4{0.0%{transform:scaleY(0)}29.833%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}35.667%{transform:scaleY(1)}100.0%{transform:scaleY(1)}}
+.cp-r4{animation:cp-r4 12.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes cp-r5{0.0%{transform:scaleY(0)}30.833%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}36.667%{transform:scaleY(1)}100.0%{transform:scaleY(1)}}
+.cp-r5{animation:cp-r5 12.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes cp-r6{0.0%{transform:scaleY(0)}31.833%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}37.667%{transform:scaleY(1)}100.0%{transform:scaleY(1)}}
+.cp-r6{animation:cp-r6 12.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes cp-c0{0.0%{opacity:0}39.167%{opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}43.333%{opacity:1}100.0%{opacity:1}}
+.cp-c0{animation:cp-c0 12.0s infinite}
+@keyframes cp-c1{0.0%{opacity:0}40.667%{opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}44.833%{opacity:1}100.0%{opacity:1}}
+.cp-c1{animation:cp-c1 12.0s infinite}
+@keyframes cp-c2{0.0%{opacity:0}42.167%{opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}46.333%{opacity:1}100.0%{opacity:1}}
+.cp-c2{animation:cp-c2 12.0s infinite}
+@keyframes cp-c3{0.0%{opacity:0}43.667%{opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}47.833%{opacity:1}100.0%{opacity:1}}
+.cp-c3{animation:cp-c3 12.0s infinite}
+@keyframes cp-c4{0.0%{opacity:0}45.167%{opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}49.333%{opacity:1}100.0%{opacity:1}}
+.cp-c4{animation:cp-c4 12.0s infinite}
+@keyframes cp-c5{0.0%{opacity:0}46.667%{opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}50.833%{opacity:1}100.0%{opacity:1}}
+.cp-c5{animation:cp-c5 12.0s infinite}
+@keyframes cp-n100{0.0%{--c:0}7.5%{--c:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}25.0%{--c:100}100.0%{--c:100}}
+.cp-n100{animation:cp-n100 12.0s infinite}
+@keyframes cp-n5{0.0%{--c:0}25.833%{--c:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}36.667%{--c:5}100.0%{--c:5}}
+.cp-n5{animation:cp-n5 12.0s infinite}
+@keyframes cp-tag{0.0%{opacity:0;transform:scale(0.8)}52.5%{opacity:0;transform:scale(0.8);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}57.5%{opacity:1;transform:scale(1)}100.0%{opacity:1;transform:scale(1)}}
+.cp-tag{animation:cp-tag 12.0s infinite}
+@keyframes cp-velo{0.0%{opacity:1}2.5%{opacity:0}94.167%{opacity:0}100.0%{opacity:1}}
+.cp-velo{animation:cp-velo 12.0s infinite}
+.cp-n100{--c:100}.cp-n5{--c:5}
+@media (prefers-reduced-motion: reduce){[class^='cp-'],[class*=' cp-']{animation:none !important}}
+
+
+body{margin:0}
+@property --g { syntax: '<integer>'; initial-value: 0; inherits: false; }
+.gr-cnt{counter-reset:g var(--g);font-variant-numeric:tabular-nums}.gr-cnt::before{content:counter(g)}
+@keyframes gr-velo{0%{opacity:1}1.786%,95.0%{opacity:0}99.286%,100%{opacity:1}}
+.gr-velo{animation:gr-velo 14.0s infinite}
+@keyframes gr-borde{0%,1.429%{stroke-dashoffset:100;animation-timing-function:cubic-bezier(0.65,0,0.35,1)}10.0%,100%{stroke-dashoffset:0}}
+.gr-borde{animation:gr-borde 14.0s infinite}
+@keyframes gr-cota{0%,6.429%{opacity:0}10.714%,100%{opacity:1}}
+.gr-cota{animation:gr-cota 14.0s infinite}
+@keyframes gr-p0{0%,11.429%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.65,0,0.35,1)}14.286%,100%{transform:scaleY(1)}}
+.gr-p0{animation:gr-p0 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes gr-l0{0%,68.571%{opacity:0}75.714%,84.286%{opacity:1}90.0%,100%{opacity:0}}
+.gr-l0{animation:gr-l0 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes gr-p1{0%,13.571%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.65,0,0.35,1)}16.429%,100%{transform:scaleY(1)}}
+.gr-p1{animation:gr-p1 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes gr-l1{0%,69.429%{opacity:0}76.571%,85.143%{opacity:1}90.0%,100%{opacity:0}}
+.gr-l1{animation:gr-l1 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes gr-p2{0%,15.714%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.65,0,0.35,1)}18.571%,100%{transform:scaleY(1)}}
+.gr-p2{animation:gr-p2 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes gr-l2{0%,70.286%{opacity:0}77.429%,86.0%{opacity:1}90.0%,100%{opacity:0}}
+.gr-l2{animation:gr-l2 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes gr-p3{0%,17.857%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.65,0,0.35,1)}20.714%,100%{transform:scaleY(1)}}
+.gr-p3{animation:gr-p3 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes gr-l3{0%,71.143%{opacity:0}78.286%,86.857%{opacity:1}90.0%,100%{opacity:0}}
+.gr-l3{animation:gr-l3 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes gr-p4{0%,20.0%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.65,0,0.35,1)}22.857%,100%{transform:scaleY(1)}}
+.gr-p4{animation:gr-p4 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes gr-l4{0%,72.0%{opacity:0}79.143%,87.714%{opacity:1}90.0%,100%{opacity:0}}
+.gr-l4{animation:gr-l4 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes gr-p5{0%,22.143%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.65,0,0.35,1)}25.0%,100%{transform:scaleY(1)}}
+.gr-p5{animation:gr-p5 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes gr-l5{0%,72.857%{opacity:0}80.0%,88.571%{opacity:1}90.0%,100%{opacity:0}}
+.gr-l5{animation:gr-l5 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes gr-p6{0%,24.286%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.65,0,0.35,1)}27.143%,100%{transform:scaleY(1)}}
+.gr-p6{animation:gr-p6 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes gr-l6{0%,73.714%{opacity:0}80.857%,89.429%{opacity:1}90.0%,100%{opacity:0}}
+.gr-l6{animation:gr-l6 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
+@keyframes gr-huella{0%,15.714%{--g:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}27.143%,100%{--g:95}}
+.gr-huella{--g:95;animation:gr-huella 14.0s infinite}
+@keyframes gr-rev{0%,85.714%{--g:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}92.857%,100%{--g:13}}
+.gr-rev{--g:13;animation:gr-rev 14.0s infinite}
+@keyframes gr-tractor{0%,26.786%{offset-distance:0%;opacity:0}28.571%{offset-distance:0%;opacity:1}52.857%{offset-distance:100%;opacity:1}55.0%,100%{offset-distance:100%;opacity:0}}
+.gr-tractor{offset-path:path('M 141.0 164 L 141.0 576 L 231.0 576 L 231.0 164 L 321.0 164 L 321.0 576 L 411.0 576 L 411.0 164 L 501.0 164 L 501.0 576 L 591.0 576 L 591.0 164 L 681.0 164 L 681.0 576 L 771.0 576 L 771.0 164');offset-rotate:auto;offset-anchor:50% 50%;animation:gr-tractor 14.0s linear infinite}
+@keyframes gr-s0{0%,28.571%{transform:scaleY(0)}31.12%,100%{transform:scaleY(1)}}
+.gr-s0{transform-box:fill-box;transform-origin:50% 0%;animation:gr-s0 14.0s linear infinite}
+@keyframes gr-c0{0%,53.571%{transform:scaleY(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}60.0%,100%{transform:scaleY(1);opacity:1}}
+.gr-c0{transform-box:fill-box;transform-origin:50% 100%;animation:gr-c0 14.0s infinite}
+@keyframes gr-s1{0%,31.677%{transform:scaleY(0)}34.225%,100%{transform:scaleY(1)}}
+.gr-s1{transform-box:fill-box;transform-origin:50% 100%;animation:gr-s1 14.0s linear infinite}
+@keyframes gr-c1{0%,54.857%{transform:scaleY(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}61.286%,100%{transform:scaleY(1);opacity:1}}
+.gr-c1{transform-box:fill-box;transform-origin:50% 100%;animation:gr-c1 14.0s infinite}
+@keyframes gr-s2{0%,34.782%{transform:scaleY(0)}37.331%,100%{transform:scaleY(1)}}
+.gr-s2{transform-box:fill-box;transform-origin:50% 0%;animation:gr-s2 14.0s linear infinite}
+@keyframes gr-c2{0%,56.143%{transform:scaleY(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}62.571%,100%{transform:scaleY(1);opacity:1}}
+.gr-c2{transform-box:fill-box;transform-origin:50% 100%;animation:gr-c2 14.0s infinite}
+@keyframes gr-s3{0%,37.887%{transform:scaleY(0)}40.436%,100%{transform:scaleY(1)}}
+.gr-s3{transform-box:fill-box;transform-origin:50% 100%;animation:gr-s3 14.0s linear infinite}
+@keyframes gr-c3{0%,57.429%{transform:scaleY(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}63.857%,100%{transform:scaleY(1);opacity:1}}
+.gr-c3{transform-box:fill-box;transform-origin:50% 100%;animation:gr-c3 14.0s infinite}
+@keyframes gr-s4{0%,40.993%{transform:scaleY(0)}43.541%,100%{transform:scaleY(1)}}
+.gr-s4{transform-box:fill-box;transform-origin:50% 0%;animation:gr-s4 14.0s linear infinite}
+@keyframes gr-c4{0%,58.714%{transform:scaleY(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}65.143%,100%{transform:scaleY(1);opacity:1}}
+.gr-c4{transform-box:fill-box;transform-origin:50% 100%;animation:gr-c4 14.0s infinite}
+@keyframes gr-s5{0%,44.098%{transform:scaleY(0)}46.647%,100%{transform:scaleY(1)}}
+.gr-s5{transform-box:fill-box;transform-origin:50% 100%;animation:gr-s5 14.0s linear infinite}
+@keyframes gr-c5{0%,60.0%{transform:scaleY(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}66.429%,100%{transform:scaleY(1);opacity:1}}
+.gr-c5{transform-box:fill-box;transform-origin:50% 100%;animation:gr-c5 14.0s infinite}
+@keyframes gr-s6{0%,47.203%{transform:scaleY(0)}49.752%,100%{transform:scaleY(1)}}
+.gr-s6{transform-box:fill-box;transform-origin:50% 0%;animation:gr-s6 14.0s linear infinite}
+@keyframes gr-c6{0%,61.286%{transform:scaleY(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}67.714%,100%{transform:scaleY(1);opacity:1}}
+.gr-c6{transform-box:fill-box;transform-origin:50% 100%;animation:gr-c6 14.0s infinite}
+@keyframes gr-s7{0%,50.309%{transform:scaleY(0)}52.857%,100%{transform:scaleY(1)}}
+.gr-s7{transform-box:fill-box;transform-origin:50% 100%;animation:gr-s7 14.0s linear infinite}
+@keyframes gr-c7{0%,62.571%{transform:scaleY(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}69.0%,100%{transform:scaleY(1);opacity:1}}
+.gr-c7{transform-box:fill-box;transform-origin:50% 100%;animation:gr-c7 14.0s infinite}
+@keyframes gr-sol{0%,67.143%{offset-distance:0%;opacity:0}68.571%{offset-distance:0%;opacity:1}90.0%{offset-distance:100%;opacity:1}92.143%,100%{offset-distance:100%;opacity:0}}
+.gr-sol{offset-path:path('M 86 132 Q 456.0 -20 826 132');offset-rotate:0deg;offset-anchor:50% 50%;animation:gr-sol 14.0s cubic-bezier(0.45,0,0.55,1) infinite}
+@keyframes gr-curva{0%,68.571%{stroke-dashoffset:100}90.0%,100%{stroke-dashoffset:0}}
+.gr-curva{animation:gr-curva 14.0s infinite}
+@keyframes gr-e0{0%,11.071%{opacity:1}11.429%,100%{opacity:0.35}}
+.gr-e0{animation:gr-e0 14.0s infinite}
+@keyframes gr-m0{0%,11.071%{background:#ffd54a}11.429%,100%{background:transparent}}
+.gr-m0{animation:gr-m0 14.0s infinite}
+@keyframes gr-e1{0%,11.071%{opacity:0.35}11.429%,28.214%{opacity:1}28.571%,100%{opacity:0.35}}
+.gr-e1{animation:gr-e1 14.0s infinite}
+@keyframes gr-m1{0%,11.071%{background:transparent}11.429%,28.214%{background:#ffd54a}28.571%,100%{background:transparent}}
+.gr-m1{animation:gr-m1 14.0s infinite}
+@keyframes gr-e2{0%,28.214%{opacity:0.35}28.571%,52.5%{opacity:1}52.857%,100%{opacity:0.35}}
+.gr-e2{animation:gr-e2 14.0s infinite}
+@keyframes gr-m2{0%,28.214%{background:transparent}28.571%,52.5%{background:#ffd54a}52.857%,100%{background:transparent}}
+.gr-m2{animation:gr-m2 14.0s infinite}
+@keyframes gr-e3{0%,52.5%{opacity:0.35}52.857%,66.786%{opacity:1}67.143%,100%{opacity:0.35}}
+.gr-e3{animation:gr-e3 14.0s infinite}
+@keyframes gr-m3{0%,52.5%{background:transparent}52.857%,66.786%{background:#ffd54a}67.143%,100%{background:transparent}}
+.gr-m3{animation:gr-m3 14.0s infinite}
+@keyframes gr-e4{0%,66.786%{opacity:0.35}67.143%,100%{opacity:1}}
+.gr-e4{animation:gr-e4 14.0s infinite}
+@keyframes gr-m4{0%,66.786%{background:transparent}67.143%,100%{background:#ffd54a}}
+.gr-m4{animation:gr-m4 14.0s infinite}
+@media (prefers-reduced-motion: reduce){[class^='gr-'],[class*=' gr-']{animation:none !important}}
+
+.n7{--n:7}.n2024{--n:2024}
+html,body{margin:0;background:#f4f2ec}
+.wrap{width:1280px;margin:0 auto;position:relative}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div style="position: relative; width: 1280px;  background: rgb(10, 16, 12); color: rgb(244, 242, 236); font-family: &quot;Work Sans&quot;, Arial, sans-serif;"><div data-hdr="1" style="position: sticky; top: 0px; z-index: 30; height: 0px;"><header style="position: absolute; top: 24px; left: 24px; right: 24px; height: 60px; box-sizing: border-box; padding: 0px 10px 0px 20px; border-radius: 12px; display: flex; align-items: center; gap: 44px; background: rgba(10, 16, 12, 0.55); color: rgb(244, 242, 236); box-shadow: none; backdrop-filter: blur(14px); transition: background-color 240ms cubic-bezier(0.16, 1, 0.3, 1), color 240ms cubic-bezier(0.16, 1, 0.3, 1);"><a href="../" aria-label="eki.labs, inicio" style="display: block; line-height: 0;"><img src="../assets/cd5507e4423d.svg" alt="eki.labs" style="height: 22px; width: 120px; display: block;"><img src="../assets/935050cd151d.svg" alt="eki.labs" style="height: 22px; width: 120px; display: none;"></a><nav style="display: flex; gap: 28px; font-size: 15px;"><a href="../technology/" style="color: inherit; text-decoration: none; box-shadow: rgb(88, 233, 174) 0px -2px 0px inset; padding-bottom: 2px;">Technology</a><a href="../model/" style="color: inherit; text-decoration: none;">Model</a><a href="../#impact" style="color: inherit; text-decoration: none;">Impact</a><a href="../#team" style="color: inherit; text-decoration: none;">Team</a><a href="../#story" style="color: inherit; text-decoration: none;">Origins</a><a href="../video/" style="color: inherit; text-decoration: none;">Film</a></nav><div style="margin-left: auto; display: flex; align-items: center; gap: 28px;"><a href="../" style="display: inline-flex; align-items: center; gap: 6px; color: inherit; font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 14px; text-decoration: none;">Contact<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M3.34 8H12M8 3.33L12.67 8L8 12.67" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></a><a href="../technology/" aria-current="page" style="display: inline-flex; align-items: center; height: 40px; padding: 0px 16px; border-radius: 4px; background: rgb(88, 233, 174); color: rgb(10, 16, 12); font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 14px; font-weight: 500; text-decoration: none;">Explore our science</a></div></header></div><section data-tono="oscuro" style="padding: 12px;"><div style="position: relative; height: 680px; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; background: rgb(22, 50, 74);"><img src="../assets/697169ec847d.jpg" alt="Eki.Labs solar rows on a cereal field in Zamora" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; display: block;"><div style="position: absolute; inset: 0px; background: linear-gradient(rgba(10, 16, 12, 0.45) 0px, rgba(10, 16, 12, 0) 24%, rgba(10, 16, 12, 0) 40%, rgba(10, 16, 12, 0.82) 100%);"></div><div style="position: relative; display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: end; padding: 32px 24px;"><div style="display: flex; flex-direction: column; gap: 16px;"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(213, 216, 210);"><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: rgb(88, 233, 174);"></span>Technology</span><h1 style="margin: 0px; font-family: &quot;Zilla Slab&quot;, Georgia, serif; font-weight: 400; font-size: 48px; line-height: 52px; letter-spacing: -0.015em; color: rgb(244, 242, 236); max-width: 20ch;">An innovative solar configuration that enables dual land use.</h1></div><p style="margin: 0px; font-size: 19px; line-height: 28px; color: rgb(244, 242, 236);">We enable dual land use by scaling an innovative technology that requires minimal space, allowing farmers to keep farming.</p></div></div></section><section id="compare" data-tono="oscuro" style="padding: 144px 0px 0px;"><div style="padding: 0px 64px 40px; display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); column-gap: 24px; align-items: end;"><div style="grid-column: 1 / span 7;"><div style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 24px;"><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: rgb(88, 233, 174);"></span><span style="color: rgb(244, 242, 236);">01</span> · Single-use vs. dual-use land</div><h2 style="margin: 0px; font-family: &quot;Zilla Slab&quot;, Georgia, serif; font-weight: 400; font-size: 48px; line-height: 52px; letter-spacing: -0.015em;">Farmers and solar developers are competing for the same lands.</h2></div><p style="grid-column: 9 / span 4; margin: 0px; font-size: 17px; line-height: 26px; color: rgb(161, 166, 159);">Solar farms favour flat, sun-rich terrain: the same land as our best farms. Our rows take 5% of it; the rest keeps farming.</p></div><div style="margin: 0px 12px; border-radius: 20px; overflow: hidden; height: 720px;"><div style="margin-left: -12px;"><video autoplay muted loop playsinline preload="auto" poster="../assets/still-comparativa.jpg" src="../assets/clip-comparativa.mp4" style="display:block; width:1280px; height:720px; object-fit:cover;"></video></div></div><div style="margin: 24px 12px 0px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;"><div style="padding: 32px 32px 36px; border-radius: 12px; background: rgb(20, 27, 22); display: flex; flex-direction: column; gap: 20px;"><div style="display: flex; justify-content: space-between; align-items: baseline;"><h3 style="margin: 0px; font-family: &quot;Zilla Slab&quot;, Georgia, serif; font-weight: 400; font-size: 30px; line-height: 36px;">Single-use land</h3><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);">Conventional solar</span></div><div style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid rgb(43, 51, 45);"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);">Panels</span><span style="font-size: 16px; line-height: 24px;">Fixed, facing south, tilted at about 30°</span></div><div style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid rgb(43, 51, 45);"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);">Between rows</span><span style="font-size: 16px; line-height: 24px;">About 5 m</span></div><div style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid rgb(43, 51, 45);"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);">Sunlight</span><span style="font-size: 16px; line-height: 24px;">Blocked: the land stops being farmland</span></div><div style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid rgb(43, 51, 45);"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);">Machinery</span><span style="font-size: 16px; line-height: 24px;">Restricted access</span></div></div><div style="padding: 32px 32px 36px; border-radius: 12px; background: rgb(20, 27, 22); display: flex; flex-direction: column; gap: 20px;"><div style="display: flex; justify-content: space-between; align-items: baseline;"><h3 style="margin: 0px; font-family: &quot;Zilla Slab&quot;, Georgia, serif; font-weight: 400; font-size: 30px; line-height: 36px;">Dual-use land</h3><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(255, 213, 74);">Eki.Labs</span></div><div style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid rgb(43, 51, 45);"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);">Panels</span><span style="font-size: 16px; line-height: 24px;">Bifacial, in rows facing east and west</span></div><div style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid rgb(43, 51, 45);"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);">Between rows</span><span style="font-size: 16px; line-height: 24px;">10–18 m</span></div><div style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid rgb(43, 51, 45);"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);">Sunlight</span><span style="font-size: 16px; line-height: 24px;">Reaches the crops; morning and evening shade helps the soil keep its moisture</span></div><div style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid rgb(43, 51, 45);"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);">Machinery</span><span style="font-size: 16px; line-height: 24px;">Full compatibility</span></div></div></div></section><section id="science" data-tono="oscuro" style="margin: 144px 12px 0px; padding: 96px 52px; border-radius: 20px; background: rgb(10, 16, 12); color: rgb(244, 242, 236);"><div style="display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); column-gap: 24px; align-items: end;"><div style="grid-column: 1 / span 6;"><div style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 24px;"><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: rgb(88, 233, 174);"></span><span style="color: rgb(244, 242, 236);">02</span> · The science</div><h2 style="margin: 0px; font-family: &quot;Zilla Slab&quot;, Georgia, serif; font-weight: 400; font-size: 70px; line-height: 1.02; letter-spacing: -0.025em;">Aligned with demand.</h2></div><p style="grid-column: 7 / span 6; margin: 0px; font-size: 19px; line-height: 28px; color: rgb(161, 166, 159); max-width: 56ch;">Our rows face east and west, so they produce in the morning and in the evening, when demand peaks and electricity is worth the most. Conventional panels produce mostly at midday, when solar floods the grid and prices fall: then the light goes to our crops.</p></div><figure style="margin: 72px 0px 0px; display: flex; flex-direction: column; gap: 24px;"><div style="display: flex; justify-content: space-between; font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding-bottom: 16px; border-bottom: 1px solid rgb(43, 51, 45);"><span>One day in June, hour by hour</span><span style="color: rgb(161, 166, 159); font-weight: 400; letter-spacing: 0.02em; text-transform: none;">Illustrative data · hover to move through the day</span></div><video autoplay muted loop playsinline preload="auto" poster="../assets/still-science.jpg" src="../assets/clip-science.mp4" style="display:block; width:1152px; height:784px; object-fit:cover; width:1152px;"></video><figcaption style="font-size: 13px; line-height: 20px; color: rgb(161, 166, 159);">The +10% energy and +13% revenue come from one year of real data from our field test in Zamora. The day shown is a model: clear-sky June day in Castilla y León, 1 MW of each system. The price profile is illustrative and follows the midday dip of the Iberian day-ahead market (OMIE).</figcaption></figure></section><section data-tono="oscuro" data-contar="campo" class="" style="margin: 144px 12px 0px; padding: 96px 52px; border-radius: 20px; background: rgb(10, 16, 12); color: rgb(244, 242, 236);"><div style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 24px;"><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: rgb(88, 233, 174);"></span><span style="color: rgb(244, 242, 236);">03</span> · Field tests</div><h2 style="margin: 0px; font-family: &quot;Zilla Slab&quot;, Georgia, serif; font-weight: 400; font-size: 48px; line-height: 52px; letter-spacing: -0.015em; max-width: 24ch;">Tested on real cereal farmlands (wheat and barley) in Zamora, Spain.</h2><p style="margin: 20px 0px 0px; max-width: 60ch; font-size: 17px; line-height: 26px; color: rgb(161, 166, 159);">One year of real data from our pilot in Zamora, installed with grants from Harvard and MIT and compared with a control plant of fixed, south-facing panels.</p><div style="margin-top: 56px; display: grid; grid-template-columns: repeat(4, minmax(0px, 1fr)); gap: 24px;"><div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 2px solid rgb(244, 242, 236);"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 88px; line-height: 88px; letter-spacing: -0.05em;">−<span class="cnt n95"></span><span style="font-size: 0.4em; margin-left: 0.12em; color: rgb(161, 166, 159);">%</span></span><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;">Space</span></div><div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 2px solid rgb(244, 242, 236);"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 88px; line-height: 88px; letter-spacing: -0.05em;">+<span class="cnt n10"></span><span style="font-size: 0.4em; margin-left: 0.12em; color: rgb(161, 166, 159);">%</span></span><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;">Energy output</span></div><div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 2px solid rgb(244, 242, 236);"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 88px; line-height: 88px; letter-spacing: -0.05em;">+<span class="cnt n13"></span><span style="font-size: 0.4em; margin-left: 0.12em; color: rgb(161, 166, 159);">%</span></span><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;">Revenue</span></div><div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 2px solid rgb(244, 242, 236);"><span style="font-size: 30px; line-height: 38px; letter-spacing: -0.02em; min-height: 88px; display: flex; align-items: flex-end;">Less dust on the panels</span><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;">Maintenance</span></div></div><div style="margin-top: 56px; display: grid; grid-template-columns: repeat(2, minmax(0px, 1fr)); gap: 24px;"><div style="position: relative;"><img src="../assets/48eae52065ad.jpg" alt="Eki.Labs pilot plant among sunflowers" style="width: 100%; height: 380px; object-fit: cover; border-radius: 12px; display: block;"></div><div style="height: 380px; box-sizing: border-box; border-radius: 12px; background: rgba(244, 242, 236, 0.05); box-shadow: rgba(244, 242, 236, 0.12) 0px 0px 0px 1px inset; display: flex; flex-direction: column; justify-content: space-between; padding: 28px;"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);">Validated in the field</span><div style="display: flex; flex-direction: column; gap: 12px;"><div style="display: grid; grid-template-columns: 170px minmax(0px, 1fr); gap: 16px; padding-top: 12px; border-top: 1px solid rgb(43, 51, 45);"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);">Structure</span><span style="font-size: 15px; line-height: 22px;">Patented racking, anchored without cement. Less shade on the crops, more airflow, machinery-ready.</span></div><div style="display: grid; grid-template-columns: 170px minmax(0px, 1fr); gap: 16px; padding-top: 12px; border-top: 1px solid rgb(43, 51, 45);"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);">Panels</span><span style="font-size: 15px; line-height: 22px;">Bifacial modules selected for east-west rows and diffuse light, with extra yield from light reflected by the crops (albedo) and cooler panels.</span></div><div style="display: grid; grid-template-columns: 170px minmax(0px, 1fr); gap: 16px; padding-top: 12px; border-top: 1px solid rgb(43, 51, 45);"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);">Resilience</span><span style="font-size: 15px; line-height: 22px;">Withstood winds of over 130 km/h in real farming conditions.</span></div></div></div></div></section><section id="farm" data-tono="oscuro" style="padding: 144px 0px 0px;"><div style="padding: 0px 64px 40px; display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); column-gap: 24px; align-items: end;"><div style="grid-column: 1 / span 7;"><div style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 24px;"><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: rgb(88, 233, 174);"></span><span style="color: rgb(244, 242, 236);">04</span> · The farm, from above</div><h2 style="margin: 0px; font-family: &quot;Zilla Slab&quot;, Georgia, serif; font-weight: 400; font-size: 48px; line-height: 52px; letter-spacing: -0.015em;">From survey to the first kilowatt-hour.</h2></div><p style="grid-column: 9 / span 4; margin: 0px; font-size: 17px; line-height: 26px; color: rgb(161, 166, 159);">The rows go in, the tractor keeps working the land, the crops grow and the sun does the rest.</p></div><div style="margin: 0px 12px; border-radius: 20px; overflow: hidden; height: 720px;"><div style="margin-left: -12px;"><video autoplay muted loop playsinline preload="auto" poster="../assets/still-granja.jpg" src="../assets/clip-granja.mp4" style="display:block; width:1280px; height:720px; object-fit:cover;"></video></div></div></section><section data-tono="oscuro" style="padding: 144px 64px 0px;"><div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; padding-bottom: 8px;"><div style="display: flex; flex-direction: column; gap: 16px;"><h2 style="margin: 0px; font-family: &quot;Zilla Slab&quot;, Georgia, serif; font-weight: 400; font-size: 48px; line-height: 52px; letter-spacing: -0.015em; max-width: 24ch;">From field tests to commercial plants.</h2><p style="margin: 0px; font-size: 19px; line-height: 28px; color: rgb(161, 166, 159);">If you are an investor, get in touch.</p></div><a href="../#contact" style="flex-shrink: 0; display: inline-flex; align-items: center; height: 48px; padding: 0px 20px; border-radius: 4px; background: rgb(88, 233, 174); color: rgb(10, 16, 12); font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 14px; font-weight: 500; text-decoration: none;">Get in touch →</a></div></section><div style="height: 96px;"></div><footer data-tono="oscuro" style="margin: 12px; border-radius: 20px; background: rgb(10, 16, 12); color: rgb(244, 242, 236);"><div style="padding: 56px 52px; display: grid; grid-template-columns: 1fr 2fr; gap: 48px;"><div><img src="../assets/cd5507e4423d.svg" alt="eki.labs" style="height: 24px; width: 131px; display: block;"><p style="margin: 16px 0px 0px; font-size: 15px; line-height: 23px; color: rgb(161, 166, 159);">Farming soil and sun, together.</p></div><div style="display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 24px;"><div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 4px;">eki.labs</span><a href="../technology/" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Technology</a><a href="../model/" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Model</a><a href="../video/" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Film</a><a href="../#impact" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Impact</a><a href="../#team" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Team</a><a href="../#story" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Origins</a><a href="../#contact" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Contact</a></div><div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 4px;">Offices</span><span style="font-size: 15px;">Boston</span><span style="font-size: 15px;">Valladolid</span></div><div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 4px;">Contact</span><a href="mailto:hola@ekilabs.com" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">hola@ekilabs.com</a><span style="font-size: 15px;">Eki Labs Corp.</span></div></div></div><div id="funding" style="margin: 0px 52px; padding: 28px 0px; border-top: 1px solid rgb(43, 51, 45); display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); column-gap: 24px;"><span style="grid-column: 1 / span 3; font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 11px; line-height: 22px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);">Funding</span><p style="grid-column: 4 / span 9; margin: 0px; font-size: 14px; line-height: 22px; color: rgb(161, 166, 159);">Project supported by IDAE (Instituto para la Diversificación y Ahorro de la Energía) and funded by the European Union – NextGenerationEU, within Spain’s Recovery, Transformation and Resilience Plan (PRTR). <span style="color: rgb(244, 242, 236);">[Programa, componente e inversión del PRTR y breve descripción del proyecto: pendiente]</span></p></div><div style="margin: 0px 52px; padding: 24px 0px; border-top: 1px solid rgb(43, 51, 45); display: flex; justify-content: space-between; font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; line-height: 16px; color: rgb(161, 166, 159);"><span>© Eki Labs Corp.</span><span>[Legal notice] · [Privacy]</span></div></footer><div id="funding-logos" style="margin: 0px 12px 12px; padding: 24px 40px; border-radius: 20px; background: rgb(255, 255, 255); display: flex; align-items: center; gap: 48px;"><img src="../assets/7757b4dfa85f.svg" alt="Gobierno de España, Ministerio para la Transición Ecológica y el Reto Demográfico" style="height: 44px; width: 154px; display: block;"><img src="../assets/8a77b976132e.png" alt="IDAE, Instituto para la Diversificación y Ahorro de la Energía" style="height: 44px; width: 126px; display: block;"><img src="../assets/b1ab4f33d848.png" alt="Plan de Recuperación, Transformación y Resiliencia" style="height: 44px; width: 253px; display: block;"><img src="../assets/f0eb3a6a09d3.png" alt="Financiado por la Unión Europea – NextGenerationEU" style="height: 44px; width: 176px; display: block;"></div></div>
+</div>
+
+<script>
+(function () {
+  // header: light or dark depending on the section under it
+  var hd = document.querySelector('[data-hdr] header');
+  if (hd) {
+    var imgs = hd.querySelectorAll('a img');
+    var set = function () {
+      var y = hd.getBoundingClientRect().top + 30, x = window.innerWidth / 2, tono = 'oscuro';
+      var els = document.elementsFromPoint ? document.elementsFromPoint(x, y) : [];
+      for (var i = 0; i < els.length; i++) { var el = els[i]; if (el.closest('[data-hdr]')) continue; var s = el.closest('[data-tono]'); if (s) { tono = s.getAttribute('data-tono'); break; } }
+      var c = tono === 'claro';
+      hd.style.background = c ? 'rgba(244,242,236,0.86)' : 'rgba(10,16,12,0.55)'; hd.style.color = c ? '#0a100c' : '#f4f2ec';
+      hd.style.boxShadow = c ? '0 1px 0 rgba(10,16,12,0.06), 0 8px 24px rgba(10,16,12,0.06)' : 'none';
+      if (imgs.length > 1) { imgs[0].style.display = c ? 'none' : 'block'; imgs[1].style.display = c ? 'block' : 'none'; }
+    };
+    document.addEventListener('scroll', set, { passive: true }); set();
+  }
+  // counters count up when their block comes into view
+  var cs = document.querySelectorAll('[data-contar]');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('contar-on'); }); }, { threshold: 0.3 });
+    cs.forEach(function (c) { io.observe(c); });
+  } else cs.forEach(function (c) { c.classList.add('contar-on'); });
+})();
+</script>
+
+</body>
+</html>
