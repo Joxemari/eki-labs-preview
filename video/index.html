@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=1280">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Film · eki.labs · Preview</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Montserrat:wght@700;800&family=Manrope:wght@400;500&family=Roboto+Slab:wght@300;400&family=Work+Sans:wght@400;500&family=Zilla+Slab:wght@400;500&family=Newsreader:opsz,wght@6..72,300..600&family=Instrument+Serif&family=Instrument+Sans:wght@400;500&display=swap">
@@ -76,6 +76,215 @@ html{scroll-behavior:smooth}
 html,body{margin:0;background:rgb(10, 16, 12)}
 .wrap{width:1280px;margin:0 auto;position:relative}
 
+/* ---------- responsive layer (preview only) ---------- */
+.r-mob{display:none !important}
+.r-root{box-sizing:border-box}
+.r-how{border-radius:0}
+@media (max-width: 1279px){
+  .wrap{width:100% !important}
+  .r-root{width:100% !important}
+  .r-px52{padding-left:40px !important; padding-right:40px !important}
+  .r-mx52{margin-left:40px !important; margin-right:40px !important}
+  .r-px64{padding-left:52px !important; padding-right:52px !important}
+  .r-fsh1{font-size:96px !important}
+  .r-fs70{font-size:60px !important}
+  .r-g12{column-gap:20px !important}
+  .r-nav{gap:18px !important}
+  .r-hdr{gap:28px !important}
+  .r-deco{margin-left:-40px !important; margin-right:-40px !important}
+  form input, form select, form textarea{box-sizing:border-box !important; max-width:100%}
+  .r-stat{font-size:36px !important}
+  .r-backed{flex-wrap:wrap; gap:20px 32px !important}
+  .r-gmem{grid-template-columns:96px minmax(0,1fr) !important; gap:16px !important}
+  .r-gmem > img{width:96px !important; height:96px !important}
+}
+@media (max-width: 1100px){
+  .r-gteam{grid-template-columns:repeat(2, minmax(0,1fr)) !important}
+}
+@media (max-width: 1023px){
+  html,body{overflow-x:hidden}
+  .r-nav,.r-hide-t{display:none !important}
+  .nav-panel .r-mob{display:flex !important}
+  .nav-panel .nav-h.r-mob{display:block !important}
+  .r-hdr{top:16px !important; left:16px !important; right:16px !important; gap:16px !important; justify-content:space-between}
+  .r-hdr-r{margin-left:auto}
+  .nav-panel{max-height:calc(100vh - 120px); overflow-y:auto}
+  .r-g12{display:flex !important; flex-direction:column; align-items:flex-start !important; gap:20px}
+  .r-g12 > .r-gc{width:100%; max-width:640px}
+  #funding .r-gc{max-width:540px}
+  section.r-pt144{padding-top:112px !important}
+  .r-mt144{margin-top:112px !important}
+  .r-pt96{padding-top:72px !important}
+  .r-pb96{padding-bottom:72px !important}
+  .r-pt72{padding-top:56px !important}
+  .r-px52{padding-left:28px !important; padding-right:28px !important}
+  .r-mx52{margin-left:28px !important; margin-right:28px !important}
+  .r-px64{padding-left:40px !important; padding-right:40px !important}
+  .r-fsh1{font-size:76px !important}
+  .r-fs70{font-size:52px !important}
+  .r-fs48{font-size:40px !important}
+  .r-fs40{font-size:32px !important; line-height:1.2 !important}
+  .r-fs34{font-size:28px !important}
+  .r-fs30{font-size:25px !important}
+  #mission > div.r-hero{height:clamp(640px, 82vh, 920px) !important}
+  .r-ghero{display:flex !important; flex-direction:column; align-items:stretch !important; gap:24px !important; padding:120px 28px 40px !important}
+  .r-ghero h1{max-width:12ch !important}
+  .r-ref{top:88px !important}
+  .r-partners{padding:48px 40px 0 !important}
+  .r-partners .r-g12{gap:16px}
+  .r-partners .lg-marquee{width:100%}
+  .r-h300{height:240px !important}
+  .r-h480{height:380px !important}
+  .r-h580{height:440px !important}
+  .r-h500{height:460px !important}
+  .r-h560{height:480px !important}
+  .r-g21{grid-template-columns:1fr 1fr !important}
+  .r-gteam{grid-template-columns:repeat(2, minmax(0,1fr)) !important}
+  .r-gmem{grid-template-columns:96px minmax(0,1fr) !important}
+  .r-gmem > img{width:96px !important; height:96px !important}
+  .r-partners .lg-marquee{max-width:none !important}
+  .r-card-in{padding:28px 28px 36px !important; gap:28px !important}
+  .r-teamcard{padding:36px 32px !important}
+  .r-g5{grid-template-columns:repeat(3, minmax(0,1fr)) !important}
+  .r-stat{font-size:40px !important}
+  .r-support{flex-wrap:wrap}
+  .r-marca-logo{width:min(520px, 70vw) !important; height:auto !important}
+  .r-marca-row{flex-wrap:wrap; justify-content:center; gap:10px 28px !important; padding:0 20px; text-align:center}
+  .r-how{aspect-ratio:800/620 !important}
+  .r-gfoot{grid-template-columns:1fr !important; gap:36px !important}
+  .r-deco{margin-left:-28px !important; margin-right:-28px !important}
+  .r-flogos{flex-wrap:wrap; gap:24px 40px !important}
+}
+@media (max-width: 639px){
+  .r-hdr{top:8px !important; left:8px !important; right:8px !important; height:56px !important; padding:0 8px 0 16px !important; gap:10px !important}
+  .r-cta{display:none !important}
+  .r-fs11{font-size:12px !important}
+  .r-hdr > a{padding:11px 0}
+  footer .r-g3 a{padding:6px 0}
+  footer .r-g3 > div{gap:2px !important}
+  .nav-panel{position:fixed !important; top:72px !important; left:8px !important; right:8px !important; width:auto !important; background:#0a100c !important}
+  .nav-panel a,.nav-panel .nav-soon{min-height:44px; box-sizing:border-box; align-items:center !important}
+  .r-mx12{margin-left:8px !important; margin-right:8px !important}
+  .r-px12{padding-left:8px !important; padding-right:8px !important}
+  section.r-pt144{padding-top:88px !important}
+  .r-mt144{margin-top:88px !important}
+  .r-pt96{padding-top:56px !important}
+  .r-pb96{padding-bottom:56px !important}
+  .r-pt72{padding-top:44px !important}
+  .r-px52{padding-left:12px !important; padding-right:12px !important}
+  .r-mx52{margin-left:12px !important; margin-right:12px !important}
+  .r-px64{padding-left:20px !important; padding-right:20px !important}
+  #story.r-px52,#contact.r-px52{padding-left:20px !important; padding-right:20px !important}
+  footer .r-px52{padding-left:20px !important; padding-right:20px !important}
+  footer .r-mx52{margin-left:20px !important; margin-right:20px !important}
+  #careers.r-px52{padding-left:20px !important; padding-right:20px !important}
+  .r-fsh1{font-size:clamp(46px, 13vw, 58px) !important; line-height:1 !important}
+  .r-fs70{font-size:40px !important; line-height:1.05 !important}
+  .r-fs48{font-size:32px !important; line-height:1.12 !important}
+  .r-fs40{font-size:27px !important; line-height:1.22 !important}
+  .r-fs34{font-size:25px !important; line-height:1.2 !important}
+  .r-fs30{font-size:21px !important; line-height:1.4 !important}
+  .r-fs28{font-size:22px !important}
+  .r-fs24{font-size:21px !important}
+  .r-fs22{font-size:20px !important}
+  .r-fs20,.r-fs19{font-size:17px !important; line-height:1.5 !important}
+  #mission > div.r-hero{height:min(100vh, 760px) !important; height:min(100svh, 760px) !important}
+  .r-ghero{padding:0 20px 28px !important; gap:18px !important; margin-top:auto}
+  .r-ref{top:76px !important; right:12px !important}
+  .r-ref2{top:12px !important; left:12px !important}
+  .r-partners{padding:40px 20px 0 !important}
+  .lg-cell{padding:0 22px !important}
+  .r-g2{grid-template-columns:1fr !important; gap:8px !important}
+  .r-g3{grid-template-columns:1fr !important; gap:8px !important}
+  .r-g21{grid-template-columns:1fr !important; gap:8px !important}
+  .r-g5{grid-template-columns:repeat(2, minmax(0,1fr)) !important; gap:8px !important}
+  .r-g5 > :last-child{grid-column:1 / -1}
+  .r-stat{font-size:32px !important}
+  .r-gmem{grid-template-columns:88px minmax(0,1fr) !important; gap:16px !important; padding:12px !important}
+  .r-gmem > img{width:88px !important; height:88px !important}
+  .r-h300{height:210px !important}
+  .r-h480{height:280px !important}
+  .r-h580{height:420px !important}
+  .r-h500{height:auto !important; min-height:340px}
+  figure.r-h500{height:440px !important}
+  .r-h560{height:400px !important}
+  .r-mh196{min-height:150px !important}
+  .r-gteam{grid-template-columns:1fr !important}
+  .r-card-in{padding:24px 20px 28px !important; gap:24px !important}
+  .r-teamcard{padding:28px 24px !important; gap:24px}
+  .r-how{aspect-ratio:390/760 !important}
+  .r-support{flex-direction:column; align-items:flex-start !important; gap:16px !important}
+  .r-marca-logo{width:78vw !important}
+  .r-marca-row{flex-direction:column; align-items:center; gap:6px !important; bottom:22px !important; font-size:12px !important; letter-spacing:0.04em !important}
+  .nav-panel small,.nav-panel .nav-h{font-size:12px !important}
+  .r-gfoot{gap:28px !important}
+  .r-gfoot .r-g3{grid-template-columns:repeat(2, minmax(0,1fr)) !important; gap:24px 16px !important}
+  .r-deco{margin:40px -20px -56px !important; height:180px !important}
+  .r-legal{flex-direction:column; gap:8px}
+  .r-flogos{padding:24px 20px 32px !important; gap:20px 28px !important}
+  .r-flogos img{height:34px !important; width:auto !important}
+}
+
+/* ---------- responsive layer, microsites ---------- */
+.r-vwrap{height:auto !important}
+.r-vwrap > div{margin-left:0 !important}
+.r-vid{display:block; width:100% !important; height:auto !important}
+@media (max-width: 1279px){
+  .r-fs88{font-size:76px !important}
+  .r-mx64{margin-left:52px !important; margin-right:52px !important}
+  #top .r-fsh1{font-size:76px !important}
+}
+@media (max-width: 1180px){
+  /* the section links no longer fit next to the logo: they move into the menu */
+  .r-nav,.r-hide-t{display:none !important}
+  .nav-panel .r-mob{display:flex !important}
+  .nav-panel .nav-h.r-mob{display:block !important}
+  .r-hdr-r{margin-left:auto}
+}
+@media (max-width: 1023px){
+  #top > div.r-hero{height:clamp(640px, 82vh, 920px) !important}
+  .r-g4{grid-template-columns:repeat(2, minmax(0,1fr)) !important; row-gap:32px !important}
+  .r-fs88{font-size:64px !important}
+  .r-fs64{font-size:52px !important}
+  .r-fs26{font-size:24px !important}
+  .r-gkv2{grid-template-columns:120px minmax(0,1fr) !important}
+  img.r-h380{height:320px !important}
+  div.r-h380{height:auto !important; min-height:320px}
+  .r-gchart{grid-template-columns:132px minmax(0,1fr) !important}
+  .r-wrap{flex-wrap:wrap; row-gap:10px !important}
+  .r-tline{display:none !important}
+  #next .r-g4 > #ai-infrastructure{grid-column:1 / -1 !important}
+  .r-mx64{margin-left:40px !important; margin-right:40px !important}
+  .r-fig{margin-top:48px !important}
+  .r-ctarow{flex-wrap:wrap; gap:24px 40px !important}
+  #field .r-g4 > div{justify-content:space-between}
+  #field .r-g4 > div > .r-fs30{min-height:0 !important}
+}
+@media (max-width: 639px){
+  #top > div.r-hero{height:min(100vh, 760px) !important; height:min(100svh, 760px) !important}
+  .r-g4{gap:28px 12px !important}
+  #next .r-g4{grid-template-columns:1fr !important; gap:36px !important}
+  .r-fs88{font-size:52px !important}
+  .r-fs64{font-size:44px !important}
+  .r-fs26{font-size:23px !important}
+  .r-gkv{grid-template-columns:100px minmax(0,1fr) !important; gap:12px !important}
+  .r-gkv2{grid-template-columns:1fr !important; gap:4px !important}
+  img.r-h380{height:240px !important}
+  div.r-h380{min-height:0}
+  .r-cardp{padding:24px 20px 28px !important}
+  .r-chartbox{padding:24px 16px 20px !important}
+  .r-gchart{grid-template-columns:1fr !important; gap:8px !important}
+  .r-mh240,.r-mh300{min-height:0 !important}
+  .r-ctarow{flex-direction:column; align-items:flex-start !important; gap:24px !important}
+  .r-mx64{margin-left:20px !important; margin-right:20px !important}
+  .r-linkrow{flex-direction:column; align-items:flex-start !important; gap:16px !important}
+  .r-linkrow > div{flex-wrap:wrap; gap:20px 28px !important}
+  .r-linkrow a{white-space:nowrap}
+  .r-hide-m{display:none !important}
+  .r-fighead{flex-direction:column; align-items:flex-start !important; gap:6px}
+  .r-fig{margin-top:36px !important; gap:16px !important}
+}
+
 
 </style>
 <script type="text/javascript">
@@ -88,7 +297,7 @@ html,body{margin:0;background:rgb(10, 16, 12)}
 </head>
 <body>
 <div class="wrap">
-<div style="position: relative; width: 1280px;  background: rgb(10, 16, 12); color: rgb(244, 242, 236); font-family: &quot;Work Sans&quot;, Arial, sans-serif;"><div data-hdr="1" style="position: sticky; top: 0px; z-index: 30; height: 0px;"><header style="position: absolute; top: 24px; left: 24px; right: 24px; height: 60px; box-sizing: border-box; padding: 0px 10px 0px 20px; border-radius: 12px; display: flex; align-items: center; gap: 44px; background: rgba(10, 16, 12, 0.55); color: rgb(244, 242, 236); box-shadow: none; backdrop-filter: blur(14px); transition: background-color 240ms cubic-bezier(0.16, 1, 0.3, 1), color 240ms cubic-bezier(0.16, 1, 0.3, 1);"><a href="../" aria-label="eki.labs, inicio" style="display: block; line-height: 0;"><img src="../assets/cd5507e4423d.svg" alt="eki.labs" style="height: 22px; width: 120px; display: block;"><img src="../assets/935050cd151d.svg" alt="eki.labs" style="height: 22px; width: 120px; display: none;"></a><nav style="display: flex; gap: 26px; font-size: 15px;"></nav><div style="margin-left: auto; display: flex; align-items: center; gap: 20px;"><a class="nav-a" href="../#contact" style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 14px;">Contact<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M3.34 8H12M8 3.33L12.67 8L8 12.67" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></a><a href="../technology/" style="display: inline-flex; align-items: center; height: 40px; padding: 0px 16px; border-radius: 4px; background: rgb(88, 233, 174); color: rgb(10, 16, 12); font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 14px; font-weight: 500; text-decoration: none;">Explore our science</a><details class="nav-more"><summary aria-label="More eki.labs sites"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="display: block;"><path d="M2 4.5H16M2 9H16M2 13.5H16" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"></path></svg></summary><div class="nav-panel"><span class="nav-h">eki.labs sites</span><a href="../">Home<small>eki.labs</small></a><a href="../technology/">Technology<small>Microsite</small></a><a href="../model/">Model<small>Microsite</small></a><a href="../video/" aria-current="page">Film<small>79 s</small></a><a href="../brand/">Brand<small>Guidelines</small></a><a href="../signature/">Email signature<small>For the team</small></a><a href="../decks/">Slides<small>Private</small></a></div></details></div></header></div><section id="film" data-tono="oscuro" style="padding: 148px 0px 0px;"><div style="padding: 0px 64px 40px; display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); column-gap: 24px; align-items: end;"><div style="grid-column: 1 / span 8;"><div style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 24px;"><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: rgb(88, 233, 174);"></span><span style="color: rgb(244, 242, 236);">Film</span> · 79 s · told by Delia</div><h1 style="margin: 0px; font-family: &quot;Zilla Slab&quot;, Georgia, serif; font-weight: 400; font-size: 70px; line-height: 1.02; letter-spacing: -0.025em;">One acre. Two harvests.</h1></div><p style="grid-column: 9 / span 4; margin: 0px; font-size: 17px; line-height: 26px; color: rgb(161, 166, 159);">From a family of farmers to dual land use at scale: food and energy from the same field.</p></div><div style="margin: 0px 12px; border-radius: 20px; overflow: hidden; background: rgb(10, 16, 12);"><video controls="" playsinline="playsinline" preload="metadata" poster="../assets/2421d03c52ff.jpg" aria-label="The eki.labs film, told by Delia. 79 seconds." style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: rgb(10, 16, 12);"><source src="../assets/24641d47f6f5.mp4" type="video/mp4"></video></div><div style="margin: 24px 64px 0px; display: flex; align-items: center; justify-content: space-between; gap: 24px;"><a href="../assets/eki-film-9x16.mp4" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); text-decoration: none;">Also in 9:16 for phones<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M4.5 11.5L11.5 4.5M5.5 4.5H11.5V10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></a><div style="display: flex; align-items: center; gap: 28px;"><a href="../technology/" style="display: inline-flex; align-items: center; gap: 6px; color: rgb(244, 242, 236); font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 14px; text-decoration: none;">Explore our science<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M3.34 8H12M8 3.33L12.67 8L8 12.67" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></a><a href="../#contact" style="display: inline-flex; align-items: center; height: 48px; padding: 0px 20px; border-radius: 4px; background: rgb(88, 233, 174); color: rgb(10, 16, 12); font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 14px; font-weight: 500; text-decoration: none;">Get in touch →</a></div></div></section><div style="height: 120px;"></div><footer data-tono="oscuro" style="margin: 12px; border-radius: 20px; background: rgb(10, 16, 12); color: rgb(244, 242, 236);"><div style="padding: 56px 52px; display: grid; grid-template-columns: 1fr 2fr; gap: 48px;"><div><img src="../assets/759d73f045c4.svg" alt="eki.labs · Farming soil and sun, together." style="height: 74px; width: 248px; display: block;"></div><div style="display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 24px;"><div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 4px;"><span style="text-transform: none; letter-spacing: 0.02em;">eki.labs</span></span><a href="../technology/" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Technology</a><a href="../model/" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Model</a><a href="../video/" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Film</a><a href="../#impact" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Impact</a><a href="../#team" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Team</a><a href="../#story" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Origins</a><a href="../#contact" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Contact</a><a href="../#careers" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Careers</a><a href="../brand/" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Brand</a></div><div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 4px;">Offices</span><span style="font-size: 15px;">Boston</span><span style="font-size: 15px;">Valladolid</span></div><div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 4px;">Contact</span><a href="mailto:hola@ekilabs.com" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">hola@ekilabs.com</a><span style="font-size: 15px;">Eki Labs Corp.</span></div></div></div><div id="funding" style="margin: 0px 52px; padding: 28px 0px; border-top: 1px solid rgb(43, 51, 45); display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); column-gap: 24px;"><span style="grid-column: 1 / span 3; font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 11px; line-height: 22px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);">Funding</span><p style="grid-column: 4 / span 6; margin: 0px; font-size: 14px; line-height: 22px; color: rgb(161, 166, 159);">Project supported by IDAE (Instituto para la Diversificación y Ahorro de la Energía) and funded by the European Union – NextGenerationEU, within Spain’s Recovery, Transformation and Resilience Plan (PRTR). <span style="color: rgb(244, 242, 236);">[Programa, componente e inversión del PRTR y breve descripción del proyecto: pendiente]</span></p></div><div style="margin: 0px 52px; padding: 24px 0px; border-top: 1px solid rgb(43, 51, 45); display: flex; justify-content: space-between; font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 12px; line-height: 16px; color: rgb(161, 166, 159);"><span>© Eki Labs Corp.</span><span>[Legal notice] · [Privacy]</span></div></footer><div id="funding-logos" style="margin: 0px 12px; padding: 28px 40px 40px; display: flex; align-items: center; gap: 48px;"><img src="../assets/7757b4dfa85f.svg" alt="Gobierno de España, Ministerio para la Transición Ecológica y el Reto Demográfico" style="height: 44px; width: 154px; display: block; filter: invert(0.93);"><img src="../assets/8a77b976132e.png" alt="IDAE, Instituto para la Diversificación y Ahorro de la Energía" style="height: 44px; width: 126px; display: block; filter: invert(0.93);"><img src="../assets/b1ab4f33d848.png" alt="Plan de Recuperación, Transformación y Resiliencia" style="height: 44px; width: 253px; display: block; filter: invert(0.93);"><img src="../assets/f0eb3a6a09d3.png" alt="Financiado por la Unión Europea – NextGenerationEU" style="height: 44px; width: 176px; display: block; filter: invert(0.93);"></div></div>
+<div class="r-root" style='position: relative; width: 1280px;  background: rgb(10, 16, 12); color: rgb(244, 242, 236); font-family: "Work Sans", Arial, sans-serif;'><div data-hdr="1" style="position: sticky; top: 0px; z-index: 30; height: 0px;"><header class="r-hdr" style="position: absolute; top: 24px; left: 24px; right: 24px; height: 60px; box-sizing: border-box; padding: 0px 10px 0px 20px; border-radius: 12px; display: flex; align-items: center; gap: 44px; background: rgba(10, 16, 12, 0.55); color: rgb(244, 242, 236); box-shadow: none; backdrop-filter: blur(14px); transition: background-color 240ms cubic-bezier(0.16, 1, 0.3, 1), color 240ms cubic-bezier(0.16, 1, 0.3, 1);"><a aria-label="eki.labs, inicio" href="../" style="display: block; line-height: 0;"><img alt="eki.labs" src="../assets/cd5507e4423d.svg" style="height: 22px; width: 120px; display: block;"/><img alt="eki.labs" src="../assets/935050cd151d.svg" style="height: 22px; width: 120px; display: none;"/></a><nav class="r-nav" style="display: flex; gap: 26px; font-size: 15px;"></nav><div class="r-hdr-r" style="margin-left: auto; display: flex; align-items: center; gap: 20px;"><a class="nav-a r-hide-t" href="../#contact" style='font-family: "Geist Mono", Menlo, monospace; font-size: 14px;'>Contact<svg aria-hidden="true" fill="none" height="14" style="display: block;" viewbox="0 0 16 16" width="14"><path d="M3.34 8H12M8 3.33L12.67 8L8 12.67" stroke="currentColor" stroke-linecap="square" stroke-width="1.5"></path></svg></a><a class="r-cta" href="../technology/" style='display: inline-flex; align-items: center; height: 40px; padding: 0px 16px; border-radius: 4px; background: rgb(88, 233, 174); color: rgb(10, 16, 12); font-family: "Geist Mono", Menlo, monospace; font-size: 14px; font-weight: 500; text-decoration: none;'>Explore our science</a><details class="nav-more"><summary aria-label="More eki.labs sites"><svg aria-hidden="true" fill="none" height="18" style="display: block;" viewbox="0 0 18 18" width="18"><path d="M2 4.5H16M2 9H16M2 13.5H16" stroke="currentColor" stroke-linecap="square" stroke-width="1.6"></path></svg></summary><div class="nav-panel"><span class="nav-h r-mob">On this page</span><a class="r-mob" href="../#contact">Contact</a><span class="nav-h r-mob">eki.labs sites</span><a href="../">Home<small>eki.labs</small></a><a href="../technology/">Technology<small>Microsite</small></a><a href="../model/">Model<small>Microsite</small></a><a aria-current="page" href="../video/">Film<small>79 s</small></a><a href="../brand/">Brand<small>Guidelines</small></a><a href="../signature/">Email signature<small>For the team</small></a><a href="../decks/">Slides<small>Private</small></a></div></details></div></header></div><section class="r-pt144" data-tono="oscuro" id="film" style="padding: 148px 0px 0px;"><div class="r-g12 r-px64" style="padding: 0px 64px 40px; display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); column-gap: 24px; align-items: end;"><div class="r-gc" style="grid-column: 1 / span 8;"><div style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 24px;'><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: rgb(88, 233, 174);"></span><span style="color: rgb(244, 242, 236);">Film</span> · 79 s · told by Delia</div><h1 class="r-fs70" style='margin: 0px; font-family: "Zilla Slab", Georgia, serif; font-weight: 400; font-size: 70px; line-height: 1.02; letter-spacing: -0.025em;'>One acre. Two harvests.</h1></div><p class="r-gc" style="grid-column: 9 / span 4; margin: 0px; font-size: 17px; line-height: 26px; color: rgb(161, 166, 159);">From a family of farmers to dual land use at scale: food and energy from the same field.</p></div><div class="r-mx12 r-vwrap" style="margin: 0px 12px; border-radius: 20px; overflow: hidden; background: rgb(10, 16, 12);"><video aria-label="The eki.labs film, told by Delia. 79 seconds." class="r-vid" controls="" data-ar-d="16/9" data-ar-m="9/16" data-ar-t="16/9" data-noplay="" data-poster-d="../assets/2421d03c52ff.jpg" data-poster-m="../assets/poster-9x16.jpg" data-poster-t="../assets/2421d03c52ff.jpg" data-src-d="../assets/24641d47f6f5.mp4" data-src-m="../assets/eki-film-9x16.mp4" data-src-t="../assets/24641d47f6f5.mp4" playsinline="playsinline" preload="metadata" style="display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; background:#0a100c;"><source src="../assets/24641d47f6f5.mp4" type="video/mp4"/></video></div><div class="r-mx64 r-linkrow" style="margin: 24px 64px 0px; display: flex; align-items: center; justify-content: space-between; gap: 24px;"><a class="r-hide-m" href="../assets/eki-film-9x16.mp4" rel="noopener" style='display: inline-flex; align-items: center; gap: 8px; font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); text-decoration: none;' target="_blank">Also in 9:16 for phones<svg aria-hidden="true" fill="none" height="12" style="display: block;" viewbox="0 0 16 16" width="12"><path d="M4.5 11.5L11.5 4.5M5.5 4.5H11.5V10.5" stroke="currentColor" stroke-linecap="square" stroke-width="1.5"></path></svg></a><div style="display: flex; align-items: center; gap: 28px;"><a href="../technology/" style='display: inline-flex; align-items: center; gap: 6px; color: rgb(244, 242, 236); font-family: "Geist Mono", Menlo, monospace; font-size: 14px; text-decoration: none;'>Explore our science<svg aria-hidden="true" fill="none" height="14" style="display: block;" viewbox="0 0 16 16" width="14"><path d="M3.34 8H12M8 3.33L12.67 8L8 12.67" stroke="currentColor" stroke-linecap="square" stroke-width="1.5"></path></svg></a><a href="../#contact" style='display: inline-flex; align-items: center; height: 48px; padding: 0px 20px; border-radius: 4px; background: rgb(88, 233, 174); color: rgb(10, 16, 12); font-family: "Geist Mono", Menlo, monospace; font-size: 14px; font-weight: 500; text-decoration: none;'>Get in touch →</a></div></div></section><div style="height: 120px;"></div><footer class="r-mx12" data-tono="oscuro" style="margin: 12px; border-radius: 20px; background: rgb(10, 16, 12); color: rgb(244, 242, 236);"><div class="r-gfoot r-px52 r-pt72" style="padding: 56px 52px; display: grid; grid-template-columns: 1fr 2fr; gap: 48px;"><div><img alt="eki.labs · Farming soil and sun, together." src="../assets/759d73f045c4.svg" style="height: 74px; width: 248px; display: block;"/></div><div class="r-g3" style="display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 24px;"><div style="display: flex; flex-direction: column; gap: 8px;"><span class="r-fs11" style='font-family: "Geist Mono", Menlo, monospace; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 4px;'><span style="text-transform: none; letter-spacing: 0.02em;">eki.labs</span></span><a href="../technology/" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Technology</a><a href="../model/" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Model</a><a href="../video/" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Film</a><a href="../#impact" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Impact</a><a href="../#team" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Team</a><a href="../#story" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Origins</a><a href="../#contact" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Contact</a><a href="../#careers" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Careers</a><a href="../brand/" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Brand</a></div><div style="display: flex; flex-direction: column; gap: 8px;"><span class="r-fs11" style='font-family: "Geist Mono", Menlo, monospace; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 4px;'>Offices</span><span style="font-size: 15px;">Boston</span><span style="font-size: 15px;">Valladolid</span></div><div style="display: flex; flex-direction: column; gap: 8px;"><span class="r-fs11" style='font-family: "Geist Mono", Menlo, monospace; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 4px;'>Contact</span><a href="mailto:hola@ekilabs.com" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">hola@ekilabs.com</a><span style="font-size: 15px;">Eki Labs Corp.</span></div></div></div><div class="r-g12 r-mx52" id="funding" style="margin: 0px 52px; padding: 28px 0px; border-top: 1px solid rgb(43, 51, 45); display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); column-gap: 24px;"><span class="r-gc r-fs11" style='grid-column: 1 / span 3; font-family: "Geist Mono", Menlo, monospace; font-size: 11px; line-height: 22px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);'>Funding</span><p class="r-gc" style="grid-column: 4 / span 6; margin: 0px; font-size: 14px; line-height: 22px; color: rgb(161, 166, 159);">Project supported by IDAE (Instituto para la Diversificación y Ahorro de la Energía) and funded by the European Union – NextGenerationEU, within Spain’s Recovery, Transformation and Resilience Plan (PRTR). <span style="color: rgb(244, 242, 236);">[Programa, componente e inversión del PRTR y breve descripción del proyecto: pendiente]</span></p></div><div class="r-mx52 r-legal" style='margin: 0px 52px; padding: 24px 0px; border-top: 1px solid rgb(43, 51, 45); display: flex; justify-content: space-between; font-family: "Geist Mono", Menlo, monospace; font-size: 12px; line-height: 16px; color: rgb(161, 166, 159);'><span>© Eki Labs Corp.</span><span>[Legal notice] · [Privacy]</span></div></footer><div class="r-mx12 r-flogos" id="funding-logos" style="margin: 0px 12px; padding: 28px 40px 40px; display: flex; align-items: center; gap: 48px;"><img alt="Gobierno de España, Ministerio para la Transición Ecológica y el Reto Demográfico" src="../assets/7757b4dfa85f.svg" style="height: 44px; width: 154px; display: block; filter: invert(0.93);"/><img alt="IDAE, Instituto para la Diversificación y Ahorro de la Energía" src="../assets/8a77b976132e.png" style="height: 44px; width: 126px; display: block; filter: invert(0.93);"/><img alt="Plan de Recuperación, Transformación y Resiliencia" src="../assets/b1ab4f33d848.png" style="height: 44px; width: 253px; display: block; filter: invert(0.93);"/><img alt="Financiado por la Unión Europea – NextGenerationEU" src="../assets/f0eb3a6a09d3.png" style="height: 44px; width: 176px; display: block; filter: invert(0.93);"/></div></div>
 </div>
 
 <script>
@@ -117,5 +326,26 @@ html,body{margin:0;background:rgb(10, 16, 12)}
 })();
 </script>
 
+<script>
+(function () {
+  // one clip per format: phone < 640 px, tablet < 1024 px, desktop
+  var vs = [].slice.call(document.querySelectorAll('video[data-src-d]'));
+  function pick() {
+    var w = window.innerWidth;
+    vs.forEach(function (v) {
+      var k = w < 640 ? 'm' : (w < 1024 ? 't' : 'd');
+      if (v.getAttribute('data-cur') === k) return;
+      v.setAttribute('data-cur', k);
+      v.poster = v.getAttribute('data-poster-' + k); v.src = v.getAttribute('data-src-' + k);
+      var ar = v.getAttribute('data-ar-' + k); if (ar) v.style.aspectRatio = ar;
+      if (v.hasAttribute('data-noplay')) return;
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    });
+  }
+  pick(); var tm; window.addEventListener('resize', function () { clearTimeout(tm); tm = setTimeout(pick, 200); });
+  // the menu closes after choosing a section
+  document.querySelectorAll('.nav-panel a[href^="#"]').forEach(function (a) { a.addEventListener('click', function () { var d = a.closest('details'); if (d) d.removeAttribute('open'); }); });
+})();
+</script>
 </body>
 </html>
