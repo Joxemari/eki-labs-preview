@@ -277,7 +277,7 @@ dt{{font-family:'Geist Mono',Menlo,monospace;font-size:12px;letter-spacing:.06em
 {body}
 </div></main>
 <footer><div class="fund"><span>Funding</span><p>{FUND_TEXT}</p></div>
-<div class="foot"><span>© Eki Labs Corp.</span><span><a href="{r}legal/">Legal notice</a> · <a href="{r}privacy/">Privacy</a> · <a href="{r}brand/">Brand</a></span></div></footer>
+<div class="foot"><span>© Eki Agrivoltaic, S.L.U.</span><span><a href="{r}legal/">Legal notice</a> · <a href="{r}privacy/">Privacy</a> · <a href="{r}brand/">Brand</a></span></div></footer>
 <div class="logos">{FUND_LOGOS.replace('src="assets/', 'src="' + r + 'assets/')}</div>
 </body>
 </html>

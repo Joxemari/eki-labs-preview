@@ -19,7 +19,7 @@ La web pública de eki.labs: HTML estático en `site/`, una función para el for
 
 ## Reglas de marca y contenido (públicas, se aplican a todo lo visible)
 
-- **Nombre:** siempre **eki.labs**, en minúscula y en la tipografía del texto que lo rodea. Nunca «Eki.Labs», «Eki Labs» ni en mayúsculas, tampoco dentro de una etiqueta en mayúsculas: envuélvelo en un `<span style="text-transform:none">`. Razón social: **Eki Labs Corp.**
+- **Nombre:** siempre **eki.labs**, en minúscula y en la tipografía del texto que lo rodea. Nunca «Eki.Labs», «Eki Labs» ni en mayúsculas, tampoco dentro de una etiqueta en mayúsculas: envuélvelo en un `<span style="text-transform:none">`. Razón social de la titular de la web: **Eki Agrivoltaic, S.L.U.** (aviso legal, privacidad y «©» del pie)
 - **Firma de marca:** logo + «Farming soil and sun, together.» en un solo bloque, como viene en los archivos del logo. No se rehace con texto vivo.
 - **Lemas:** «Farming soil and sun, together.» (firma) · «One acre. Two harvests.» (idea).
 - **Tecnología:** «bifacial panels in rows, facing east and west», 10–18 m entre filas. Nunca «vertical».

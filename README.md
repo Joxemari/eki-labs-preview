@@ -14,4 +14,4 @@ Web pública de eki.labs. *Farming soil and sun, together.*
 - **Desplegar:** [DEPLOY.md](DEPLOY.md).
 - **Reglas de marca, contenido y edición:** [CLAUDE.md](CLAUDE.md).
 
-© Eki Labs Corp. Las tipografías (Zilla Slab, Work Sans, Geist Mono) están bajo SIL Open Font License 1.1.
+© Eki Agrivoltaic, S.L.U. Las tipografías (Zilla Slab, Work Sans, Geist Mono) están bajo SIL Open Font License 1.1.
