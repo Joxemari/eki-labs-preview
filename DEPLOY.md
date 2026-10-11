@@ -14,7 +14,7 @@ Estado verificado el 11 oct 2026:
 
 Sin esto no se lanza:
 
-- [ ] **Legal notice y Privacy** (`site/legal/`, `site/privacy/`): titular y responsable, Eki Labs Corp. (Delaware), con domicilio registral en su agente registrado. Datos de la ficha «Grupo societario y datos de referencia» de Notion. Falta completar: EIN (confirmar con la carta del IRS), representante en la UE (artículo 27 del RGPD, si procede), plazos de conservación, región y garantías de Resend, juzgados y fecha. Revisión de un abogado. Luego quitar el aviso «Draft pending legal review».
+- [ ] **Legal notice y Privacy** (`site/legal/`, `site/privacy/`): titular y responsable, Eki Agrivoltaic, S.L.U. (NIF B75421438, Registro Mercantil de Gipuzkoa, hoja SS-47496). Datos de la ficha «Grupo societario y datos de referencia» de Notion y de la certificación registral. Falta completar: plazos de conservación, región y garantías de Resend, juzgados y fecha. Revisión de un abogado. Luego quitar el aviso «Draft pending legal review».
 - [ ] **Texto PRTR** del pie: «[Programa, componente e inversión del PRTR y breve descripción del proyecto: pendiente]». Confirmar con el IDAE.
 - [ ] **hola@ekilabs.com** recibe correo (buzón o grupo de Google). Es el destino del formulario y el email de toda la web.
 - [ ] **Fotos:** se mantienen como están, por decisión tuya. Las que no son de eki.labs (la portada, entre otras) quedan públicas en ekilabs.com: confirma que hay licencia o permiso.
