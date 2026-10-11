@@ -4,7 +4,8 @@ Guía paso a paso para poner la web nueva en producción y retirar la de Framer.
 
 Estado verificado el 11 oct 2026:
 
-- **ekilabs.com:** registrado en Namecheap, DNS en Cloudflare. Hoy redirige con un 301 a ekiagrivoltaics.com. Correo en Google Workspace (`MX 1 smtp.google.com`, SPF de Google y verificación de Google en TXT): no se toca.
+- **ekilabs.com:** registrado en Namecheap, DNS en Cloudflare. Por HTTPS, `@` y `www` redirigen con un 301 a ekiagrivoltaics.com, conservando la ruta. Por HTTP no hay redirección: responde un 404 de Vercel (`DEPLOYMENT_NOT_FOUND`), porque `@` y `www` siguen apuntando a Vercel, donde ya no hay web. Esos registros se borran en el paso 4. Correo en Google Workspace (`MX 1 smtp.google.com`, SPF de Google y verificación de Google en TXT): no se toca.
+- **Repo:** privado. GitHub Pages está desactivado, así que la preview `joxemari.github.io/eki-labs-preview/` y las imágenes de las firmas antiguas dan 404 (ver paso 7).
 - **ekiagrivoltaics.com:** DNS en Namecheap. La web está en Framer (`@` con A a Framer, `www` CNAME `sites.framer.app`). Tiene reenvío de correo de Namecheap (MX `eforward*`): no se toca.
 
 ---
@@ -57,6 +58,8 @@ Cloudflare › Workers & Pages › Create › Pages › **Connect to Git** › e
   - `/deck` redirige a `/decks/`;
   - una URL inexistente da el 404 propio.
 - Usa Connect to Git, no Direct Upload: un proyecto creado por subida directa no se puede pasar luego a Git.
+- El repo es privado: al conectar, autoriza a la app de Cloudflare en GitHub a ver `Joxemari/eki-labs-preview`.
+- No actives **Web Analytics** en el proyecto ni en la zona: inyecta un script de `static.cloudflareinsights.com`, una petición a terceros que la política de privacidad dice que no hay.
 
 ## 3 · Formulario de contacto (Resend)
 
