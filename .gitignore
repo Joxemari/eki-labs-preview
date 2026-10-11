@@ -1,0 +1,10 @@
+.DS_Store
+Thumbs.db
+node_modules/
+.wrangler/
+.dev.vars
+__pycache__/
+*.pyc
+*.log
+source/brand-kit/out/
+source/brand-kit/jobs_kit.json

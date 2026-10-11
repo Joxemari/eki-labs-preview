@@ -1,15 +1,17 @@
-# Eki.Labs · web preview
+# eki.labs · ekilabs.com
 
-Static preview of the new Eki.Labs website, published with GitHub Pages so the team can review it. It is **not** the production site: the pages are exported from the design canvas and are laid out at a fixed 1280 px width.
+Web pública de eki.labs. *Farming soil and sun, together.*
 
-- `/` Home · `/technology/` · `/model/` · `/video/` (the film, 52 s)
-- `/decks/` the presentations (Teaser, Inversores, Triodos, Biblioteca). The slide content is encrypted and opens with a password.
-- The preview carries `noindex` and a `robots.txt` that blocks crawlers.
-- Photos marked «Foto provisional» are stock placeholders to be replaced with Eki photos.
+| Carpeta | Qué hay |
+|---|---|
+| `site/` | La web publicada: HTML estático, assets, fuentes, kit de marca y decks cifrados. |
+| `functions/` | Cloudflare Pages Functions: `api/contact.js`, el formulario de contacto (Resend). |
+| `source/` | Fuentes de referencia (lienzos, kit de marca, scripts de producción). No se publican. |
+| `.github/workflows/pages.yml` | Publica `site/` en GitHub Pages (preview y firmas antiguas). |
 
-## Next: the production site
+- **Producción:** Cloudflare Pages, con salida `site` y sin comando de build.
+- **Ver en local:** `npx wrangler pages dev site` (incluye el formulario), o `python3 -m http.server -d site 8080` (solo estático).
+- **Desplegar:** [DEPLOY.md](DEPLOY.md).
+- **Reglas de marca, contenido y edición:** [CLAUDE.md](CLAUDE.md).
 
-Built in Claude Code from this repo. See `CLAUDE.md` for the brief.
-
-- Domain: ekilabs.com, with routes `/`, `/technology`, `/model`, `/video`.
-- Presentations (Teaser, Inversores, Triodos, Biblioteca) live apart, at decks.ekilabs.com, behind access control, because they carry confidential figures.
+© Eki Labs Corp. Las tipografías (Zilla Slab, Work Sans, Geist Mono) están bajo SIL Open Font License 1.1.

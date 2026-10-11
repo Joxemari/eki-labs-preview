@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>eki.labs — film</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Montserrat:wght@700;800&amp;family=Manrope:wght@400;500&amp;family=Roboto+Slab:wght@300;400&amp;family=Work+Sans:wght@400;500&amp;family=Zilla+Slab:wght@400;500&amp;family=Newsreader:opsz,wght@6..72,300..600&amp;family=Instrument+Serif&amp;family=Instrument+Sans:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+html{scroll-behavior:smooth}
+.nav-a{display:inline-flex;align-items:center;gap:6px;color:inherit;text-decoration:none}
+.nav-a svg{transition:transform 0.25s cubic-bezier(0.16,1,0.3,1)}
+.nav-a:hover svg{transform:translateY(3px)}
+.nav-more{position:relative}
+.nav-more>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:4px;box-shadow:inset 0 0 0 1px currentColor}
+.nav-more>summary::-webkit-details-marker{display:none}
+.nav-more>summary:focus-visible{outline:2px solid #58e9ae;outline-offset:2px}
+.nav-panel{position:absolute;right:0;top:52px;width:300px;padding:8px;border-radius:12px;background:rgba(10,16,12,0.97);color:#f4f2ec;box-shadow:0 16px 40px rgba(10,16,12,0.28);display:flex;flex-direction:column;z-index:40}
+.nav-panel .nav-h{padding:10px 14px 6px;font-family:'Geist Mono',Menlo,monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#a1a69f}
+.nav-panel a,.nav-panel .nav-soon{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 14px;border-radius:8px;color:#f4f2ec;text-decoration:none;font-size:16px;line-height:22px}
+.nav-panel a:hover{background:rgba(244,242,236,0.08)}
+.nav-panel a[aria-current]{box-shadow:inset 2px 0 0 #58e9ae}
+.nav-panel small{font-family:'Geist Mono',Menlo,monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#a1a69f}
+.nav-panel .nav-soon{color:#a1a69f;cursor:default}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.nav-a svg{transition:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 1280px; min-height: 1900px; background: {{p.noche}}; color: {{p.nTexto}}; font-family: {{t.b}};">
+
+<div data-hdr="1" style="position: sticky; top: 0; z-index: 30; height: 0;">
+<header style="position: absolute; top: 24px; left: 24px; right: 24px; height: 60px; box-sizing: border-box; padding: 0 10px 0 20px; border-radius: 12px; display: flex; align-items: center; gap: 44px; background: {{hdr.bg}}; color: {{hdr.fg}}; box-shadow: {{hdr.sombra}}; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: background-color 240ms cubic-bezier(0.16, 1, 0.3, 1), color 240ms cubic-bezier(0.16, 1, 0.3, 1);">
+<a href="Home.dc.html" aria-label="eki.labs, inicio" style="display: block; line-height: 0;">
+<img src="/_blob/cd5507e4423d9d198a0e98b3fc74edd3" alt="eki.labs" style="height: 22px; width: 120px; display: {{hdr.logoNoche}};">
+<img src="/_blob/935050cd151dbe522e60c17d61d41310" alt="eki.labs" style="height: 22px; width: 120px; display: {{hdr.logoDia}};">
+</a>
+<nav style="display: flex; gap: 26px; font-size: 15px;">
+
+</nav>
+<div style="margin-left: auto; display: flex; align-items: center; gap: 20px;">
+<a class="nav-a" href="Home.dc.html#contact" style="font-family: {{t.m}}; font-size: 14px;">Contact<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M3.34 8H12M8 3.33L12.67 8L8 12.67" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></a>
+<a href="Tecnologia.dc.html" style="display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 4px; background: {{p.accNoche}}; color: {{p.sobreAccNoche}}; font-family: {{t.m}}; font-size: 14px; font-weight: 500; text-decoration: none;">Explore our science</a>
+<details class="nav-more"><summary aria-label="More eki.labs sites"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="display: block;"><path d="M2 4.5H16M2 9H16M2 13.5H16" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"></path></svg></summary><div class="nav-panel"><span class="nav-h">eki.labs sites</span><a href="Home.dc.html">Home<small>eki.labs</small></a><a href="Tecnologia.dc.html">Technology<small>Microsite</small></a><a href="Modelo.dc.html">Model<small>Microsite</small></a><a href="Video.dc.html" aria-current="page">Film<small>79 s</small></a><a href="Brand.dc.html">Brand<small>Guidelines</small></a><a href="Firma.dc.html">Email signature<small>For the team</small></a><span class="nav-soon">Slides<small>Private · soon</small></span></div></details>
+</div>
+</header>
+</div>
+
+<section id="film" data-tono="oscuro" style="padding: 148px 0 0;">
+<div style="padding: 0 64px 40px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: end;">
+<div style="grid-column: 1 / span 8;"><div style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}}; margin-bottom: 24px;"><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: {{p.accNoche}};"></span><span style="color: {{p.nTexto}};">Film</span> · 79 s · told by Delia</div><h1 style="margin: 0; font-family: {{t.h}}; font-weight: {{tw}}; font-size: {{t.s3}}px; line-height: 1.02; letter-spacing: {{t.l1}};">One acre. Two harvests.</h1></div>
+<p style="grid-column: 9 / span 4; margin: 0; font-size: 17px; line-height: 26px; color: {{p.nTexto2}};">From a family of farmers to dual land use at scale: food and energy from the same field.</p>
+</div>
+<div style="margin: 0 12px; border-radius: 20px; overflow: hidden; background: #0a100c;"><video controls="controls" playsinline="playsinline" preload="metadata" poster="/_blob/2421d03c52ff6eb41531eeb40cf74090" aria-label="The eki.labs film, told by Delia. 79 seconds." style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #0a100c;"><source src="/_blob/24641d47f6f53b49870a3b19b374ea37" type="video/mp4"></video></div>
+<div style="margin: 24px 64px 0; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+<a href="/_blob/295cab749586c9dddb2e50f14067fac2" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}}; text-decoration: none;">Also in 9:16 for phones<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M4.5 11.5L11.5 4.5M5.5 4.5H11.5V10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></a>
+<div style="display: flex; align-items: center; gap: 28px;">
+<a href="Tecnologia.dc.html" style="display: inline-flex; align-items: center; gap: 6px; color: {{p.nTexto}}; font-family: {{t.m}}; font-size: 14px; text-decoration: none;">Explore our science<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M3.34 8H12M8 3.33L12.67 8L8 12.67" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></a>
+<a href="Home.dc.html#contact" style="display: inline-flex; align-items: center; height: 48px; padding: 0 20px; border-radius: 4px; background: {{p.accNoche}}; color: {{p.sobreAccNoche}}; font-family: {{t.m}}; font-size: 14px; font-weight: 500; text-decoration: none;">Get in touch →</a>
+</div>
+</div>
+</section>
+
+<div style="height: 120px;"></div>
+
+<footer data-tono="oscuro" style="margin: 12px 12px 12px; border-radius: 20px; background: {{p.pie}}; color: {{p.nTexto}};">
+<div style="padding: 56px 52px; display: grid; grid-template-columns: 1fr 2fr; gap: 48px;">
+<div>
+<img src="/_blob/759d73f045c4b1991f4f3be8660f6d76" alt="eki.labs · Farming soil and sun, together." style="height: 74px; width: 248px; display: block;">
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: {{t.m}}; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.kTexto2}}; margin-bottom: 4px;"><span style="text-transform: none; letter-spacing: 0.02em;">eki.labs</span></span><a href="Tecnologia.dc.html" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Technology</a><a href="Modelo.dc.html" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Model</a><a href="Video.dc.html" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Film</a><a href="Home.dc.html#impact" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Impact</a><a href="Home.dc.html#team" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Team</a><a href="Home.dc.html#story" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Origins</a><a href="Home.dc.html#contact" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Contact</a><a href="Home.dc.html#careers" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Careers</a><a href="Brand.dc.html" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Brand</a></div>
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: {{t.m}}; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.kTexto2}}; margin-bottom: 4px;">Offices</span><span style="font-size: 15px;">Boston</span><span style="font-size: 15px;">Valladolid</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: {{t.m}}; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.kTexto2}}; margin-bottom: 4px;">Contact</span><a href="mailto:hola@ekilabs.com" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">hola@ekilabs.com</a><span style="font-size: 15px;">Eki Labs Corp.</span></div>
+</div>
+</div>
+<div id="funding" style="margin: 0 52px; padding: 28px 0; border-top: 1px solid {{p.kLinea}}; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px;">
+<span style="grid-column: 1 / span 3; font-family: {{t.m}}; font-size: 11px; line-height: 22px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.kTexto2}};">Funding</span>
+<p style="grid-column: 4 / span 6; margin: 0; font-size: 14px; line-height: 22px; color: {{p.kTexto2}};">Project supported by IDAE (Instituto para la Diversificación y Ahorro de la Energía) and funded by the European Union – NextGenerationEU, within Spain’s Recovery, Transformation and Resilience Plan (PRTR). <span style="color: {{p.nTexto}};">[Programa, componente e inversión del PRTR y breve descripción del proyecto: pendiente]</span></p>
+</div>
+<div style="margin: 0 52px; padding: 24px 0; border-top: 1px solid {{p.kLinea}}; display: flex; justify-content: space-between; font-family: {{t.m}}; font-size: 12px; line-height: 16px; color: {{p.kTexto2}};"><span>© Eki Labs Corp.</span><span>[Legal notice] · [Privacy]</span></div>
+</footer>
+<div id="funding-logos" style="margin: 0 12px; padding: 28px 40px 40px; display: flex; align-items: center; gap: 48px;">
+<img src="/_blob/7757b4dfa85fe0176899f6363e40ffa9" alt="Gobierno de España, Ministerio para la Transición Ecológica y el Reto Demográfico" style="height: 44px; width: 154px; display: block; filter: invert(0.93);">
+<img src="/_blob/8a77b976132e47aabadd10196c91e55d" alt="IDAE, Instituto para la Diversificación y Ahorro de la Energía" style="height: 44px; width: 126px; display: block; filter: invert(0.93);">
+<img src="/_blob/b1ab4f33d8487efdd4a0f324fe56cfde" alt="Plan de Recuperación, Transformación y Resiliencia" style="height: 44px; width: 253px; display: block; filter: invert(0.93);">
+<img src="/_blob/f0eb3a6a09d3119d5923b2eb56368daf" alt="Financiado por la Unión Europea – NextGenerationEU" style="height: 44px; width: 176px; display: block; filter: invert(0.93);">
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tipografia":{"editor":"enum","options":["A · Montserrat + Manrope","B · Geist","C · Roboto Slab + Work Sans","D · Zilla Slab + Work Sans","E · Newsreader + Geist","F · Instrument Serif + Instrument Sans"],"default":"D · Zilla Slab + Work Sans"},"variante":{"editor":"enum","options":["v3","viva","honda","pleno"],"default":"v3"},"titulares":{"editor":"enum","options":["ligero","medio"],"default":"ligero"},"$preview":{"width":1280,"height":1900}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    var self = this;
+    this._tono = function () {
+      var x = (window.innerWidth || 1280) / 2;
+      var hd = document.querySelector('[data-hdr] header');
+      var y = hd ? hd.getBoundingClientRect().top + 30 : 54;
+      var els = document.elementsFromPoint ? document.elementsFromPoint(x, y) : [];
+      var tono = 'oscuro';
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (!el.closest || el.closest('[data-hdr]')) continue;
+        var sec = el.closest('[data-tono]');
+        if (sec) { tono = sec.getAttribute('data-tono'); break; }
+      }
+      if (!self.state || self.state.tono !== tono) self.setState({ tono: tono });
+    };
+    document.addEventListener('scroll', this._tono, true);
+    window.addEventListener('resize', this._tono);
+    setTimeout(this._tono, 0);
+
+    var marcar = function (k) { var o = {}; o['v_' + k] = true; self.setState(o); };
+    this._io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { marcar(e.target.getAttribute('data-contar')); self._io.unobserve(e.target); } });
+    }, { threshold: 0.3 }) : null;
+    setTimeout(function () {
+      var els = document.querySelectorAll('[data-contar]');
+      for (var i = 0; i < els.length; i++) { if (self._io) self._io.observe(els[i]); else marcar(els[i].getAttribute('data-contar')); }
+    }, 0);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this._tono, true);
+    window.removeEventListener('resize', this._tono);
+    if (this._io) this._io.disconnect();
+  }
+  renderVals() {
+    var v = this.props.variante || 'v3';
+    var base = {
+      fondo: '#f4f2ec', fondo2: '#ebe6d8', texto: '#0a100c', texto2: '#555a52', linea: '#d5d1c4', lineaF: '#797c72', cifra: '#0a100c',
+      noche: '#0a100c', nTexto: '#f4f2ec', nTexto2: '#a1a69f', nLinea: '#2b332d', nLineaF: '#a1a69f',
+      contacto: '#0a100c', pie: '#0a100c', kTexto2: '#a1a69f', kLinea: '#2b332d', kLineaF: '#a1a69f',
+      sol: '#ffd54a', logosClaros: false
+    };
+    var PAL = {
+      v3: { accLuz: '#056c4a', accNoche: '#58e9ae', sobreAccNoche: '#0a100c',
+        cultivo: '#0a281a', cTexto: '#f4f2ec', cTexto2: '#a1a69f',
+        origen: '#311d16', oTexto: '#f4f2ec', oTexto2: '#a1a69f', oAcento: '#cf8166' },
+      viva: { accLuz: '#13843a', accNoche: '#40d868', sobreAccNoche: '#0a100c',
+        cultivo: '#0b3d1f', cTexto: '#f4f2ec', cTexto2: '#a1a69f',
+        origen: '#4a2010', oTexto: '#f4f2ec', oTexto2: '#a1a69f', oAcento: '#e2825a' },
+      honda: { accLuz: '#006d42', accNoche: '#30c883', sobreAccNoche: '#0a100c',
+        cultivo: '#0b4a2f', cTexto: '#f4f2ec', cTexto2: '#a9bfb0',
+        origen: '#4a2010', oTexto: '#f4f2ec', oTexto2: '#a1a69f', oAcento: '#e2825a',
+        contacto: '#043a22', pie: '#043a22', kTexto2: '#b3c2b8', kLinea: '#155238', kLineaF: '#b3c2b8', cifra: '#006d42' },
+      pleno: { accLuz: '#13843a', accNoche: '#40d868', sobreAccNoche: '#0a100c',
+        cultivo: '#40d868', cTexto: '#0a100c', cTexto2: '#1d3a24',
+        origen: '#cc572a', oTexto: '#0a100c', oTexto2: '#0a100c', oAcento: '#0a100c', logosClaros: true }
+    };
+    var p = Object.assign({}, base, PAL[v] || PAL.v3);
+    var campo = function (c, linea) { return 'background-color: ' + c + '; background-image: repeating-linear-gradient(90deg, ' + linea + ' 0, ' + linea + ' 2px, transparent 2px, transparent 40px); background-size: 100% 38%; background-position: 0 100%; background-repeat: no-repeat;'; };
+    var oscuro = function (c) { return c === '#40d868' || c === '#cc572a' || c === '#ffd54a' ? 'rgba(10,16,12,0.14)' : 'rgba(244,242,236,0.10)'; };
+    var mono = "'Geist Mono', Menlo, monospace";
+    var TIPOS = {
+      A: { h: "'Montserrat', Arial, sans-serif", hw: 700, b: "'Manrope', Arial, sans-serif", m: "'Manrope', Arial, sans-serif", s1: 80, s2: 40, lh2: 46, s3: 58, s4: 86, l1: '-0.035em', l2: '-0.025em' },
+      B: { h: "'Geist', Arial, sans-serif", hw: 400, b: "'Geist', Arial, sans-serif", m: mono, s1: 88, s2: 44, lh2: 48, s3: 64, s4: 96, l1: '-0.04em', l2: '-0.025em' },
+      C: { h: "'Roboto Slab', Georgia, serif", hw: 300, b: "'Work Sans', Arial, sans-serif", m: mono, s1: 86, s2: 44, lh2: 50, s3: 64, s4: 94, l1: '-0.035em', l2: '-0.02em' },
+      D: { h: "'Zilla Slab', Georgia, serif", hw: 400, b: "'Work Sans', Arial, sans-serif", m: mono, s1: 94, s2: 48, lh2: 52, s3: 70, s4: 102, l1: '-0.025em', l2: '-0.015em' },
+      E: { h: "'Newsreader', Georgia, serif", hw: 400, b: "'Geist', Arial, sans-serif", m: mono, s1: 94, s2: 48, lh2: 52, s3: 70, s4: 102, l1: '-0.03em', l2: '-0.02em' },
+      F: { h: "'Instrument Serif', Georgia, serif", hw: 400, b: "'Instrument Sans', Arial, sans-serif", m: mono, s1: 106, s2: 54, lh2: 56, s3: 78, s4: 116, l1: '-0.015em', l2: '-0.01em' }
+    };
+    var tk = String(this.props.tipografia || 'D').charAt(0);
+    var t = TIPOS[tk] || TIPOS.B;
+    var st = this.state || {};
+    var cls = { campo: st.v_campo ? 'contar-on' : '' };
+    var tono = st.tono || 'oscuro';
+    var hdr = tono === 'claro'
+      ? { bg: 'rgba(244,242,236,0.86)', fg: '#0a100c', logoNoche: 'none', logoDia: 'block', sombra: '0 1px 0 rgba(10,16,12,0.06), 0 8px 24px rgba(10,16,12,0.06)' }
+      : { bg: 'rgba(10,16,12,0.55)', fg: '#f4f2ec', logoNoche: 'block', logoDia: 'none', sombra: 'none' };
+    return {
+      p: p,
+      cls: cls,
+      t: t,
+      hdr: hdr,
+      tw: t.hw + (this.props.titulares === 'medio' ? 100 : 0),
+      s: {
+        impClima: campo(p.sol, 'rgba(10,16,12,0.14)'),
+        impAlimento: campo(p.cultivo, oscuro(p.cultivo)),
+        impRural: campo(p.origen, oscuro(p.origen)),
+        logoOrigen: p.logosClaros ? 'filter: brightness(0);' : 'filter: brightness(0) invert(1);'
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

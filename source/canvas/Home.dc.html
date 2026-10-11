@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home (1/2) · eki.labs — home v4</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Montserrat:wght@700;800&amp;family=Manrope:wght@400;500&amp;family=Roboto+Slab:wght@300;400&amp;family=Work+Sans:wght@400;500&amp;family=Zilla+Slab:wght@400;500&amp;family=Newsreader:opsz,wght@6..72,300..600&amp;family=Instrument+Serif&amp;family=Instrument+Sans:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+@property --n { syntax: '<integer>'; initial-value: 0; inherits: false; }
+.cnt{counter-reset:c var(--n);font-variant-numeric:tabular-nums}
+.contar-on .cnt{animation:cnt0 1.8s cubic-bezier(0.16,1,0.3,1) 0.15s both}
+.cnt::before{content:counter(c)}
+.contar-on .cnt-1{animation-name:cnt1}
+.n3{--n:3}.n5{--n:5}.n8{--n:8}.n10{--n:10}.n16{--n:16}.n36{--n:36}.n95{--n:95}
+@keyframes cnt0{from{--n:0}}
+@keyframes cnt1{from{--n:1}}
+@media (prefers-reduced-motion: reduce){.cnt{animation:none}}
+.in-capa{position:absolute;left:0;right:0;top:0;height:min(100vh, 960px);z-index:80;pointer-events:none;overflow:hidden;animation:in-fin 0.01s linear 2.85s both}
+@keyframes in-fin{to{visibility:hidden}}
+.in-mitad{position:absolute;left:0;right:0;height:50%;background:#0a100c}
+.in-arriba{top:0;animation:in-arriba 0.75s cubic-bezier(0.65,0,0.35,1) 2.05s both}
+.in-abajo{bottom:0;animation:in-abajo 0.75s cubic-bezier(0.65,0,0.35,1) 2.05s both}
+.in-logo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;animation:in-logo 0.35s ease-in 1.95s both}
+.in-circ{transform-box:fill-box;transform-origin:50% 50%;animation:in-circ 0.95s both}
+.in-s{transform-box:fill-box;transform-origin:0% 50%;animation:in-s 0.34s cubic-bezier(0.65,0,0.35,1) both}
+.in-s1{animation-delay:1.0s}.in-s2{animation-delay:1.08s}.in-s3{animation-delay:1.16s}
+.in-bajo{animation:in-fuera 0.25s ease 1.42s both}.in-bb{animation:in-dentro 0.25s ease 1.42s both}
+.in-logo svg{animation:in-desliza 0.6s cubic-bezier(0.16,1,0.3,1) 1.25s both}
+.in-nombre{animation:in-nombre 0.55s cubic-bezier(0.16,1,0.3,1) 1.3s both}
+@keyframes in-circ{0%{transform:scale(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}14%{transform:scale(0.12);opacity:1;animation-timing-function:cubic-bezier(0.45,0,0.55,1)}30%{transform:scale(0.18);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}46%{transform:scale(0.12);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}100%{transform:scale(1);opacity:1}}
+@keyframes in-s{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes in-fuera{to{opacity:0}}
+@keyframes in-dentro{from{opacity:0}to{opacity:1}}
+@keyframes in-nombre{from{opacity:0;transform:translateX(-90px)}to{opacity:1;transform:translateX(0)}}
+@keyframes in-desliza{from{transform:translateX(180px)}to{transform:translateX(0)}}
+@keyframes in-logo{to{opacity:0;transform:scale(0.96)}}
+@keyframes in-arriba{to{transform:translateY(-100%)}}
+@keyframes in-abajo{to{transform:translateY(100%)}}
+@media (prefers-reduced-motion: reduce){.in-capa{display:none}}
+@property --er { syntax: '<percentage>'; inherits: false; initial-value: 32%; }
+.el-pulso{-webkit-mask-image:radial-gradient(circle at calc(100% - 53px) 53px, #000 0, #000 calc(var(--er) - 16%), transparent var(--er));mask-image:radial-gradient(circle at calc(100% - 53px) 53px, #000 0, #000 calc(var(--er) - 16%), transparent var(--er));animation:el-pulso 10s ease-in-out infinite}
+.el-par{transition:transform 0.9s cubic-bezier(0.16,1,0.3,1);will-change:transform}
+@keyframes el-pulso{0%{--er:30%}14%{--er:62%}26%{--er:46%}40%{--er:80%}54%{--er:24%}66%{--er:42%}80%{--er:12%}90%{--er:20%}100%{--er:30%}}
+.mk-circ,.mk-s{transform-box:fill-box}
+.mk-circ{transform-origin:50% 50%}
+.mk-s{transform-origin:0% 50%}
+.contar-on .mk-circ{animation:mk-circ 1.5s both}
+.contar-on .mk-s{animation:mk-s 0.55s cubic-bezier(0.65,0,0.35,1) both}
+.contar-on .mk-s1{animation-delay:1.6s}.contar-on .mk-s2{animation-delay:1.72s}.contar-on .mk-s3{animation-delay:1.84s}
+.contar-on .mk-nombre{animation:mk-nombre 0.9s cubic-bezier(0.16,1,0.3,1) 2.35s both}
+@keyframes mk-circ{0%{transform:scale(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}16%{transform:scale(0.12);opacity:1;animation-timing-function:cubic-bezier(0.45,0,0.55,1)}30%{transform:scale(0.18);animation-timing-function:cubic-bezier(0.45,0,0.55,1)}44%{transform:scale(0.12);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}100%{transform:scale(1);opacity:1}}
+@keyframes mk-s{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes mk-nombre{from{opacity:0;transform:translateX(-120px)}to{opacity:1;transform:translateX(0)}}
+@media (prefers-reduced-motion: reduce){.el-pulso,.mk-circ,.mk-s,.mk-nombre{animation:none}}
+html{scroll-behavior:smooth}
+.nav-a{display:inline-flex;align-items:center;gap:6px;color:inherit;text-decoration:none}
+.nav-a svg{transition:transform 0.25s cubic-bezier(0.16,1,0.3,1)}
+.nav-a:hover svg{transform:translateY(3px)}
+.nav-more{position:relative}
+.nav-more>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:4px;box-shadow:inset 0 0 0 1px currentColor}
+.nav-more>summary::-webkit-details-marker{display:none}
+.nav-more>summary:focus-visible{outline:2px solid #58e9ae;outline-offset:2px}
+.nav-panel{position:absolute;right:0;top:52px;width:300px;padding:8px;border-radius:12px;background:rgba(10,16,12,0.97);color:#f4f2ec;box-shadow:0 16px 40px rgba(10,16,12,0.28);display:flex;flex-direction:column;z-index:40}
+.nav-panel .nav-h{padding:10px 14px 6px;font-family:'Geist Mono',Menlo,monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#a1a69f}
+.nav-panel a,.nav-panel .nav-soon{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 14px;border-radius:8px;color:#f4f2ec;text-decoration:none;font-size:16px;line-height:22px}
+.nav-panel a:hover{background:rgba(244,242,236,0.08)}
+.nav-panel a[aria-current]{box-shadow:inset 2px 0 0 #58e9ae}
+.nav-panel small{font-family:'Geist Mono',Menlo,monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#a1a69f}
+.nav-panel .nav-soon{color:#a1a69f;cursor:default}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.nav-a svg{transition:none}}
+
+/* industry leaders: a slow, endless carousel */
+.lg-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%)}
+.lg-track{display:flex;align-items:center;width:max-content;animation:lg-move 32s linear infinite}
+.lg-cell{flex:none;display:flex;align-items:center;justify-content:center;height:48px;padding:0 44px}
+.lg-marquee:hover .lg-track{animation-play-state:paused}
+@keyframes lg-move{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.lg-track{animation:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 1280px; height: {{b.alto}}px; overflow: hidden; background: {{p.fondo}}; color: {{p.texto}}; font-family: {{t.b}};">
+<div class="in-capa" style="display: {{intro.display}};" aria-hidden="true"><div class="in-mitad in-arriba"></div><div class="in-mitad in-abajo"></div><div class="in-logo"><svg width="440" height="80.5" viewBox="0 -816.5 5042 923" style="display: block; overflow: visible;"><g transform="translate(0 -816.5) scale(9.23)"><mask id="in-m" maskUnits="userSpaceOnUse" x="-12" y="-12" width="124" height="124"><rect x="-12" y="-12" width="124" height="124" fill="#fff"></rect><rect class="in-s in-s1" x="-2" y="50" width="104" height="6.14" fill="#000"></rect><rect class="in-s in-s2" x="-2" y="66.67" width="104" height="6.14" fill="#000"></rect><rect class="in-s in-s3" x="-2" y="83.33" width="104" height="6.14" fill="#000"></rect></mask><g mask="url(#in-m)"><g class="in-circ"><path d="M0 50A50 50 0 0 1 100 50Z" fill="#ffd54a"></path><path class="in-bajo" d="M0 50A50 50 0 0 0 100 50Z" fill="#ffd54a"></path><g class="in-bb" fill="#f4f2ec"><path d="M0.38 56.14L99.62 56.14A50 50 0 0 1 97.14 66.67L2.86 66.67A50 50 0 0 1 0.38 56.14Z"></path><path d="M5.5 72.81L94.5 72.81A50 50 0 0 1 87.27 83.33L12.73 83.33A50 50 0 0 1 5.5 72.81Z"></path><path d="M19.31 89.47L80.69 89.47A50 50 0 0 1 50 100L50 100A50 50 0 0 1 19.31 89.47Z"></path></g></g></g></g><g transform="translate(1278 0)"><g class="in-nombre"><path fill="#f4f2ec" d="M300.6 12Q220.8 12 162.1 -22.4Q103.4 -56.8 71.3 -119.7Q39.2 -182.6 39.2 -267Q39.2 -351.4 71.3 -413.8Q103.4 -476.2 161.5 -511.1Q219.6 -546 298.2 -546Q374.4 -546 431.6 -511.9Q488.8 -477.8 520.1 -413.8Q551.4 -349.8 551.4 -260V-231.4H172Q175.8 -160.8 210.3 -125.6Q244.8 -90.4 302.2 -90.4Q345 -90.4 373.3 -109.5Q401.6 -128.6 413 -163.8L543.8 -155.6Q522.4 -78.2 457.7 -33.1Q393 12 300.6 12ZM172 -317.4H418.6Q414.6 -382.4 381.9 -413.8Q349.2 -445.2 298.2 -445.2Q246.8 -445.2 213.3 -412.3Q179.8 -379.4 172 -317.4Z M661.4 0V-710H789.4V-292.6L1008.2 -534H1165.8L957.2 -311.8L1172.8 0H1029.2L873.4 -236L789.4 -146.8V0Z M1289.4 0V-534H1417.4V0ZM1287 -605.4V-718.6H1419.8V-605.4Z M1527.2 0V-139.8H1673.4V0Z M1911.4 0Q1852.6 0 1818 -30Q1783.4 -60 1783.4 -126.4V-710H1911.4V-139.4Q1911.4 -118.6 1921.7 -108.9Q1932 -99.2 1951.2 -99.2H1990.4V0Z M2234.6 12Q2151.4 12 2100.3 -26.4Q2049.2 -64.8 2049.2 -133.6Q2049.2 -203.2 2092.2 -242Q2135.2 -280.8 2222.6 -298L2400.2 -332.6Q2400.2 -389.6 2374.1 -418.2Q2348 -446.8 2297.4 -446.8Q2250.8 -446.8 2224.2 -425.5Q2197.6 -404.2 2188.4 -363.8L2058.2 -370.4Q2073.6 -454.6 2135.7 -500.3Q2197.8 -546 2297.4 -546Q2411.4 -546 2469.8 -488.7Q2528.2 -431.4 2528.2 -324.4V-129.8Q2528.2 -108.6 2535.5 -100.9Q2542.8 -93.2 2557.8 -93.2H2574.8V0Q2568.8 1.8 2555.4 3.1Q2542 4.4 2528.4 4.4Q2495.2 4.4 2469.3 -6.5Q2443.4 -17.4 2429 -43.5Q2414.6 -69.6 2414.6 -115.6L2426.2 -108Q2417.6 -72.8 2391.4 -45.5Q2365.2 -18.2 2325 -3.1Q2284.8 12 2234.6 12ZM2261 -81.2Q2303.6 -81.2 2334.7 -97.9Q2365.8 -114.6 2383 -144.9Q2400.2 -175.2 2400.2 -215.6V-245.6L2261.8 -217.6Q2219.4 -209.2 2200.5 -191.5Q2181.6 -173.8 2181.6 -145.6Q2181.6 -115 2202.3 -98.1Q2223 -81.2 2261 -81.2Z M2947 12Q2891.2 12 2849.4 -12.1Q2807.6 -36.2 2784.6 -79.2L2781.6 0H2660.4V-710H2788.4V-458.4Q2809.6 -494.6 2850.8 -520.3Q2892 -546 2947 -546Q3015.8 -546 3066.2 -511.6Q3116.6 -477.2 3144.2 -414.6Q3171.8 -352 3171.8 -267Q3171.8 -182 3144.2 -119.4Q3116.6 -56.8 3066.2 -22.4Q3015.8 12 2947 12ZM2917.6 -91.6Q2973 -91.6 3006.2 -138.2Q3039.4 -184.8 3039.4 -267Q3039.4 -349.8 3006.6 -396.1Q2973.8 -442.4 2918.8 -442.4Q2877.8 -442.4 2848.4 -421.7Q2819 -401 2803.7 -361.8Q2788.4 -322.6 2788.4 -267Q2788.4 -213 2803.7 -173.5Q2819 -134 2848.1 -112.8Q2877.2 -91.6 2917.6 -91.6Z M3498.4 12Q3416.6 12 3363.1 -11.2Q3309.6 -34.4 3281.9 -75.1Q3254.2 -115.8 3250.2 -168.2L3381 -173.8Q3388.2 -132.2 3414.9 -108.9Q3441.6 -85.6 3498.8 -85.6Q3543.6 -85.6 3567.5 -100.3Q3591.4 -115 3591.4 -146Q3591.4 -164.2 3582.9 -176.2Q3574.4 -188.2 3549.8 -197.3Q3525.2 -206.4 3477.6 -214.8Q3396.8 -229.2 3351 -249.8Q3305.2 -270.4 3286.6 -301.4Q3268 -332.4 3268 -377.6Q3268 -452.6 3325.5 -499.3Q3383 -546 3494.2 -546Q3571.4 -546 3620.7 -521.7Q3670 -497.4 3695.4 -456.6Q3720.8 -415.8 3725 -366.4L3595.4 -360.4Q3594.2 -385.4 3583 -405.4Q3571.8 -425.4 3549.8 -436.9Q3527.8 -448.4 3492.2 -448.4Q3446.8 -448.4 3423.6 -430.2Q3400.4 -412 3400.4 -382.4Q3400.4 -360.8 3409.7 -346.9Q3419 -333 3442.1 -324.3Q3465.2 -315.6 3504.8 -309.2Q3587.2 -297 3635.2 -276.2Q3683.2 -255.4 3703.5 -223.9Q3723.8 -192.4 3723.8 -147.6Q3723.8 -71 3662.5 -29.5Q3601.2 12 3498.4 12Z"></path></g></g></svg></div></div>
+
+<div data-hdr="1" style="position: sticky; top: 0; z-index: 30; height: 0;">
+<header style="position: absolute; top: 24px; left: 24px; right: 24px; height: 60px; box-sizing: border-box; padding: 0 10px 0 20px; border-radius: 12px; display: flex; align-items: center; gap: 44px; background: {{hdr.bg}}; color: {{hdr.fg}}; box-shadow: {{hdr.sombra}}; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: background-color 240ms cubic-bezier(0.16, 1, 0.3, 1), color 240ms cubic-bezier(0.16, 1, 0.3, 1);">
+<a href="#mission" aria-label="eki.labs, home" style="display: block; line-height: 0;">
+<img src="/_blob/cd5507e4423d9d198a0e98b3fc74edd3" alt="eki.labs" style="height: 22px; width: 120px; display: {{hdr.logoNoche}};">
+<img src="/_blob/935050cd151dbe522e60c17d61d41310" alt="eki.labs" style="height: 22px; width: 120px; display: {{hdr.logoDia}};">
+</a>
+<nav style="display: flex; gap: 26px; font-size: 15px;">
+<a class="nav-a" href="#how">How it works<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M8 2.5V13M3.5 8.5L8 13L12.5 8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"></path></svg></a>
+<a class="nav-a" href="#impact">Impact<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M8 2.5V13M3.5 8.5L8 13L12.5 8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"></path></svg></a>
+<a class="nav-a" href="#team">Team<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M8 2.5V13M3.5 8.5L8 13L12.5 8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"></path></svg></a>
+<a class="nav-a" href="#story">Origins<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M8 2.5V13M3.5 8.5L8 13L12.5 8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"></path></svg></a>
+</nav>
+<div style="margin-left: auto; display: flex; align-items: center; gap: 20px;">
+<a class="nav-a" href="#contact" style="font-family: {{t.m}}; font-size: 14px;">Contact<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M8 2.5V13M3.5 8.5L8 13L12.5 8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"></path></svg></a>
+<a href="Tecnologia.dc.html" style="display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 4px; background: {{p.accNoche}}; color: {{p.sobreAccNoche}}; font-family: {{t.m}}; font-size: 14px; font-weight: 500; text-decoration: none;">Explore our science</a>
+<details class="nav-more"><summary aria-label="More eki.labs sites"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="display: block;"><path d="M2 4.5H16M2 9H16M2 13.5H16" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"></path></svg></summary><div class="nav-panel"><span class="nav-h">eki.labs sites</span><a href="Home.dc.html" aria-current="page">Home<small>eki.labs</small></a><a href="Tecnologia.dc.html">Technology<small>Microsite</small></a><a href="Modelo.dc.html">Model<small>Microsite</small></a><a href="Video.dc.html">Film<small>79 s</small></a><a href="Brand.dc.html">Brand<small>Guidelines</small></a><a href="Firma.dc.html">Email signature<small>For the team</small></a><span class="nav-soon">Slides<small>Private · soon</small></span></div></details>
+</div>
+</header>
+</div>
+
+<section id="mission" data-tono="oscuro" style="padding: 0;">
+<div style="position: relative; height: 860px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; background: #0f2a1b;">
+<canvas data-hero-fot="1" width="1280" height="860" style="position: absolute; inset: 0; width: 100%; height: 100%; display: {{hero.canvas}}; z-index: 1;"></canvas>
+<img data-hero-img="1" src="/_blob/106e536e02727277b51efb19f14b7f7c" alt="Aerial view of crop rows (reference image, gigacrop.com)" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block;">
+<span style="position: absolute; z-index: 3; right: 24px; top: 100px; font-family: {{t.m}}; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; background: rgba(10,16,12,0.7); color: #f4f2ec; padding: 4px 6px; border-radius: 4px;">Foto de referencia</span>
+<div style="position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(90deg, rgba(10,16,12,0.42) 0, rgba(10,16,12,0.16) 36%, rgba(10,16,12,0) 56%), linear-gradient(180deg, rgba(10,16,12,0.45) 0, rgba(10,16,12,0) 22%, rgba(10,16,12,0) 34%, rgba(10,16,12,0.9) 100%);"></div>
+<div style="position: relative; z-index: 3; pointer-events: none; display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: end; padding: 48px 36px;">
+<div style="display: flex; flex-direction: column; gap: 16px;">
+<h1 style="margin: 0; font-family: {{t.h}}; font-weight: {{tw}}; font-size: calc({{t.s1}}px * 1.22); line-height: 0.95; letter-spacing: {{t.l1}}; color: #f4f2ec; max-width: 11ch;">Farming soil and sun, together.</h1>
+</div>
+<div style="display: flex; flex-direction: column; gap: 24px;">
+<p style="margin: 0; font-size: 20px; line-height: 29px; color: #f4f2ec; text-wrap: pretty;"><span style="color: rgba(244,242,236,0.8);">AI and electrification need clean power now, and farmland has to keep feeding us.</span> We build solar farms that do both: −95% land, +10% energy and +13% revenue compared with standard solar, measured over one year in our field test in Zamora.</p>
+</div>
+</div>
+</div>
+</section>
+
+
+
+<section id="partners" data-tono="claro" style="padding: 56px 64px 0;">
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: center;">
+<span style="grid-column: 1 / span 3; font-family: {{t.m}}; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.texto2}};">Working with industry leaders</span>
+<div class="lg-marquee" style="grid-column: 4 / span 9;"><div class="lg-track"><div class="lg-cell"><img src="/_blob/99cc6aee1cf9f51c59c985a8e6a52bb0" alt="Grupo Cobra" style="height: 40px; width: 114px; display: block; filter: brightness(0); opacity: 0.78;"></div><div class="lg-cell"><img src="/_blob/46a6851fb3fee14def33077045949be8" alt="Cobadu" style="height: 34px; width: 112px; display: block; filter: brightness(0); opacity: 0.78;"></div><div class="lg-cell"><img src="/_blob/db150bfa663036fcf75690d863a85d10" alt="Huawei" style="height: 26px; width: 119px; display: block; filter: brightness(0); opacity: 0.78;"></div><div class="lg-cell"><img src="/_blob/1c2526f45e5572679aeb03e244d61728" alt="JinkoSolar" style="height: 36px; width: 107px; display: block; filter: brightness(0); opacity: 0.78;"></div><div class="lg-cell"><img src="/_blob/0835d6551542d9904f6a5d70642f6fad" alt="Cajamar" style="height: 28px; width: 126px; display: block; opacity: 0.78;"></div><div class="lg-cell"><img src="/_blob/3e2dc2e6e1144762ca8cd38d0e601d08" alt="Alantra" style="height: 22px; width: 134px; display: block; opacity: 0.85;"></div><div class="lg-cell" aria-hidden="true"><img src="/_blob/99cc6aee1cf9f51c59c985a8e6a52bb0" alt="" data-alt="Grupo Cobra" style="height: 40px; width: 114px; display: block; filter: brightness(0); opacity: 0.78;"></div><div class="lg-cell" aria-hidden="true"><img src="/_blob/46a6851fb3fee14def33077045949be8" alt="" data-alt="Cobadu" style="height: 34px; width: 112px; display: block; filter: brightness(0); opacity: 0.78;"></div><div class="lg-cell" aria-hidden="true"><img src="/_blob/db150bfa663036fcf75690d863a85d10" alt="" data-alt="Huawei" style="height: 26px; width: 119px; display: block; filter: brightness(0); opacity: 0.78;"></div><div class="lg-cell" aria-hidden="true"><img src="/_blob/1c2526f45e5572679aeb03e244d61728" alt="" data-alt="JinkoSolar" style="height: 36px; width: 107px; display: block; filter: brightness(0); opacity: 0.78;"></div><div class="lg-cell" aria-hidden="true"><img src="/_blob/0835d6551542d9904f6a5d70642f6fad" alt="" data-alt="Cajamar" style="height: 28px; width: 126px; display: block; opacity: 0.78;"></div><div class="lg-cell" aria-hidden="true"><img src="/_blob/3e2dc2e6e1144762ca8cd38d0e601d08" alt="" data-alt="Alantra" style="height: 22px; width: 134px; display: block; opacity: 0.85;"></div></div></div>
+</div>
+</section>
+
+<section id="problem" data-tono="{{b.prob.tono}}" style="{{b.prob.caja}}">
+<div style="padding: 0 52px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: end;">
+<div style="grid-column: 1 / span 7;"><div style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{b.prob.t2}}; margin-bottom: 24px;"><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: {{b.prob.acc}};"></span><span style="color: {{b.prob.t1}};">01</span> · The problem</div><h2 style="margin: 0; font-family: {{t.h}}; font-weight: {{tw}}; font-size: {{t.s2}}px; line-height: {{t.lh2}}px; letter-spacing: {{t.l2}}; max-width: 22ch;">If you had one acre of land, would you use it to produce food or electricity?</h2></div>
+<p style="grid-column: 9 / span 4; margin: 0; font-size: 19px; line-height: 28px; color: {{b.prob.t2}};">Until now, you had to choose. The status quo creates a false choice, and we believe it’s the wrong trade-off.</p>
+</div>
+<div data-tono="oscuro" style="margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+<div style="box-sizing: border-box; border-radius: 12px; overflow: hidden; background: {{b.agri.bg}}; color: {{b.agri.fg}}; display: flex; flex-direction: column;"><figure style="position: relative; margin: 0; height: 300px; overflow: hidden;"><img src="/_blob/6eef07a69e39a71c05c663033241f59d" alt="Rows of young crops on flat farmland" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; display: block;"></figure><div style="flex: 1; box-sizing: border-box; padding: 32px 40px 44px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px;"><div style="display: flex; justify-content: space-between; align-items: flex-start;"><span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{b.agri.fg2}};">Agriculture</span><svg aria-hidden="true" width="32" height="32" viewBox="0 0 100 100" style="display: block; fill: {{b.agri.ico}};"><rect x="0" y="0" width="100" height="24"/><rect x="0" y="38" width="100" height="24"/><rect x="0" y="76" width="100" height="24"/></svg></div><div style="display: flex; flex-direction: column; gap: 18px;"><h3 style="margin: 0; font-family: {{t.h}}; font-weight: {{tw}}; font-size: 34px; line-height: 40px; letter-spacing: -0.01em; max-width: 18ch;">Protecting agriculture is a strategic imperative.</h3><p style="margin: 0; font-size: 17px; line-height: 26px; color: {{b.agri.fg2}}; max-width: 46ch;">Droughts, extreme heat and soil degradation make farming more vulnerable, while rising fuel and fertiliser costs squeeze farmers’ margins. Resilient local food systems matter for food security, for stability and for rural livelihoods.</p></div></div></div>
+<div style="box-sizing: border-box; border-radius: 12px; overflow: hidden; background: {{p.sol}}; color: #0a100c; display: flex; flex-direction: column;"><figure style="position: relative; margin: 0; height: 300px; overflow: hidden;"><img src="/_blob/65fcfb58b6b671637895a56e84bad702" alt="Aerial view of a conventional solar farm covering the land" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block;"></figure><div style="flex: 1; box-sizing: border-box; padding: 32px 40px 44px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px;"><div style="display: flex; justify-content: space-between; align-items: flex-start;"><span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #2b2a1c;">Solar energy</span><svg aria-hidden="true" width="32" height="32" viewBox="0 0 100 100" style="display: block; fill: #0a100c;"><circle cx="50" cy="50" r="50"/></svg></div><div style="display: flex; flex-direction: column; gap: 18px;"><h3 style="margin: 0; font-family: {{t.h}}; font-weight: {{tw}}; font-size: 34px; line-height: 40px; letter-spacing: -0.01em; max-width: 18ch;">Solar is growing, and it needs the same land.</h3><p style="margin: 0; font-size: 17px; line-height: 26px; color: #2b2a1c; max-width: 46ch;">Solar is one of the cheapest sources of electricity to scale, but it needs vast, flat, sun-rich land: often our best farmland. The result is land-use conflicts worldwide between farmers, solar developers and policymakers.</p></div></div></div>
+</div>
+</section>
+
+<section id="solution" data-tono="{{b.sol.tono}}" style="{{b.sol.caja}}">
+<div style="padding: 0 52px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: end;">
+<div style="grid-column: 1 / span 7;"><div style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{b.sol.t2}}; margin-bottom: 24px;"><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: {{b.sol.acc}};"></span><span style="color: {{b.sol.t1}};">02</span> · The breakthrough</div><h2 style="margin: 0; font-family: {{t.h}}; font-weight: {{tw}}; font-size: {{t.s2}}px; line-height: {{t.lh2}}px; letter-spacing: {{t.l2}}; max-width: 22ch;">Now, you don’t have to choose.</h2></div>
+<p style="grid-column: 9 / span 4; margin: 0; font-size: 19px; line-height: 28px; color: {{b.sol.t2}};">We enable dual land use by scaling an innovative technology that requires minimal space, allowing farmers to keep farming.</p>
+</div>
+<figure data-tono="oscuro" style="position: relative; margin: 56px 0 0; height: 480px; border-radius: 12px; overflow: hidden; background: #c9b27a;">
+<img src="/_blob/2c9f6f10b2a3958a9ffdd42701198b87" alt="A tractor works the soil between eki.labs rows" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%; display: block;">
+</figure>
+</section>
+
+<section id="how" data-tono="claro" style="margin-top: 132px;">
+<dc-import name="Capas" num="03" hint-size="1280px,900px"></dc-import>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"intro":{"editor":"boolean","default":false},"portada":{"editor":"enum","options":["Fotones","Foto"],"default":"Fotones"},"tipografia":{"editor":"enum","options":["A · Montserrat + Manrope","B · Geist","C · Roboto Slab + Work Sans","D · Zilla Slab + Work Sans","E · Newsreader + Geist","F · Instrument Serif + Instrument Sans"],"default":"D · Zilla Slab + Work Sans"},"variante":{"editor":"enum","options":["v3","viva","honda","pleno"],"default":"v3"},"secciones":{"editor":"enum","options":["Claras","Equipo y Origins","Bloques de color"],"default":"Equipo y Origins"},"titulares":{"editor":"enum","options":["ligero","medio"],"default":"ligero"},"$preview":{"width":1280,"height":3950}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    var self = this;
+    this._tono = function () {
+      var x = (window.innerWidth || 1280) / 2;
+      var hd = document.querySelector('[data-hdr] header');
+      var y = hd ? hd.getBoundingClientRect().top + 30 : 54;
+      var els = document.elementsFromPoint ? document.elementsFromPoint(x, y) : [];
+      var tono = 'oscuro';
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (!el.closest || el.closest('[data-hdr]')) continue;
+        var sec = el.closest('[data-tono]');
+        if (sec) { tono = sec.getAttribute('data-tono'); break; }
+      }
+      if (!self.state || self.state.tono !== tono) self.setState({ tono: tono });
+    };
+    document.addEventListener('scroll', this._tono, true);
+    window.addEventListener('resize', this._tono);
+    setTimeout(this._tono, 0);
+    this._par = [];
+    var cardsEl = document.querySelectorAll('#impact [data-tono]');
+    for (var ci = 0; ci < cardsEl.length; ci++) (function (card) {
+      var layers = card.querySelectorAll('.el-par');
+      var mv = function (e) { var r = card.getBoundingClientRect(), dx = (e.clientX - r.left) / r.width - 0.5, dy = (e.clientY - r.top) / r.height - 0.5; for (var li = 0; li < layers.length; li++) { var k = +layers[li].getAttribute('data-par'); layers[li].style.transform = 'translate(' + (-dx * k) + 'px,' + (-dy * k) + 'px)'; } };
+      var lv = function () { for (var li = 0; li < layers.length; li++) layers[li].style.transform = ''; };
+      card.addEventListener('pointermove', mv); card.addEventListener('pointerleave', lv); self._par.push([card, mv, lv]);
+    })(cardsEl[ci]);
+    var marcar = function (k) { var o = {}; o['v_' + k] = true; self.setState(o); };
+    this._io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (es) {
+      es.forEach(function (e) { var k = e.target.getAttribute('data-contar'), o = {}; o['v_' + k] = e.isIntersecting; if (!!(self.state || {})['v_' + k] !== e.isIntersecting) self.setState(o); });
+    }, { threshold: 0.3 }) : null;
+    setTimeout(function () {
+      var els = document.querySelectorAll('[data-contar]');
+      for (var i = 0; i < els.length; i++) { if (self._io) self._io.observe(els[i]); else marcar(els[i].getAttribute('data-contar')); }
+    }, 0);
+    var hc = document.querySelector('canvas[data-hero-fot]');
+    if (hc) {
+      var HW = 1280, HH = 860, HG = 3, HC = Math.floor(HW / HG), HR = Math.floor(HH / HG), HN = HC * HR;
+      var hctx = hc.getContext('2d'), himg = hctx.createImageData(HW, HH), hbuf = new Uint32Array(himg.data.buffer);
+      var hs = 777; var hr = function () { hs |= 0; hs = hs + 0x6D2B79F5 | 0; var q = Math.imul(hs ^ hs >>> 15, 1 | hs); q = q + Math.imul(q ^ q >>> 7, 61 | q) ^ q; return ((q ^ q >>> 14) >>> 0) / 4294967296; };
+      var pk = function (h) { return (255 << 24) | (parseInt(h.substr(5, 2), 16) << 16) | (parseInt(h.substr(3, 2), 16) << 8) | parseInt(h.substr(1, 2), 16); };
+      var hpal = [0, pk('#964a2f'), pk('#cf8166'), pk('#ffd54a')];
+      var hx = new Float32Array(HN), hy = new Float32Array(HN), hn = new Float32Array(HN), hL = new Float32Array(HN), hd = new Float32Array(HN);
+      var CXC = HW, CYC = 0;
+      for (var i = 0; i < HN; i++) { hx[i] = (i % HC) * HG + (hr() - 0.5) * 1.4; hy[i] = Math.floor(i / HC) * HG + (hr() - 0.5) * 1.4; hn[i] = hr(); var ddx = hx[i] - CXC, ddy = hy[i] - CYC; hd[i] = Math.sqrt(ddx * ddx + ddy * ddy); }
+      var mx = -9999, my = -9999, hvis = true;
+      var hImgEl = document.querySelector('img[data-hero-img]');
+      var fot = hc.style.display !== 'none' && getComputedStyle(hc).display !== 'none';
+      var REV = 2.8, SETTLE = 1.8, revealed = false;
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (hImgEl && fot && !reduce) { hImgEl.style.transition = 'opacity 1.6s cubic-bezier(0.16,1,0.3,1)'; hImgEl.style.opacity = '0'; }
+      var host = hc.parentNode;
+      host.addEventListener('mousemove', function (e) { var r = hc.getBoundingClientRect(); mx = (e.clientX - r.left) * HW / r.width; my = (e.clientY - r.top) * HH / r.height; });
+      host.addEventListener('mouseleave', function () { mx = -9999; my = -9999; });
+      if ('IntersectionObserver' in window) { self._hio = new IntersectionObserver(function (es) { hvis = es[0].isIntersecting; }); self._hio.observe(hc); }
+      var him = new Image();
+      him.onload = function () {
+        try {
+          var oc = document.createElement('canvas'); oc.width = HC; oc.height = HR; var ox = oc.getContext('2d');
+          var sc = Math.max(HC / him.width, HR / him.height), w = him.width * sc, h = him.height * sc; ox.drawImage(him, (HC - w) / 2, (HR - h) / 2, w, h);
+          var d = ox.getImageData(0, 0, HC, HR).data;
+          for (var k = 0; k < HN; k++) hL[k] = (0.2126 * d[k * 4] + 0.7152 * d[k * 4 + 1] + 0.0722 * d[k * 4 + 2]) / 255;
+          var srt = Array.prototype.slice.call(hL).sort(function (p, q) { return p - q; }), lo = srt[Math.floor(HN * 0.03)], hi = srt[Math.floor(HN * 0.97)], sp = Math.max(0.05, hi - lo);
+          for (var k2 = 0; k2 < HN; k2++) hL[k2] = Math.min(1, Math.max(0, (hL[k2] - lo) / sp));
+        } catch (err) { return; }
+        var last = 0, RAD = 110, R2 = RAD * RAD, DIAG = Math.sqrt(HW * HW + HH * HH), EDGE = 150, t0 = performance.now() + (reduce ? 0 : (self.props.intro === false ? -REV * 1000 : 2900));   // without the intro the photo is there at once and the photons settle over it
+        var frame = function (now) {
+          self._hraf = requestAnimationFrame(frame);
+          if (hc.offsetParent === null || !hvis || now - last < 33) return; last = now;
+          var t = (now - t0) / 1000;
+          if (t < 0) { hbuf.fill(0); hctx.putImageData(himg, 0, 0); return; }
+          var Ramb = DIAG * Math.max(0.04, 0.2 + 0.1 * Math.sin(t * 1.25) + 0.06 * Math.sin(t * 2.9 + 1.3) + 0.035 * Math.sin(t * 6.1 + 0.4));
+          var eo = function (x) { x = Math.min(1, Math.max(0, x)); return 1 - Math.pow(1 - x, 3); };
+          var R = reduce ? Ramb : (t < REV ? (DIAG + EDGE) * eo(t / REV) : (DIAG + EDGE) + (Ramb - DIAG - EDGE) * eo((t - REV) / SETTLE));
+          if (!revealed && (reduce || t > REV * 0.62)) { revealed = true; if (hImgEl) hImgEl.style.opacity = '1'; }
+          for (var z = 0; z < 9000; z++) { var zi = Math.floor(hr() * HN); hn[zi] = hr(); }
+          hbuf.fill(0);
+          for (var k3 = 0; k3 < HN; k3++) {
+            var dist = hd[k3];
+            if (dist > R + EDGE) continue;
+            var p = (R - dist) / EDGE + 0.5; if (hn[k3] > p) continue;
+            var v = hL[k3] + (hn[k3] - 0.5) * 0.45, ti = v < 0.35 ? 0 : (v < 0.6 ? 1 : (v < 0.8 ? 2 : 3));
+            if (ti === 0) continue;
+            var x = hx[k3], y = hy[k3], dx = x - mx, dy = y - my, d2 = dx * dx + dy * dy;
+            if (d2 < R2) { var dd = Math.sqrt(d2) || 1, f = (1 - dd / RAD); x += dx / dd * f * f * 34; y += dy / dd * f * f * 34; }
+            var ix = x | 0, iy = y | 0; if (ix < 0 || iy < 0 || ix >= HW - 1 || iy >= HH - 1) continue;
+            var o = iy * HW + ix, c = hpal[ti]; hbuf[o] = c; hbuf[o + 1] = c; hbuf[o + HW] = c; hbuf[o + HW + 1] = c;
+          }
+          hctx.putImageData(himg, 0, 0);
+        };
+        self._hraf = requestAnimationFrame(frame);
+      };
+      him.onerror = function () { if (hImgEl) hImgEl.style.opacity = '1'; };
+      him.src = hImgEl ? hImgEl.getAttribute('src') : '/_blob/106e536e02727277b51efb19f14b7f7c';
+    }
+  }
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this._tono, true);
+    window.removeEventListener('resize', this._tono);
+    if (this._io) this._io.disconnect();
+    if (this._hraf) cancelAnimationFrame(this._hraf);
+    if (this._hio) this._hio.disconnect();
+    if (this._dia) this._dia.stop();
+  }
+  renderVals() {
+    var v = this.props.variante || 'v3';
+    var base = {
+      fondo: '#f4f2ec', fondo2: '#ebe6d8', texto: '#0a100c', texto2: '#555a52', linea: '#d5d1c4', cifra: '#0a100c',
+      noche: '#0a100c', nTexto: '#f4f2ec', nTexto2: '#a1a69f', nLinea: '#2b332d', nLineaF: '#a1a69f',
+      contacto: '#0a100c', pie: '#0a100c', kTexto2: '#a1a69f', kLinea: '#2b332d', kLineaF: '#a1a69f',
+      sol: '#ffd54a', logosClaros: false
+    };
+    var PAL = {
+      v3: { accLuz: '#056c4a', accNoche: '#58e9ae', sobreAccNoche: '#0a100c',
+        cultivo: '#0a281a', cTexto: '#f4f2ec', cTexto2: '#a1a69f',
+        origen: '#311d16', oTexto: '#f4f2ec', oTexto2: '#a1a69f', oAcento: '#cf8166' },
+      viva: { accLuz: '#13843a', accNoche: '#40d868', sobreAccNoche: '#0a100c',
+        cultivo: '#0b3d1f', cTexto: '#f4f2ec', cTexto2: '#a1a69f',
+        origen: '#4a2010', oTexto: '#f4f2ec', oTexto2: '#a1a69f', oAcento: '#e2825a' },
+      honda: { accLuz: '#006d42', accNoche: '#30c883', sobreAccNoche: '#0a100c',
+        cultivo: '#0b4a2f', cTexto: '#f4f2ec', cTexto2: '#a9bfb0',
+        origen: '#4a2010', oTexto: '#f4f2ec', oTexto2: '#a1a69f', oAcento: '#e2825a',
+        contacto: '#043a22', pie: '#043a22', kTexto2: '#b3c2b8', kLinea: '#155238', kLineaF: '#b3c2b8', cifra: '#006d42' },
+      pleno: { accLuz: '#13843a', accNoche: '#40d868', sobreAccNoche: '#0a100c',
+        cultivo: '#40d868', cTexto: '#0a100c', cTexto2: '#1d3a24',
+        origen: '#cc572a', oTexto: '#0a100c', oTexto2: '#0a100c', oAcento: '#0a100c', logosClaros: true }
+    };
+    var p = Object.assign({}, base, PAL[v] || PAL.v3);
+    var campo = function (c, linea) { return 'background-color: ' + c + '; background-image: repeating-linear-gradient(90deg, ' + linea + ' 0, ' + linea + ' 2px, transparent 2px, transparent 40px); background-size: 100% 38%; background-position: 0 100%; background-repeat: no-repeat;'; };
+    var oscuro = function (c) { return c === '#40d868' || c === '#cc572a' || c === '#ffd54a' ? 'rgba(10,16,12,0.14)' : 'rgba(244,242,236,0.10)'; };
+    var mono = "'Geist Mono', Menlo, monospace";
+    var TIPOS = {
+      A: { h: "'Montserrat', Arial, sans-serif", hw: 700, b: "'Manrope', Arial, sans-serif", m: "'Manrope', Arial, sans-serif", s1: 80, s2: 40, lh2: 46, s3: 58, s4: 86, l1: '-0.035em', l2: '-0.025em' },
+      B: { h: "'Geist', Arial, sans-serif", hw: 400, b: "'Geist', Arial, sans-serif", m: mono, s1: 88, s2: 44, lh2: 48, s3: 64, s4: 96, l1: '-0.04em', l2: '-0.025em' },
+      C: { h: "'Roboto Slab', Georgia, serif", hw: 300, b: "'Work Sans', Arial, sans-serif", m: mono, s1: 86, s2: 44, lh2: 50, s3: 64, s4: 94, l1: '-0.035em', l2: '-0.02em' },
+      D: { h: "'Zilla Slab', Georgia, serif", hw: 400, b: "'Work Sans', Arial, sans-serif", m: mono, s1: 94, s2: 48, lh2: 52, s3: 70, s4: 102, l1: '-0.025em', l2: '-0.015em' },
+      E: { h: "'Newsreader', Georgia, serif", hw: 400, b: "'Geist', Arial, sans-serif", m: mono, s1: 94, s2: 48, lh2: 52, s3: 70, s4: 102, l1: '-0.03em', l2: '-0.02em' },
+      F: { h: "'Instrument Serif', Georgia, serif", hw: 400, b: "'Instrument Sans', Arial, sans-serif", m: mono, s1: 106, s2: 54, lh2: 56, s3: 78, s4: 116, l1: '-0.015em', l2: '-0.01em' }
+    };
+    var color = (this.props.secciones || 'Equipo y Origins') === 'Bloques de color';
+    var claro = { t1: p.texto, t2: p.texto2, acc: p.accLuz };
+    var b = color ? {
+      alto: 4450,
+      prob: { tono: 'oscuro', caja: 'margin: 144px 12px 0; padding: 96px 12px 12px; border-radius: 20px; background: ' + p.noche + '; color: ' + p.nTexto + ';', t1: p.nTexto, t2: p.nTexto2, acc: p.accNoche },
+      agri: { bg: p.accNoche, fg: '#0a100c', fg2: '#1f3d2c', ico: '#0a100c' },
+      sol: { tono: 'oscuro', caja: 'margin: 12px 12px 0; padding: 96px 12px 12px; border-radius: 20px; background: ' + p.cultivo + '; color: ' + p.cTexto + ';', t1: p.cTexto, t2: '#b9cbbf', acc: p.accNoche, pie: '64px 52px 84px' }
+    } : {
+      alto: 4270,
+      prob: Object.assign({ tono: 'claro', caja: 'padding: 144px 12px 0;' }, claro),
+      agri: { bg: p.cultivo, fg: p.cTexto, fg2: p.cTexto2, ico: '#58e9ae' },
+      sol: Object.assign({ tono: 'claro', caja: 'padding: 144px 12px 0;', pie: '64px 52px 0' }, claro)
+    };
+    var tk = String(this.props.tipografia || 'D').charAt(0);
+    var t = TIPOS[tk] || TIPOS.B;
+    var st = this.state || {};
+    var cls = { origen: st.v_origen ? 'contar-on' : '', marca: st.v_marca ? 'contar-on' : '' };
+    var tono = st.tono || 'oscuro';
+    var hdr = tono === 'claro'
+      ? { bg: 'rgba(244,242,236,0.86)', fg: '#0a100c', logoNoche: 'none', logoDia: 'block', sombra: '0 1px 0 rgba(10,16,12,0.06), 0 8px 24px rgba(10,16,12,0.06)' }
+      : { bg: 'rgba(10,16,12,0.55)', fg: '#f4f2ec', logoNoche: 'block', logoDia: 'none', sombra: 'none' };
+    return {
+      p: p,
+      b: b,
+      cls: cls,
+      hero: { canvas: this.props.portada === 'Foto' ? 'none' : 'block' },
+      intro: { display: this.props.intro === false ? 'none' : 'block' },
+      t: t,
+      hdr: hdr,
+      tw: t.hw + (this.props.titulares === 'medio' ? 100 : 0),
+      s: {
+        impClima: campo(p.sol, 'rgba(10,16,12,0.14)'),
+        impAlimento: campo(p.cultivo, oscuro(p.cultivo)),
+        impRural: campo(p.origen, oscuro(p.origen)),
+        logoOrigen: p.logosClaros ? 'filter: brightness(0);' : 'filter: brightness(0) invert(1);',
+        cajaOrigen: p.logosClaros ? 'background: rgba(10,16,12,0.08); box-shadow: inset 0 0 0 1px rgba(10,16,12,0.18);' : 'background: rgba(244,242,236,0.06); box-shadow: inset 0 0 0 1px rgba(244,242,236,0.14);'
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

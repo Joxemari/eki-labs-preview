@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>eki.labs — technology</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=Montserrat:wght@700;800&amp;family=Manrope:wght@400;500&amp;family=Roboto+Slab:wght@300;400&amp;family=Work+Sans:wght@400;500&amp;family=Zilla+Slab:wght@400;500&amp;family=Newsreader:opsz,wght@6..72,300..600&amp;family=Instrument+Serif&amp;family=Instrument+Sans:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+@property --n { syntax: '<integer>'; initial-value: 0; inherits: false; }
+.cnt{counter-reset:c var(--n);font-variant-numeric:tabular-nums;animation:cnt0 1.8s cubic-bezier(0.16,1,0.3,1) 0.15s both paused}
+.cnt::before{content:counter(c)}
+.cnt-1{animation-name:cnt1}
+.contar-on .cnt{animation-play-state:running}
+.n3{--n:3}.n5{--n:5}.n8{--n:8}.n10{--n:10}.n13{--n:13}.n16{--n:16}.n36{--n:36}.n95{--n:95}
+@keyframes cnt0{from{--n:0}}
+@keyframes cnt1{from{--n:1}}
+@media (prefers-reduced-motion: reduce){.cnt{animation:none}}
+html{scroll-behavior:smooth}
+.nav-a{display:inline-flex;align-items:center;gap:6px;color:inherit;text-decoration:none}
+.nav-a svg{transition:transform 0.25s cubic-bezier(0.16,1,0.3,1)}
+.nav-a:hover svg{transform:translateY(3px)}
+.nav-more{position:relative}
+.nav-more>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:4px;box-shadow:inset 0 0 0 1px currentColor}
+.nav-more>summary::-webkit-details-marker{display:none}
+.nav-more>summary:focus-visible{outline:2px solid #58e9ae;outline-offset:2px}
+.nav-panel{position:absolute;right:0;top:52px;width:300px;padding:8px;border-radius:12px;background:rgba(10,16,12,0.97);color:#f4f2ec;box-shadow:0 16px 40px rgba(10,16,12,0.28);display:flex;flex-direction:column;z-index:40}
+.nav-panel .nav-h{padding:10px 14px 6px;font-family:'Geist Mono',Menlo,monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#a1a69f}
+.nav-panel a,.nav-panel .nav-soon{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 14px;border-radius:8px;color:#f4f2ec;text-decoration:none;font-size:16px;line-height:22px}
+.nav-panel a:hover{background:rgba(244,242,236,0.08)}
+.nav-panel a[aria-current]{box-shadow:inset 2px 0 0 #58e9ae}
+.nav-panel small{font-family:'Geist Mono',Menlo,monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#a1a69f}
+.nav-panel .nav-soon{color:#a1a69f;cursor:default}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.nav-a svg{transition:none}}
+</style>
+</helmet>
+<div style="position: relative; width: 1280px; min-height: 7200px; background: {{p.noche}}; color: {{p.nTexto}}; font-family: {{t.b}};">
+
+<div data-hdr="1" style="position: sticky; top: 0; z-index: 30; height: 0;">
+<header style="position: absolute; top: 24px; left: 24px; right: 24px; height: 60px; box-sizing: border-box; padding: 0 10px 0 20px; border-radius: 12px; display: flex; align-items: center; gap: 44px; background: {{hdr.bg}}; color: {{hdr.fg}}; box-shadow: {{hdr.sombra}}; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: background-color 240ms cubic-bezier(0.16, 1, 0.3, 1), color 240ms cubic-bezier(0.16, 1, 0.3, 1);">
+<a href="Home.dc.html" aria-label="eki.labs, inicio" style="display: block; line-height: 0;">
+<img src="/_blob/cd5507e4423d9d198a0e98b3fc74edd3" alt="eki.labs" style="height: 22px; width: 120px; display: {{hdr.logoNoche}};">
+<img src="/_blob/935050cd151dbe522e60c17d61d41310" alt="eki.labs" style="height: 22px; width: 120px; display: {{hdr.logoDia}};">
+</a>
+<nav style="display: flex; gap: 26px; font-size: 15px;">
+<a class="nav-a" href="#compare">Land use<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M8 2.5V13M3.5 8.5L8 13L12.5 8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"></path></svg></a>
+<a class="nav-a" href="#science">Aligned with demand<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M8 2.5V13M3.5 8.5L8 13L12.5 8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"></path></svg></a>
+<a class="nav-a" href="#field">Field tests<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M8 2.5V13M3.5 8.5L8 13L12.5 8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"></path></svg></a>
+<a class="nav-a" href="#farm">The process<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M8 2.5V13M3.5 8.5L8 13L12.5 8.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"></path></svg></a>
+</nav>
+<div style="margin-left: auto; display: flex; align-items: center; gap: 20px;">
+<a class="nav-a" href="Home.dc.html#contact" style="font-family: {{t.m}}; font-size: 14px;">Contact<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="display: block;"><path d="M3.34 8H12M8 3.33L12.67 8L8 12.67" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"></path></svg></a>
+<a href="Modelo.dc.html" style="display: inline-flex; align-items: center; height: 40px; padding: 0 16px; border-radius: 4px; background: {{p.accNoche}}; color: {{p.sobreAccNoche}}; font-family: {{t.m}}; font-size: 14px; font-weight: 500; text-decoration: none;">See the model</a>
+<details class="nav-more"><summary aria-label="More eki.labs sites"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="display: block;"><path d="M2 4.5H16M2 9H16M2 13.5H16" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"></path></svg></summary><div class="nav-panel"><span class="nav-h">eki.labs sites</span><a href="Home.dc.html">Home<small>eki.labs</small></a><a href="Tecnologia.dc.html" aria-current="page">Technology<small>Microsite</small></a><a href="Modelo.dc.html">Model<small>Microsite</small></a><a href="Video.dc.html">Film<small>79 s</small></a><a href="Brand.dc.html">Brand<small>Guidelines</small></a><a href="Firma.dc.html">Email signature<small>For the team</small></a><span class="nav-soon">Slides<small>Private · soon</small></span></div></details>
+</div>
+</header>
+</div>
+
+
+<section id="top" data-tono="oscuro" style="padding: 0;">
+<div style="position: relative; height: 860px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; background: #0f2a1b;">
+<canvas data-hero-fot="1" width="1280" height="860" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 1;"></canvas>
+<img data-hero-img="1" src="/_blob/697169ec847dd3aede271581d1532e91" alt="eki.labs solar rows on a cereal field in Zamora" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; display: block;">
+<div style="position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(90deg, rgba(10,16,12,0.42) 0, rgba(10,16,12,0.16) 36%, rgba(10,16,12,0) 56%), linear-gradient(180deg, rgba(10,16,12,0.45) 0, rgba(10,16,12,0) 22%, rgba(10,16,12,0) 34%, rgba(10,16,12,0.9) 100%);"></div>
+<div style="position: relative; z-index: 3; pointer-events: none; display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: end; padding: 48px 36px;">
+<div style="display: flex; flex-direction: column; gap: 20px;"><span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #d5d8d2;"><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: {{p.accNoche}};"></span>Technology</span><h1 style="margin: 0; font-family: {{t.h}}; font-weight: {{tw}}; font-size: {{t.s1}}px; line-height: 0.98; letter-spacing: {{t.l1}}; color: #f4f2ec; max-width: 13ch;">Solar power that is compatible with farming, at scale.</h1></div>
+<p style="margin: 0; font-size: 20px; line-height: 29px; color: #f4f2ec; text-wrap: pretty;">Bifacial rows facing east and west, 10–18 m apart. Machinery keeps working; the crops keep growing.</p>
+</div>
+</div>
+</section>
+
+
+<section id="compare" data-tono="oscuro" style="padding: 144px 0 0;">
+<div style="padding: 0 64px 40px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: end;">
+<div style="grid-column: 1 / span 7;"><div style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}}; margin-bottom: 24px;"><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: {{p.accNoche}};"></span><span style="color: {{p.nTexto}};">01</span> · Single-use vs. dual-use land</div><h2 style="margin: 0; font-family: {{t.h}}; font-weight: {{tw}}; font-size: {{t.s2}}px; line-height: {{t.lh2}}px; letter-spacing: {{t.l2}};">Farmers and solar developers are competing for the same lands.</h2></div>
+<p style="grid-column: 9 / span 4; margin: 0; font-size: 17px; line-height: 26px; color: {{p.nTexto2}};">Solar farms favour flat, sun-rich terrain: the same land as our best farms. Our rows take 5% of it; the rest keeps farming.</p>
+</div>
+<div style="margin: 0 12px; border-radius: 20px; overflow: hidden; height: 720px;"><div style="margin-left: -12px;"><dc-import name="Comparativa" hint-size="1280px,720px"></dc-import></div></div>
+<div style="margin: 24px 12px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;"><div style="padding: 32px 32px 36px; border-radius: 12px; background: #141b16; display: flex; flex-direction: column; gap: 20px;"><div style="display: flex; justify-content: space-between; align-items: baseline;"><h3 style="margin: 0; font-family: {{t.h}}; font-weight: {{tw}}; font-size: 30px; line-height: 36px;">Single-use land</h3><span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}};">Conventional solar</span></div><div style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid {{p.nLinea}};"><span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}};">Panels</span><span style="font-size: 16px; line-height: 24px;">Fixed, facing south, tilted at about 30°</span></div><div style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid {{p.nLinea}};"><span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}};">Between rows</span><span style="font-size: 16px; line-height: 24px;">About 5 m</span></div><div style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid {{p.nLinea}};"><span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}};">Sunlight</span><span style="font-size: 16px; line-height: 24px;">Blocked: the land stops being farmland</span></div><div style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid {{p.nLinea}};"><span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}};">Machinery</span><span style="font-size: 16px; line-height: 24px;">Restricted access</span></div></div><div style="padding: 32px 32px 36px; border-radius: 12px; background: #141b16; display: flex; flex-direction: column; gap: 20px;"><div style="display: flex; justify-content: space-between; align-items: baseline;"><h3 style="margin: 0; font-family: {{t.h}}; font-weight: {{tw}}; font-size: 30px; line-height: 36px;">Dual-use land</h3><span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.sol}};"><span style="text-transform: none; letter-spacing: 0.02em;">eki.labs</span></span></div><div style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid {{p.nLinea}};"><span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}};">Panels</span><span style="font-size: 16px; line-height: 24px;">Bifacial, in rows facing east and west</span></div><div style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid {{p.nLinea}};"><span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}};">Between rows</span><span style="font-size: 16px; line-height: 24px;">10–18 m</span></div><div style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid {{p.nLinea}};"><span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}};">Sunlight</span><span style="font-size: 16px; line-height: 24px;">Reaches the crops; morning and evening shade helps the soil keep its moisture</span></div><div style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid {{p.nLinea}};"><span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}};">Machinery</span><span style="font-size: 16px; line-height: 24px;">Full compatibility</span></div></div></div>
+</section>
+
+<section id="science" data-tono="oscuro" style="margin: 144px 12px 0; padding: 96px 52px; border-radius: 20px; background: {{p.noche}}; color: {{p.nTexto}};">
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: end;">
+<div style="grid-column: 1 / span 6;">
+<div style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}}; margin-bottom: 24px;"><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: {{p.accNoche}};"></span><span style="color: {{p.nTexto}};">02</span> · The science</div>
+<h2 style="margin: 0; font-family: {{t.h}}; font-weight: {{tw}}; font-size: {{t.s3}}px; line-height: 1.02; letter-spacing: {{t.l1}};">Aligned with demand.</h2>
+</div>
+<p style="grid-column: 7 / span 6; margin: 0; font-size: 19px; line-height: 28px; color: {{p.nTexto2}}; max-width: 56ch;">Our rows face east and west, so they produce in the morning and in the evening, when demand peaks and electricity is worth the most. Conventional panels produce mostly at midday, when solar floods the grid and prices fall: then the light goes to our crops.</p>
+</div>
+<figure style="margin: 72px 0 0; display: flex; flex-direction: column; gap: 24px;">
+<div style="display: flex; justify-content: space-between; font-family: {{t.m}}; font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding-bottom: 16px; border-bottom: 1px solid {{p.nLinea}};"><span>One day in June, hour by hour</span><span style="color: {{p.nTexto2}}; font-weight: 400; letter-spacing: 0.02em; text-transform: none;">Illustrative data · hover to move through the day</span></div>
+<canvas data-sim-dia="" data-sol="{{p.sol}}" data-acc="{{p.accNoche}}" data-tierra="#cf8166" data-tx="{{p.nTexto}}" data-tx2="{{p.nTexto2}}" data-grey="{{p.nTexto2}}" data-fm="{{t.m}}" data-fh="{{t.h}}" data-fb="{{t.b}}" role="img" aria-label="Simulated June day from 05:00 to 23:00. The sun crosses the sky; at sunrise and sunset the light reaches the panels, when electricity prices are high; at noon, when prices fall, it reaches the crops. Illustrative result: +10% energy and +13% revenue per MW compared with conventional solar." style="display: block; width: 1152px; height: 784px; cursor: ew-resize; touch-action: pan-y;"></canvas>
+<figcaption style="font-size: 13px; line-height: 20px; color: {{p.nTexto2}};">The +10% energy and +13% revenue come from one year of real data from our field test in Zamora. The day shown is a model: clear-sky June day in Castilla y León, 1 MW of each system. The price profile is illustrative and follows the midday dip of the Iberian day-ahead market (OMIE).</figcaption>
+</figure>
+</section>
+
+
+<section id="field" data-tono="oscuro" data-contar="campo" class="{{cls.campo}}" style="margin: 144px 12px 0; padding: 96px 52px; border-radius: 20px; background: {{p.noche}}; color: {{p.nTexto}};">
+<div style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}}; margin-bottom: 24px;"><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: {{p.accNoche}};"></span><span style="color: {{p.nTexto}};">03</span> · Field tests</div>
+<h2 style="margin: 0; font-family: {{t.h}}; font-weight: {{tw}}; font-size: {{t.s2}}px; line-height: {{t.lh2}}px; letter-spacing: {{t.l2}}; max-width: 24ch;">Tested on real cereal farmlands (wheat and barley) in Zamora, Spain.</h2>
+<p style="margin: 20px 0 0; max-width: 60ch; font-size: 17px; line-height: 26px; color: {{p.nTexto2}};">One year of real data from our pilot in Zamora, installed with grants from Harvard and MIT and compared with a control plant of fixed, south-facing panels.</p>
+<div style="margin-top: 56px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px;">
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 2px solid {{p.nTexto}};">
+<span style="font-family: {{t.m}}; font-size: 88px; line-height: 88px; letter-spacing: -0.05em;">−<span class="cnt n95"></span><span style="font-size: 0.4em; margin-left: 0.12em; color: {{p.nTexto2}};">%</span></span>
+<span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;">Land</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 2px solid {{p.nTexto}};">
+<span style="font-family: {{t.m}}; font-size: 88px; line-height: 88px; letter-spacing: -0.05em;">+<span class="cnt n10"></span><span style="font-size: 0.4em; margin-left: 0.12em; color: {{p.nTexto2}};">%</span></span>
+<span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;">Energy</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 2px solid {{p.nTexto}};">
+<span style="font-family: {{t.m}}; font-size: 88px; line-height: 88px; letter-spacing: -0.05em;">+<span class="cnt n13"></span><span style="font-size: 0.4em; margin-left: 0.12em; color: {{p.nTexto2}};">%</span></span>
+<span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;">Revenue</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 2px solid {{p.nTexto}};">
+<span style="font-size: 30px; line-height: 38px; letter-spacing: -0.02em; min-height: 88px; display: flex; align-items: flex-end;">Less dust on the panels</span>
+<span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;">Maintenance</span>
+</div>
+</div>
+<div style="margin-top: 56px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">
+<div style="position: relative;"><img src="/_blob/48eae52065add89665ae14f7686966c0" alt="eki.labs pilot plant among sunflowers" style="width: 100%; height: 380px; object-fit: cover; border-radius: 12px; display: block;"></div>
+<div style="height: 380px; box-sizing: border-box; border-radius: 12px; background: rgba(244,242,236,0.05); box-shadow: inset 0 0 0 1px rgba(244,242,236,0.12); display: flex; flex-direction: column; justify-content: space-between; padding: 28px;">
+<span style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}};">Validated in the field</span>
+<div style="display: flex; flex-direction: column; gap: 12px;"><div style="display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 16px; padding-top: 12px; border-top: 1px solid {{p.nLinea}};"><span style="font-family: {{t.m}}; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}};">Structure</span><span style="font-size: 15px; line-height: 22px;">Patented racking, anchored without cement. Less shade on the crops, more airflow, machinery-ready.</span></div><div style="display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 16px; padding-top: 12px; border-top: 1px solid {{p.nLinea}};"><span style="font-family: {{t.m}}; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}};">Panels</span><span style="font-size: 15px; line-height: 22px;">Bifacial modules selected for east-west rows and diffuse light, with extra yield from light reflected by the crops (albedo) and cooler panels.</span></div><div style="display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 16px; padding-top: 12px; border-top: 1px solid {{p.nLinea}};"><span style="font-family: {{t.m}}; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}};">Resilience</span><span style="font-size: 15px; line-height: 22px;">Withstood winds of over 130 km/h in real farming conditions.</span></div></div>
+</div>
+</div>
+</section>
+
+
+<section id="farm" data-tono="oscuro" style="padding: 144px 0 0;">
+<div style="padding: 0 64px 40px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: end;">
+<div style="grid-column: 1 / span 7;"><div style="font-family: {{t.m}}; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.nTexto2}}; margin-bottom: 24px;"><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: {{p.accNoche}};"></span><span style="color: {{p.nTexto}};">04</span> · The process</div><h2 style="margin: 0; font-family: {{t.h}}; font-weight: {{tw}}; font-size: {{t.s2}}px; line-height: {{t.lh2}}px; letter-spacing: {{t.l2}};">From survey to the first kilowatt-hour.</h2></div>
+<p style="grid-column: 9 / span 4; margin: 0; font-size: 17px; line-height: 26px; color: {{p.nTexto2}};">The rows go in, the tractor keeps working the land, the crops grow and the sun does the rest.</p>
+</div>
+<div style="margin: 0 12px; border-radius: 20px; overflow: hidden; height: 720px;"><div style="margin-left: -12px;"><dc-import name="GranjaPlano" hint-size="1280px,720px"></dc-import></div></div>
+</section>
+
+
+<section data-tono="oscuro" style="padding: 144px 64px 0;">
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; padding-bottom: 8px;">
+<div style="display: flex; flex-direction: column; gap: 16px;">
+<h2 style="margin: 0; font-family: {{t.h}}; font-weight: {{tw}}; font-size: {{t.s2}}px; line-height: {{t.lh2}}px; letter-spacing: {{t.l2}}; max-width: 24ch;">From field tests to commercial plants.</h2>
+<p style="margin: 0; font-size: 19px; line-height: 28px; color: {{p.nTexto2}};">If you are an investor, get in touch.</p>
+</div>
+<a href="Home.dc.html#contact" style="flex-shrink: 0; display: inline-flex; align-items: center; height: 48px; padding: 0 20px; border-radius: 4px; background: {{p.accNoche}}; color: {{p.sobreAccNoche}}; font-family: {{t.m}}; font-size: 14px; font-weight: 500; text-decoration: none;">Get in touch →</a>
+</div>
+</section>
+
+<div style="height: 96px;"></div>
+
+<footer data-tono="oscuro" style="margin: 12px 12px 12px; border-radius: 20px; background: {{p.pie}}; color: {{p.nTexto}};">
+<div style="padding: 56px 52px; display: grid; grid-template-columns: 1fr 2fr; gap: 48px;">
+<div>
+<img src="/_blob/759d73f045c4b1991f4f3be8660f6d76" alt="eki.labs · Farming soil and sun, together." style="height: 74px; width: 248px; display: block;">
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: {{t.m}}; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.kTexto2}}; margin-bottom: 4px;"><span style="text-transform: none; letter-spacing: 0.02em;">eki.labs</span></span><a href="Tecnologia.dc.html" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Technology</a><a href="Modelo.dc.html" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Model</a><a href="Video.dc.html" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Film</a><a href="Home.dc.html#impact" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Impact</a><a href="Home.dc.html#team" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Team</a><a href="Home.dc.html#story" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Origins</a><a href="Home.dc.html#contact" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Contact</a><a href="Home.dc.html#careers" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Careers</a><a href="Brand.dc.html" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">Brand</a></div>
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: {{t.m}}; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.kTexto2}}; margin-bottom: 4px;">Offices</span><span style="font-size: 15px;">Boston</span><span style="font-size: 15px;">Valladolid</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px;"><span style="font-family: {{t.m}}; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.kTexto2}}; margin-bottom: 4px;">Contact</span><a href="mailto:hola@ekilabs.com" style="color: {{p.nTexto}}; text-decoration: none; font-size: 15px;">hola@ekilabs.com</a><span style="font-size: 15px;">Eki Labs Corp.</span></div>
+</div>
+</div>
+<div id="funding" style="margin: 0 52px; padding: 28px 0; border-top: 1px solid {{p.kLinea}}; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px;">
+<span style="grid-column: 1 / span 3; font-family: {{t.m}}; font-size: 11px; line-height: 22px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: {{p.kTexto2}};">Funding</span>
+<p style="grid-column: 4 / span 6; margin: 0; font-size: 14px; line-height: 22px; color: {{p.kTexto2}};">Project supported by IDAE (Instituto para la Diversificación y Ahorro de la Energía) and funded by the European Union – NextGenerationEU, within Spain’s Recovery, Transformation and Resilience Plan (PRTR). <span style="color: {{p.nTexto}};">[Programa, componente e inversión del PRTR y breve descripción del proyecto: pendiente]</span></p>
+</div>
+<div style="margin: 0 52px; padding: 24px 0; border-top: 1px solid {{p.kLinea}}; display: flex; justify-content: space-between; font-family: {{t.m}}; font-size: 12px; line-height: 16px; color: {{p.kTexto2}};"><span>© Eki Labs Corp.</span><span>[Legal notice] · [Privacy]</span></div>
+</footer>
+<div id="funding-logos" style="margin: 0 12px; padding: 28px 40px 40px; display: flex; align-items: center; gap: 48px;">
+<img src="/_blob/7757b4dfa85fe0176899f6363e40ffa9" alt="Gobierno de España, Ministerio para la Transición Ecológica y el Reto Demográfico" style="height: 44px; width: 154px; display: block; filter: invert(0.93);">
+<img src="/_blob/8a77b976132e47aabadd10196c91e55d" alt="IDAE, Instituto para la Diversificación y Ahorro de la Energía" style="height: 44px; width: 126px; display: block; filter: invert(0.93);">
+<img src="/_blob/b1ab4f33d8487efdd4a0f324fe56cfde" alt="Plan de Recuperación, Transformación y Resiliencia" style="height: 44px; width: 253px; display: block; filter: invert(0.93);">
+<img src="/_blob/f0eb3a6a09d3119d5923b2eb56368daf" alt="Financiado por la Unión Europea – NextGenerationEU" style="height: 44px; width: 176px; display: block; filter: invert(0.93);">
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tipografia":{"editor":"enum","options":["A · Montserrat + Manrope","B · Geist","C · Roboto Slab + Work Sans","D · Zilla Slab + Work Sans","E · Newsreader + Geist","F · Instrument Serif + Instrument Sans"],"default":"D · Zilla Slab + Work Sans"},"variante":{"editor":"enum","options":["v3","viva","honda","pleno"],"default":"v3"},"titulares":{"editor":"enum","options":["ligero","medio"],"default":"ligero"},"$preview":{"width":1280,"height":7200}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    var self = this;
+    var hc = document.querySelector('canvas[data-hero-fot]');
+    if (hc) {
+      var HW = 1280, HH = 860, HG = 3, HC = Math.floor(HW / HG), HR = Math.floor(HH / HG), HN = HC * HR;
+      var hctx = hc.getContext('2d'), himg = hctx.createImageData(HW, HH), hbuf = new Uint32Array(himg.data.buffer);
+      var hs = 777; var hr = function () { hs |= 0; hs = hs + 0x6D2B79F5 | 0; var q = Math.imul(hs ^ hs >>> 15, 1 | hs); q = q + Math.imul(q ^ q >>> 7, 61 | q) ^ q; return ((q ^ q >>> 14) >>> 0) / 4294967296; };
+      var pk = function (h) { return (255 << 24) | (parseInt(h.substr(5, 2), 16) << 16) | (parseInt(h.substr(3, 2), 16) << 8) | parseInt(h.substr(1, 2), 16); };
+      var hpal = [0, pk('#964a2f'), pk('#cf8166'), pk('#ffd54a')];
+      var hx = new Float32Array(HN), hy = new Float32Array(HN), hn = new Float32Array(HN), hL = new Float32Array(HN), hd = new Float32Array(HN);
+      var CXC = HW, CYC = 0;
+      for (var i = 0; i < HN; i++) { hx[i] = (i % HC) * HG + (hr() - 0.5) * 1.4; hy[i] = Math.floor(i / HC) * HG + (hr() - 0.5) * 1.4; hn[i] = hr(); var ddx = hx[i] - CXC, ddy = hy[i] - CYC; hd[i] = Math.sqrt(ddx * ddx + ddy * ddy); }
+      var mx = -9999, my = -9999, hvis = true;
+      var hImgEl = document.querySelector('img[data-hero-img]');
+      var fot = hc.style.display !== 'none' && getComputedStyle(hc).display !== 'none';
+      var REV = 2.8, SETTLE = 1.8, revealed = false;
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (hImgEl && fot && !reduce) { hImgEl.style.transition = 'opacity 1.6s cubic-bezier(0.16,1,0.3,1)'; hImgEl.style.opacity = '0'; }
+      var host = hc.parentNode;
+      host.addEventListener('mousemove', function (e) { var r = hc.getBoundingClientRect(); mx = (e.clientX - r.left) * HW / r.width; my = (e.clientY - r.top) * HH / r.height; });
+      host.addEventListener('mouseleave', function () { mx = -9999; my = -9999; });
+      if ('IntersectionObserver' in window) { self._hio = new IntersectionObserver(function (es) { hvis = es[0].isIntersecting; }); self._hio.observe(hc); }
+      var him = new Image();
+      him.onload = function () {
+        try {
+          var oc = document.createElement('canvas'); oc.width = HC; oc.height = HR; var ox = oc.getContext('2d');
+          var sc = Math.max(HC / him.width, HR / him.height), w = him.width * sc, h = him.height * sc; ox.drawImage(him, (HC - w) / 2, (HR - h) / 2, w, h);
+          var d = ox.getImageData(0, 0, HC, HR).data;
+          for (var k = 0; k < HN; k++) hL[k] = (0.2126 * d[k * 4] + 0.7152 * d[k * 4 + 1] + 0.0722 * d[k * 4 + 2]) / 255;
+          var srt = Array.prototype.slice.call(hL).sort(function (p, q) { return p - q; }), lo = srt[Math.floor(HN * 0.03)], hi = srt[Math.floor(HN * 0.97)], sp = Math.max(0.05, hi - lo);
+          for (var k2 = 0; k2 < HN; k2++) hL[k2] = Math.min(1, Math.max(0, (hL[k2] - lo) / sp));
+        } catch (err) { return; }
+        var last = 0, RAD = 110, R2 = RAD * RAD, DIAG = Math.sqrt(HW * HW + HH * HH), EDGE = 150, t0 = performance.now() + (reduce ? 0 : -REV * 1000);   // without the intro the photo is there at once and the photons settle over it
+        var frame = function (now) {
+          self._hraf = requestAnimationFrame(frame);
+          if (hc.offsetParent === null || !hvis || now - last < 33) return; last = now;
+          var t = (now - t0) / 1000;
+          if (t < 0) { hbuf.fill(0); hctx.putImageData(himg, 0, 0); return; }
+          var Ramb = DIAG * Math.max(0.04, 0.2 + 0.1 * Math.sin(t * 1.25) + 0.06 * Math.sin(t * 2.9 + 1.3) + 0.035 * Math.sin(t * 6.1 + 0.4));
+          var eo = function (x) { x = Math.min(1, Math.max(0, x)); return 1 - Math.pow(1 - x, 3); };
+          var R = reduce ? Ramb : (t < REV ? (DIAG + EDGE) * eo(t / REV) : (DIAG + EDGE) + (Ramb - DIAG - EDGE) * eo((t - REV) / SETTLE));
+          if (!revealed && (reduce || t > REV * 0.62)) { revealed = true; if (hImgEl) hImgEl.style.opacity = '1'; }
+          for (var z = 0; z < 9000; z++) { var zi = Math.floor(hr() * HN); hn[zi] = hr(); }
+          hbuf.fill(0);
+          for (var k3 = 0; k3 < HN; k3++) {
+            var dist = hd[k3];
+            if (dist > R + EDGE) continue;
+            var p = (R - dist) / EDGE + 0.5; if (hn[k3] > p) continue;
+            var v = hL[k3] + (hn[k3] - 0.5) * 0.45, ti = v < 0.35 ? 0 : (v < 0.6 ? 1 : (v < 0.8 ? 2 : 3));
+            if (ti === 0) continue;
+            var x = hx[k3], y = hy[k3], dx = x - mx, dy = y - my, d2 = dx * dx + dy * dy;
+            if (d2 < R2) { var dd = Math.sqrt(d2) || 1, f = (1 - dd / RAD); x += dx / dd * f * f * 34; y += dy / dd * f * f * 34; }
+            var ix = x | 0, iy = y | 0; if (ix < 0 || iy < 0 || ix >= HW - 1 || iy >= HH - 1) continue;
+            var o = iy * HW + ix, c = hpal[ti]; hbuf[o] = c; hbuf[o + 1] = c; hbuf[o + HW] = c; hbuf[o + HW + 1] = c;
+          }
+          hctx.putImageData(himg, 0, 0);
+        };
+        self._hraf = requestAnimationFrame(frame);
+      };
+      him.onerror = function () { if (hImgEl) hImgEl.style.opacity = '1'; };
+      him.src = hImgEl ? hImgEl.getAttribute('src') : '/_blob/106e536e02727277b51efb19f14b7f7c';
+    }
+    this._tono = function () {
+      var x = (window.innerWidth || 1280) / 2;
+      var hd = document.querySelector('[data-hdr] header');
+      var y = hd ? hd.getBoundingClientRect().top + 30 : 54;
+      var els = document.elementsFromPoint ? document.elementsFromPoint(x, y) : [];
+      var tono = 'oscuro';
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (!el.closest || el.closest('[data-hdr]')) continue;
+        var sec = el.closest('[data-tono]');
+        if (sec) { tono = sec.getAttribute('data-tono'); break; }
+      }
+      if (!self.state || self.state.tono !== tono) self.setState({ tono: tono });
+    };
+    document.addEventListener('scroll', this._tono, true);
+    window.addEventListener('resize', this._tono);
+    setTimeout(this._tono, 0);
+    var EKIDIA = function (cv) {
+      var W = 1152, P = 12, COLS = 96, ROWS = 46, MY = 76;
+      var MH = ROWS * P, AXY = MY + MH + 22, CY0 = MY + MH + 48, H = CY0 + 108;
+      var RS = 0, NS = 24, RO = 26, NO = 12, RP = 40, NP = 6;
+      var T0 = 5, T1 = 23, SPAN = T1 - T0, DT = 0.05, NT = Math.round(SPAN / DT) + 1;
+      var dpr = Math.min(2, window.devicePixelRatio || 1);
+      cv.width = W * dpr; cv.height = H * dpr; cv.style.width = W + 'px'; cv.style.height = H + 'px';
+      var ctx = cv.getContext('2d');
+      var D2R = Math.PI / 180, LAT = 41.65 * D2R, DEC = 23.44 * D2R;
+      var sin = Math.sin, cos = Math.cos, max = Math.max, min = Math.min, floor = Math.floor, round = Math.round;
+      function sun(c) {
+        var h = (c - 2 - 4.72 / 15 - 12) * 15 * D2R;
+        var se = sin(LAT) * sin(DEC) + cos(LAT) * cos(DEC) * cos(h);
+        var e = Math.asin(max(-1, min(1, se)));
+        var ca = (sin(DEC) - sin(e) * sin(LAT)) / (cos(e) * cos(LAT));
+        var az = Math.acos(max(-1, min(1, ca))); if (h > 0) az = 2 * Math.PI - az;
+        return [e, az];
+      }
+      function irr(e) { if (e <= 0) return [0, 0, 0]; var dni = 880 * (1 - Math.exp(-e / 0.1)), dhi = 110 * Math.sqrt(sin(e)); return [dni, dhi, dni * sin(e) + dhi]; }
+      function poa(e, az, b, fa, I) { var ct = sin(e) * cos(b) + cos(e) * sin(b) * cos(az - fa); return I[0] * max(ct, 0) + I[1] * (1 + cos(b)) / 2 + I[2] * 0.25 * (1 - cos(b)) / 2; }
+      var PRICE = [75, 72, 70, 68, 69, 72, 80, 90, 93, 86, 72, 62, 58, 55, 54, 55, 58, 66, 77, 91, 102, 107, 99, 88].map(function (p) { return 80 + (p - 80) * 0.19; });
+      var PLO = 74, PHI = 86;
+      var conv = new Float32Array(NT), eki = new Float32Array(NT), dni = new Float32Array(NT);
+      var Ec = 0, Ev = 0, i, k;
+      for (i = 0; i < NT; i++) {
+        var c = T0 + i * DT, s = sun(c), I = irr(s[0]); dni[i] = I[0];
+        if (I[2] > 0) {
+          conv[i] = 0.86 * poa(s[0], s[1], 30 * D2R, Math.PI, I);
+          eki[i] = 0.86 * (poa(s[0], s[1], Math.PI / 2, Math.PI / 2, I) + poa(s[0], s[1], Math.PI / 2, 1.5 * Math.PI, I));
+        }
+        Ec += conv[i]; Ev += eki[i];
+      }
+      var kE = 1.10 * Ec / Ev;
+      var cRc = new Float32Array(NT), cRv = new Float32Array(NT), cEc = new Float32Array(NT), cEv = new Float32Array(NT);
+      for (i = 0; i < NT; i++) {
+        eki[i] *= kE;
+        var pr = PRICE[min(23, floor(T0 + i * DT + 1e-6))];
+        var j = i ? i - 1 : 0;
+        cEc[i] = (i ? cEc[j] : 0) + conv[i] * DT / 1000; cEv[i] = (i ? cEv[j] : 0) + eki[i] * DT / 1000;
+        cRc[i] = (i ? cRc[j] : 0) + conv[i] * DT / 1000 * pr; cRv[i] = (i ? cRv[j] : 0) + eki[i] * DT / 1000 * pr;
+      }
+      function at(a, t) { var x = (t - T0) / DT; if (x <= 0) return a[0]; if (x >= NT - 1) return a[NT - 1]; var i0 = floor(x), f = x - i0; return a[i0] * (1 - f) + a[i0 + 1] * f; }
+      var SR = 0, SS = 0;
+      for (i = 1; i < NT; i++) { if (!SR && dni[i] > 0 && dni[i - 1] === 0) SR = T0 + i * DT; if (dni[i] === 0 && dni[i - 1] > 0) SS = T0 + i * DT; }
+
+      // ---- colours & sprites
+      var COL = { base: '#1a211c', sol: '#ffd54a', acc: '#58e9ae', white: '#f4f2ec', tierra: '#cf8166', steel: '#6b756e', grey: '#a1a69f', tx: '#f4f2ec', tx2: '#a1a69f', panel: '#050805' };
+      var FM = "'Geist Mono', Menlo, monospace", FH = "'Zilla Slab', Georgia, serif", FB = "'Work Sans', Arial, sans-serif";
+      function readCfg() {
+        var d = cv.dataset;
+        ['sol', 'acc', 'tierra', 'tx', 'tx2', 'grey'].forEach(function (n) { if (d[n]) COL[n] = d[n]; });
+        if (d.fm) FM = d.fm; if (d.fh) FH = d.fh; if (d.fb) FB = d.fb;
+      }
+      readCfg();
+      var CI = ['base', 'sol', 'acc', 'white', 'tierra', 'steel', 'grey'], LV = 8, spr = [], sprKey = '';
+      function hexA(h, a) { return 'rgba(' + parseInt(h.substr(1, 2), 16) + ',' + parseInt(h.substr(3, 2), 16) + ',' + parseInt(h.substr(5, 2), 16) + ',' + a + ')'; }
+      function buildSprites() {
+        var key = CI.map(function (n) { return COL[n]; }).join();
+        if (key === sprKey) return; sprKey = key; spr = [];
+        var S = P * dpr;
+        for (var ci = 0; ci < CI.length; ci++) {
+          var row = [];
+          for (var l = 0; l <= LV; l++) {
+            var o = document.createElement('canvas'); o.width = S; o.height = S; var x = o.getContext('2d'), m = S / 2;
+            if (l === 0 || ci === 0) {
+              x.fillStyle = COL.base; x.beginPath(); x.arc(m, m, 1.35 * dpr, 0, 7); x.fill();
+            } else {
+              var f = l / LV, col = COL[CI[ci]], rc = (1.25 + 2.35 * f) * dpr, rg = rc + (1 + 2.6 * f) * dpr;
+              var g = x.createRadialGradient(m, m, 0, m, m, rg);
+              g.addColorStop(0, hexA(col, 0.3 + 0.7 * f)); g.addColorStop(rc / rg * 0.8, hexA(col, 0.3 + 0.7 * f));
+              g.addColorStop(rc / rg, hexA(col, 0.22 * f)); g.addColorStop(1, hexA(col, 0));
+              x.fillStyle = g; x.beginPath(); x.arc(m, m, rg, 0, 7); x.fill();
+            }
+            row.push(o);
+          }
+          spr.push(row);
+        }
+      }
+      buildSprites();
+
+      // ---- scene geometry (cell units; x 0..96, y 0..24)
+      var PANELS = [11, 30, 49, 68, 87], PY0 = 12, PY1 = 20, GY = 22;
+      var crops = [];
+      for (var cc = 0; cc < COLS; cc++) {
+        var near = 99; PANELS.forEach(function (p) { near = min(near, Math.abs(cc - p)); });
+        if (near >= 3 && cc % 2 === 0) crops.push({ c: cc, h: 1 + ((cc * 7) % 3 === 0 ? 1 : 0) + (cc % 6 === 0 ? 1 : 0), g: 0 });
+      }
+      var cropAt = {}; crops.forEach(function (q, n) { cropAt[q.c] = n; });
+      var pglow = new Float32Array(PANELS.length);
+      var inten = new Float32Array(COLS * ROWS), cidx = new Uint8Array(COLS * ROWS), flash = new Float32Array(COLS * NS), flashC = new Uint8Array(COLS * NS);
+      function lite(c, r, ci, v) { if (c < 0 || c >= COLS || r < 0 || r >= ROWS) return; var o = r * COLS + c; if (v > inten[o]) { inten[o] = v; cidx[o] = ci; } }
+
+      // ---- particles
+      var ph = [], el = [], TRAIL = [1, 0.62, 0.38, 0.22, 0.12];
+      var seed = 20260926; function rnd() { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var q = Math.imul(seed ^ seed >>> 15, 1 | seed); q = q + Math.imul(q ^ q >>> 7, 61 | q) ^ q; return ((q ^ q >>> 14) >>> 0) / 4294967296; }
+      function rayDir(t) {
+        var s = sun(t), e = s[0], az = s[1]; if (e <= 0) return null;
+        var Sx = -cos(e) * sin(az), Sy = sin(e), L = Math.sqrt(Sx * Sx + Sy * Sy);
+        return { sx: Sx / L, sy: Sy / L, dx: -Sx / L, dy: Sy / L, e: e };
+      }
+      function spawn(R) {
+        var dx = R.dx, dy = R.dy, ext = min(160, (GY + 1) * Math.abs(dx) / max(dy, 0.02));
+        var gx = dx > 0 ? rnd() * (COLS + ext) : COLS - rnd() * (COLS + ext);
+        var sB = (GY + 1) / dy; if (dx > 0) sB = min(sB, (gx + 1) / dx); else if (dx < 0) sB = min(sB, (COLS + 1 - gx) / -dx);
+        var x0 = gx - dx * sB, y0 = GY - dy * sB;
+        var best = (GY - y0) / dy, kind = 0, tgt = -1, hy = GY;
+        for (var n = 0; n < PANELS.length; n++) {
+          var pl = PANELS[n] + 0.3, pr2 = PANELS[n] + 0.7, fx = dx > 0 ? pl : pr2;
+          if (Math.abs(dx) > 1e-4) { var s1 = (fx - x0) / dx, y1 = y0 + s1 * dy; if (s1 > 0 && s1 < best && y1 >= PY0 && y1 <= PY1 + 1) { best = s1; kind = 1; tgt = n; hy = y1; } }
+          var s2 = (PY0 - y0) / dy, x2 = x0 + s2 * dx; if (s2 > 0 && s2 < best && x2 >= pl && x2 <= pr2) { best = s2; kind = 1; tgt = n; hy = PY0; }
+        }
+        ph.push({ x: x0, y: y0, dx: dx, dy: dy, left: best, kind: kind, tgt: tgt, hy: hy });
+      }
+      function stepParticles(dt, t, spawnOn) {
+        var R = rayDir(t);
+        if (R && spawnOn) {
+          var ext = min(160, (GY + 1) * Math.abs(R.dx) / max(R.dy, 0.02));
+          var rate = 70 * at(dni, t) / 880 * (COLS + ext) / COLS;
+          var n = rate * dt; while (n > 0) { if (rnd() < n) spawn(R); n -= 1; }
+        }
+        var v = 34 * dt;
+        for (var q = ph.length - 1; q >= 0; q--) {
+          var p = ph[q]; p.x += p.dx * v; p.y += p.dy * v; p.left -= v;
+          if (p.left <= 0) {
+            var hx = p.x + p.dx * p.left, hyy = p.y + p.dy * p.left;
+            if (p.kind === 1) {
+              pglow[p.tgt] = min(1, pglow[p.tgt] + 0.07);
+              var fr = floor(hyy); if (fr >= 0 && fr < NS) { flash[fr * COLS + PANELS[p.tgt]] = 1; flashC[fr * COLS + PANELS[p.tgt]] = 1; }
+              if (rnd() < 0.35) el.push({ c: PANELS[p.tgt], y: max(PY0, hyy), ph: 0, x: PANELS[p.tgt] });
+            } else {
+              var gc = floor(hx), cn = cropAt[gc] !== undefined ? cropAt[gc] : (cropAt[gc - 1] !== undefined ? cropAt[gc - 1] : cropAt[gc + 1]);
+              if (cn !== undefined) { crops[cn].g = min(1, crops[cn].g + 0.3); var cr = GY - 1 - crops[cn].h; if (cr >= 0) { flash[(cr + 1) * COLS + crops[cn].c] = 1; flashC[(cr + 1) * COLS + crops[cn].c] = 2; } }
+              else if (gc >= 0 && gc < COLS) { flash[(GY - 1) * COLS + gc] = 0.6; flashC[(GY - 1) * COLS + gc] = 4; }
+            }
+            ph.splice(q, 1); continue;
+          }
+          if (p.x < -170 || p.x > COLS + 170 || p.y > GY + 2) ph.splice(q, 1);
+        }
+        var ve = 20 * dt;
+        for (q = el.length - 1; q >= 0; q--) {
+          var E = el[q];
+          if (E.ph === 0) { E.y += ve; if (E.y >= 23) { E.y = 23; E.ph = 1; } }
+          else { E.x += ve * 1.3; if (E.x >= COLS) { el.splice(q, 1); } }
+        }
+      }
+
+      // ---- final glyph (+10%)
+      var glyph = null;
+      function makeGlyph() {
+        var o = document.createElement('canvas'); o.width = COLS; o.height = NS; var x = o.getContext('2d');
+        x.fillStyle = '#fff'; x.textAlign = 'center'; x.textBaseline = 'middle';
+        x.font = '600 19px ' + FB; x.fillText('+' + round((at(cRv, T1) / at(cRc, T1) - 1) * 100) + '%', COLS / 2, NS / 2 + 1);
+        var d = x.getImageData(0, 0, COLS, NS).data; glyph = new Float32Array(COLS * NS);
+        for (var n = 0; n < COLS * NS; n++) glyph[n] = d[n * 4 + 3] / 255 > 0.45 ? 1 : 0;
+        gdel = new Float32Array(COLS * NS); for (n = 0; n < COLS * NS; n++) gdel[n] = rnd();
+      }
+      var gdel = null;
+
+      // ---- state
+      var t = T0, mode = 'auto', finT = 0, hover = false, last = 0, vis = true, raf = 0, frameN = 0;
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var SPEED = SPAN / 20; // 20 s per day
+      function X(tt) { return (tt - T0) / SPAN * W; }
+      function fmt(tt) { var hh = floor(tt), mm = floor((tt - hh) * 60); return (hh < 10 ? '0' : '') + hh + ':' + (mm < 10 ? '0' : '') + mm; }
+
+      function compose(tt, fin) {
+        inten.fill(0); cidx.fill(0);
+        var s = sun(tt), e = s[0], R = rayDir(tt);
+        // scene: soil
+        for (var c = 0; c < COLS; c++) { lite(c, GY, 4, 0.2); lite(c, GY + 1, 4, 0.14); }
+        // panels
+        for (var n = 0; n < PANELS.length; n++) {
+          var g = pglow[n];
+          for (var r = PY0; r <= PY1; r++) { if (g > 0.18) lite(PANELS[n], r, 1, 0.35 + 0.6 * g); else lite(PANELS[n], r, 5, 0.42); }
+          lite(PANELS[n], PY1 + 1, 5, 0.3);
+        }
+        // crops
+        crops.forEach(function (q) { for (var h = 0; h < q.h; h++) lite(q.c, GY - 1 - h, 2, 0.26 + 0.74 * q.g * (h === q.h - 1 ? 1 : 0.7)); });
+        // sun disc
+        if (R && e > -0.02) {
+          var scx = 48 + 45 * R.sx, scy = GY - 1 - 20 * R.sy;
+          for (var yy = floor(scy - 3); yy <= scy + 3; yy++) for (var xx = floor(scx - 3); xx <= scx + 3; xx++) {
+            if (yy >= GY - 1) continue; var d = Math.hypot(xx + 0.5 - scx, yy + 0.5 - scy); var v = min(1, max(0, 2.9 - d)); if (v > 0.05) lite(xx, yy, 1, v);
+          }
+        }
+        // flashes
+        for (var o = 0; o < COLS * NS; o++) if (flash[o] > 0.05) lite(o % COLS, floor(o / COLS), flashC[o], flash[o]);
+        // photons
+        ph.forEach(function (p) {
+          for (var tr = 0; tr < 5; tr++) { var px = floor(p.x - p.dx * tr * 0.95), py = floor(p.y - p.dy * tr * 0.95); if (py >= 0 && py < GY) lite(px, py, 1, TRAIL[tr]); }
+        });
+        el.forEach(function (E) {
+          if (E.ph === 0) { lite(E.c, floor(E.y), 3, 0.9); lite(E.c, floor(E.y) - 1, 3, 0.35); }
+          else { lite(floor(E.x), 23, 3, 0.95); lite(floor(E.x) - 1, 23, 3, 0.4); }
+        });
+        // glyph
+        if (fin > 0 && glyph) {
+          var ph2 = min(1, fin / 1.4);
+          for (o = 0; o < COLS * NS; o++) {
+            var cx2 = o % COLS, cy2 = floor(o / COLS);
+            if (glyph[o] > 0) { if (ph2 > gdel[o] * 0.85) lite(cx2, cy2, 1, 0.75 + 0.25 * rnd()); else if (rnd() < 0.08) lite(cx2, cy2, 1, 0.5); }
+            else if (cy2 < GY - 2 && rnd() < (1 - ph2) * 0.05) lite(cx2, cy2, 1, 0.3 + 0.5 * rnd());
+          }
+        }
+        // charts
+        var cur = min(COLS - 1, floor((tt - T0) / SPAN * COLS));
+        for (c = 0; c < COLS; c++) {
+          var tc = T0 + (c + 0.5) * SPAN / COLS, past = c < cur || tt >= T1 - 0.01, now = c === cur && tt < T1 - 0.01;
+          var Lv = at(eki, tc) / 900 * NO, Lc = at(conv, tc) / 900 * NO;
+          var ia = now ? 1 : (past ? 0.82 : 0.13);
+          for (k = 0; k < NO; k++) {
+            var f = Lv - k; if (f <= 0) break;
+            var vv = f >= 1 ? ia : (f > 0.35 ? ia * f : 0); if (vv > 0) lite(c, RO + NO - 1 - k, 1, vv);
+          }
+          if (Lc >= 0.5) { var kc = min(NO - 1, round(Lc) - 1); var o2 = (RO + NO - 1 - kc) * COLS + c; var gv = now ? 1 : (past ? 0.9 : 0.16); inten[o2] = 0; lite(c, RO + NO - 1 - kc, 6, gv); }
+          var ib = now ? 1 : (past ? 0.85 : 0.16), kp = Math.round(Math.max(0, Math.min(1, (PRICE[min(23, floor(tc))] - PLO) / (PHI - PLO))) * (NP - 1));
+          lite(c, RP + NP - 1 - kp, 4, ib); if (now) for (k = 0; k < kp; k++) lite(c, RP + NP - 1 - k, 4, 0.25);
+        }
+      }
+      function draw(tt, fin) {
+        buildSprites();
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = COL.panel; roundRect(0, MY - 8, W, NS * P + 16, 10); ctx.fill();
+        roundRect(0, MY + RO * P - 8, W, (RP + NP - RO) * P + 16, 10); ctx.fill();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        var S = P * dpr;
+        for (var r = 0; r < ROWS; r++) {
+          if ((r >= NS && r < RO) || (r >= RO + NO && r < RP)) continue;
+          for (var c = 0; c < COLS; c++) {
+            var o = r * COLS + c, v = inten[o], l = v <= 0 ? 0 : max(1, min(LV, round(v * LV)));
+            ctx.drawImage(spr[l ? cidx[o] : 0][l], c * S, (MY + r * P) * dpr);
+          }
+        }
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        // playhead
+        if (tt < T1 - 0.01 && !fin) {
+          var px = X(tt); ctx.strokeStyle = hexA(COL.tx, 0.28); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(round(px) + 0.5, MY + RO * P - 6); ctx.lineTo(round(px) + 0.5, MY + (RP + NP) * P + 6); ctx.stroke();
+        }
+        // header
+        var s = sun(tt), e = s[0], pr = PRICE[min(23, floor(tt))], st;
+        if (fin) st = ['End of day', 'Same sun. Better hours.'];
+        else if (e <= 0) st = ['Night', 'No sun. Prices set by the grid.'];
+        else if (tt < 10) st = ['Morning peak', 'Low sun on the panels, prices high.'];
+        else if (tt < 18) st = ['Solar glut', 'Prices fall. The light goes to the crops.'];
+        else st = ['Evening peak', 'The panels catch the setting sun as prices climb.'];
+        ctx.textBaseline = 'alphabetic';
+        ctx.fillStyle = COL.tx; ctx.font = '400 40px ' + FM; ctx.textAlign = 'left'; ctx.fillText(fin ? '23:00' : fmt(tt), 0, 44);
+        ctx.font = '500 12px ' + FM; ctx.fillStyle = COL.tx;
+        var sx0 = 150; ctx.fillStyle = e > 0 && !fin ? COL.sol : COL.tx2; ctx.fillRect(sx0, 18, 6, 6);
+        ctx.fillStyle = COL.tx; ctx.fillText(spaced(st[0].toUpperCase()), sx0 + 16, 25);
+        ctx.font = '400 15px ' + FB; ctx.fillStyle = COL.tx2; ctx.fillText(st[1], sx0, 48);
+        ctx.textAlign = 'right'; ctx.font = '500 12px ' + FM; ctx.fillStyle = COL.tx2; ctx.fillText(spaced('PRICE NOW'), W, 18);
+        ctx.font = '400 28px ' + FM; ctx.fillStyle = COL.tx; ctx.fillText((fin ? '—' : round(pr)) + '', W - 74, 48);
+        ctx.font = '400 13px ' + FM; ctx.fillStyle = COL.tx2; ctx.fillText('€/MWh', W, 48);
+        // band labels
+        ctx.textAlign = 'left'; ctx.font = '500 11px ' + FM; ctx.fillStyle = COL.tx2;
+        ctx.fillText(spaced('OUTPUT · kW PER MW'), 0, MY + RO * P - 14);
+        ctx.fillText(spaced('ELECTRICITY PRICE · €/MWh, SCALE ' + PLO + '–' + PHI), 0, MY + RP * P - 14);
+        ctx.textAlign = 'right';
+        var lx = W; ctx.fillStyle = COL.tx2; ctx.fillText(spaced('CONVENTIONAL SOLAR'), lx, MY + RO * P - 14);
+        lx -= ctx.measureText(spaced('CONVENTIONAL SOLAR')).width + 10; ctx.fillStyle = COL.grey; ctx.beginPath(); ctx.arc(lx - 3, MY + RO * P - 18, 3, 0, 7); ctx.fill();
+        lx -= 22; ctx.fillStyle = COL.tx2; ctx.fillText(spaced('eki.labs'), lx, MY + RO * P - 14);
+        lx -= ctx.measureText(spaced('eki.labs')).width + 10; ctx.fillStyle = COL.sol; ctx.fillRect(lx - 7, MY + RO * P - 22, 7, 7);
+        // axis
+        ctx.textAlign = 'center'; ctx.font = '400 11px ' + FM;
+        for (var hh = 5; hh <= 23; hh += 3) { var ax = min(W - 10, max(10, X(hh))); ctx.fillStyle = COL.tx2; ctx.fillText((hh < 10 ? '0' : '') + hh, ax, AXY); }
+        // counters
+        var tq = fin ? T1 : tt, rv = at(cRv, tq), rc = at(cRc, tq), ev = at(cEv, tq), ec = at(cEc, tq);
+        var fP = lightSplit(tq), dayNow = fP !== null && !fin;
+        var cols = [
+          ['ENERGY TODAY · MWh PER MW', ev > 0.005 ? ev.toFixed(2) : '—', ec > 0.005 ? ec.toFixed(2) : '—'],
+          ['REVENUE TODAY · € PER MW', rv > 0.5 ? round(rv) + '' : '—', rc > 0.5 ? round(rc) + '' : '—']
+        ];
+        ctx.strokeStyle = hexA(COL.tx, 0.14); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, CY0 - 0.5); ctx.lineTo(W, CY0 - 0.5); ctx.stroke();
+        for (var q = 0; q < 2; q++) {
+          var x0 = q * 392; ctx.textAlign = 'left';
+          ctx.font = '500 11px ' + FM; ctx.fillStyle = COL.tx2; ctx.fillText(spaced(cols[q][0]), x0, CY0 + 26);
+          ctx.fillStyle = COL.sol; ctx.fillRect(x0, CY0 + 52, 8, 8);
+          ctx.font = '400 44px ' + FH; ctx.fillStyle = COL.tx; ctx.fillText(cols[q][1], x0 + 18, CY0 + 68);
+          var w1 = ctx.measureText(cols[q][1]).width; ctx.font = '400 13px ' + FB; ctx.fillStyle = COL.tx2; ctx.fillText('eki.labs', x0 + 26 + w1, CY0 + 66);
+          ctx.fillStyle = COL.grey; ctx.beginPath(); ctx.arc(x0 + 4, CY0 + 92, 3, 0, 7); ctx.fill();
+          ctx.font = '400 15px ' + FM; ctx.fillStyle = COL.tx2; ctx.fillText(cols[q][2] + '  Conventional', x0 + 18, CY0 + 97);
+        }
+        var x3 = 784; ctx.textAlign = 'left'; ctx.font = '500 11px ' + FM; ctx.fillStyle = COL.tx2;
+        if (fin) {
+          ctx.fillText(spaced('RESULT'), x3, CY0 + 26);
+          ctx.font = '400 44px ' + FH; ctx.fillStyle = COL.tx; ctx.fillText('+' + round((rv / rc - 1) * 100) + '%', x3, CY0 + 68);
+          ctx.font = '400 15px ' + FB; ctx.fillStyle = COL.tx; ctx.fillText('revenue per MW · +' + round((ev / ec - 1) * 100) + '% energy', x3, CY0 + 97);
+        } else {
+          ctx.fillText(spaced('DIRECT LIGHT, RIGHT NOW'), x3, CY0 + 26);
+          if (dayNow) {
+            var pp = round(fP * 100);
+            ctx.fillStyle = COL.sol; ctx.fillRect(x3, CY0 + 52, 8, 8);
+            ctx.font = '400 44px ' + FH; ctx.fillStyle = COL.tx; ctx.fillText(pp + '%', x3 + 18, CY0 + 68);
+            var w3 = ctx.measureText(pp + '%').width; ctx.font = '400 13px ' + FB; ctx.fillStyle = COL.tx2; ctx.fillText('to the panels', x3 + 26 + w3, CY0 + 66);
+            ctx.fillStyle = COL.acc; ctx.beginPath(); ctx.arc(x3 + 4, CY0 + 92, 3, 0, 7); ctx.fill();
+            ctx.font = '400 15px ' + FM; ctx.fillStyle = COL.tx2; ctx.fillText((100 - pp) + '%  to the crops', x3 + 18, CY0 + 97);
+          } else {
+            ctx.font = '400 44px ' + FH; ctx.fillStyle = COL.tx; ctx.fillText('—', x3, CY0 + 68);
+            ctx.font = '400 15px ' + FB; ctx.fillStyle = COL.tx2; ctx.fillText('The sun is down', x3, CY0 + 97);
+          }
+        }
+      }
+      function lightSplit(tt) { var R = rayDir(tt); if (!R) return null; var Ls = (PY1 + 1 - PY0) * Math.abs(R.dx) / max(R.dy, 0.01); return min(1, (Ls + 0.4) / 19); }
+      function spaced(s) { return s.split('').join(String.fromCharCode(8202)); }
+      function roundRect(x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+
+      function decay(dt) {
+        var kf = Math.pow(0.1, dt / 0.5), kg = Math.pow(0.5, dt / 0.6), kc = Math.pow(0.5, dt / 1.2);
+        for (var o = 0; o < flash.length; o++) flash[o] *= kf;
+        for (var n = 0; n < pglow.length; n++) pglow[n] *= kg;
+        crops.forEach(function (q) { q.g *= kc; });
+      }
+      function frame(now) {
+        raf = requestAnimationFrame(frame);
+        if (!vis || cv.offsetParent === null) { last = now; return; }
+        if (now - last < 32) return;
+        var dt = min(0.1, (now - (last || now)) / 1000); last = now; frameN++;
+        if (frameN % 30 === 1) readCfg();
+        if (mode === 'auto') {
+          t += dt * SPEED;
+          if (t >= T1) { t = T1; mode = 'fin'; finT = 0; if (!glyph) makeGlyph(); }
+        } else if (mode === 'fin') {
+          finT += dt;
+          if (finT > 4.2) { mode = 'auto'; t = T0; ph.length = 0; el.length = 0; }
+        }
+        stepParticles(dt, t, mode !== 'fin');
+        decay(dt);
+        compose(t, mode === 'fin' ? finT : 0);
+        draw(t, mode === 'fin');
+      }
+      function setFromX(clientX) { var r = cv.getBoundingClientRect(); var x = (clientX - r.left) * W / r.width; t = min(T1, max(T0, T0 + x / W * SPAN)); }
+      cv.addEventListener('pointermove', function (ev) { var r = cv.getBoundingClientRect(), y = (ev.clientY - r.top) * H / r.height; if (y < MY - 10 || y > AXY + 6) { if (mode === 'scrub') mode = 'auto'; return; } mode = 'scrub'; setFromX(ev.clientX); });
+      cv.addEventListener('pointerleave', function () { if (mode === 'scrub') mode = 'auto'; });
+      var io = null;
+      if ('IntersectionObserver' in window) { io = new IntersectionObserver(function (es) { vis = es[0].isIntersecting; }); io.observe(cv); }
+      if (reduced) {
+        t = 19.2; for (var w = 0; w < 90; w++) stepParticles(0.05, t, true); compose(t, 0); draw(t, false);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { draw(t, false); });
+      } else raf = requestAnimationFrame(frame);
+      var api = {
+        stop: function () { cancelAnimationFrame(raf); if (io) io.disconnect(); },
+        seek: function (tt, warm) { mode = 'scrub'; t = tt; ph.length = 0; el.length = 0; for (var w2 = 0; w2 < (warm || 60); w2++) { stepParticles(1 / 30, t, true); decay(1 / 30); } compose(t, 0); draw(t, false); },
+        fin: function (ft) { if (!glyph) makeGlyph(); mode = 'hold'; t = T1; compose(T1, ft); draw(T1, true); },
+        info: function () { return { rv: at(cRv, T1), rc: at(cRc, T1), ev: at(cEv, T1), ec: at(cEc, T1), SR: SR, SS: SS, H: H }; }
+      };
+      cv.__ekidia = api;
+      return api;
+    };
+    var sdc = document.querySelector('canvas[data-sim-dia]');
+    if (sdc) { try { self._dia = EKIDIA(sdc); } catch (err) { } }
+    var marcar = function (k) { var o = {}; o['v_' + k] = true; self.setState(o); };
+    this._io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { marcar(e.target.getAttribute('data-contar')); self._io.unobserve(e.target); } });
+    }, { threshold: 0.3 }) : null;
+    setTimeout(function () {
+      var els = document.querySelectorAll('[data-contar]');
+      for (var i = 0; i < els.length; i++) { if (self._io) self._io.observe(els[i]); else marcar(els[i].getAttribute('data-contar')); }
+    }, 0);
+  }
+  componentWillUnmount() {
+    if (this._hraf) cancelAnimationFrame(this._hraf);
+    if (this._hio) this._hio.disconnect();
+    document.removeEventListener('scroll', this._tono, true);
+    window.removeEventListener('resize', this._tono);
+    if (this._io) this._io.disconnect();
+    if (this._dia) this._dia.stop();
+  }
+  renderVals() {
+    var v = this.props.variante || 'v3';
+    var base = {
+      fondo: '#f4f2ec', fondo2: '#ebe6d8', texto: '#0a100c', texto2: '#555a52', linea: '#d5d1c4', lineaF: '#797c72', cifra: '#0a100c',
+      noche: '#0a100c', nTexto: '#f4f2ec', nTexto2: '#a1a69f', nLinea: '#2b332d', nLineaF: '#a1a69f',
+      contacto: '#0a100c', pie: '#0a100c', kTexto2: '#a1a69f', kLinea: '#2b332d', kLineaF: '#a1a69f',
+      sol: '#ffd54a', logosClaros: false
+    };
+    var PAL = {
+      v3: { accLuz: '#056c4a', accNoche: '#58e9ae', sobreAccNoche: '#0a100c',
+        cultivo: '#0a281a', cTexto: '#f4f2ec', cTexto2: '#a1a69f',
+        origen: '#311d16', oTexto: '#f4f2ec', oTexto2: '#a1a69f', oAcento: '#cf8166' },
+      viva: { accLuz: '#13843a', accNoche: '#40d868', sobreAccNoche: '#0a100c',
+        cultivo: '#0b3d1f', cTexto: '#f4f2ec', cTexto2: '#a1a69f',
+        origen: '#4a2010', oTexto: '#f4f2ec', oTexto2: '#a1a69f', oAcento: '#e2825a' },
+      honda: { accLuz: '#006d42', accNoche: '#30c883', sobreAccNoche: '#0a100c',
+        cultivo: '#0b4a2f', cTexto: '#f4f2ec', cTexto2: '#a9bfb0',
+        origen: '#4a2010', oTexto: '#f4f2ec', oTexto2: '#a1a69f', oAcento: '#e2825a',
+        contacto: '#043a22', pie: '#043a22', kTexto2: '#b3c2b8', kLinea: '#155238', kLineaF: '#b3c2b8', cifra: '#006d42' },
+      pleno: { accLuz: '#13843a', accNoche: '#40d868', sobreAccNoche: '#0a100c',
+        cultivo: '#40d868', cTexto: '#0a100c', cTexto2: '#1d3a24',
+        origen: '#cc572a', oTexto: '#0a100c', oTexto2: '#0a100c', oAcento: '#0a100c', logosClaros: true }
+    };
+    var p = Object.assign({}, base, PAL[v] || PAL.v3);
+    var campo = function (c, linea) { return 'background-color: ' + c + '; background-image: repeating-linear-gradient(90deg, ' + linea + ' 0, ' + linea + ' 2px, transparent 2px, transparent 40px); background-size: 100% 38%; background-position: 0 100%; background-repeat: no-repeat;'; };
+    var oscuro = function (c) { return c === '#40d868' || c === '#cc572a' || c === '#ffd54a' ? 'rgba(10,16,12,0.14)' : 'rgba(244,242,236,0.10)'; };
+    var mono = "'Geist Mono', Menlo, monospace";
+    var TIPOS = {
+      A: { h: "'Montserrat', Arial, sans-serif", hw: 700, b: "'Manrope', Arial, sans-serif", m: "'Manrope', Arial, sans-serif", s1: 80, s2: 40, lh2: 46, s3: 58, s4: 86, l1: '-0.035em', l2: '-0.025em' },
+      B: { h: "'Geist', Arial, sans-serif", hw: 400, b: "'Geist', Arial, sans-serif", m: mono, s1: 88, s2: 44, lh2: 48, s3: 64, s4: 96, l1: '-0.04em', l2: '-0.025em' },
+      C: { h: "'Roboto Slab', Georgia, serif", hw: 300, b: "'Work Sans', Arial, sans-serif", m: mono, s1: 86, s2: 44, lh2: 50, s3: 64, s4: 94, l1: '-0.035em', l2: '-0.02em' },
+      D: { h: "'Zilla Slab', Georgia, serif", hw: 400, b: "'Work Sans', Arial, sans-serif", m: mono, s1: 94, s2: 48, lh2: 52, s3: 70, s4: 102, l1: '-0.025em', l2: '-0.015em' },
+      E: { h: "'Newsreader', Georgia, serif", hw: 400, b: "'Geist', Arial, sans-serif", m: mono, s1: 94, s2: 48, lh2: 52, s3: 70, s4: 102, l1: '-0.03em', l2: '-0.02em' },
+      F: { h: "'Instrument Serif', Georgia, serif", hw: 400, b: "'Instrument Sans', Arial, sans-serif", m: mono, s1: 106, s2: 54, lh2: 56, s3: 78, s4: 116, l1: '-0.015em', l2: '-0.01em' }
+    };
+    var tk = String(this.props.tipografia || 'D').charAt(0);
+    var t = TIPOS[tk] || TIPOS.B;
+    var st = this.state || {};
+    var cls = { campo: st.v_campo ? 'contar-on' : '' };
+    var tono = st.tono || 'oscuro';
+    var hdr = tono === 'claro'
+      ? { bg: 'rgba(244,242,236,0.86)', fg: '#0a100c', logoNoche: 'none', logoDia: 'block', sombra: '0 1px 0 rgba(10,16,12,0.06), 0 8px 24px rgba(10,16,12,0.06)' }
+      : { bg: 'rgba(10,16,12,0.55)', fg: '#f4f2ec', logoNoche: 'block', logoDia: 'none', sombra: 'none' };
+    return {
+      p: p,
+      cls: cls,
+      t: t,
+      hdr: hdr,
+      tw: t.hw + (this.props.titulares === 'medio' ? 100 : 0),
+      s: {
+        impClima: campo(p.sol, 'rgba(10,16,12,0.14)'),
+        impAlimento: campo(p.cultivo, oscuro(p.cultivo)),
+        impRural: campo(p.origen, oscuro(p.origen)),
+        logoOrigen: p.logosClaros ? 'filter: brightness(0);' : 'filter: brightness(0) invert(1);'
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

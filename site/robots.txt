@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /decks/
+Disallow: /signature/
+Disallow: /lab/
+
+Sitemap: https://ekilabs.com/sitemap.xml
