@@ -21,14 +21,14 @@ Version: October 2026 · Questions: hola@ekilabs.com
 04-social/              avatars, LinkedIn, Instagram, YouTube, posts and the web preview image
 ```
 
-Every logo comes in four colourways and three formats:
+Every logo comes in six colourways and three formats. The full gradient is the logo by default; the others are for the cases where it does not fit.
 
 | Colourway | Use it on |
 |---|---|
-| `day` | light grounds: arena, piedra, white. The sun in its gradient; rows and letters in noche. **The main logo.** |
-| `night` | dark grounds: noche, bosque, origen, photos with a veil. The sun in its gradient; rows and letters in arena. |
-| `day-full` | option on light grounds: the whole symbol in the full gradient (orange, sol, yerba); letters in noche. |
-| `night-full` | option on dark grounds: the whole symbol in the full gradient; letters in arena. |
+| `day-full` | light grounds: arena, piedra, white. The whole symbol in the full gradient (orange, sol, yerba); letters in noche. **The logo by default.** |
+| `night-full` | dark grounds: noche, bosque, origen, photos with a veil. The whole symbol in the full gradient; letters in arena. **The logo by default.** |
+| `day` | alternative on light grounds when the full gradient does not fit (sizes below 32 px, busy or low-contrast grounds): the sun in its gradient; rows and letters in noche. |
+| `night` | the same alternative on dark grounds: the sun in its gradient; rows and letters in arena. |
 | `black` | one-ink printing on light grounds (stamps, engraving, fax, forms) |
 | `white` | one-ink on dark or saturated grounds |
 
@@ -44,10 +44,10 @@ All logo files are cropped tight to the artwork. The space around them is yours 
 
 ## Logo rules
 
-- **The symbol.** One circle: the sun above the horizon and three rows below. The sun goes from an orange crown `#FF8F00` to sol `#FFD54A` on the horizon, a nod to the first eki logo; the rows take the ink of the letters. As an option, the full gradient runs through the whole symbol, from orange through sol to yerba `#58E9AE` at the foot (`day-full`, `night-full`). The gradients live only in the logo and in the sun of the horizon: they are not palette colours.
+- **The symbol.** One circle: the sun above the horizon and three rows below. The full gradient runs through the whole symbol, from an orange crown `#FF8F00` through sol `#FFD54A` on the horizon to yerba `#58E9AE` at the foot, a nod to the first eki logo (`day-full`, `night-full`). Where it does not fit, the alternative keeps the gradient in the sun only, orange to sol, and the rows take the ink of the letters (`day`, `night`). The gradients live only in the logo and in the sun of the horizon: they are not palette colours.
 - **The name.** «eki.» in Geist 600 and the second name in Geist 400, both in the ink of the logo: **eki.labs**. The kit has eki.labs and eki.; any other ending is built at ekilabs.com/brand/download, in the same curves.
 - **Clear space.** Keep a quarter of the symbol's diameter free on every side.
-- **Minimum size.** Full logo 96 px wide. Symbol 16 px. Below 32 px use `symbol-small`.
+- **Minimum size.** Full logo 96 px wide. Symbol 16 px. Below 32 px use `symbol-small`, in the `day` or `night` alternative.
 - **In text.** Always **eki.labs**, in lowercase, in the typeface of the text around it. Never capitalised, never set in capitals. Legal name: Eki Labs Corp.
 - **Signature.** Logo and tagline travel together as one block. The tagline is always the same, «Farming soil & sun, together», and always the same size: as wide as the eki.labs logo, a quarter of the symbol below it, aligned left (or centred when stacked). The kit signs with eki.labs; the logo builder can add it to another ending when a piece needs it. eki. on its own goes without it. Never rebuild it with live text.
 - **Never:** another colour or gradient for the sun · separating sun and rows · rotating the mark · placing it on yerba or on sol · shadows, glows or outlines · stretching or condensing.
@@ -78,7 +78,7 @@ Four colours with a fixed meaning, four deep tones and a quiet base. Colour only
 | blanco | `#FFFFFF` | 255 255 255 | Only inside other people's surfaces (email, documents). |
 
 - Sol and yerba have almost the same lightness: never put them side by side. The one exception is the full gradient of the logo, where they meet as a blend, never as an edge.
-- **Logo gradients** (logo and horizon sun only): the sun, `#FF8F00` → `#FFD54A`; the full gradient option, `#FF8F00` → `#FFD54A` → `#58E9AE`, top to bottom of the circle.
+- **Logo gradients** (logo and horizon sun only): the sun and the horizon sun, `#FF8F00` → `#FFD54A`; the full gradient of the logo, `#FF8F00` → `#FFD54A` → `#58E9AE`, top to bottom of the circle.
 - Text on light grounds is noche; secondary text pizarra; green text yerba honda.
 - `02-colour/eki-labs-colours.ase` loads the palette into Illustrator, InDesign and Photoshop (Swatches › Import).
 
