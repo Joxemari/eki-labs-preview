@@ -194,9 +194,27 @@
       ]
     }
   ],
-  "logo_sun_gradient": {
-    "use": "Logo and horizon sun only, top to bottom of the circle. Not a palette colour.",
-    "stops": [
+  "logo_gradients": {
+    "use": "Logo and horizon sun only, top to bottom of the symbol circle. Not palette colours.",
+    "sun": [
+      {
+        "offset": 0,
+        "hex": "#FF8F00"
+      },
+      {
+        "offset": 0.1,
+        "hex": "#FF8F00"
+      },
+      {
+        "offset": 0.42,
+        "hex": "#FFD54A"
+      },
+      {
+        "offset": 1,
+        "hex": "#FFD54A"
+      }
+    ],
+    "full": [
       {
         "offset": 0,
         "hex": "#FF8F00"
