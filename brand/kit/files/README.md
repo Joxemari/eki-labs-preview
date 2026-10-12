@@ -10,11 +10,12 @@ Version: October 2026 · Questions: hola@ekilabs.com
 
 ```
 01-logo/
-  logo/                 sun and wordmark, the everyday logo
-  symbol/               the sun over three rows, on its own
-  symbol-small/         two rows, for 16–31 px (favicons, tiny icons)
-  signature/            logo and tagline, one block
-  signature-vertical/   logo and tagline, stacked
+  logo/                     eki.labs: symbol and name, the everyday logo
+  eki/                      eki.: the base of the name, on its own
+  symbol/                   the sun over three rows, on its own
+  symbol-small/             two rows, for 16–31 px (favicons, tiny icons)
+  signature/                eki.labs and tagline, one block
+  signature-vertical/       eki.labs and tagline, stacked
 02-colour/              ASE (Adobe), CSS, JSON and a swatch card
 03-type/                Zilla Slab, Work Sans and Geist Mono, with their licences
 04-social/              avatars, LinkedIn, Instagram, YouTube, posts and the web preview image
@@ -24,8 +25,8 @@ Every logo comes in four colourways and three formats:
 
 | Colourway | Use it on |
 |---|---|
-| `day` | light grounds: arena, piedra, white |
-| `night` | dark grounds: noche, bosque, origen, photos with a veil |
+| `day` | light grounds: arena, piedra, white. Sun gradient, letters in noche. |
+| `night` | dark grounds: noche, bosque, origen, photos with a veil. Sun gradient, letters in arena. The gradient at its best. |
 | `black` | one-ink printing on light grounds (stamps, engraving, fax, forms) |
 | `white` | one-ink on dark or saturated grounds |
 
@@ -41,11 +42,13 @@ All logo files are cropped tight to the artwork. The space around them is yours 
 
 ## Logo rules
 
+- **The symbol.** One circle: the sun above the horizon and three rows below, all in one gradient from top to bottom: orange `#FF8F00`, sol `#FFD54A` on the horizon, yerba `#58E9AE` at the foot. A nod to the first eki logo. The gradient lives only in the logo and in the sun of the horizon (orange to sol): it is not a palette colour.
+- **The name.** «eki.» in Geist 600 and the second name in Geist 400, both in the ink of the logo: **eki.labs**. The kit has eki.labs and eki.; any other ending is built at ekilabs.com/brand/download, in the same curves.
 - **Clear space.** Keep a quarter of the symbol's diameter free on every side.
 - **Minimum size.** Full logo 96 px wide. Symbol 16 px. Below 32 px use `symbol-small`.
-- **The name.** Always **eki.labs**, in lowercase, in the typeface of the text around it. Never capitalised, never set in capitals. Legal name: Eki Labs Corp.
-- **Signature.** Logo and tagline travel together as one block. The tagline runs exactly as wide as the logo and sits a quarter of the symbol below it. Never centre the tagline under the symbol alone, and never rebuild it with live text.
-- **Never:** another colour for the sun · separating sun and rows · rotating the mark · placing it on yerba or on sol · shadows, glows or outlines · stretching or condensing.
+- **In text.** Always **eki.labs**, in lowercase, in the typeface of the text around it. Never capitalised, never set in capitals. Legal name: Eki Labs Corp.
+- **Signature.** Logo and tagline travel together as one block. The tagline is always the same, «Farming soil & sun, together», and always the same size: as wide as the eki.labs logo, a quarter of the symbol below it, aligned left (or centred when stacked). The kit signs with eki.labs; the logo builder can add it to another ending when a piece needs it. eki. on its own goes without it. Never rebuild it with live text.
+- **Never:** another colour or gradient for the symbol · separating sun and rows · rotating the mark · placing it on yerba or on sol · shadows, glows or outlines · stretching or condensing.
 
 ---
 
@@ -55,7 +58,7 @@ Four colours with a fixed meaning, four deep tones and a quiet base. Colour only
 
 | Token | HEX | RGB | Job |
 |---|---|---|---|
-| sol | `#FFD54A` | 255 213 74 | Energy. The sun of the logo and the key figure. Never a button or text. |
+| sol | `#FFD54A` | 255 213 74 | Energy. The key figure, and the horizon of the logo's sun gradient. Never a button or text. |
 | yerba | `#58E9AE` | 88 233 174 | Crops, and actions on dark: the one colour you can press. |
 | tierra | `#CF8166` | 207 129 102 | Land and rural life, on dark grounds. |
 | noche | `#0A100C` | 10 16 12 | Ink, infrastructure and dark chapters. Our black. |
@@ -72,7 +75,8 @@ Four colours with a fixed meaning, four deep tones and a quiet base. Colour only
 | niebla | `#A1A69F` | 161 166 159 | Secondary text on dark grounds. |
 | blanco | `#FFFFFF` | 255 255 255 | Only inside other people's surfaces (email, documents). |
 
-- Sol and yerba have almost the same lightness: never put them side by side.
+- Sol and yerba have almost the same lightness: never put them side by side. The one exception is the logo's sun gradient, where they meet as a blend, never as an edge.
+- **Logo gradient** (logo and horizon sun only): `#FF8F00` → `#FFD54A` → `#58E9AE`, top to bottom of the circle.
 - Text on light grounds is noche; secondary text pizarra; green text yerba honda.
 - `02-colour/eki-labs-colours.ase` loads the palette into Illustrator, InDesign and Photoshop (Swatches › Import).
 
@@ -86,7 +90,7 @@ Four colours with a fixed meaning, four deep tones and a quiet base. Colour only
 | **Work Sans** | Text | 400 and 500 |
 | **Geist Mono** | Data, figures and labels | 500 for labels in capitals with 8 % tracking; 400 for figures |
 
-- The wordmark is drawn in Geist 600 and lives only in the logo files: never retype it.
+- The wordmark is drawn in Geist («eki.» in 600, the second name in 400) and lives only in the logo files and the logo builder: never retype it.
 - All three are free under the SIL Open Font License (`OFL.txt` in each folder). Install them, or load them from Google Fonts on the web.
 - In Office documents without these fonts, fall back to Georgia (headlines) and Arial (text).
 
@@ -107,7 +111,7 @@ Four colours with a fixed meaning, four deep tones and a quiet base. Colour only
 
 How the templates work:
 
-- **The landscape.** A horizon, the sun on it and the rows below: 2 px lines every 40 px (the 5 % rule). The sun sits to the right, like the end of the day.
+- **The landscape.** A horizon, the sun on it and the rows below: 2 px lines every 40 px (the 5 % rule). The sun sits to the right, like the end of the day, in the upper half of the logo's gradient: orange at the top, sol on the horizon.
 - **One message per piece.** Eyebrow in Geist Mono capitals, headline in Zilla Slab, the logo small.
 - **Figures always with their base:** «Versus conventional solar. Measured over one year in our field test in Zamora.»
 
