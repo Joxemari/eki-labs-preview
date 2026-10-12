@@ -6,7 +6,7 @@ Fuentes de referencia de la web. No se publican y no hacen falta para desplegar:
 
 Los lienzos de diseño (`.dc.html`) de las páginas públicas y de las animaciones que se ven en ellas: How it works (`Capas`), los dos planos (`Comparativa`, `GranjaPlano`) y los clips del logo de `/brand`.
 
-- El original vivo es el lienzo «eki.labs · Web» del proyecto Eki Labs en Claude (Cowork).
+- El original vivo es el lienzo «eki.labs · Web» en Claude Design: https://claude.ai/artifact/HoiQgjcoVVYM5db66e5MBT. Estos archivos son su copia, con las rutas `/_blob/…` de ese lienzo.
 - Estos archivos usan huecos de plantilla (`{{p.*}}`) y rutas `/_blob/…` del lienzo: no se abren solos en un navegador.
 - Sirven para leer cómo está hecha cada pieza: estructura, textos y lógica de las animaciones.
 - Cuando un cambio de diseño se rehace en el lienzo, Cowork regenera `site/` y sustituye estos archivos.
