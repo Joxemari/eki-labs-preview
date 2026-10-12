@@ -109,7 +109,7 @@ Four colours with a fixed meaning, four deep tones and a quiet base. Colour only
 | `instagram/` | Story (1080 × 1920). |
 | `youtube/` | Channel banner (2560 × 1440) and video thumbnail (1280 × 720). |
 | `posts/` | Feed templates for LinkedIn and Instagram: statement, figures and a carousel (cover and page), in 4:5 and 1:1. |
-| `web/` | The link preview image (1200 × 630). |
+| `web/` | The link preview image (1200 × 630) and the organisation logo for Google Workspace (320 × 132, eki. on white). |
 
 How the templates work:
 
