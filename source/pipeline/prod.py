@@ -17,7 +17,7 @@ SITE = os.path.join(REPO, 'site')
 ORIGIN = 'https://ekilabs.com'
 
 PAGES = {  # path: (title, description)
-    'index.html': ('eki.labs · Farming soil and sun, together.',
+    'index.html': ('eki.labs · Farming soil & sun, together',
                    'AI and electrification need clean power now, and farmland has to keep feeding us. We build solar farms that do both: −95% land, +10% energy and +13% revenue compared with standard solar, measured over one year in our field test in Zamora.'),
     'technology/index.html': ('Technology · eki.labs', 'Solar power that is compatible with farming, at scale. Bifacial rows facing east and west, 10–18 m apart. Machinery keeps working; the crops keep growing.'),
     'model/index.html': ('Model · eki.labs', 'We generate more value, and we share it. Farmers keep their land, their crops and their CAP payments, and add a stable income from eki.labs.'),
@@ -160,7 +160,7 @@ def head_extra(path, title, desc):
             f'<meta property="og:title" content="{title}">', f'<meta property="og:description" content="{desc}">',
             f'<meta property="og:url" content="{url_of(path)}">', f'<meta property="og:image" content="{ORIGIN}/social-preview.png">',
             '<meta property="og:image:width" content="1200">', '<meta property="og:image:height" content="630">',
-            '<meta property="og:image:alt" content="eki.labs · Farming soil and sun, together.">',
+            '<meta property="og:image:alt" content="eki.labs · Farming soil & sun, together">',
             '<meta name="twitter:card" content="summary_large_image">',
             '<meta name="theme-color" content="#0A100C">',
             f'<link rel="icon" href="{r}favicon.ico" sizes="32x32">', f'<link rel="icon" href="{r}favicon.svg" type="image/svg+xml">',

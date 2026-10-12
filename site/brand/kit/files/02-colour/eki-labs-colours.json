@@ -14,7 +14,7 @@
             213,
             74
           ],
-          "use": "Energy. The sun of the logo and the key figure, once per piece. Never a button or a text colour."
+          "use": "Energy. The key figure, once per piece, and the horizon of the logo’s sun gradient. Never a button or a text colour."
         },
         {
           "name": "yerba",
@@ -193,5 +193,48 @@
         }
       ]
     }
-  ]
+  ],
+  "logo_gradients": {
+    "use": "Logo and horizon sun only, top to bottom of the symbol circle. Not palette colours.",
+    "sun": [
+      {
+        "offset": 0,
+        "hex": "#FF8F00"
+      },
+      {
+        "offset": 0.1,
+        "hex": "#FF8F00"
+      },
+      {
+        "offset": 0.42,
+        "hex": "#FFD54A"
+      },
+      {
+        "offset": 1,
+        "hex": "#FFD54A"
+      }
+    ],
+    "full": [
+      {
+        "offset": 0,
+        "hex": "#FF8F00"
+      },
+      {
+        "offset": 0.1,
+        "hex": "#FF8F00"
+      },
+      {
+        "offset": 0.42,
+        "hex": "#FFD54A"
+      },
+      {
+        "offset": 0.66,
+        "hex": "#FFD54A"
+      },
+      {
+        "offset": 1,
+        "hex": "#58E9AE"
+      }
+    ]
+  }
 }

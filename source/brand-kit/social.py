@@ -59,8 +59,22 @@ def horizon(y, x0, x1, colour, sw=2):
     return f'<rect x="{x0}" y="{y - sw / 2}" width="{x1 - x0}" height="{sw}" fill="{colour}"/>'
 
 
+_suns = [0]
+
+
 def sun(cx, y, r, colour):
-    return f'<path d="M{cx - r} {y}A{r} {r} 0 0 1 {cx + r} {y}Z" fill="{colour}"/>'
+    """The half sun on the horizon. In sol it takes the upper half of the logo's sun gradient:
+    orange at the top, sol on the horizon."""
+    d = f'M{cx - r} {y}A{r} {r} 0 0 1 {cx + r} {y}Z'
+    if colour != SOL:
+        return f'<path d="{d}" fill="{colour}"/>'
+    _suns[0] += 1
+    gid = f'hs{_suns[0]}'
+    top = logos.SUN_STOPS[0][1]
+    mid = next(c for _, c in logos.SUN_STOPS if c.upper() == SOL)
+    return (f'<defs><linearGradient id="{gid}" gradientUnits="userSpaceOnUse" x1="0" y1="{y - r}" x2="0" y2="{y}">'
+            f'<stop offset="0" stop-color="{top}"/><stop offset="1" stop-color="{mid}"/></linearGradient></defs>'
+            f'<path d="{d}" fill="url(#{gid})"/>')
 
 
 def rows(x0, x1, y0, y1, colour, step=40, sw=2):
@@ -86,14 +100,14 @@ def landscape(w, h, y_h, sun_x, sun_r, ground=NOCHE, line=PIZARRA, row=ACERO, st
 # ------------------------------------------------------------------ pieces
 def avatar(day=False):
     w = h = 1080
-    ground, way = (ARENA, 'day') if day else (NOCHE, 'night')
+    ground, way = (ARENA, 'day-full') if day else (NOCHE, 'night-full')
     m, mh = mark('symbol', way, (w - 580) / 2, (h - 580) / 2, 580)
     return svg(w, h, f'<rect width="{w}" height="{h}" fill="{ground}"/>' + m, 'eki.labs · avatar')
 
 
 def linkedin_cover():
     w, h = 1512, 256
-    line = 'Farming soil and sun, together.'
+    line = 'Farming soil & sun, together'
     fs = 50; tw = width(line, 'zs', fs)
     gap, r = 64, 48
     x0 = round(w / 2 - (tw + gap + 2 * r) / 2)
@@ -105,15 +119,15 @@ def linkedin_cover():
 def linkedin_personal():
     w, h = 1584, 396
     b = landscape(w, h, 316, 1250, 50)
-    m, mh = mark('signature', 'night', 900, 64, 540)
+    m, mh = mark('signature', 'night-full', 900, 64, 540)
     return svg(w, h, b + m, 'eki.labs · LinkedIn profile banner')
 
 
 def youtube_banner():
     w, h = 2560, 1440
     b = landscape(w, h, 930, 1880, 64)
-    m, mh = mark('signature', 'night', 700, 0, 900)
-    m, mh = mark('signature', 'night', 700, round(735 - mh / 2), 900)
+    m, mh = mark('signature', 'night-full', 700, 0, 900)
+    m, mh = mark('signature', 'night-full', 700, round(735 - mh / 2), 900)
     # the area every device shows (1546 × 423, centred) is left as a note for whoever edits the file
     note = '<!-- Safe area on every device: x 507–2053, y 508–932. Keep logo and text inside it. -->'
     return svg(w, h, note + b + m, 'eki.labs · YouTube channel banner')
@@ -122,7 +136,7 @@ def youtube_banner():
 def youtube_thumb():
     w, h = 1280, 720
     b = landscape(w, h, 600, 1064, 64)
-    m, mh = mark('logo', 'night', 80, 72, 210)
+    m, mh = mark('logo', 'night-full', 80, 72, 210)
     b += m + eyebrow(80, 214, 'Film · 79 s', 22, NIEBLA, SOL)
     b += text(76, 336, 'One acre.', 'zs', 112, ARENA) + text(76, 456, 'Two harvests.', 'zs', 112, ARENA)
     return svg(w, h, b, 'eki.labs · YouTube thumbnail')
@@ -132,7 +146,7 @@ def statement(h=1350):
     w = 1080
     y_h = h - 210
     b = landscape(w, h, y_h, 880, 62)
-    m, mh = mark('logo', 'night', 80, 80, 230)
+    m, mh = mark('logo', 'night-full', 80, 80, 230)
     lines = ["Now, you don’t", 'have to choose.']
     fs = 108 if h > 1080 else 94
     top = (h - 210) / 2 - (len(lines) * fs * 1.04) / 2 + fs * 0.62
@@ -146,7 +160,7 @@ def statement(h=1350):
 def figures(h=1350):
     w = 1080
     b = f'<rect width="{w}" height="{h}" fill="{ARENA}"/>'
-    m, mh = mark('logo', 'day', 80, 80, 230)
+    m, mh = mark('logo', 'day-full', 80, 80, 230)
     b += m
     big = 300 if h > 1080 else 250
     y0 = 300 if h > 1080 else 250
@@ -168,7 +182,7 @@ def figures(h=1350):
 def carousel_cover():
     w, h = 1080, 1350
     b = landscape(w, h, 1140, 880, 62)
-    m, mh = mark('logo', 'night', 80, 80, 230)
+    m, mh = mark('logo', 'night-full', 80, 80, 230)
     b += m + eyebrow(80, 520, '03 · How it works', 24, NIEBLA, SOL)
     b += text(74, 640, 'One acre,', 'zs', 100, ARENA) + text(74, 744, 'four layers.', 'zs', 100, ARENA)
     b += text(80, 1096, 'Swipe →', 'gm', 24, NIEBLA, 400, 0.02)
@@ -178,7 +192,7 @@ def carousel_cover():
 def carousel_page():
     w, h = 1080, 1350
     b = f'<rect width="{w}" height="{h}" fill="{ARENA}"/>'
-    m, mh = mark('symbol', 'day', 80, 80, 64)
+    m, mh = mark('symbol', 'day-full', 80, 80, 64)
     b += m + text(w - 80, 124, '1 / 4', 'gm', 24, PIZARRA, 400, 0.02, 'end')
     b += text(64, 560, '01', 'gm', 220, NOCHE, 400, -0.05)
     b += text(74, 720, 'Sunlight', 'zs', 96, NOCHE)
@@ -191,7 +205,7 @@ def carousel_page():
 def story():
     w, h = 1080, 1920
     b = landscape(w, h, 1440, 860, 72)
-    m, mh = mark('logo', 'night', 80, 250, 260)
+    m, mh = mark('logo', 'night-full', 80, 250, 260)
     b += m + eyebrow(80, 820, 'Film · 79 s', 28, NIEBLA, SOL)
     b += text(72, 990, 'One acre.', 'zs', 140, ARENA) + text(72, 1135, 'Two harvests.', 'zs', 140, ARENA)
     b += text(80, 1380, 'ekilabs.com', 'gm', 28, NIEBLA, 400, 0.02)
@@ -201,8 +215,8 @@ def story():
 def og_image():
     w, h = 1200, 630
     b = landscape(w, h, 520, 1000, 54)
-    m, mh = mark('signature', 'night', 0, 0, 620)
-    m, mh = mark('signature', 'night', 90, round(270 - mh / 2), 620)
+    m, mh = mark('signature', 'night-full', 0, 0, 620)
+    m, mh = mark('signature', 'night-full', 90, round(270 - mh / 2), 620)
     return svg(w, h, b + m, 'eki.labs · social preview')
 
 
