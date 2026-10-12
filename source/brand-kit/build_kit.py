@@ -61,11 +61,14 @@ def write_colours(d):
             css.append(f'  --eki-{slug(n)}: {hx};  /* {use} */')
             g['colours'].append({'name': n, 'token': f'--eki-{slug(n)}', 'hex': hx, 'rgb': list(rgb(hx)), 'use': use})
         data['groups'].append(g)
-    stops = ', '.join(f'{c} {round(o * 100)}%' for o, c in logos.SUN_STOPS)
-    css.append('  /* Logo only: the sun gradient of the symbol, top to bottom. Not a palette colour. */')
-    css.append(f'  --eki-logo-sun: linear-gradient(180deg, {stops});')
-    data['logo_sun_gradient'] = {'use': 'Logo and horizon sun only, top to bottom of the circle. Not a palette colour.',
-                                 'stops': [{'offset': o, 'hex': c} for o, c in logos.SUN_STOPS]}
+    g = lambda stops: ', '.join(f'{c} {round(o * 100)}%' for o, c in stops)
+    css.append('  /* Logo only, top to bottom of the symbol\'s circle. Not palette colours. */')
+    css.append(f'  --eki-logo-sun: linear-gradient(180deg, {g(logos.SUN_STOPS)});  /* the sun (and the horizon sun) */')
+    css.append(f'  --eki-logo-sun-full: linear-gradient(180deg, {g(logos.FULL_STOPS)});  /* option: the whole symbol */')
+    data['logo_gradients'] = {
+        'use': 'Logo and horizon sun only, top to bottom of the symbol circle. Not palette colours.',
+        'sun': [{'offset': o, 'hex': c} for o, c in logos.SUN_STOPS],
+        'full': [{'offset': o, 'hex': c} for o, c in logos.FULL_STOPS]}
     css.append('}')
     open(os.path.join(d, 'eki-labs-colours.css'), 'w', encoding='utf-8').write('\n'.join(css) + '\n')
     open(os.path.join(d, 'eki-labs-colours.json'), 'w', encoding='utf-8').write(json.dumps(data, indent=2, ensure_ascii=False) + '\n')

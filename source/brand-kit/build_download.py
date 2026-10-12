@@ -101,8 +101,8 @@ def main():
 
 def builder_css():
     import logos
-    css = 'linear-gradient(180deg,' + ','.join(f'{c} {round(o * 100)}%' for o, c in logos.SUN_STOPS) + ')'
-    return BUILDER_CSS.replace('%SUNCSS%', css)
+    g = lambda stops: 'linear-gradient(180deg,' + ','.join(f'{c} {round(o * 100)}%' for o, c in stops) + ')'
+    return BUILDER_CSS.replace('%SUNCSS%', g(logos.SUN_STOPS)).replace('%FULLCSS%', g(logos.FULL_STOPS))
 
 
 def builder_html(prefix):
@@ -112,7 +112,8 @@ def builder_html(prefix):
 def builder_js(prefix, art):
     return (BUILDER_JS.replace('%P%', prefix).replace('%ART%', json.dumps(art, ensure_ascii=False, separators=(',', ':')))
             .replace('%TOKENS%', json.dumps(TOKENS, ensure_ascii=False))
-            .replace('%SUNHEX%', ' · '.join(dict.fromkeys(c for _, c in __import__('logos').SUN_STOPS))))
+            .replace('%SUNHEX%', ' · '.join(dict.fromkeys(c for _, c in __import__('logos').SUN_STOPS)))
+            .replace('%FULLHEX%', ' · '.join(dict.fromkeys(c for _, c in __import__('logos').FULL_STOPS))))
 
 
 def brand_page(art):
@@ -125,7 +126,7 @@ def brand_page(art):
              '<div style="display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); column-gap: 24px; align-items: start;">'
              '<div style="grid-column: 1 / span 3; display: flex; flex-direction: column; gap: 6px; padding-top: 2px;">'
              '<span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(10, 16, 12);">Logo builder</span>'
-             '<span style="font-size: 14px; line-height: 21px; color: rgb(85, 90, 82);">Write the name after «eki.», pick the artwork and three colours: the symbol, the letters and the background. '
+             '<span style="font-size: 14px; line-height: 21px; color: rgb(85, 90, 82);">Write the name after «eki.», pick the artwork and three colours: the sun (in its gradient, or the whole symbol in the full gradient), the letters and rows, and the background. '
              'It flags any combination the brand rules do not allow.</span></div>'
              '<div style="grid-column: 4 / span 9;">' + builder_html('lb-') +
              '<noscript><p style="font-size: 14px; color: rgb(85, 90, 82);">The logo builder needs JavaScript. The kit above works without it.</p></noscript>'
@@ -153,6 +154,7 @@ BUILDER_CSS = r'''.lb{--linea:#D6D1C3;--noche:#0A100C;--arena:#F4F2EC;--pizarra:
 .lb .sw button[aria-pressed="true"]{outline:2px solid var(--noche);outline-offset:2px}
 .lb .sw button.none{background:repeating-linear-gradient(45deg,#fff 0 4px,#e7e3d6 4px 8px)}
 .lb .sw button.sun{background:%SUNCSS%}
+.lb .sw button.full{background:%FULLCSS%}
 .lb .end{font:inherit;font-family:'Geist Mono',Menlo,monospace;font-size:15px;line-height:22px;width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid #797C72;border-radius:4px;background:#fff0;color:var(--noche)}
 .lb .end:focus-visible{outline:2px solid var(--noche);outline-offset:2px}
 .lb .picked{font-family:'Geist Mono',Menlo,monospace;font-size:12px;color:var(--pizarra);margin-top:6px}
@@ -171,8 +173,8 @@ BUILDER_HTML = r'''<div class="lb">
       <div><label class="label" for="%P%end">Name after eki.</label><input class="end" id="%P%end" type="text" value="labs" maxlength="16" autocomplete="off" spellcheck="false" aria-describedby="%P%end-hint"><div class="picked" id="%P%end-hint">Lowercase letters, figures and hyphens. Empty for «eki.» alone.</div></div>
       <div><span class="label">Artwork</span><div class="seg" id="%P%lockup"></div></div>
       <div><span class="label">Ready-made</span><div class="seg" id="%P%presets"></div></div>
-      <div><span class="label">Symbol</span><div class="sw" id="%P%sw-sym"></div><div class="picked" id="%P%pk-sym"></div></div>
-      <div><span class="label">Letters</span><div class="sw" id="%P%sw-ink"></div><div class="picked" id="%P%pk-ink"></div></div>
+      <div><span class="label">Sun</span><div class="sw" id="%P%sw-sym"></div><div class="picked" id="%P%pk-sym"></div></div>
+      <div><span class="label">Letters and rows</span><div class="sw" id="%P%sw-ink"></div><div class="picked" id="%P%pk-ink"></div></div>
       <div><span class="label">Background</span><div class="sw" id="%P%sw-bg"></div><div class="picked" id="%P%pk-bg"></div></div>
       <ul class="checks" id="%P%checks"></ul>
       <div><span class="label">Download</span><div class="dl">
@@ -187,12 +189,11 @@ BUILDER_HTML = r'''<div class="lb">
 
 BUILDER_JS = r'''<script>
 (function () {
-  var ART = %ART%, TOKENS = %TOKENS%, SUN = 'original';
+  var ART = %ART%, TOKENS = %TOKENS%, SUN = 'original', FULL = 'full';
   var HEX = {}; TOKENS.forEach(function (t) { HEX[t[0]] = t[1]; });
-  var PRESETS = [['Day', 'noche', SUN, 'arena'], ['Night', 'arena', SUN, 'noche'], ['Black', 'noche', 'noche', 'none'], ['White', 'blanco', 'blanco', 'none']];
+  var PRESETS = [['Day', 'noche', SUN, 'arena'], ['Night', 'arena', SUN, 'noche'], ['Day · full gradient', 'noche', FULL, 'arena'], ['Night · full gradient', 'arena', FULL, 'noche'], ['Black', 'noche', 'noche', 'none'], ['White', 'blanco', 'blanco', 'none']];
   var LOCKUPS = [['logo', 'Logo'], ['signature', 'Logo and tagline'], ['stacked', 'Stacked with tagline'], ['symbol', 'Symbol']];
   var S = { lockup: 'logo', end: 'labs', ink: 'noche', sym: SUN, bg: 'arena' };
-  var LIGHT = ['arena', 'piedra', 'línea', 'blanco'];
   var $ = function (id) { return document.getElementById('%P%' + id); };
   function lum(h) { var c = [1, 3, 5].map(function (i) { var v = parseInt(h.substr(i, 2), 16) / 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }); return .2126 * c[0] + .7152 * c[1] + .0722 * c[2]; }
   function ratio(a, b) { var x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); }
@@ -225,32 +226,32 @@ BUILDER_JS = r'''<script>
   function svg(px) {
     var a = art(), v = a.vb, pad = S.bg === 'none' ? 0 : a.clear;
     var x = f(v[0] - pad), y = f(v[1] - pad), w = f(v[2] + 2 * pad), h = f(v[3] + 2 * pad), W = px || 480, H = f(W * h / w);
-    var sym = S.sym === SUN ? 'url(#eki-sun)' : HEX[S.sym];
-    var body = a.body.split('{sym}').join(sym).split('{ink}').join(HEX[S.ink]);
+    var sym = S.sym === SUN ? 'url(#eki-sun)' : S.sym === FULL ? 'url(#eki-sun-full)' : HEX[S.sym];
+    var rows = S.sym === FULL ? 'url(#eki-sun-full)' : HEX[S.ink];
+    var body = a.body.split('{sym}').join(sym).split('{rows}').join(rows).split('{ink}').join(HEX[S.ink]);
     var bg = S.bg === 'none' ? '' : '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + HEX[S.bg] + '"/>';
-    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + [x, y, w, h].join(' ') + '" width="' + W + '" height="' + H + '"><title>' + title() + '</title>' + (S.sym === SUN ? ART.sunDefs : '') + bg + body + '</svg>';
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + [x, y, w, h].join(' ') + '" width="' + W + '" height="' + H + '"><title>' + title() + '</title>' + (S.sym === SUN ? ART.sunDefs : S.sym === FULL ? ART.fullDefs : '') + bg + body + '</svg>';
   }
   function checks() {
     var out = [], bgHex = S.bg === 'none' ? null : HEX[S.bg];
-    if (S.sym !== SUN && S.sym !== S.ink) out.push(['warn', 'The symbol is always the sun gradient. Only one-ink versions put symbol and letters in one colour.']);
+    if (S.sym !== SUN && S.sym !== FULL && S.sym !== S.ink) out.push(['warn', 'The sun is always in its gradient. Only one-ink versions put the sun in the colour of the letters.']);
     if (S.bg === 'yerba' || S.bg === 'sol') out.push(['warn', 'Never place the logo on yerba or on sol.']);
-    if (S.sym !== SUN && S.sym === S.bg) out.push(['warn', 'Symbol and background are the same colour: the symbol disappears.']);
-    if (S.ink === S.bg) out.push(['warn', 'Letters and background are the same colour.']);
-    else if (bgHex && ratio(HEX[S.ink], bgHex) < 3) out.push(['warn', 'Letters on this background are hard to read (contrast ' + ratio(HEX[S.ink], bgHex).toFixed(1) + ':1, minimum 3:1).']);
+    if (S.sym !== SUN && S.sym !== FULL && S.sym === S.bg) out.push(['warn', 'Sun and background are the same colour: the sun disappears.']);
+    if (S.ink === S.bg) out.push(['warn', 'Letters, rows and background are the same colour.']);
+    else if (bgHex && ratio(HEX[S.ink], bgHex) < 3) out.push(['warn', 'Letters and rows on this background are hard to read (contrast ' + ratio(HEX[S.ink], bgHex).toFixed(1) + ':1, minimum 3:1).']);
     if (!S.end && S.lockup !== 'logo' && S.lockup !== 'symbol') out.push(['warn', 'eki. on its own goes without the tagline. Sign with eki.labs.']);
-    if (S.sym === SUN && LIGHT.indexOf(S.bg) > -1) out.push(['note', 'On light grounds the pale lower rows of the sun are soft by design. Noche, bosque and origen show the gradient at its best.']);
     if ([S.ink, S.sym, S.bg].indexOf('blanco') > -1) out.push(['note', 'Blanco is only for other people’s surfaces: email, documents.']);
     if (!bgHex) out.push(['note', 'Transparent background: check it against the ground where it will sit.']);
     if (!out.some(function (c) { return c[0] === 'warn'; })) out.unshift(['ok', 'Within the brand rules.']);
     return out;
   }
-  function name() { var who = S.lockup === 'symbol' ? 'eki-labs-symbol' : 'eki' + (S.end ? '-' + S.end : '') + '-' + (S.lockup === 'logo' ? 'logo' : S.lockup === 'signature' ? 'signature' : 'signature-vertical'); return who + '-' + [S.ink, S.sym === SUN ? 'sun' : S.sym, S.bg].map(function (t) { return t.replace(/\s+/g, '-').replace('í', 'i'); }).join('-'); }
+  function name() { var who = S.lockup === 'symbol' ? 'eki-labs-symbol' : 'eki' + (S.end ? '-' + S.end : '') + '-' + (S.lockup === 'logo' ? 'logo' : S.lockup === 'signature' ? 'signature' : 'signature-vertical'); return who + '-' + [S.ink, S.sym === SUN ? 'sun' : S.sym === FULL ? 'full' : S.sym, S.bg].map(function (t) { return t.replace(/\s+/g, '-').replace('í', 'i'); }).join('-'); }
   function paint() {
     $('stage').innerHTML = svg();
     ['lockup', 'presets'].forEach(function (g) { $(g).querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', g === 'lockup' ? String(b.dataset.v === S.lockup) : String(b.dataset.ink === S.ink && b.dataset.sym === S.sym && b.dataset.bg === S.bg)); }); });
     ['sym', 'ink', 'bg'].forEach(function (k) {
       $('sw-' + k).querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.v === S[k])); });
-      $('pk-' + k).textContent = S[k] === 'none' ? 'transparent' : S[k] === SUN ? 'sun gradient · %SUNHEX%' : S[k] + ' · ' + HEX[S[k]];
+      $('pk-' + k).textContent = S[k] === 'none' ? 'transparent' : S[k] === SUN ? 'sun gradient · %SUNHEX%' : S[k] === FULL ? 'full gradient · %FULLHEX%' : S[k] + ' · ' + HEX[S[k]];
     });
     $('checks').innerHTML = checks().map(function (c) { return '<li class="' + (c[0] === 'warn' ? 'warn' : c[0] === 'ok' ? 'ok' : '') + '">' + c[1] + '</li>'; }).join('');
   }
@@ -261,7 +262,10 @@ BUILDER_JS = r'''<script>
   ['sym', 'ink', 'bg'].forEach(function (k) {
     var box = $('sw-' + k);
     if (k === 'bg') { var n = btn(box, '', { v: 'none' }, null, 'none'); n.title = 'transparent'; n.setAttribute('aria-label', 'transparent'); n.onclick = function () { S.bg = 'none'; paint(); }; }
-    if (k === 'sym') { var g = btn(box, '', { v: SUN }, null, 'sun'); g.title = 'sun gradient'; g.setAttribute('aria-label', 'sun gradient'); g.onclick = function () { S.sym = SUN; paint(); }; }
+    if (k === 'sym') {
+      var g = btn(box, '', { v: SUN }, null, 'sun'); g.title = 'sun gradient, rows in ink'; g.setAttribute('aria-label', 'sun gradient, rows in ink'); g.onclick = function () { S.sym = SUN; paint(); };
+      var g2 = btn(box, '', { v: FULL }, null, 'full'); g2.title = 'full gradient, sun and rows'; g2.setAttribute('aria-label', 'full gradient, sun and rows'); g2.onclick = function () { S.sym = FULL; paint(); };
+    }
     TOKENS.forEach(function (t) { var b = btn(box, '', { v: t[0] }, t[1]); b.title = t[0] + ' ' + t[1]; b.setAttribute('aria-label', t[0]); b.onclick = function () { S[k] = t[0]; paint(); }; });
   });
   function save(blob, file) { var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = file; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000); }
@@ -323,7 +327,7 @@ TEMPLATE = r'''<!doctype html>
 <p class="lead">Build the logo in the colours you need, or take any file of the kit on its own. The rules are on the <a href="../">brand page</a>.</p>
 
 <h2 id="builder">Logo builder</h2>
-<p class="muted">Write the name after «eki.», pick the artwork and three colours: the symbol, the letters and the background. The tagline is always the same. The builder flags any combination the brand rules do not allow.</p>
+<p class="muted">Write the name after «eki.», pick the artwork and three colours: the sun, the letters and rows, and the background. The tagline is always the same. The builder flags any combination the brand rules do not allow.</p>
 %BUILDER_HTML%
 <noscript><p class="muted">The logo builder needs JavaScript. The files below work without it.</p></noscript>
 

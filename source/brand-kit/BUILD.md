@@ -30,7 +30,7 @@ Playwright se importa como módulo ES: si `render_svgs.mjs` no lo encuentra, enl
 
 - `masters/`: los originales en curvas del logo anterior. `logos.py` toma de ellos la geometría del símbolo y la posición del lema; el nombre y el lema se dibujan ahora desde las fuentes.
 - `wordmark.py`: dibuja el nombre en curvas desde Geist: «eki.» en 600 y el apellido en 400.
-- `logos.py`: el símbolo con el degradado del sol, el nombre, el lema en curvas (Zilla Slab) y las firmas; recorta cada marca al dibujo y la exporta en day, night, black y white, en SVG, PDF y PNG. Los colores del degradado están en `SUN_STOPS`.
+- `logos.py`: el símbolo con el degradado del sol, el nombre, el lema en curvas (Zilla Slab) y las firmas; recorta cada marca al dibujo y la exporta en day, night, black y white, en SVG, PDF y PNG. Los colores de los degradados están en `SUN_STOPS` (el sol) y `FULL_STOPS` (la opción del degradado completo).
 - `site_logos.py`: los logos que la web usa fuera del kit (cabecera, pie, favicons, iconos, firma de correo) y el logo dibujado en las páginas.
 - `social.py`: las plantillas de redes en SVG (avatares, LinkedIn, YouTube, Instagram, posts y la imagen de enlace).
 - `build_kit.py`: monta el kit entero (logos, colores, tipografías, redes, README y SIZES) y los zips.

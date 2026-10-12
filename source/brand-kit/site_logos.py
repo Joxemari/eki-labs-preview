@@ -36,15 +36,16 @@ def asset(mark, ink, vb, w, h):
 
 
 def favicon_svg():
-    """The small symbol (two rows), sun gradient on its own: no ink, so it needs no dark-mode switch."""
-    body = logos.recolour(logos.MARKS['symbol-small'][1], logos.SUN, NOCHE)
-    return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">{body}</svg>\n'
+    """The small symbol (two rows): the sun in its gradient, the rows in noche, arena when the browser is dark."""
+    body = logos.recolour(logos.MARKS['symbol-small'][1], logos.SUN, '@@R').replace('fill="@@R"', 'class="r"')
+    return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><style>.r{fill:#0A100C}'
+            '@media (prefers-color-scheme: dark){.r{fill:#F4F2EC}}</style>' + body + '</svg>\n')
 
 
 def app_icon_svg(size):
     """The app icon: the symbol on noche, 60 % of the side (two rows below 32 px)."""
     mark = 'symbol-small' if size < 32 else 'symbol'
-    body = logos.recolour(logos.MARKS[mark][1], logos.SUN, NOCHE)
+    body = logos.recolour(logos.MARKS[mark][1], logos.SUN, ARENA)
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="{size}" height="{size}">'
             f'<rect width="100" height="100" fill="{NOCHE}"/><g transform="translate(20 20) scale(0.6)">{body}</g></svg>')
 
@@ -53,11 +54,10 @@ def png(svg, size):
     return Image.open(io.BytesIO(cairosvg.svg2png(bytestring=svg.encode(), output_width=size, output_height=size))).convert('RGBA')
 
 
-# Pages: the logo drawn inline (headers, the home intro, the guide). Recolour the symbol to the sun
-# gradient and set the second name of the wordmark in Geist 400.
+# Pages: the logo drawn inline (headers, the home intro, the guide). The sun takes the sun gradient (the rows
+# keep their ink) and the second name of the wordmark goes in Geist 400.
 PAGES = ['index.html', '404.html', 'legal/index.html', 'privacy/index.html', 'decks/index.html', 'brand/index.html']
 SUN_PATH = re.compile(r'(<path(?: class="[^"]*")? d="M0 50A50 50 0 [01] 1 100 50Z" fill=")#ffd54a(")', re.I)
-BAND = re.compile(r'(<path(?: class="[^"]*")? d="M[\d.]+ [\d.]+L[\d.]+ [\d.]+A50 50 0 0 1 [^"]+" fill=")#(?:0a100c|f4f2ec)(")', re.I)
 
 
 def _wordmark_swap():
@@ -84,13 +84,9 @@ def update_pages():
 
         def svg_fix(m):
             t = m.group(0)
-            suns = re.findall(r'd="M0 50A50 50 0 [01] 1 100 50Z" fill="([^"]+)"', t)
-            other = [c for c in suns if c.lower() not in ('#ffd54a', 'url(#eki-sun)', '#ebe6d8')]  # ebe6d8: a sun hidden on its card
-            if 'data-lb' in t or other:
-                return t  # a sun in another colour is a «no» example of the guide: leave it as drawn
-            t = SUN_PATH.sub(r'\1url(#eki-sun)\2', t)
-            t = BAND.sub(r'\1url(#eki-sun)\2', t)
-            t = re.sub(r'(<g class="[a-z]+-bb" fill=")#(?:0a100c|f4f2ec)(")', r'\1url(#eki-sun)\2', t, flags=re.I)
+            if 'data-lb' in t:
+                return t
+            t = SUN_PATH.sub(r'\1url(#eki-sun)\2', t)  # only suns in sol: a sun in another colour is a «no» example
             t = re.sub(r'<defs><linearGradient id="eki-sun".*?</linearGradient></defs>', lambda _: logos.SUN_DEFS, t, flags=re.S)
             t = re.sub(r'translate\((?:1278|1278\.00|1115)( 0(?:\.00)?)\)', f'translate({logos.WORD_X}\\1)', t)
             if 'url(#eki-sun)' in t and 'id="eki-sun"' not in t:
@@ -108,7 +104,9 @@ def main():
         open(os.path.join(SITE, 'assets', name), 'w', encoding='utf-8').write(asset(*args))
     fav = favicon_svg()
     open(os.path.join(SITE, 'favicon.svg'), 'w', encoding='utf-8').write(fav)
-    ico = [png(fav, s) for s in (16, 32, 48)]
+    full = favicon_svg().replace(logos.recolour(logos.MARKS['symbol-small'][1], logos.SUN, '@@R').replace('fill="@@R"', 'class="r"'),
+                                 logos.recolour(logos.MARKS['symbol'][1], logos.SUN, '@@R').replace('fill="@@R"', 'class="r"'))
+    ico = [png(fav, 16), png(full, 32), png(full, 48)]  # two rows only below 32 px
     ico[2].save(os.path.join(SITE, 'favicon.ico'), sizes=[(16, 16), (32, 32), (48, 48)], append_images=ico[:2])
     for name, s in (('icon-192.png', 192), ('icon-512.png', 512), ('apple-touch-icon.png', 180)):
         png(app_icon_svg(s), s).convert('RGB').save(os.path.join(SITE, name), optimize=True)

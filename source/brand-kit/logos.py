@@ -1,6 +1,6 @@
 # eki.labs brand kit · logo files.
-# The symbol is one circle of 100: the sun above the horizon and three rows below, all filled with
-# the sun gradient (orange at the top, sol at the horizon, yerba at the foot), a nod to the first eki logo.
+# The symbol is one circle of 100: the sun above the horizon, in the sun gradient (orange crown, sol on the
+# horizon, a nod to the first eki logo), and three rows below in the ink of the name.
 # The wordmark is «eki.» in Geist 600 plus the second name in Geist 400 (wordmark.py), in curves.
 # Proportion: the symbol's circle is 923 units against 1000 font units, the name sits centred on it
 # (ascender to baseline) and starts a quarter of the diameter after the circle.
@@ -15,15 +15,26 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 MASTERS = os.path.join(HERE, 'masters')
 NOCHE, ARENA, WHITE = '#0A100C', '#F4F2EC', '#FFFFFF'
 
-# The sun gradient, top to bottom of the circle: orange (logo only) at the top, sol at the horizon, yerba at the foot.
-SUN_STOPS = ((0, '#FF8F00'), (0.1, '#FF8F00'), (0.42, '#FFD54A'), (0.66, '#FFD54A'), (1, '#58E9AE'))  # orange crown, a band of sol across the horizon and the first row
-SUN_ID = 'eki-sun'
-SUN = f'url(#{SUN_ID})'
-SUN_DEFS = ('<defs><linearGradient id="' + SUN_ID + '" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100">'
-            + ''.join(f'<stop offset="{o}" stop-color="{c}"/>' for o, c in SUN_STOPS) + '</linearGradient></defs>')
+# The sun gradient, on the circle's 0–100 box: orange (logo only) in the crown, sol on the horizon. Only the sun takes it.
+SUN_STOPS = ((0, '#FF8F00'), (0.1, '#FF8F00'), (0.42, '#FFD54A'), (1, '#FFD54A'))  # orange crown, sol on the horizon
+SUN_ID, FULL_ID = 'eki-sun', 'eki-sun-full'
+SUN, FULL = f'url(#{SUN_ID})', f'url(#{FULL_ID})'
+# Option A, the full gradient: the whole symbol, sun and rows, from the orange crown through sol to yerba at the foot.
+FULL_STOPS = ((0, '#FF8F00'), (0.1, '#FF8F00'), (0.42, '#FFD54A'), (0.66, '#FFD54A'), (1, '#58E9AE'))
 
-WAYS = {  # colourway: (symbol, ink)
-    'day': (SUN, NOCHE), 'night': (SUN, ARENA), 'black': (NOCHE, NOCHE), 'white': (WHITE, WHITE)}
+
+def _grad(gid, stops):
+    return (f'<linearGradient id="{gid}" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100">'
+            + ''.join(f'<stop offset="{o}" stop-color="{c}"/>' for o, c in stops) + '</linearGradient>')
+
+
+SUN_DEFS = '<defs>' + _grad(SUN_ID, SUN_STOPS) + '</defs>'
+FULL_DEFS = '<defs>' + _grad(FULL_ID, FULL_STOPS) + '</defs>'
+
+WAYS = {  # colourway: (sun, rows, letters)
+    'day': (SUN, NOCHE, NOCHE), 'night': (SUN, ARENA, ARENA),              # the main pair: sun in gradient, rows in ink
+    'day-full': (FULL, FULL, NOCHE), 'night-full': (FULL, FULL, ARENA),    # option: the whole symbol in the full gradient
+    'black': (NOCHE, NOCHE, NOCHE), 'white': (WHITE, WHITE, WHITE)}         # one ink
 
 SYM_SCALE, SYM_Y = 9.23, -816.5  # symbol 923 units tall, bottom 106.5 under the baseline
 # The name starts a quarter of the symbol's diameter after the circle (the same unit as the clear space
@@ -46,9 +57,9 @@ ROWS_SMALL = [(59.21, 75.0), (84.21, 100)]  # below 32 px the symbol keeps two r
 
 
 def symbol(rows=ROWS):
-    """The symbol in a 0–100 box; every shape takes the symbol fill (@@SUN)."""
-    d = [HALF_SUN] + [band(a, b) for a, b in rows]
-    return ''.join(f'<path d="{p}" fill="@@SUN"/>' for p in d)
+    """The symbol in a 0–100 box: the sun takes @@SUN and the rows @@ROWS."""
+    return (f'<path d="{HALF_SUN}" fill="@@SUN"/>'
+            + ''.join(f'<path d="{band(a, b)}" fill="@@ROWS"/>' for a, b in rows))
 
 
 def word(second=''):
@@ -159,9 +170,9 @@ def signature_vertical(second='labs'):
     return body, (0, 0, block, ty + th * TAG_V_K)
 
 
-def recolour(svg_body, sun, ink):
-    out = svg_body.replace('@@SUN', sun).replace('@@INK', ink)
-    return (SUN_DEFS + out) if SUN in out else out
+def recolour(svg_body, sun, ink, rows=None):
+    out = svg_body.replace('@@SUN', sun).replace('@@ROWS', rows or ink).replace('@@INK', ink)
+    return (SUN_DEFS if SUN in out else '') + (FULL_DEFS if FULL in out else '') + out
 
 
 def _pad(vb, p=60):
@@ -176,7 +187,7 @@ for key, prefix, second in (('logo', 'eki-labs-logo', 'labs'), ('eki', 'eki-logo
     b, vb = logo(second)
     MARKS[key] = (prefix, b, _pad(vb), (1200, 4000))
 MARKS['symbol'] = ('eki-labs-symbol', symbol(), (0, 0, 100, 100), (512, 2048))
-MARKS['symbol-small'] = ('eki-labs-symbol-small', symbol(ROWS_SMALL), (0, 0, 100, 100), (16, 32, 48, 64))
+MARKS['symbol-small'] = ('eki-labs-symbol-small', symbol(ROWS_SMALL), (0, 0, 100, 100), (16, 24))  # only below 32 px
 for key, prefix, second in (('signature', 'eki-labs-signature', 'labs'),):
     b, vb = signature(second)
     MARKS[key] = (prefix, b, _pad(vb, 200), (1600, 4000))
@@ -198,11 +209,12 @@ def builder_data():
     f6 = wordmark._font(wordmark.BASE_WEIGHT)
     base_adv = sum(f6['hmtx'][f6.getBestCmap()[ord(c)]][0] for c in wordmark.BASE)
     return {
-        'symbol': symbol().replace('@@SUN', '{sym}'), 'symbolSmall': symbol(ROWS_SMALL).replace('@@SUN', '{sym}'),
+        'symbol': symbol().replace('@@SUN', '{sym}').replace('@@ROWS', '{rows}'),
+        'symbolSmall': symbol(ROWS_SMALL).replace('@@SUN', '{sym}').replace('@@ROWS', '{rows}'),
         'base': base, 'baseAdv': base_adv, 'baseX1': round(base_x1, 1), 'glyphs': glyphs,
         'symScale': SYM_SCALE, 'symY': SYM_Y, 'wordX': WORD_X, 'vSymScale': V_SYM_SCALE, 'vWordY': V_WORD_Y,
         'tagH': {'d': TAG_H, 'box': TAG_H_BOX, 'k': TAG_H_K}, 'tagV': {'d': TAG_V, 'box': TAG_V_BOX, 'k': TAG_V_K},
-        'sunDefs': SUN_DEFS,
+        'sunDefs': SUN_DEFS, 'fullDefs': FULL_DEFS,
     }
 
 
@@ -221,7 +233,7 @@ _tight = {}
 def tight(mark):
     if mark not in _tight:
         _, body, vb, _ = MARKS[mark]
-        _tight[mark] = vb if mark.startswith('symbol') else tight_viewbox(body.replace('@@SUN', '#000').replace('@@INK', '#000'), vb)
+        _tight[mark] = vb if mark.startswith('symbol') else tight_viewbox(re.sub('@@(SUN|ROWS|INK)', '#000', body), vb)
     return _tight[mark]
 
 
@@ -229,8 +241,8 @@ def build(out_dir):
     made = []
     for mark, (prefix, body, _, widths) in MARKS.items():
         d = os.path.join(out_dir, mark); os.makedirs(d, exist_ok=True)
-        for way, (sun, ink) in WAYS.items():
-            b = recolour(body, sun, ink)
+        for way, (sun, rows, ink) in WAYS.items():
+            b = recolour(body, sun, ink, rows)
             svg = svg_file(b, tight(mark), 120 if mark.startswith('symbol') else 480, TITLES.get(mark, 'eki.labs'))
             base = os.path.join(d, f'{prefix}-{way}')
             open(base + '.svg', 'w', encoding='utf-8').write(svg)
@@ -243,8 +255,8 @@ def build(out_dir):
 
 def body_for(mark, way):
     """Recoloured body + tight viewBox, for the social templates and the guide."""
-    sun, ink = WAYS[way]
-    return recolour(MARKS[mark][1], sun, ink), tight(mark)
+    sun, rows, ink = WAYS[way]
+    return recolour(MARKS[mark][1], sun, ink, rows), tight(mark)
 
 
 if __name__ == '__main__':
