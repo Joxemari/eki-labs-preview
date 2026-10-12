@@ -24,8 +24,12 @@ ASSETS = {
 }
 
 
+WHITE = '#FFFFFF'
+
+
 def asset(mark, ink, vb, w, h):
-    body = logos.recolour(logos.MARKS[mark][1], logos.FULL, ink, logos.FULL)
+    sym = ink if ink == WHITE else logos.FULL  # one-ink white over photos, the full gradient everywhere else
+    body = logos.recolour(logos.MARKS[mark][1], sym, ink, sym)
     tx, ty, tw, th = logos.tight(mark)
     x, y, vw, vh = vb
     dx = (x + (vw - tw) / 2 - tx) if mark == 'signature-vertical' else 0  # vertical: centred in its box
