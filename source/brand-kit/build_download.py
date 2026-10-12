@@ -126,7 +126,7 @@ def brand_page(art):
              '<div style="display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); column-gap: 24px; align-items: start;">'
              '<div style="grid-column: 1 / span 3; display: flex; flex-direction: column; gap: 6px; padding-top: 2px;">'
              '<span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(10, 16, 12);">Logo builder</span>'
-             '<span style="font-size: 14px; line-height: 21px; color: rgb(85, 90, 82);">Write the name after «eki.», pick the artwork and three colours: the sun (in its gradient, or the whole symbol in the full gradient), the letters and rows, and the background. '
+             '<span style="font-size: 14px; line-height: 21px; color: rgb(85, 90, 82);">Write the name after «eki.», pick the artwork and three colours: the symbol (the full gradient, or the sun in its gradient with the rows in ink), the letters, and the background. '
              'It flags any combination the brand rules do not allow.</span></div>'
              '<div style="grid-column: 4 / span 9;">' + builder_html('lb-') +
              '<noscript><p style="font-size: 14px; color: rgb(85, 90, 82);">The logo builder needs JavaScript. The kit above works without it.</p></noscript>'
@@ -191,9 +191,9 @@ BUILDER_JS = r'''<script>
 (function () {
   var ART = %ART%, TOKENS = %TOKENS%, SUN = 'original', FULL = 'full';
   var HEX = {}; TOKENS.forEach(function (t) { HEX[t[0]] = t[1]; });
-  var PRESETS = [['Day', 'noche', SUN, 'arena'], ['Night', 'arena', SUN, 'noche'], ['Day · full gradient', 'noche', FULL, 'arena'], ['Night · full gradient', 'arena', FULL, 'noche'], ['Black', 'noche', 'noche', 'none'], ['White', 'blanco', 'blanco', 'none']];
+  var PRESETS = [['Day', 'noche', FULL, 'arena'], ['Night', 'arena', FULL, 'noche'], ['Day · sun gradient', 'noche', SUN, 'arena'], ['Night · sun gradient', 'arena', SUN, 'noche'], ['Black', 'noche', 'noche', 'none'], ['White', 'blanco', 'blanco', 'none']];
   var LOCKUPS = [['logo', 'Logo'], ['signature', 'Logo and tagline'], ['stacked', 'Stacked with tagline'], ['symbol', 'Symbol']];
-  var S = { lockup: 'logo', end: 'labs', ink: 'noche', sym: SUN, bg: 'arena' };
+  var S = { lockup: 'logo', end: 'labs', ink: 'noche', sym: FULL, bg: 'arena' };
   var $ = function (id) { return document.getElementById('%P%' + id); };
   function lum(h) { var c = [1, 3, 5].map(function (i) { var v = parseInt(h.substr(i, 2), 16) / 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }); return .2126 * c[0] + .7152 * c[1] + .0722 * c[2]; }
   function ratio(a, b) { var x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); }
@@ -234,7 +234,7 @@ BUILDER_JS = r'''<script>
   }
   function checks() {
     var out = [], bgHex = S.bg === 'none' ? null : HEX[S.bg];
-    if (S.sym !== SUN && S.sym !== FULL && S.sym !== S.ink) out.push(['warn', 'The sun is always in its gradient. Only one-ink versions put the sun in the colour of the letters.']);
+    if (S.sym !== SUN && S.sym !== FULL && S.sym !== S.ink) out.push(['warn', 'The symbol always carries a gradient. Only one-ink versions take the colour of the letters.']);
     if (S.bg === 'yerba' || S.bg === 'sol') out.push(['warn', 'Never place the logo on yerba or on sol.']);
     if (S.sym !== SUN && S.sym !== FULL && S.sym === S.bg) out.push(['warn', 'Sun and background are the same colour: the sun disappears.']);
     if (S.ink === S.bg) out.push(['warn', 'Letters, rows and background are the same colour.']);
@@ -263,8 +263,8 @@ BUILDER_JS = r'''<script>
     var box = $('sw-' + k);
     if (k === 'bg') { var n = btn(box, '', { v: 'none' }, null, 'none'); n.title = 'transparent'; n.setAttribute('aria-label', 'transparent'); n.onclick = function () { S.bg = 'none'; paint(); }; }
     if (k === 'sym') {
-      var g = btn(box, '', { v: SUN }, null, 'sun'); g.title = 'sun gradient, rows in ink'; g.setAttribute('aria-label', 'sun gradient, rows in ink'); g.onclick = function () { S.sym = SUN; paint(); };
       var g2 = btn(box, '', { v: FULL }, null, 'full'); g2.title = 'full gradient, sun and rows'; g2.setAttribute('aria-label', 'full gradient, sun and rows'); g2.onclick = function () { S.sym = FULL; paint(); };
+      var g = btn(box, '', { v: SUN }, null, 'sun'); g.title = 'sun gradient, rows in ink'; g.setAttribute('aria-label', 'sun gradient, rows in ink'); g.onclick = function () { S.sym = SUN; paint(); };
     }
     TOKENS.forEach(function (t) { var b = btn(box, '', { v: t[0] }, t[1]); b.title = t[0] + ' ' + t[1]; b.setAttribute('aria-label', t[0]); b.onclick = function () { S[k] = t[0]; paint(); }; });
   });
@@ -327,7 +327,7 @@ TEMPLATE = r'''<!doctype html>
 <p class="lead">Build the logo in the colours you need, or take any file of the kit on its own. The rules are on the <a href="../">brand page</a>.</p>
 
 <h2 id="builder">Logo builder</h2>
-<p class="muted">Write the name after «eki.», pick the artwork and three colours: the sun, the letters and rows, and the background. The tagline is always the same. The builder flags any combination the brand rules do not allow.</p>
+<p class="muted">Write the name after «eki.», pick the artwork and three colours: the symbol (the full gradient, or the sun in its gradient with the rows in ink), the letters and the background. The tagline is always the same. The builder flags any combination the brand rules do not allow.</p>
 %BUILDER_HTML%
 <noscript><p class="muted">The logo builder needs JavaScript. The files below work without it.</p></noscript>
 

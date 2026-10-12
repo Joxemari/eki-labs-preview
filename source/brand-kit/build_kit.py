@@ -63,8 +63,8 @@ def write_colours(d):
         data['groups'].append(g)
     g = lambda stops: ', '.join(f'{c} {round(o * 100)}%' for o, c in stops)
     css.append('  /* Logo only, top to bottom of the symbol\'s circle. Not palette colours. */')
-    css.append(f'  --eki-logo-sun: linear-gradient(180deg, {g(logos.SUN_STOPS)});  /* the sun (and the horizon sun) */')
-    css.append(f'  --eki-logo-sun-full: linear-gradient(180deg, {g(logos.FULL_STOPS)});  /* option: the whole symbol */')
+    css.append(f'  --eki-logo-sun: linear-gradient(180deg, {g(logos.SUN_STOPS)});  /* the alternative logo and the horizon sun */')
+    css.append(f'  --eki-logo-sun-full: linear-gradient(180deg, {g(logos.FULL_STOPS)});  /* the logo: the whole symbol */')
     data['logo_gradients'] = {
         'use': 'Logo and horizon sun only, top to bottom of the symbol circle. Not palette colours.',
         'sun': [{'offset': o, 'hex': c} for o, c in logos.SUN_STOPS],

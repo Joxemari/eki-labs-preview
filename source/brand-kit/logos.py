@@ -32,8 +32,8 @@ SUN_DEFS = '<defs>' + _grad(SUN_ID, SUN_STOPS) + '</defs>'
 FULL_DEFS = '<defs>' + _grad(FULL_ID, FULL_STOPS) + '</defs>'
 
 WAYS = {  # colourway: (sun, rows, letters)
-    'day': (SUN, NOCHE, NOCHE), 'night': (SUN, ARENA, ARENA),              # the main pair: sun in gradient, rows in ink
-    'day-full': (FULL, FULL, NOCHE), 'night-full': (FULL, FULL, ARENA),    # option: the whole symbol in the full gradient
+    'day-full': (FULL, FULL, NOCHE), 'night-full': (FULL, FULL, ARENA),    # the default pair: the whole symbol in the full gradient
+    'day': (SUN, NOCHE, NOCHE), 'night': (SUN, ARENA, ARENA),              # alternative: sun in gradient, rows in ink (small sizes, low contrast)
     'black': (NOCHE, NOCHE, NOCHE), 'white': (WHITE, WHITE, WHITE)}         # one ink
 
 SYM_SCALE, SYM_Y = 9.23, -816.5  # symbol 923 units tall, bottom 106.5 under the baseline

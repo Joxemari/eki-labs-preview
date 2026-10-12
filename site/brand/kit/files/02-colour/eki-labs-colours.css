@@ -20,6 +20,6 @@
   --eki-niebla: #A1A69F;  /* Secondary text on dark grounds. */
   --eki-blanco: #FFFFFF;  /* Only inside other people’s surfaces (email, documents). Never as our background. */
   /* Logo only, top to bottom of the symbol's circle. Not palette colours. */
-  --eki-logo-sun: linear-gradient(180deg, #FF8F00 0%, #FF8F00 10%, #FFD54A 42%, #FFD54A 100%);  /* the sun (and the horizon sun) */
-  --eki-logo-sun-full: linear-gradient(180deg, #FF8F00 0%, #FF8F00 10%, #FFD54A 42%, #FFD54A 66%, #58E9AE 100%);  /* option: the whole symbol */
+  --eki-logo-sun: linear-gradient(180deg, #FF8F00 0%, #FF8F00 10%, #FFD54A 42%, #FFD54A 100%);  /* the alternative logo and the horizon sun */
+  --eki-logo-sun-full: linear-gradient(180deg, #FF8F00 0%, #FF8F00 10%, #FFD54A 42%, #FFD54A 66%, #58E9AE 100%);  /* the logo: the whole symbol */
 }

@@ -25,7 +25,7 @@ ASSETS = {
 
 
 def asset(mark, ink, vb, w, h):
-    body = logos.recolour(logos.MARKS[mark][1], logos.SUN, ink)
+    body = logos.recolour(logos.MARKS[mark][1], logos.FULL, ink, logos.FULL)
     tx, ty, tw, th = logos.tight(mark)
     x, y, vw, vh = vb
     dx = (x + (vw - tw) / 2 - tx) if mark == 'signature-vertical' else 0  # vertical: centred in its box
@@ -36,16 +36,16 @@ def asset(mark, ink, vb, w, h):
 
 
 def favicon_svg():
-    """The small symbol (two rows): the sun in its gradient, the rows in noche, arena when the browser is dark."""
+    """The small symbol (two rows) in the alternative for small sizes: the sun in its gradient, the rows in noche,
+    arena when the browser is dark."""
     body = logos.recolour(logos.MARKS['symbol-small'][1], logos.SUN, '@@R').replace('fill="@@R"', 'class="r"')
     return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><style>.r{fill:#0A100C}'
             '@media (prefers-color-scheme: dark){.r{fill:#F4F2EC}}</style>' + body + '</svg>\n')
 
 
 def app_icon_svg(size):
-    """The app icon: the symbol on noche, 60 % of the side (two rows below 32 px)."""
-    mark = 'symbol-small' if size < 32 else 'symbol'
-    body = logos.recolour(logos.MARKS[mark][1], logos.SUN, ARENA)
+    """The app icon: the symbol in the full gradient on noche, 60 % of the side."""
+    body = logos.recolour(logos.MARKS['symbol'][1], logos.FULL, ARENA, logos.FULL)
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="{size}" height="{size}">'
             f'<rect width="100" height="100" fill="{NOCHE}"/><g transform="translate(20 20) scale(0.6)">{body}</g></svg>')
 
@@ -54,10 +54,33 @@ def png(svg, size):
     return Image.open(io.BytesIO(cairosvg.svg2png(bytestring=svg.encode(), output_width=size, output_height=size))).convert('RGBA')
 
 
-# Pages: the logo drawn inline (headers, the home intro, the guide). The sun takes the sun gradient (the rows
-# keep their ink) and the second name of the wordmark goes in Geist 400.
+# Pages: the logo drawn inline (headers, the home intro, the guide, the logo animations). The whole symbol takes the
+# full gradient and the second name of the wordmark goes in Geist 400. The two-row symbol for small sizes keeps the
+# alternative (sun in gradient, rows in ink).
 PAGES = ['index.html', '404.html', 'legal/index.html', 'privacy/index.html', 'decks/index.html', 'brand/index.html']
 SUN_PATH = re.compile(r'(<path(?: class="[^"]*")? d="M0 50A50 50 0 [01] 1 100 50Z" fill=")#ffd54a(")', re.I)
+ROW_PATH = re.compile(r'<path\b([^>]*?)\sd="(M0\.38 56\.14|M5\.51? 72\.81|M19\.31 89\.47)([^"]*)"([^>]*?)(/?)>')
+LOW_HALF = re.compile(r'(<path\b[^>]*?d="M0 50A50 50 0 0 0 100 50Z"[^>]*?fill=")#ffd54a(")', re.I)
+SMALL_ROWS = ('M0.86 59.21', 'M13.54 84.21')
+
+
+def _full_rows(m):
+    pre = re.sub(r'\sfill="[^"]*"', '', m.group(1))
+    post = re.sub(r'\sfill="[^"]*"', '', m.group(4))
+    return f'<path{pre} d="{m.group(2)}{m.group(3)}"{post} fill="url(#eki-sun-full)"{m.group(5)}>'
+
+
+def to_full(t):
+    """One inline logo svg to the full gradient. The two-row symbol (small sizes) stays in the alternative."""
+    if any(r in t for r in SMALL_ROWS):
+        return t
+    t = SUN_PATH.sub(r'\1url(#eki-sun)\2', t)
+    t = t.replace('url(#eki-sun)', 'url(#eki-sun-full)')
+    t = LOW_HALF.sub(r'\1url(#eki-sun-full)\2', t)
+    t = ROW_PATH.sub(_full_rows, t)
+    t = re.sub(r'<defs><linearGradient id="eki-sun(?:-full)?".*?</linearGradient></defs>', '', t, flags=re.S)
+    i = t.index('>') + 1
+    return t[:i] + logos.FULL_DEFS + t[i:]
 
 
 def _wordmark_swap():
@@ -86,12 +109,9 @@ def update_pages():
             t = m.group(0)
             if 'data-lb' in t:
                 return t
-            t = SUN_PATH.sub(r'\1url(#eki-sun)\2', t)  # only suns in sol: a sun in another colour is a «no» example
-            t = re.sub(r'<defs><linearGradient id="eki-sun".*?</linearGradient></defs>', lambda _: logos.SUN_DEFS, t, flags=re.S)
             t = re.sub(r'translate\((?:1278|1278\.00|1115)( 0(?:\.00)?)\)', f'translate({logos.WORD_X}\\1)', t)
-            if 'url(#eki-sun)' in t and 'id="eki-sun"' not in t:
-                i = t.index('>') + 1
-                t = t[:i] + logos.SUN_DEFS + t[i:]
+            if re.search(r'url\(#eki-sun(?:-full)?\)', t) or SUN_PATH.search(t):  # a logo; a sun in another colour is a «no» example
+                t = to_full(t)
             return t
         s = re.sub(r'<svg\b[^>]*>(?:(?!</svg>).)*?</svg>', svg_fix, s, flags=re.S)
         if s != n0:
@@ -117,7 +137,7 @@ def main():
     # email signature images (white ground, sized as the generator asks for them)
     for name, mark, (W, H) in (('eki-labs-logo.png', 'logo', (360, 66)), ('eki-labs-firma.png', 'signature', (504, 150))):
         tx, ty, tw, th = logos.tight(mark)
-        svg = logos.svg_file(logos.recolour(logos.MARKS[mark][1], logos.SUN, NOCHE), (tx, ty, tw, th))
+        svg = logos.svg_file(logos.recolour(logos.MARKS[mark][1], logos.FULL, NOCHE, logos.FULL), (tx, ty, tw, th))
         k = min(W / tw, H / th)
         im = Image.open(io.BytesIO(cairosvg.svg2png(bytestring=svg.encode(), output_width=round(tw * k)))).convert('RGBA')
         out = Image.new('RGBA', (W, H), '#FFFFFF'); out.alpha_composite(im, (0, (H - im.height) // 2))
