@@ -1,0 +1,22 @@
+/* eki.labs colours · one name, one job each. Same values as ekilabs.com/brand. */
+:root {
+  /* Brand */
+  --eki-sol: #FFD54A;  /* Energy. The sun of the logo and the key figure, once per piece. Never a button or a text colour. */
+  --eki-yerba: #58E9AE;  /* Crops, and actions on dark: the one colour you can press. */
+  --eki-tierra: #CF8166;  /* Land and rural life, on dark grounds. */
+  --eki-noche: #0A100C;  /* Ink, infrastructure and dark chapters. Our black, with a green cast. */
+  /* Deep */
+  --eki-yerba-honda: #056C4A;  /* Yerba as text and labels on light grounds. */
+  --eki-tierra-honda: #964A2F;  /* Tierra as text and data on light grounds. */
+  --eki-origen: #311D16;  /* Deep ground for origins and the farmer chapters. */
+  --eki-bosque: #0A281A;  /* Deep green ground for food and crops. */
+  /* Base */
+  --eki-arena: #F4F2EC;  /* Page background: the open field. */
+  --eki-piedra: #EBE6D8;  /* Surfaces, cards and bands. */
+  --eki-linea: #D6D1C3;  /* Rules and borders on light grounds. */
+  --eki-pizarra: #555A52;  /* Secondary text on light grounds. */
+  --eki-grafito: #141B16;  /* Surfaces on dark grounds. */
+  --eki-acero: #2B332D;  /* Rules and borders on dark grounds. */
+  --eki-niebla: #A1A69F;  /* Secondary text on dark grounds. */
+  --eki-blanco: #FFFFFF;  /* Only inside other people’s surfaces (email, documents). Never as our background. */
+}

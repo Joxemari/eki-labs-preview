@@ -277,7 +277,7 @@ dt{{font-family:'Geist Mono',Menlo,monospace;font-size:12px;letter-spacing:.06em
 {body}
 </div></main>
 <footer><div class="fund"><span>Funding</span><p>{FUND_TEXT}</p></div>
-<div class="foot"><span>© Eki Labs Corp.</span><span><a href="{r}legal/">Legal notice</a> · <a href="{r}privacy/">Privacy</a> · <a href="{r}brand/">Brand</a></span></div></footer>
+<div class="foot"><span>© Eki Agrivoltaic, S.L.U.</span><span><a href="{r}legal/">Legal notice</a> · <a href="{r}privacy/">Privacy</a> · <a href="{r}brand/">Brand</a></span></div></footer>
 <div class="logos">{FUND_LOGOS.replace('src="assets/', 'src="' + r + 'assets/')}</div>
 </body>
 </html>
@@ -493,11 +493,11 @@ def main():
         src = open(p, encoding='utf-8').read()  # read before opening for writing (that truncates the file)
         out = transform(path, src)
         open(p, 'w', encoding='utf-8').write(out)
-    # signature images from ekilabs.com once the site is live (old signatures keep working from GitHub Pages)
+    # signature images from the folder the page is served from (ekilabs.com or the GitHub preview); elsewhere from ekilabs.com
     sig = os.path.join(SITE, 'signature', 'index.html')
     s = open(sig, encoding='utf-8').read()
     assert s.count("var BASE = 'https://joxemari.github.io/eki-labs-preview/signature/';") == 1
-    open(sig, 'w', encoding='utf-8').write(s.replace("var BASE = 'https://joxemari.github.io/eki-labs-preview/signature/';", "var BASE = 'https://ekilabs.com/signature/';"))
+    open(sig, 'w', encoding='utf-8').write(s.replace("var BASE = 'https://joxemari.github.io/eki-labs-preview/signature/';", "var BASE = /^(ekilabs\\.com|joxemari\\.github\\.io)$/.test(location.hostname) ? new URL('./', location.href).href : 'https://ekilabs.com/signature/';"))
     # decks: same fonts as the site, still private
     dk = os.path.join(SITE, 'decks', 'index.html')
     s = open(dk, encoding='utf-8').read()

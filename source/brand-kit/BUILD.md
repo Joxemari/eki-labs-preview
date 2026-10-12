@@ -18,6 +18,8 @@ cp out/eki-labs-brand-kit.zip out/eki-labs-logos.zip out/eki-labs-colours.zip ou
 
 Resultado: `out/eki-labs-brand-kit/` (136 archivos) y los zips.
 
+Después, desde la raíz del repo, `python3 source/brand-kit/build_download.py`: descomprime el kit en `site/brand/kit/files/` (descarga archivo a archivo) y regenera `/brand/download/`, el creador de logos, a partir de los SVG day del kit.
+
 ## Qué es cada archivo
 
 - `masters/`: los originales en curvas. `eki-labs-dia.svg` lleva el símbolo y el wordmark; los dos `lockup-firma-*` llevan el logo con el lema, en horizontal y en vertical.
