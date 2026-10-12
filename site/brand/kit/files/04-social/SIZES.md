@@ -35,6 +35,12 @@ Sizes as the networks published them in October 2026. They change: check the net
 |---|---|---|
 | Link preview (Open Graph) | 1200 × 630 | `web/eki-labs-social-preview-1200x630.png` |
 
+## Google Workspace
+
+| Piece | Size | File | Notes |
+|---|---|---|---|
+| Organisation logo | 320 × 132 | `web/eki-google-workspace-logo-320x132.png` | Admin console › Account › Account settings › Personalization. eki. on white. It shows next to the account in Gmail, Drive and the other apps, for the whole organisation; it can take up to 4 days to appear. |
+
 ## Editing the templates
 
 1. Install the three fonts in `03-type`.

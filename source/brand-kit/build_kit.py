@@ -120,6 +120,19 @@ def render_social(files):
     subprocess.run(['node', os.path.join(HERE, 'render_svgs.mjs'), jp], check=True)
 
 
+def workspace_logo(root):
+    """Organisation logo for Google Workspace (Admin console > Account > Personalization):
+    eki. in day-full on white, exactly 320 x 132 px, with a quarter of the symbol free around it."""
+    import io, cairosvg
+    w = 258
+    png = cairosvg.svg2png(url=os.path.join(root, '01-logo', 'eki', 'eki-logo-day-full.svg'), output_width=w * 4)
+    art = Image.open(io.BytesIO(png)).convert('RGBA')
+    art = art.resize((w, round(art.height * w / art.width)), Image.LANCZOS)
+    im = Image.new('RGBA', (320, 132), (255, 255, 255, 255))
+    im.alpha_composite(art, ((320 - art.width) // 2, (132 - art.height) // 2))
+    im.convert('RGB').save(os.path.join(root, '04-social', 'web', 'eki-google-workspace-logo-320x132.png'), optimize=True)
+
+
 def main(out):
     root = os.path.join(out, 'eki-labs-brand-kit')
     shutil.rmtree(root, ignore_errors=True); os.makedirs(root)
@@ -128,6 +141,7 @@ def main(out):
     write_type(os.path.join(root, '03-type'))
     files = social.build(os.path.join(root, '04-social'))
     render_social(files)
+    workspace_logo(root)
     shutil.copy(os.path.join(HERE, 'README.md'), os.path.join(root, 'README.md'))
     shutil.copy(os.path.join(HERE, 'SOCIAL-SIZES.md'), os.path.join(root, '04-social', 'SIZES.md'))
     zp = os.path.join(out, 'eki-labs-brand-kit.zip')

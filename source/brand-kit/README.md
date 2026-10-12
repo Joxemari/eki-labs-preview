@@ -18,7 +18,7 @@ Version: October 2026 · Questions: hola@ekilabs.com
   signature-vertical/       eki.labs and tagline, stacked
 02-colour/              ASE (Adobe), CSS, JSON and a swatch card
 03-type/                Zilla Slab, Work Sans and Geist Mono, with their licences
-04-social/              avatars, LinkedIn, Instagram, YouTube, posts and the web preview image
+04-social/              avatars, LinkedIn, Instagram, YouTube, posts, the web preview image and the Google Workspace logo
 ```
 
 Every logo comes in six colourways and three formats. The full gradient is the logo by default; the others are for the cases where it does not fit.

@@ -16,7 +16,7 @@ python3 build_kit.py out
 cp out/eki-labs-brand-kit.zip out/eki-labs-logos.zip out/eki-labs-colours.zip out/eki-labs-type.zip out/eki-labs-social.zip ../../site/brand/kit/
 ```
 
-Resultado: `out/eki-labs-brand-kit/` (192 archivos) y los zips.
+Resultado: `out/eki-labs-brand-kit/` (193 archivos) y los zips.
 
 Después, desde la raíz del repo, `python3 source/brand-kit/build_download.py`: descomprime el kit en `site/brand/kit/files/` (descarga archivo a archivo) y regenera `/brand/download/`, el creador de logos.
 
