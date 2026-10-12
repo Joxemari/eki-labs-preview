@@ -53,24 +53,27 @@ dt{font-family:'Geist Mono',Menlo,monospace;font-size:12px;letter-spacing:.06em;
 
 .inner{max-width:none}
 .lead{font-size:19px;line-height:29px;max-width:720px;color:var(--pizarra)}
-.builder{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:32px;margin:24px 0 8px;align-items:start}
-.stage{border:1px solid var(--linea);border-radius:16px;min-height:360px;display:flex;align-items:center;justify-content:center;padding:32px;background-image:linear-gradient(45deg,#e7e3d6 25%,transparent 25%,transparent 75%,#e7e3d6 75%),linear-gradient(45deg,#e7e3d6 25%,transparent 25%,transparent 75%,#e7e3d6 75%);background-size:20px 20px;background-position:0 0,10px 10px}
-.stage svg{display:block;max-width:100%;max-height:420px;height:auto}
-.panel{display:flex;flex-direction:column;gap:20px}
-.label{display:block;font-family:'Geist Mono',Menlo,monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--pizarra);margin:0 0 8px}
-.seg{display:flex;flex-wrap:wrap;gap:6px}
-.seg button,.btn{font:inherit;font-size:14px;line-height:20px;padding:8px 12px;border-radius:4px;border:1px solid var(--linea);background:#fff0;color:var(--noche);cursor:pointer}
-.seg button[aria-pressed="true"]{background:var(--noche);border-color:var(--noche);color:var(--arena)}
-.sw{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
-.sw button{aspect-ratio:1;border-radius:6px;border:1px solid var(--linea);cursor:pointer;padding:0;position:relative}
-.sw button[aria-pressed="true"]{outline:2px solid var(--noche);outline-offset:2px}
-.sw button.none{background:repeating-linear-gradient(45deg,#fff 0 4px,#e7e3d6 4px 8px)}
-.picked{font-family:'Geist Mono',Menlo,monospace;font-size:12px;color:var(--pizarra);margin-top:6px}
-.checks{margin:0;padding:12px 14px;border-radius:12px;background:var(--piedra);font-size:14px;line-height:21px;list-style:none}
-.checks li{margin:0}.checks li+li{margin-top:6px}
-.checks .ok{color:var(--yhonda)}.checks .warn{color:#964A2F}
-.dl{display:flex;flex-wrap:wrap;gap:8px}
-.btn.primary{background:var(--noche);border-color:var(--noche);color:var(--arena)}
+.lb{--linea:#D6D1C3;--noche:#0A100C;--arena:#F4F2EC;--pizarra:#555A52;--piedra:#EBE6D8;--yhonda:#056C4A}
+.lb .builder{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:32px;margin:24px 0 8px;align-items:start}
+.lb .stage{border:1px solid var(--linea);border-radius:16px;min-height:360px;display:flex;align-items:center;justify-content:center;padding:32px;background-image:linear-gradient(45deg,#e7e3d6 25%,transparent 25%,transparent 75%,#e7e3d6 75%),linear-gradient(45deg,#e7e3d6 25%,transparent 25%,transparent 75%,#e7e3d6 75%);background-size:20px 20px;background-position:0 0,10px 10px}
+.lb .stage svg{display:block;max-width:100%;max-height:420px;height:auto}
+.lb .panel{display:flex;flex-direction:column;gap:20px}
+.lb .label{display:block;font-family:'Geist Mono',Menlo,monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--pizarra);margin:0 0 8px}
+.lb .seg{display:flex;flex-wrap:wrap;gap:6px}
+.lb .seg button,.lb .btn{font:inherit;font-size:14px;line-height:20px;padding:8px 12px;border-radius:4px;border:1px solid var(--linea);background:#fff0;color:var(--noche);cursor:pointer}
+.lb .seg button[aria-pressed="true"]{background:var(--noche);border-color:var(--noche);color:var(--arena)}
+.lb .sw{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+.lb .sw button{aspect-ratio:1;border-radius:6px;border:1px solid var(--linea);cursor:pointer;padding:0;position:relative}
+.lb .sw button[aria-pressed="true"]{outline:2px solid var(--noche);outline-offset:2px}
+.lb .sw button.none{background:repeating-linear-gradient(45deg,#fff 0 4px,#e7e3d6 4px 8px)}
+.lb .picked{font-family:'Geist Mono',Menlo,monospace;font-size:12px;color:var(--pizarra);margin-top:6px}
+.lb .checks{margin:0;padding:12px 14px;border-radius:12px;background:var(--piedra);font-size:14px;line-height:21px;list-style:none}
+.lb .checks li{margin:0}.checks li+li{margin-top:6px}
+.lb .checks .ok{color:var(--yhonda)}.checks .warn{color:#964A2F}
+.lb .dl{display:flex;flex-wrap:wrap;gap:8px}
+.lb .btn.primary{background:var(--noche);border-color:var(--noche);color:var(--arena)}
+@media (max-width:1023px){.lb .builder{grid-template-columns:1fr}}
+
 .files{margin-top:36px}
 .files h3{font-family:'Zilla Slab',Georgia,serif;font-weight:400;font-size:24px;margin:0 0 4px}
 .files ul{list-style:none;padding:0;margin:12px 0 0;columns:2;column-gap:32px}
@@ -78,7 +81,8 @@ dt{font-family:'Geist Mono',Menlo,monospace;font-size:12px;letter-spacing:.06em;
 .files li span{font-family:'Geist Mono',Menlo,monospace;font-size:12px;color:var(--pizarra);white-space:nowrap}
 .files li a{overflow-wrap:anywhere}
 .zips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0}
-@media (max-width:1023px){.builder{grid-template-columns:1fr}.files ul{columns:1}}
+.zips .btn{font-size:14px;line-height:20px;padding:8px 12px;border-radius:4px;border:1px solid var(--linea);color:var(--noche)}
+@media (max-width:1023px){.files ul{columns:1}}
 </style>
 </head>
 <body>
@@ -90,23 +94,26 @@ dt{font-family:'Geist Mono',Menlo,monospace;font-size:12px;letter-spacing:.06em;
 
 <h2 id="builder">Logo builder</h2>
 <p class="muted">Pick the artwork and four colours: the letters, the rows, the sun and the background. The builder flags any combination the brand rules do not allow.</p>
+<div class="lb">
 <div class="builder">
-  <div class="stage" id="stage" aria-live="polite"></div>
-  <div class="panel">
-    <div><span class="label">Artwork</span><div class="seg" id="lockup"></div></div>
-    <div><span class="label">Ready-made</span><div class="seg" id="presets"></div></div>
-    <div><span class="label">Letters</span><div class="sw" id="sw-ink"></div><div class="picked" id="pk-ink"></div></div>
-    <div><span class="label">Rows</span><div class="sw" id="sw-rows"></div><div class="picked" id="pk-rows"></div></div>
-    <div><span class="label">Sun</span><div class="sw" id="sw-sun"></div><div class="picked" id="pk-sun"></div></div>
-    <div><span class="label">Background</span><div class="sw" id="sw-bg"></div><div class="picked" id="pk-bg"></div></div>
-    <ul class="checks" id="checks"></ul>
-    <div><span class="label">Download</span><div class="dl">
-      <button class="btn primary" id="dl-svg" type="button">SVG</button>
-      <button class="btn" id="dl-png1" type="button">PNG 1200 px</button>
-      <button class="btn" id="dl-png4" type="button">PNG 4000 px</button>
-    </div></div>
+    <div class="stage" id="stage" aria-live="polite"></div>
+    <div class="panel">
+      <div><span class="label">Artwork</span><div class="seg" id="lockup"></div></div>
+      <div><span class="label">Ready-made</span><div class="seg" id="presets"></div></div>
+      <div><span class="label">Letters</span><div class="sw" id="sw-ink"></div><div class="picked" id="pk-ink"></div></div>
+      <div><span class="label">Rows</span><div class="sw" id="sw-rows"></div><div class="picked" id="pk-rows"></div></div>
+      <div><span class="label">Sun</span><div class="sw" id="sw-sun"></div><div class="picked" id="pk-sun"></div></div>
+      <div><span class="label">Background</span><div class="sw" id="sw-bg"></div><div class="picked" id="pk-bg"></div></div>
+      <ul class="checks" id="checks"></ul>
+      <div><span class="label">Download</span><div class="dl">
+        <button class="btn primary" id="dl-svg" type="button">SVG</button>
+        <button class="btn" id="dl-png1" type="button">PNG 1200 px</button>
+        <button class="btn" id="dl-png4" type="button">PNG 4000 px</button>
+      </div></div>
+    </div>
   </div>
 </div>
+
 <noscript><p class="muted">The logo builder needs JavaScript. The files below work without it.</p></noscript>
 
 <h2 id="files">Every file, one by one</h2>
@@ -123,7 +130,7 @@ dt{font-family:'Geist Mono',Menlo,monospace;font-size:12px;letter-spacing:.06em;
   var HEX = {}; TOKENS.forEach(function (t) { HEX[t[0]] = t[1]; });
   var PRESETS = [['Day', 'noche', 'sol', 'arena'], ['Night', 'arena', 'sol', 'noche'], ['Black', 'noche', 'noche', 'none'], ['White', 'blanco', 'blanco', 'none']];
   var S = { lockup: 'logo', ink: 'noche', rows: 'noche', sun: 'sol', bg: 'arena' };
-  var $ = function (id) { return document.getElementById(id); };
+  var $ = function (id) { return document.getElementById('' + id); };
   function lum(h) { var c = [1, 3, 5].map(function (i) { var v = parseInt(h.substr(i, 2), 16) / 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }); return .2126 * c[0] + .7152 * c[1] + .0722 * c[2]; }
   function ratio(a, b) { var x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); }
   function svg(px) {

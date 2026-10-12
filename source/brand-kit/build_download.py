@@ -13,6 +13,7 @@ SITE = os.path.join(ROOT, 'site')
 KIT_ZIP = os.path.join(SITE, 'brand', 'kit', 'eki-labs-brand-kit.zip')
 FILES = os.path.join(SITE, 'brand', 'kit', 'files')
 PAGE = os.path.join(SITE, 'brand', 'download', 'index.html')
+BRAND = os.path.join(SITE, 'brand', 'index.html')
 TOP = 'eki-labs-brand-kit/'
 
 # The 16 colour tokens (CLAUDE.md, /brand). Order = how they appear in the pickers.
@@ -110,109 +111,99 @@ def main():
     page = TEMPLATE
     for k, v in {
         '%STYLE%': style, '%HEADER%': header, '%FUND%': fund, '%FILES%': file_list(names),
-        '%COUNT%': str(len(names)), '%ART%': json.dumps(art, ensure_ascii=False),
-        '%TOKENS%': json.dumps(TOKENS, ensure_ascii=False),
+        '%COUNT%': str(len(names)),
     }.items():
         page = page.replace(k, v)
+    page = page.replace('%BUILDER_HTML%', builder_html('')).replace('%BUILDER_JS%', builder_js('', art)).replace('%BUILDER_CSS%', BUILDER_CSS)
     os.makedirs(os.path.dirname(PAGE), exist_ok=True)
     open(PAGE, 'w', encoding='utf-8').write(page)
     print(len(names), 'files ·', PAGE)
+    brand_page(art)
 
 
-TEMPLATE = r'''<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Brand downloads · eki.labs</title>
-<meta name="description" content="Every file of the eki.labs brand kit, one by one, and a logo builder in the brand colours.">
-<link rel="canonical" href="https://ekilabs.com/brand/download/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="eki.labs">
-<meta property="og:title" content="Brand downloads · eki.labs">
-<meta property="og:description" content="Every file of the eki.labs brand kit, one by one, and a logo builder in the brand colours.">
-<meta property="og:url" content="https://ekilabs.com/brand/download/">
-<meta property="og:image" content="https://ekilabs.com/social-preview.png">
-<meta name="theme-color" content="#0A100C">
-<link rel="icon" href="../../favicon.ico" sizes="32x32">
-<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
-<link rel="preload" href="../../fonts/zilla-slab-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../../fonts/work-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../fonts/fonts.css">
-<style>
-%STYLE%
-.inner{max-width:none}
-.lead{font-size:19px;line-height:29px;max-width:720px;color:var(--pizarra)}
-.builder{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:32px;margin:24px 0 8px;align-items:start}
-.stage{border:1px solid var(--linea);border-radius:16px;min-height:360px;display:flex;align-items:center;justify-content:center;padding:32px;background-image:linear-gradient(45deg,#e7e3d6 25%,transparent 25%,transparent 75%,#e7e3d6 75%),linear-gradient(45deg,#e7e3d6 25%,transparent 25%,transparent 75%,#e7e3d6 75%);background-size:20px 20px;background-position:0 0,10px 10px}
-.stage svg{display:block;max-width:100%;max-height:420px;height:auto}
-.panel{display:flex;flex-direction:column;gap:20px}
-.label{display:block;font-family:'Geist Mono',Menlo,monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--pizarra);margin:0 0 8px}
-.seg{display:flex;flex-wrap:wrap;gap:6px}
-.seg button,.btn{font:inherit;font-size:14px;line-height:20px;padding:8px 12px;border-radius:4px;border:1px solid var(--linea);background:#fff0;color:var(--noche);cursor:pointer}
-.seg button[aria-pressed="true"]{background:var(--noche);border-color:var(--noche);color:var(--arena)}
-.sw{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
-.sw button{aspect-ratio:1;border-radius:6px;border:1px solid var(--linea);cursor:pointer;padding:0;position:relative}
-.sw button[aria-pressed="true"]{outline:2px solid var(--noche);outline-offset:2px}
-.sw button.none{background:repeating-linear-gradient(45deg,#fff 0 4px,#e7e3d6 4px 8px)}
-.picked{font-family:'Geist Mono',Menlo,monospace;font-size:12px;color:var(--pizarra);margin-top:6px}
-.checks{margin:0;padding:12px 14px;border-radius:12px;background:var(--piedra);font-size:14px;line-height:21px;list-style:none}
-.checks li{margin:0}.checks li+li{margin-top:6px}
-.checks .ok{color:var(--yhonda)}.checks .warn{color:#964A2F}
-.dl{display:flex;flex-wrap:wrap;gap:8px}
-.btn.primary{background:var(--noche);border-color:var(--noche);color:var(--arena)}
-.files{margin-top:36px}
-.files h3{font-family:'Zilla Slab',Georgia,serif;font-weight:400;font-size:24px;margin:0 0 4px}
-.files ul{list-style:none;padding:0;margin:12px 0 0;columns:2;column-gap:32px}
-.files li{display:flex;justify-content:space-between;gap:12px;break-inside:avoid;padding:7px 0;border-bottom:1px solid var(--linea);font-size:15px;line-height:22px}
-.files li span{font-family:'Geist Mono',Menlo,monospace;font-size:12px;color:var(--pizarra);white-space:nowrap}
-.files li a{overflow-wrap:anywhere}
-.zips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0}
-@media (max-width:1023px){.builder{grid-template-columns:1fr}.files ul{columns:1}}
-</style>
-</head>
-<body>
-%HEADER%
-<main class="card"><div class="inner">
-<p class="eyebrow"><span></span>Brand</p>
-<h1>Brand downloads.</h1>
-<p class="lead">Build the logo in the colours you need, or take any file of the kit on its own. The rules are on the <a href="../">brand page</a>.</p>
+def builder_html(prefix):
+    return BUILDER_HTML.replace('%P%', prefix)
 
-<h2 id="builder">Logo builder</h2>
-<p class="muted">Pick the artwork and four colours: the letters, the rows, the sun and the background. The builder flags any combination the brand rules do not allow.</p>
+
+def builder_js(prefix, art):
+    return (BUILDER_JS.replace('%P%', prefix).replace('%ART%', json.dumps(art, ensure_ascii=False))
+            .replace('%TOKENS%', json.dumps(TOKENS, ensure_ascii=False)))
+
+
+def brand_page(art):
+    """Put the same logo builder on the brand page, in Downloads, before the social sizes."""
+    s = open(BRAND, encoding='utf-8').read()
+    s = re.sub(r'<style data-lb>.*?</style>', '', s, flags=re.S)
+    s = re.sub(r'<!--lb:html-->.*?<!--/lb:html-->', '', s, flags=re.S)
+    s = re.sub(r'<script data-lb>.*?</script>\n?', '', s, flags=re.S)
+    block = ('<!--lb:html--><div id="logo-builder" style="grid-column: 1 / -1; scroll-margin-top: 96px;">'
+             '<div style="display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); column-gap: 24px; align-items: start;">'
+             '<div style="grid-column: 1 / span 3; display: flex; flex-direction: column; gap: 6px; padding-top: 2px;">'
+             '<span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(10, 16, 12);">Logo builder</span>'
+             '<span style="font-size: 14px; line-height: 21px; color: rgb(85, 90, 82);">Pick the artwork and four colours: the letters, the rows, the sun and the background. '
+             'It flags any combination the brand rules do not allow.</span></div>'
+             '<div style="grid-column: 4 / span 9;">' + builder_html('lb-') +
+             '<noscript><p style="font-size: 14px; color: rgb(85, 90, 82);">The logo builder needs JavaScript. The kit above works without it.</p></noscript>'
+             '</div></div></div><!--/lb:html-->')
+    anchor = s.index('<div style="grid-column: 1 / -1;"><div style="display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); column-gap: 24px; align-items: start;"><div style="grid-column: 1 / span 3; display: flex; flex-direction: column; gap: 6px; padding-top: 2px;"><span style="font-family: &quot;Geist Mono&quot;, Menlo, monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(10, 16, 12);">Sizes in the kit</span>')
+    s = s[:anchor] + block + s[anchor:]
+    s = s.replace('</head>', '<style data-lb>' + BUILDER_CSS + '</style></head>', 1)
+    s = s.replace('</body>', builder_js('lb-', art).replace('<script>', '<script data-lb>', 1) + '\n</body>', 1)
+    s = s.replace('>Every file one by one, and the logo builder →</a>', '>Every file one by one →</a>')
+    open(BRAND, 'w', encoding='utf-8').write(s)
+    print('logo builder ·', BRAND)
+
+
+BUILDER_CSS = r'''.lb{--linea:#D6D1C3;--noche:#0A100C;--arena:#F4F2EC;--pizarra:#555A52;--piedra:#EBE6D8;--yhonda:#056C4A}
+.lb .builder{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:32px;margin:24px 0 8px;align-items:start}
+.lb .stage{border:1px solid var(--linea);border-radius:16px;min-height:360px;display:flex;align-items:center;justify-content:center;padding:32px;background-image:linear-gradient(45deg,#e7e3d6 25%,transparent 25%,transparent 75%,#e7e3d6 75%),linear-gradient(45deg,#e7e3d6 25%,transparent 25%,transparent 75%,#e7e3d6 75%);background-size:20px 20px;background-position:0 0,10px 10px}
+.lb .stage svg{display:block;max-width:100%;max-height:420px;height:auto}
+.lb .panel{display:flex;flex-direction:column;gap:20px}
+.lb .label{display:block;font-family:'Geist Mono',Menlo,monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--pizarra);margin:0 0 8px}
+.lb .seg{display:flex;flex-wrap:wrap;gap:6px}
+.lb .seg button,.lb .btn{font:inherit;font-size:14px;line-height:20px;padding:8px 12px;border-radius:4px;border:1px solid var(--linea);background:#fff0;color:var(--noche);cursor:pointer}
+.lb .seg button[aria-pressed="true"]{background:var(--noche);border-color:var(--noche);color:var(--arena)}
+.lb .sw{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+.lb .sw button{aspect-ratio:1;border-radius:6px;border:1px solid var(--linea);cursor:pointer;padding:0;position:relative}
+.lb .sw button[aria-pressed="true"]{outline:2px solid var(--noche);outline-offset:2px}
+.lb .sw button.none{background:repeating-linear-gradient(45deg,#fff 0 4px,#e7e3d6 4px 8px)}
+.lb .picked{font-family:'Geist Mono',Menlo,monospace;font-size:12px;color:var(--pizarra);margin-top:6px}
+.lb .checks{margin:0;padding:12px 14px;border-radius:12px;background:var(--piedra);font-size:14px;line-height:21px;list-style:none}
+.lb .checks li{margin:0}.checks li+li{margin-top:6px}
+.lb .checks .ok{color:var(--yhonda)}.checks .warn{color:#964A2F}
+.lb .dl{display:flex;flex-wrap:wrap;gap:8px}
+.lb .btn.primary{background:var(--noche);border-color:var(--noche);color:var(--arena)}
+@media (max-width:1023px){.lb .builder{grid-template-columns:1fr}}
+'''
+
+BUILDER_HTML = r'''<div class="lb">
 <div class="builder">
-  <div class="stage" id="stage" aria-live="polite"></div>
-  <div class="panel">
-    <div><span class="label">Artwork</span><div class="seg" id="lockup"></div></div>
-    <div><span class="label">Ready-made</span><div class="seg" id="presets"></div></div>
-    <div><span class="label">Letters</span><div class="sw" id="sw-ink"></div><div class="picked" id="pk-ink"></div></div>
-    <div><span class="label">Rows</span><div class="sw" id="sw-rows"></div><div class="picked" id="pk-rows"></div></div>
-    <div><span class="label">Sun</span><div class="sw" id="sw-sun"></div><div class="picked" id="pk-sun"></div></div>
-    <div><span class="label">Background</span><div class="sw" id="sw-bg"></div><div class="picked" id="pk-bg"></div></div>
-    <ul class="checks" id="checks"></ul>
-    <div><span class="label">Download</span><div class="dl">
-      <button class="btn primary" id="dl-svg" type="button">SVG</button>
-      <button class="btn" id="dl-png1" type="button">PNG 1200 px</button>
-      <button class="btn" id="dl-png4" type="button">PNG 4000 px</button>
-    </div></div>
+    <div class="stage" id="%P%stage" aria-live="polite"></div>
+    <div class="panel">
+      <div><span class="label">Artwork</span><div class="seg" id="%P%lockup"></div></div>
+      <div><span class="label">Ready-made</span><div class="seg" id="%P%presets"></div></div>
+      <div><span class="label">Letters</span><div class="sw" id="%P%sw-ink"></div><div class="picked" id="%P%pk-ink"></div></div>
+      <div><span class="label">Rows</span><div class="sw" id="%P%sw-rows"></div><div class="picked" id="%P%pk-rows"></div></div>
+      <div><span class="label">Sun</span><div class="sw" id="%P%sw-sun"></div><div class="picked" id="%P%pk-sun"></div></div>
+      <div><span class="label">Background</span><div class="sw" id="%P%sw-bg"></div><div class="picked" id="%P%pk-bg"></div></div>
+      <ul class="checks" id="%P%checks"></ul>
+      <div><span class="label">Download</span><div class="dl">
+        <button class="btn primary" id="%P%dl-svg" type="button">SVG</button>
+        <button class="btn" id="%P%dl-png1" type="button">PNG 1200 px</button>
+        <button class="btn" id="%P%dl-png4" type="button">PNG 4000 px</button>
+      </div></div>
+    </div>
   </div>
 </div>
-<noscript><p class="muted">The logo builder needs JavaScript. The files below work without it.</p></noscript>
+'''
 
-<h2 id="files">Every file, one by one</h2>
-<p class="muted">%COUNT% files. Or take them in one go:</p>
-<div class="zips"><a class="btn" href="../kit/eki-labs-brand-kit.zip">Whole kit (zip)</a><a class="btn" href="../kit/eki-labs-logos.zip">Logos</a><a class="btn" href="../kit/eki-labs-colours.zip">Colour</a><a class="btn" href="../kit/eki-labs-type.zip">Type</a><a class="btn" href="../kit/eki-labs-social.zip">Social</a></div>
-%FILES%
-</div></main>
-%FUND%
-<script>
+BUILDER_JS = r'''<script>
 (function () {
   var ART = %ART%, TOKENS = %TOKENS%;
   var HEX = {}; TOKENS.forEach(function (t) { HEX[t[0]] = t[1]; });
   var PRESETS = [['Day', 'noche', 'sol', 'arena'], ['Night', 'arena', 'sol', 'noche'], ['Black', 'noche', 'noche', 'none'], ['White', 'blanco', 'blanco', 'none']];
   var S = { lockup: 'logo', ink: 'noche', rows: 'noche', sun: 'sol', bg: 'arena' };
-  var $ = function (id) { return document.getElementById(id); };
+  var $ = function (id) { return document.getElementById('%P%' + id); };
   function lum(h) { var c = [1, 3, 5].map(function (i) { var v = parseInt(h.substr(i, 2), 16) / 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }); return .2126 * c[0] + .7152 * c[1] + .0722 * c[2]; }
   function ratio(a, b) { var x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); }
   function svg(px) {
@@ -268,7 +259,65 @@ TEMPLATE = r'''<!doctype html>
   $('dl-png4').onclick = function () { png(4000); };
   paint();
 })();
-</script>
+</script>'''
+
+
+TEMPLATE = r'''<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand downloads · eki.labs</title>
+<meta name="description" content="Every file of the eki.labs brand kit, one by one, and a logo builder in the brand colours.">
+<link rel="canonical" href="https://ekilabs.com/brand/download/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="eki.labs">
+<meta property="og:title" content="Brand downloads · eki.labs">
+<meta property="og:description" content="Every file of the eki.labs brand kit, one by one, and a logo builder in the brand colours.">
+<meta property="og:url" content="https://ekilabs.com/brand/download/">
+<meta property="og:image" content="https://ekilabs.com/social-preview.png">
+<meta name="theme-color" content="#0A100C">
+<link rel="icon" href="../../favicon.ico" sizes="32x32">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../fonts/zilla-slab-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../fonts/work-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<style>
+%STYLE%
+.inner{max-width:none}
+.lead{font-size:19px;line-height:29px;max-width:720px;color:var(--pizarra)}
+%BUILDER_CSS%
+.files{margin-top:36px}
+.files h3{font-family:'Zilla Slab',Georgia,serif;font-weight:400;font-size:24px;margin:0 0 4px}
+.files ul{list-style:none;padding:0;margin:12px 0 0;columns:2;column-gap:32px}
+.files li{display:flex;justify-content:space-between;gap:12px;break-inside:avoid;padding:7px 0;border-bottom:1px solid var(--linea);font-size:15px;line-height:22px}
+.files li span{font-family:'Geist Mono',Menlo,monospace;font-size:12px;color:var(--pizarra);white-space:nowrap}
+.files li a{overflow-wrap:anywhere}
+.zips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0}
+.zips .btn{font-size:14px;line-height:20px;padding:8px 12px;border-radius:4px;border:1px solid var(--linea);color:var(--noche)}
+@media (max-width:1023px){.files ul{columns:1}}
+</style>
+</head>
+<body>
+%HEADER%
+<main class="card"><div class="inner">
+<p class="eyebrow"><span></span>Brand</p>
+<h1>Brand downloads.</h1>
+<p class="lead">Build the logo in the colours you need, or take any file of the kit on its own. The rules are on the <a href="../">brand page</a>.</p>
+
+<h2 id="builder">Logo builder</h2>
+<p class="muted">Pick the artwork and four colours: the letters, the rows, the sun and the background. The builder flags any combination the brand rules do not allow.</p>
+%BUILDER_HTML%
+<noscript><p class="muted">The logo builder needs JavaScript. The files below work without it.</p></noscript>
+
+<h2 id="files">Every file, one by one</h2>
+<p class="muted">%COUNT% files. Or take them in one go:</p>
+<div class="zips"><a class="btn" href="../kit/eki-labs-brand-kit.zip">Whole kit (zip)</a><a class="btn" href="../kit/eki-labs-logos.zip">Logos</a><a class="btn" href="../kit/eki-labs-colours.zip">Colour</a><a class="btn" href="../kit/eki-labs-type.zip">Type</a><a class="btn" href="../kit/eki-labs-social.zip">Social</a></div>
+%FILES%
+</div></main>
+%FUND%
+%BUILDER_JS%
 </body>
 </html>
 '''
