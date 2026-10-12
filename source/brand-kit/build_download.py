@@ -70,8 +70,14 @@ def artwork(rel):
     body = s[s.index('>', s.index('<svg')) + 1:s.rindex('</svg>')]
     body = re.sub(r'<title>.*?</title>', '', body)
     assert body.count('#FFD54A') == 1, rel
-    body = body.replace('fill="#FFD54A"', 'fill="{sun}"').replace('fill="#0A100C"', 'fill="{ink}"')
-    assert '#' not in re.sub(r'fill="\{(sun|ink)\}"', '', body), rel
+    # the symbol (sun + three rows) is the first group in logo files and the whole file in the symbol;
+    # its ink paths are the rows, every other ink path is lettering (wordmark, tagline)
+    i = body.find('</g>')
+    sym, rest = (body, '') if '<g' not in body else (body[:i], body[i:])
+    sym = sym.replace('fill="#FFD54A"', 'fill="{sun}"').replace('fill="#0A100C"', 'fill="{rows}"')
+    body = sym + rest.replace('fill="#0A100C"', 'fill="{ink}"')
+    assert body.count('{sun}') == 1 and body.count('{rows}') == 3, rel
+    assert '#' not in re.sub(r'fill="\{(sun|rows|ink)\}"', '', body), rel
     return {'viewBox': vb, 'body': body}
 
 
@@ -174,13 +180,14 @@ TEMPLATE = r'''<!doctype html>
 <p class="lead">Build the logo in the colours you need, or take any file of the kit on its own. The rules are on the <a href="../">brand page</a>.</p>
 
 <h2 id="builder">Logo builder</h2>
-<p class="muted">Pick the artwork and three colours: the letters and rows, the sun and the background. The builder flags any combination the brand rules do not allow.</p>
+<p class="muted">Pick the artwork and four colours: the letters, the rows, the sun and the background. The builder flags any combination the brand rules do not allow.</p>
 <div class="builder">
   <div class="stage" id="stage" aria-live="polite"></div>
   <div class="panel">
     <div><span class="label">Artwork</span><div class="seg" id="lockup"></div></div>
     <div><span class="label">Ready-made</span><div class="seg" id="presets"></div></div>
-    <div><span class="label">Letters and rows</span><div class="sw" id="sw-ink"></div><div class="picked" id="pk-ink"></div></div>
+    <div><span class="label">Letters</span><div class="sw" id="sw-ink"></div><div class="picked" id="pk-ink"></div></div>
+    <div><span class="label">Rows</span><div class="sw" id="sw-rows"></div><div class="picked" id="pk-rows"></div></div>
     <div><span class="label">Sun</span><div class="sw" id="sw-sun"></div><div class="picked" id="pk-sun"></div></div>
     <div><span class="label">Background</span><div class="sw" id="sw-bg"></div><div class="picked" id="pk-bg"></div></div>
     <ul class="checks" id="checks"></ul>
@@ -204,36 +211,39 @@ TEMPLATE = r'''<!doctype html>
   var ART = %ART%, TOKENS = %TOKENS%;
   var HEX = {}; TOKENS.forEach(function (t) { HEX[t[0]] = t[1]; });
   var PRESETS = [['Day', 'noche', 'sol', 'arena'], ['Night', 'arena', 'sol', 'noche'], ['Black', 'noche', 'noche', 'none'], ['White', 'blanco', 'blanco', 'none']];
-  var S = { lockup: 'logo', ink: 'noche', sun: 'sol', bg: 'arena' };
+  var S = { lockup: 'logo', ink: 'noche', rows: 'noche', sun: 'sol', bg: 'arena' };
   var $ = function (id) { return document.getElementById(id); };
   function lum(h) { var c = [1, 3, 5].map(function (i) { var v = parseInt(h.substr(i, 2), 16) / 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }); return .2126 * c[0] + .7152 * c[1] + .0722 * c[2]; }
   function ratio(a, b) { var x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); }
   function svg(px) {
     var a = ART[S.lockup], v = a.viewBox.split(/\s+/).map(Number), pad = S.bg === 'none' ? 0 : a.clear;
     var x = v[0] - pad, y = v[1] - pad, w = v[2] + 2 * pad, h = v[3] + 2 * pad, W = px || 480, H = Math.round(W * h / w * 100) / 100;
-    var body = a.body.split('{sun}').join(HEX[S.sun]).split('{ink}').join(HEX[S.ink]);
+    var body = a.body.split('{sun}').join(HEX[S.sun]).split('{rows}').join(HEX[S.rows]).split('{ink}').join(HEX[S.ink]);
     var bg = S.bg === 'none' ? '' : '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + HEX[S.bg] + '"/>';
     return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + [x, y, w, h].join(' ') + '" width="' + W + '" height="' + H + '"><title>eki.labs</title>' + bg + body + '</svg>';
   }
   function checks() {
     var out = [], bgHex = S.bg === 'none' ? null : HEX[S.bg];
-    var oneInk = S.sun === S.ink;
-    if (S.sun !== 'sol' && !oneInk) out.push(['warn', 'The sun is always sol. Only one-ink versions put it in the same colour as the letters.']);
+    var oneInk = S.sun === S.ink && S.rows === S.ink;
+    if (S.sun !== 'sol' && !oneInk) out.push(['warn', 'The sun is always sol. Only one-ink versions put sun, rows and letters in one colour.']);
+    if (S.rows !== S.ink) out.push(['note', 'Rows and letters in different colours: the kit always has them in one ink. Use it only where it has been agreed.']);
     if (S.bg === 'yerba' || S.bg === 'sol') out.push(['warn', 'Never place the logo on yerba or on sol.']);
-    var used = [S.ink, S.sun, S.bg];
+    var used = [S.ink, S.rows, S.sun, S.bg];
     if (used.indexOf('sol') > -1 && used.indexOf('yerba') > -1) out.push(['warn', 'Sol and yerba never go together.']);
+    if (bgHex && S.rows !== S.bg && ratio(HEX[S.rows], bgHex) < 3) out.push(['warn', 'Rows on this background are hard to see (contrast ' + ratio(HEX[S.rows], bgHex).toFixed(1) + ':1, minimum 3:1).']);
+    if (S.rows === S.bg) out.push(['warn', 'Rows and background are the same colour: the rows disappear.']);
     if (S.ink === S.bg) out.push(['warn', 'Letters and background are the same colour.']);
     else if (bgHex && ratio(HEX[S.ink], bgHex) < 3) out.push(['warn', 'Letters on this background are hard to read (contrast ' + ratio(HEX[S.ink], bgHex).toFixed(1) + ':1, minimum 3:1).']);
-    if (S.ink === 'blanco' || S.sun === 'blanco' || S.bg === 'blanco') out.push(['note', 'Blanco is only for other people’s surfaces: email, documents.']);
+    if (used.indexOf('blanco') > -1) out.push(['note', 'Blanco is only for other people’s surfaces: email, documents.']);
     if (!bgHex) out.push(['note', 'Transparent background: check it against the ground where it will sit.']);
     if (!out.some(function (c) { return c[0] === 'warn'; })) out.unshift(['ok', 'Within the brand rules.']);
     return out;
   }
-  function name() { return 'eki-labs-' + S.lockup + '-' + [S.ink, S.sun, S.bg].map(function (t) { return t.replace(/\s+/g, '-').replace('í', 'i'); }).join('-'); }
+  function name() { return 'eki-labs-' + S.lockup + '-' + (S.rows === S.ink ? [S.ink, S.sun, S.bg] : [S.ink, S.rows, S.sun, S.bg]).map(function (t) { return t.replace(/\s+/g, '-').replace('í', 'i'); }).join('-'); }
   function paint() {
     $('stage').innerHTML = svg();
-    ['lockup', 'presets'].forEach(function (g) { $(g).querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', g === 'lockup' ? String(b.dataset.v === S.lockup) : String(b.dataset.ink === S.ink && b.dataset.sun === S.sun && b.dataset.bg === S.bg)); }); });
-    ['ink', 'sun', 'bg'].forEach(function (k) {
+    ['lockup', 'presets'].forEach(function (g) { $(g).querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', g === 'lockup' ? String(b.dataset.v === S.lockup) : String(b.dataset.ink === S.ink && S.rows === S.ink && b.dataset.sun === S.sun && b.dataset.bg === S.bg)); }); });
+    ['ink', 'rows', 'sun', 'bg'].forEach(function (k) {
       $('sw-' + k).querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.v === S[k])); });
       $('pk-' + k).textContent = S[k] === 'none' ? 'transparent' : S[k] + ' · ' + HEX[S[k]];
     });
@@ -241,8 +251,8 @@ TEMPLATE = r'''<!doctype html>
   }
   function btn(parent, text, data, style, cls) { var b = document.createElement('button'); b.type = 'button'; if (text) b.textContent = text; Object.keys(data).forEach(function (k) { b.dataset[k] = data[k]; }); if (style) b.style.background = style; if (cls) b.className = cls; parent.appendChild(b); return b; }
   Object.keys(ART).forEach(function (k) { btn($('lockup'), ART[k].label, { v: k }).onclick = function () { S.lockup = k; paint(); }; });
-  PRESETS.forEach(function (p) { btn($('presets'), p[0], { ink: p[1], sun: p[2], bg: p[3] }).onclick = function () { S.ink = p[1]; S.sun = p[2]; S.bg = p[3]; paint(); }; });
-  ['ink', 'sun', 'bg'].forEach(function (k) {
+  PRESETS.forEach(function (p) { btn($('presets'), p[0], { ink: p[1], sun: p[2], bg: p[3] }).onclick = function () { S.ink = p[1]; S.rows = p[1]; S.sun = p[2]; S.bg = p[3]; paint(); }; });
+  ['ink', 'rows', 'sun', 'bg'].forEach(function (k) {
     var box = $('sw-' + k);
     if (k === 'bg') { var n = btn(box, '', { v: 'none' }, null, 'none'); n.title = 'transparent'; n.setAttribute('aria-label', 'transparent'); n.onclick = function () { S.bg = 'none'; paint(); }; }
     TOKENS.forEach(function (t) { var b = btn(box, '', { v: t[0] }, t[1]); b.title = t[0] + ' ' + t[1]; b.setAttribute('aria-label', t[0]); b.onclick = function () { S[k] = t[0]; paint(); }; });
