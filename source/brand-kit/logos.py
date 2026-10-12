@@ -1,33 +1,66 @@
 # eki.labs brand kit · logo files.
-# Masters in ./masters: eki-labs-dia.svg (symbol + wordmark, outlined) and the lockups (logo + tagline, outlined).
+# The symbol is one circle of 100: the sun above the horizon and three rows below, all filled with
+# the sun gradient (orange at the top, sol at the horizon, yerba at the foot), a nod to the first eki logo.
+# The wordmark is «eki.» in Geist 600 plus the second name in Geist 400 (wordmark.py), in curves.
+# Proportion: the symbol's circle is 923 units against 1000 font units, the name sits centred on it
+# (ascender to baseline) and starts a quarter of the diameter after the circle.
+# The signatures keep the tagline of ./masters, re-fitted to the width of the new logo.
 # Every file is cropped tight to the artwork; the clear space rule (¼ of the symbol's diameter) is in the README.
 import io, os, re
 import cairosvg
 from PIL import Image
+import wordmark
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MASTERS = os.path.join(HERE, 'masters')
-SOL, NOCHE, ARENA, WHITE = '#FFD54A', '#0A100C', '#F4F2EC', '#FFFFFF'
-WAYS = {  # colourway: (sun, ink)
-    'day': (SOL, NOCHE), 'night': (SOL, ARENA), 'black': (NOCHE, NOCHE), 'white': (WHITE, WHITE)}
+NOCHE, ARENA, WHITE = '#0A100C', '#F4F2EC', '#FFFFFF'
+
+# The sun gradient, top to bottom of the circle: orange (logo only) at the top, sol at the horizon, yerba at the foot.
+SUN_STOPS = ((0, '#FF8F00'), (0.1, '#FF8F00'), (0.42, '#FFD54A'), (0.66, '#FFD54A'), (1, '#58E9AE'))  # orange crown, a band of sol across the horizon and the first row
+SUN_ID = 'eki-sun'
+SUN = f'url(#{SUN_ID})'
+SUN_DEFS = ('<defs><linearGradient id="' + SUN_ID + '" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100">'
+            + ''.join(f'<stop offset="{o}" stop-color="{c}"/>' for o, c in SUN_STOPS) + '</linearGradient></defs>')
+
+WAYS = {  # colourway: (symbol, ink)
+    'day': (SUN, NOCHE), 'night': (SUN, ARENA), 'black': (NOCHE, NOCHE), 'white': (WHITE, WHITE)}
+
+SYM_SCALE, SYM_Y = 9.23, -816.5  # symbol 923 units tall, bottom 106.5 under the baseline
+# The name starts a quarter of the symbol's diameter after the circle (the same unit as the clear space
+# and the tagline gap), measured to the ink of the «e» (its left side bearing is 39 units).
+WORD_X = round(100 * SYM_SCALE * 1.25 - 39)
+MASTER_WORD_X = 1278  # where the name sat in the masters the taglines were drawn for
 
 
-def _read(p):
-    return open(os.path.join(MASTERS, os.path.basename(p)), encoding='utf-8').read()
+def band(y1, y2):
+    import math
+    def xs(y):
+        d = math.sqrt(max(0, 50 * 50 - (y - 50) ** 2)); return 50 - d, 50 + d
+    a1, b1 = xs(y1); a2, b2 = xs(y2)
+    return f'M{a1:.2f} {y1:.2f}L{b1:.2f} {y1:.2f}A50 50 0 0 1 {b2:.2f} {y2:.2f}L{a2:.2f} {y2:.2f}A50 50 0 0 1 {a1:.2f} {y1:.2f}Z'
 
 
-MASTER = _read('revision/assets/eki-labs-dia.svg')
-SYM_G = re.search(r'(<g transform="translate\(0 -816\.5\) scale\(9\.23\)">.*?</g>)', MASTER, re.S).group(1)
-WORD_G = re.search(r'(<g transform="translate\(1278 0\)">.*?</g>)', MASTER, re.S).group(1)
-SYM_PATHS = re.findall(r'<path d="[^"]+" fill="[^"]+"/>', SYM_G)
-assert len(SYM_PATHS) == 4
+HALF_SUN = 'M0 50A50 50 0 0 1 100 50Z'
+ROWS = [(56.14, 66.67), (72.81, 83.33), (89.47, 100)]
+ROWS_SMALL = [(59.21, 75.0), (84.21, 100)]  # below 32 px the symbol keeps two rows so it stays sharp
 
 
-def recolour(svg_body, sun, ink):
-    # the sun is the only #ffd54a shape in every master; everything else is ink
-    out = re.sub(r'fill="#(?:ffd54a|FFD54A)"', 'fill="@@SUN"', svg_body)
-    out = re.sub(r'fill="#(?:0a100c|0A100C|f4f2ec|F4F2EC)"', f'fill="{ink}"', out)
-    return out.replace('@@SUN', sun)
+def symbol(rows=ROWS):
+    """The symbol in a 0–100 box; every shape takes the symbol fill (@@SUN)."""
+    d = [HALF_SUN] + [band(a, b) for a, b in rows]
+    return ''.join(f'<path d="{p}" fill="@@SUN"/>' for p in d)
+
+
+def word(second=''):
+    ds, xmax = wordmark.name(second)
+    return ''.join(f'<path d="{d}" fill="@@INK"/>' for d in ds), xmax
+
+
+def logo(second='labs'):
+    w, xmax = word(second)
+    body = (f'<g transform="translate(0 {SYM_Y}) scale({SYM_SCALE})">{symbol()}</g>'
+            f'<g transform="translate({WORD_X} 0)">{w}</g>')
+    return body, (0, SYM_Y, WORD_X + xmax, 100 * SYM_SCALE)
 
 
 def tight_viewbox(body, vb, probe=4000):
@@ -41,69 +74,180 @@ def tight_viewbox(body, vb, probe=4000):
     return (round(x + bx[0] * sx, 2), round(y + bx[1] * sy, 2), round((bx[2] - bx[0]) * sx, 2), round((bx[3] - bx[1]) * sy, 2))
 
 
-def lockup_body(name):
-    s = _read(f'lockup/out/{name}')
-    s = re.sub(r'<rect [^>]*/>', '', s, count=1)  # drop the ground: kit files are transparent
-    vb = tuple(float(v) for v in re.search(r'viewBox="([^"]+)"', s).group(1).split())
-    body = s[s.find('>') + 1:s.rfind('</svg>')]
-    return body, vb
+def _tagline(master):
+    """The tagline path of a signature master, and the logo width it was fitted to."""
+    s = open(os.path.join(MASTERS, master), encoding='utf-8').read()
+    tag = re.findall(r'<path d="[^"]+" fill="[^"]+"/>', s)[-1]
+    return re.search(r'd="([^"]+)"', tag).group(1)
 
 
-def band(y1, y2):
-    import math
-    def xs(y):
-        d = math.sqrt(max(0, 50 * 50 - (y - 50) ** 2)); return 50 - d, 50 + d
-    a1, b1 = xs(y1); a2, b2 = xs(y2)
-    return f'M{a1:.2f} {y1:.2f}L{b1:.2f} {y1:.2f}A50 50 0 0 1 {b2:.2f} {y2:.2f}L{a2:.2f} {y2:.2f}A50 50 0 0 1 {a1:.2f} {y1:.2f}Z'
+def _bbox(d):
+    """Bounding box of a path, measured on a render (same method as tight_viewbox)."""
+    nums = [float(v) for v in re.findall(r'-?\d+(?:\.\d+)?', d)]
+    xs, ys = nums[0::2], nums[1::2]
+    vb = (min(xs) - 50, min(ys) - 50, max(xs) - min(xs) + 100, max(ys) - min(ys) + 100)
+    return tight_viewbox(f'<path d="{d}" fill="#000"/>', vb)
 
 
-# below 32 px the symbol keeps two rows so it stays sharp (same rule as /brand)
-SMALL = '<path d="M0 50A50 50 0 0 1 100 50Z" fill="#ffd54a"/>' + ''.join(
-    f'<path d="{band(a, b)}" fill="#0a100c"/>' for a, b in [(59.21, 75.0), (84.21, 100)])
+OLD_WORD_W = wordmark.paths([('eki.labs', 600)])[1]  # the name the master taglines were drawn for
+LABS_WORD_W = wordmark.name('labs')[1]                  # «eki.labs» with the second name in regular
 
-MARKS = {
-    # name: (body in day colours, viewBox before cropping, png widths)
-    'logo': (SYM_G + WORD_G, (0, -816.5, 5042, 923), (1200, 4000)),
-    'symbol': (''.join(SYM_PATHS), (0, 0, 100, 100), (512, 2048)),
-    'symbol-small': (SMALL, (0, 0, 100, 100), (16, 32, 48, 64)),
-    'signature': (lockup_body('lockup-firma-dia.svg')[0], lockup_body('lockup-firma-dia.svg')[1], (1600, 4000)),
-    'signature-vertical': (lockup_body('lockup-firma-vertical-dia.svg')[0], lockup_body('lockup-firma-vertical-dia.svg')[1], (1200, 3000)),
-}
+# The tagline is always the same and always the same size against the symbol: as wide as the
+# eki.labs logo. Under a shorter or longer name it keeps that size, aligned left (horizontal) or
+# centred (stacked), so it reads the same in every lockup.
+TAGLINE = 'Farming soil & sun, together'
+TAG_FONT = os.path.join(HERE, 'fonts_dl', 'zillaslab_ZillaSlab-Regular.ttf')
 
 
-def svg_file(body, vb, width_px=None):
+def tagline(width, top):
+    """The tagline in curves (Zilla Slab 400, with its kerning), as wide as `width`, its ink starting at x = 0
+    and its tallest letter at y = `top`. Returns (path data, (x, y, w, h) of the ink)."""
+    import uharfbuzz as hb
+    from fontTools.ttLib import TTFont
+    from fontTools.pens.svgPathPen import SVGPathPen
+    from fontTools.pens.transformPen import TransformPen
+    from fontTools.pens.boundsPen import BoundsPen
+    font = TTFont(TAG_FONT); gs = font.getGlyphSet(); order = font.getGlyphOrder()
+    face = hb.Face(hb.Blob.from_file_path(TAG_FONT)); hf = hb.Font(face)
+    buf = hb.Buffer(); buf.add_str(TAGLINE); buf.guess_segment_properties(); hb.shape(hf, buf)
+    placed, x = [], 0
+    for info, pos in zip(buf.glyph_infos, buf.glyph_positions):
+        placed.append((order[info.codepoint], x + pos.x_offset)); x += pos.x_advance
+    bp = BoundsPen(gs)
+    for name, gx in placed:
+        gs[name].draw(TransformPen(bp, (1, 0, 0, 1, gx, 0)))
+    x0, y0, x1, y1 = bp.bounds  # font units, y up
+    k = width / (x1 - x0)
+    pen = SVGPathPen(gs, ntos=lambda v: f'{v:.1f}'.rstrip('0').rstrip('.'))
+    for name, gx in placed:
+        gs[name].draw(TransformPen(pen, (k, 0, 0, -k, (gx - x0) * k, top + y1 * k)))
+    return pen.getCommands(), (0.0, top, width, (y1 - y0) * k)
+
+
+_OLD_TAG_TOP_H = _bbox(_tagline('lockup-firma-dia.svg'))[1]           # a quarter of the symbol under the logo
+_OLD_TAG_TOP_V = _bbox(_tagline('lockup-firma-vertical-dia.svg'))[1]
+TAG_H, TAG_H_BOX = tagline(WORD_X + LABS_WORD_W, _OLD_TAG_TOP_H)       # as wide as the eki.labs logo
+TAG_V, TAG_V_BOX = tagline(LABS_WORD_W, _OLD_TAG_TOP_V)                # stacked: as wide as the name
+TAG_H_K = TAG_V_K = 1.0
+
+V_SYM_SCALE, V_WORD_Y = 13.49, 2449.5  # stacked: symbol 1349 tall on top, name below
+
+
+def _tag(d, box, k, dx=0.0):
+    tx, ty, tw, th = box
+    return (f'<g transform="translate({tx + dx:.2f} {ty:.2f}) scale({k:.5f}) translate({-tx:.2f} {-ty:.2f})">'
+            f'<path d="{d}" fill="@@INK"/></g>')
+
+
+def signature(second='labs'):
+    body, (x, y, w, h) = logo(second)
+    tx, ty, tw, th = TAG_H_BOX
+    return body + _tag(TAG_H, TAG_H_BOX, TAG_H_K), (x, y, max(w, tw * TAG_H_K), (ty + th * TAG_H_K) - y)
+
+
+def signature_vertical(second='labs'):
+    w, xmax = word(second)
+    tx, ty, tw, th = TAG_V_BOX
+    tagw = tw * TAG_V_K
+    block = max(xmax, tagw, 100 * V_SYM_SCALE)
+    sx = block / 2 - 50 * V_SYM_SCALE           # symbol centred
+    wx = (block - xmax) / 2                       # name centred
+    dx = (block - tagw) / 2 - tx                  # tagline centred
+    body = (f'<g transform="translate({sx:.2f} 0) scale({V_SYM_SCALE})">{symbol()}</g>'
+            f'<g transform="translate({wx:.2f} {V_WORD_Y})">{w}</g>'
+            + _tag(TAG_V, TAG_V_BOX, TAG_V_K, dx))
+    return body, (0, 0, block, ty + th * TAG_V_K)
+
+
+def recolour(svg_body, sun, ink):
+    out = svg_body.replace('@@SUN', sun).replace('@@INK', ink)
+    return (SUN_DEFS + out) if SUN in out else out
+
+
+def _pad(vb, p=60):
+    x, y, w, h = vb
+    return (x - p, y - p, w + 2 * p, h + 2 * p)
+
+
+# name: (file prefix, body with @@SUN/@@INK, viewBox before cropping, png widths)
+# The kit carries the two names in use, eki.labs and eki.; any other ending comes from the logo builder.
+MARKS = {}
+for key, prefix, second in (('logo', 'eki-labs-logo', 'labs'), ('eki', 'eki-logo', '')):
+    b, vb = logo(second)
+    MARKS[key] = (prefix, b, _pad(vb), (1200, 4000))
+MARKS['symbol'] = ('eki-labs-symbol', symbol(), (0, 0, 100, 100), (512, 2048))
+MARKS['symbol-small'] = ('eki-labs-symbol-small', symbol(ROWS_SMALL), (0, 0, 100, 100), (16, 32, 48, 64))
+for key, prefix, second in (('signature', 'eki-labs-signature', 'labs'),):
+    b, vb = signature(second)
+    MARKS[key] = (prefix, b, _pad(vb, 200), (1600, 4000))
+for key, prefix, second in (('signature-vertical', 'eki-labs-signature-vertical', 'labs'),):
+    b, vb = signature_vertical(second)
+    MARKS[key] = (prefix, b, _pad(vb, 200), (1200, 3000))
+
+
+def builder_data():
+    """What the logo builder needs to draw any ending in curves, in the browser."""
+    from fontTools.pens.boundsPen import BoundsPen
+    f = wordmark._font(wordmark.NAME_WEIGHT)
+    gs, cmap, hmtx = f.getGlyphSet(), f.getBestCmap(), f['hmtx']
+    glyphs = {}
+    for ch in 'abcdefghijklmnopqrstuvwxyz0123456789-':
+        ds, x1 = wordmark.paths([(ch, wordmark.NAME_WEIGHT)])
+        glyphs[ch] = {'d': ds[0], 'adv': hmtx[cmap[ord(ch)]][0], 'x1': round(x1, 1)}
+    base, base_x1 = wordmark.paths([(wordmark.BASE, wordmark.BASE_WEIGHT)])
+    f6 = wordmark._font(wordmark.BASE_WEIGHT)
+    base_adv = sum(f6['hmtx'][f6.getBestCmap()[ord(c)]][0] for c in wordmark.BASE)
+    return {
+        'symbol': symbol().replace('@@SUN', '{sym}'), 'symbolSmall': symbol(ROWS_SMALL).replace('@@SUN', '{sym}'),
+        'base': base, 'baseAdv': base_adv, 'baseX1': round(base_x1, 1), 'glyphs': glyphs,
+        'symScale': SYM_SCALE, 'symY': SYM_Y, 'wordX': WORD_X, 'vSymScale': V_SYM_SCALE, 'vWordY': V_WORD_Y,
+        'tagH': {'d': TAG_H, 'box': TAG_H_BOX, 'k': TAG_H_K}, 'tagV': {'d': TAG_V, 'box': TAG_V_BOX, 'k': TAG_V_K},
+        'sunDefs': SUN_DEFS,
+    }
+
+
+def svg_file(body, vb, width_px=None, title='eki.labs'):
     x, y, w, h = vb
     wpx = width_px or 480
     hpx = round(wpx * h / w, 2)
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{x} {y} {w} {h}" width="{wpx}" height="{hpx}">'
-            f'<title>eki.labs</title>{body}</svg>\n')
+            f'<title>{title}</title>{body}</svg>\n')
+
+
+TITLES = {'eki': 'eki.'}
+_tight = {}
+
+
+def tight(mark):
+    if mark not in _tight:
+        _, body, vb, _ = MARKS[mark]
+        _tight[mark] = vb if mark.startswith('symbol') else tight_viewbox(body.replace('@@SUN', '#000').replace('@@INK', '#000'), vb)
+    return _tight[mark]
 
 
 def build(out_dir):
     made = []
-    tight = {k: (vb if k.startswith('symbol') else tight_viewbox(b, vb)) for k, (b, vb, _) in MARKS.items()}
-    for mark, (body, _, widths) in MARKS.items():
+    for mark, (prefix, body, _, widths) in MARKS.items():
         d = os.path.join(out_dir, mark); os.makedirs(d, exist_ok=True)
         for way, (sun, ink) in WAYS.items():
             b = recolour(body, sun, ink)
-            svg = svg_file(b, tight[mark], 120 if mark.startswith('symbol') else 480)
-            base = os.path.join(d, f'eki-labs-{mark}-{way}')
+            svg = svg_file(b, tight(mark), 120 if mark.startswith('symbol') else 480, TITLES.get(mark, 'eki.labs'))
+            base = os.path.join(d, f'{prefix}-{way}')
             open(base + '.svg', 'w', encoding='utf-8').write(svg)
             cairosvg.svg2pdf(bytestring=svg.encode(), write_to=base + '.pdf')
             for wpx in widths:
                 cairosvg.svg2png(bytestring=svg.encode(), write_to=f'{base}-{wpx}px.png', output_width=wpx)
             made.append(base)
-    return made, tight
+    return made, {m: tight(m) for m in MARKS}
 
 
 def body_for(mark, way):
     """Recoloured body + tight viewBox, for the social templates and the guide."""
-    body, vb, _ = MARKS[mark]
     sun, ink = WAYS[way]
-    return recolour(body, sun, ink), tight_viewbox(body, vb)
+    return recolour(MARKS[mark][1], sun, ink), tight(mark)
 
 
 if __name__ == '__main__':
     import sys
-    made, tight = build(sys.argv[1])
-    print(len(made), 'masters;', tight)
+    made, t = build(sys.argv[1])
+    print(len(made), 'files;', t)

@@ -1,6 +1,6 @@
 # eki.labs · ekilabs.com
 
-Web pública de eki.labs. *Farming soil and sun, together.*
+Web pública de eki.labs. *Farming soil & sun, together*
 
 | Carpeta | Qué hay |
 |---|---|

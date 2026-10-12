@@ -18,12 +18,20 @@ cp out/eki-labs-brand-kit.zip out/eki-labs-logos.zip out/eki-labs-colours.zip ou
 
 Resultado: `out/eki-labs-brand-kit/` (136 archivos) y los zips.
 
-Después, desde la raíz del repo, `python3 source/brand-kit/build_download.py`: descomprime el kit en `site/brand/kit/files/` (descarga archivo a archivo) y regenera `/brand/download/`, el creador de logos, a partir de los SVG day del kit.
+Después, desde la raíz del repo, `python3 source/brand-kit/site_logos.py`: escribe los logos de la web (`site/assets`), favicons, iconos, la imagen de enlace, las imágenes de la firma de correo y recolorea el logo dibujado en las páginas y en los lienzos de `source/canvas`.
+
+Y por último `python3 source/brand-kit/build_download.py`: descomprime el kit en `site/brand/kit/files/` (descarga archivo a archivo) y regenera `/brand/download/`, el creador de logos, a partir de los SVG day del kit.
+
+Los vídeos del logo de `/brand` (`site/assets/clip-logo*.mp4` y sus `still-logo*.jpg`) se graban de los lienzos `source/canvas/Logo*.dc.html` con el grabador de clips (`08-sesion-cowork/pipeline/clips/rec.mjs` del repo de marca), sirviendo los lienzos con el runtime de Claude Design como `support.js`.
+
+Playwright se importa como módulo ES: si `render_svgs.mjs` no lo encuentra, enlaza la instalación global en esta carpeta (`ln -s "$(npm root -g)" node_modules`) y bórrala al terminar.
 
 ## Qué es cada archivo
 
-- `masters/`: los originales en curvas. `eki-labs-dia.svg` lleva el símbolo y el wordmark; los dos `lockup-firma-*` llevan el logo con el lema, en horizontal y en vertical.
-- `logos.py`: recorta cada marca al dibujo y la exporta en los colores day, night, black y white, en SVG, PDF y PNG.
+- `masters/`: los originales en curvas del logo anterior. `logos.py` toma de ellos la geometría del símbolo y la posición del lema; el nombre y el lema se dibujan ahora desde las fuentes.
+- `wordmark.py`: dibuja el nombre en curvas desde Geist: «eki.» en 600 y el apellido en 400.
+- `logos.py`: el símbolo con el degradado del sol, el nombre, el lema en curvas (Zilla Slab) y las firmas; recorta cada marca al dibujo y la exporta en day, night, black y white, en SVG, PDF y PNG. Los colores del degradado están en `SUN_STOPS`.
+- `site_logos.py`: los logos que la web usa fuera del kit (cabecera, pie, favicons, iconos, firma de correo) y el logo dibujado en las páginas.
 - `social.py`: las plantillas de redes en SVG (avatares, LinkedIn, YouTube, Instagram, posts y la imagen de enlace).
 - `build_kit.py`: monta el kit entero (logos, colores, tipografías, redes, README y SIZES) y los zips.
 - `render_svgs.mjs`: pasa los SVG a PNG con Chromium.

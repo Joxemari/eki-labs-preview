@@ -9,7 +9,7 @@ FD = os.path.join(HERE, 'fonts_dl')
 
 # The 16 tokens of /brand, with the job each one does (same names and values as the site).
 COLOURS = [
-    ('Brand', [('sol', '#FFD54A', 'Energy. The sun of the logo and the key figure, once per piece. Never a button or a text colour.'),
+    ('Brand', [('sol', '#FFD54A', 'Energy. The key figure, once per piece, and the horizon of the logo\u2019s sun gradient. Never a button or a text colour.'),
                ('yerba', '#58E9AE', 'Crops, and actions on dark: the one colour you can press.'),
                ('tierra', '#CF8166', 'Land and rural life, on dark grounds.'),
                ('noche', '#0A100C', 'Ink, infrastructure and dark chapters. Our black, with a green cast.')]),
@@ -61,6 +61,11 @@ def write_colours(d):
             css.append(f'  --eki-{slug(n)}: {hx};  /* {use} */')
             g['colours'].append({'name': n, 'token': f'--eki-{slug(n)}', 'hex': hx, 'rgb': list(rgb(hx)), 'use': use})
         data['groups'].append(g)
+    stops = ', '.join(f'{c} {round(o * 100)}%' for o, c in logos.SUN_STOPS)
+    css.append('  /* Logo only: the sun gradient of the symbol, top to bottom. Not a palette colour. */')
+    css.append(f'  --eki-logo-sun: linear-gradient(180deg, {stops});')
+    data['logo_sun_gradient'] = {'use': 'Logo and horizon sun only, top to bottom of the circle. Not a palette colour.',
+                                 'stops': [{'offset': o, 'hex': c} for o, c in logos.SUN_STOPS]}
     css.append('}')
     open(os.path.join(d, 'eki-labs-colours.css'), 'w', encoding='utf-8').write('\n'.join(css) + '\n')
     open(os.path.join(d, 'eki-labs-colours.json'), 'w', encoding='utf-8').write(json.dumps(data, indent=2, ensure_ascii=False) + '\n')

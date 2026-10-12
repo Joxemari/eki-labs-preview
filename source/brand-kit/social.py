@@ -59,8 +59,22 @@ def horizon(y, x0, x1, colour, sw=2):
     return f'<rect x="{x0}" y="{y - sw / 2}" width="{x1 - x0}" height="{sw}" fill="{colour}"/>'
 
 
+_suns = [0]
+
+
 def sun(cx, y, r, colour):
-    return f'<path d="M{cx - r} {y}A{r} {r} 0 0 1 {cx + r} {y}Z" fill="{colour}"/>'
+    """The half sun on the horizon. In sol it takes the upper half of the logo's sun gradient:
+    orange at the top, sol on the horizon."""
+    d = f'M{cx - r} {y}A{r} {r} 0 0 1 {cx + r} {y}Z'
+    if colour != SOL:
+        return f'<path d="{d}" fill="{colour}"/>'
+    _suns[0] += 1
+    gid = f'hs{_suns[0]}'
+    top = logos.SUN_STOPS[0][1]
+    mid = next(c for _, c in logos.SUN_STOPS if c.upper() == SOL)
+    return (f'<defs><linearGradient id="{gid}" gradientUnits="userSpaceOnUse" x1="0" y1="{y - r}" x2="0" y2="{y}">'
+            f'<stop offset="0" stop-color="{top}"/><stop offset="1" stop-color="{mid}"/></linearGradient></defs>'
+            f'<path d="{d}" fill="url(#{gid})"/>')
 
 
 def rows(x0, x1, y0, y1, colour, step=40, sw=2):
@@ -93,7 +107,7 @@ def avatar(day=False):
 
 def linkedin_cover():
     w, h = 1512, 256
-    line = 'Farming soil and sun, together.'
+    line = 'Farming soil & sun, together'
     fs = 50; tw = width(line, 'zs', fs)
     gap, r = 64, 48
     x0 = round(w / 2 - (tw + gap + 2 * r) / 2)
