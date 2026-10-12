@@ -30,6 +30,21 @@ La web pública de eki.labs: HTML estático en `site/`, una función para el for
 - **Idioma:** todo lo visible en inglés. Excepciones: el texto legal de financiación (IDAE, PRTR) y la versión en castellano de Legal notice y Privacy.
 - **Data centers** (inglés de EE. UU.). «agrivoltaics» en texto.
 
+## Dónde se cambia la marca
+
+La marca tiene una sola fuente y varias copias. Cualquier cambio de logo, color, tipografía, lema o reglas se hace en este orden:
+
+1. **Fuente (aquí, en este repo):** las reglas en este archivo y en la guía `/brand` (`site/brand/index.html` y su lienzo `source/canvas/Brand.dc.html`); el logo y el kit en `source/brand-kit/` (`logos.py`, `wordmark.py`, `build_kit.py`). Ver `source/brand-kit/BUILD.md`.
+2. **Se regenera desde la fuente, con los scripts:** el kit descargable, el creador de logos de `/brand/download`, los logos, iconos y favicons de la web, la firma de correo y el logo dibujado en las páginas y los lienzos.
+3. **Copias que se actualizan después, a partir del kit** (nunca al revés):
+   - Sistema de diseño «eki.labs» en Claude Design (componentes, guías y logos).
+   - Decks en Claude (Slides) y, desde ellos, el bundle cifrado de `/decks`.
+   - Película (motor en el repo de marca) y vídeos de `site/assets`, grabados de los lienzos.
+   - Skill de documentos `eki-brand-docs`.
+   - Odoo (logo de las sociedades y pie de las plantillas de correo) y Notion (iconos y textos).
+
+El diseño de las páginas (maquetación, secciones) sale del lienzo «eki.labs · Web»; la marca que usan, de aquí.
+
 ## Sistema visual
 
 - **Color** (16 tokens, cada uno con un trabajo): sol `#FFD54A` (energía, la cifra clave, nunca botón ni texto) · yerba `#58E9AE` (cultivo, y el color de acción sobre oscuro) · tierra `#CF8166` · noche `#0A100C` (nuestro negro) · yerba honda `#056C4A` (yerba como texto sobre claro) · tierra honda `#964A2F` · origen `#311D16` · bosque `#0A281A` · arena `#F4F2EC` (fondo) · piedra `#EBE6D8` · línea `#D6D1C3` · pizarra `#555A52` · grafito `#141B16` · acero `#2B332D` · niebla `#A1A69F` · blanco `#FFFFFF` (solo en superficies ajenas: email, documentos). Sol y yerba nunca juntos, salvo fundidos dentro del degradado completo del logo. Los degradados son solo del logo y del sol del horizonte (naranja a sol): no son colores de la paleta.
@@ -58,7 +73,7 @@ robots.txt sitemap.xml site.webmanifest favicon.* icon-*.png social-preview.png
   - No pongas `src` directo en un `<video>` en bucle.
 - **Formulario de contacto** (Home): `form[data-contact]` → `POST /api/contact` → `functions/api/contact.js` → email con Resend. Variables en Cloudflare: `RESEND_API_KEY` (secreto), `CONTACT_FROM`, `CONTACT_TO`. Sin variables responde 503 y la página ofrece el email.
 - **Firma de correo** (`site/signature/`): el generador usa `var BASE = 'https://ekilabs.com/signature/'` para las imágenes. Las fotos del equipo están en esa carpeta.
-- **Decks** (`site/decks/`): `bundle.enc.json` va cifrado y se abre con una contraseña que el equipo tiene. Las fuentes en claro de los decks y la contraseña nunca entran en este repo. Para cambiar un deck, se rehace en Cowork.
+- **Decks** (`site/decks/`): `bundle.enc.json` va cifrado y se abre con una contraseña que el equipo tiene. Las fuentes en claro de los decks y la contraseña nunca entran en este repo. Para cambiar un deck, se cambia en su artifact de Slides en Claude (Inversores, Teaser, Triodos, Biblioteca) y después se regenera el bundle: el HTML de cada slide sin las notas del ponente, cada imagen o vídeo copiado a `site/decks/assets/` con el nombre `sha256[:12]`, y el JSON cifrado con PBKDF2-SHA256 (250 000 iteraciones) y AES-GCM, como lo descifra `site/decks/index.html`.
 
 ## Pendiente antes del lanzamiento (bloqueante)
 

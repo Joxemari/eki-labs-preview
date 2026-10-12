@@ -16,11 +16,11 @@ python3 build_kit.py out
 cp out/eki-labs-brand-kit.zip out/eki-labs-logos.zip out/eki-labs-colours.zip out/eki-labs-type.zip out/eki-labs-social.zip ../../site/brand/kit/
 ```
 
-Resultado: `out/eki-labs-brand-kit/` (136 archivos) y los zips.
+Resultado: `out/eki-labs-brand-kit/` (192 archivos) y los zips.
 
-Después, desde la raíz del repo, `python3 source/brand-kit/site_logos.py`: escribe los logos de la web (`site/assets`), favicons, iconos, la imagen de enlace, las imágenes de la firma de correo y recolorea el logo dibujado en las páginas y en los lienzos de `source/canvas`.
+Después, desde la raíz del repo, `python3 source/brand-kit/build_download.py`: descomprime el kit en `site/brand/kit/files/` (descarga archivo a archivo) y regenera `/brand/download/`, el creador de logos.
 
-Y por último `python3 source/brand-kit/build_download.py`: descomprime el kit en `site/brand/kit/files/` (descarga archivo a archivo) y regenera `/brand/download/`, el creador de logos, a partir de los SVG day del kit.
+Y por último `python3 source/brand-kit/site_logos.py`: escribe los logos de la web (`site/assets`), favicons, iconos, la imagen de enlace (copiada del kit ya descomprimido), las imágenes de la firma de correo, y aplica el logo en degradado completo al dibujado en las páginas y en los lienzos de `source/canvas`.
 
 Los vídeos del logo de `/brand` (`site/assets/clip-logo*.mp4` y sus `still-logo*.jpg`) se graban de los lienzos `source/canvas/Logo*.dc.html` con el grabador de clips (`08-sesion-cowork/pipeline/clips/rec.mjs` del repo de marca), sirviendo los lienzos con el runtime de Claude Design como `support.js`.
 
