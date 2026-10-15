@@ -38,7 +38,7 @@ La marca tiene una sola fuente y varias copias. Cualquier cambio de logo, color,
 2. **Se regenera desde la fuente, con los scripts:** el kit descargable, el creador de logos de `/brand/download`, los logos, iconos y favicons de la web, la firma de correo y el logo dibujado en las páginas y los lienzos.
 3. **Copias que se actualizan después, a partir del kit** (nunca al revés):
    - Sistema de diseño «eki.labs» en Claude Design (componentes, guías y logos).
-   - Decks en Claude (Slides) y, desde ellos, el bundle cifrado de `/decks`.
+   - Eki Slides Biblioteca en Claude (Slides), las presentaciones que se generan desde ella y, desde estas, el bundle cifrado de `/decks`.
    - Película (motor en el repo de marca) y vídeos de `site/assets`, grabados de los lienzos.
    - Skill de documentos `eki-brand-docs`.
    - Odoo (logo de las sociedades y pie de las plantillas de correo) y Notion (iconos y textos).
@@ -73,7 +73,7 @@ robots.txt sitemap.xml site.webmanifest favicon.* icon-*.png social-preview.png
   - No pongas `src` directo en un `<video>` en bucle.
 - **Formulario de contacto** (Home): `form[data-contact]` → `POST /api/contact` → `functions/api/contact.js` → email con Resend. Variables en Cloudflare: `RESEND_API_KEY` (secreto), `CONTACT_FROM`, `CONTACT_TO`. Sin variables responde 503 y la página ofrece el email.
 - **Firma de correo** (`site/signature/`): el generador usa `var BASE = 'https://ekilabs.com/signature/'` para las imágenes. Las fotos del equipo están en esa carpeta.
-- **Decks** (`site/decks/`): `bundle.enc.json` va cifrado y se abre con una contraseña que el equipo tiene. Las fuentes en claro de los decks y la contraseña nunca entran en este repo. Para cambiar un deck, se cambia en su artifact de Slides en Claude (Inversores, Teaser, Triodos, Biblioteca) y después se regenera el bundle: el HTML de cada slide sin las notas del ponente, cada imagen o vídeo copiado a `site/decks/assets/` con el nombre `sha256[:12]`, y el JSON cifrado con PBKDF2-SHA256 (250 000 iteraciones) y AES-GCM, como lo descifra `site/decks/index.html`.
+- **Decks** (`site/decks/`): `bundle.enc.json` va cifrado y se abre con una contraseña que el equipo tiene. Las fuentes en claro de los decks y la contraseña nunca entran en este repo. La fuente es «Eki Slides Biblioteca», el artifact de Slides en Claude donde cada slide existe una sola vez; las presentaciones (Teaser, Inversores, Triodos, Cuatrecasas, White Summit, Data centers) se generan desde ella según el «Mapa Eki Slides». Para cambiar una slide se cambia en la Biblioteca, se regeneran las presentaciones y después el bundle, que lleva las seis presentaciones y la Biblioteca: el HTML de cada slide sin las notas del ponente, cada imagen o vídeo copiado a `site/decks/assets/` con el nombre `sha256[:12]`, y el JSON cifrado con PBKDF2-SHA256 (250 000 iteraciones) y AES-GCM, como lo descifra `site/decks/index.html`.
 
 ## Pendiente antes del lanzamiento (bloqueante)
 
