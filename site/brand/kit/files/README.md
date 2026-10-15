@@ -18,7 +18,7 @@ Version: October 2026 · Questions: hola@ekilabs.com
   signature-vertical/       eki.labs and tagline, stacked
 02-colour/              ASE (Adobe), CSS, JSON and a swatch card
 03-type/                Zilla Slab, Work Sans and Geist Mono, with their licences
-04-social/              avatars, LinkedIn, Instagram, YouTube, posts and the web preview image
+04-social/              avatars, LinkedIn, Instagram, YouTube, posts, the web preview image and the Google Workspace logo
 ```
 
 Every logo comes in six colourways and three formats. The full gradient is the logo by default; the others are for the cases where it does not fit.
@@ -109,7 +109,7 @@ Four colours with a fixed meaning, four deep tones and a quiet base. Colour only
 | `instagram/` | Story (1080 × 1920). |
 | `youtube/` | Channel banner (2560 × 1440) and video thumbnail (1280 × 720). |
 | `posts/` | Feed templates for LinkedIn and Instagram: statement, figures and a carousel (cover and page), in 4:5 and 1:1. |
-| `web/` | The link preview image (1200 × 630). |
+| `web/` | The link preview image (1200 × 630) and the organisation logo for Google Workspace (320 × 132, eki. on white). |
 
 How the templates work:
 
