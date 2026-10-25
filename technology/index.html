@@ -4,618 +4,68 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Technology · eki.labs</title>
-<meta name="description" content="Solar power that is compatible with farming, at scale. Bifacial rows facing east and west, 10–18 m apart. Machinery keeps working; the crops keep growing.">
 <link rel="canonical" href="https://ekilabs.com/technology/">
+<meta name="description" content="The technology behind eki.labs: bifacial panels in rows, facing east and west, with room for farming in between. Write to us to learn more.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="eki.labs">
 <meta property="og:title" content="Technology · eki.labs">
-<meta property="og:description" content="Solar power that is compatible with farming, at scale. Bifacial rows facing east and west, 10–18 m apart. Machinery keeps working; the crops keep growing.">
-<meta property="og:url" content="https://ekilabs.com/technology/">
+<meta property="og:description" content="The technology behind eki.labs: bifacial panels in rows, facing east and west, with room for farming in between. Write to us to learn more.">
 <meta property="og:image" content="https://ekilabs.com/social-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="eki.labs · Farming soil &amp; sun, together">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0A100C">
-<link rel="icon" href="../favicon.ico" sizes="32x32">
-<link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="../apple-touch-icon.png">
-<link rel="manifest" href="../site.webmanifest">
-<link rel="preload" href="../fonts/zilla-slab-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../fonts/work-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/fonts/zilla-slab-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/work-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/fonts/fonts.css">
 <style>
-    .sc-placeholder{background:color-mix(in srgb,currentColor 8%,transparent);
-      border:1px solid color-mix(in srgb,currentColor 50%,transparent);
-      border-radius:2px;box-sizing:border-box;overflow:hidden}
-    @keyframes sc-shine{0%{background-position:100% 50%}100%{background-position:0% 50%}}
-    html.sc-dc-streaming .sc-placeholder,
-    html.sc-dc-streaming .sc-interp.sc-missing{position:relative;
-      background:color-mix(in srgb,currentColor 5%,transparent);
-      border-color:transparent}
-    html.sc-dc-streaming .sc-placeholder::before,
-    html.sc-dc-streaming .sc-interp.sc-missing::before{content:'';
-      position:absolute;inset:0;pointer-events:none;
-      background:linear-gradient(90deg,rgba(217,119,87,0) 25%,rgba(247,225,211,.95) 37%,rgba(217,119,87,0) 63%);
-      background-size:400% 100%;animation:sc-shine 1.4s ease infinite}
-    html.sc-dc-streaming .sc-placeholder:nth-child(n+9 of .sc-placeholder)::before,
-    html.sc-dc-streaming .sc-interp.sc-missing:nth-child(n+9 of .sc-interp.sc-missing)::before{animation:none;
-      background:color-mix(in srgb,currentColor 8%,transparent)}
-    .sc-placeholder-error{padding:4px 8px;font:11px/1.4 ui-monospace,monospace;
-      color:color-mix(in srgb,currentColor 70%,transparent);word-break:break-word}
-    .sc-interp.sc-missing{display:inline-block;width:2em;height:1em;overflow:hidden;
-      vertical-align:text-bottom;background:rgba(255,255,255,.3);border:1px solid rgba(0,0,0,.5);
-      border-radius:2px;box-sizing:border-box;color:transparent;
-      user-select:none}
-    .sc-interp.sc-unresolved{font-family:ui-monospace,monospace;font-size:.85em;
-      color:color-mix(in srgb,currentColor 50%,transparent);
-      background:color-mix(in srgb,currentColor 10%,transparent);border-radius:3px;
-      padding:0 3px}
-    .sc-host.sc-has-error{position:relative}
-    .sc-logic-error{position:absolute;top:8px;left:8px;z-index:2147483647;max-width:60ch;
-      padding:6px 10px;background:#b00020;color:#fff;font:12px/1.4 ui-monospace,monospace;
-      border-radius:4px;white-space:pre-wrap;pointer-events:none}
-    /* Mirrors PRINT_BASELINE_CSS in apps/web deck-stage-export.ts — keep both
-       in sync until dc-runtime regains a build step. */
-    @media print {
-      @page { margin: 0.5cm; }
-      figure, table { break-inside: avoid; }
-      #dc-root, #dc-root > .sc-host { height: auto; }
-      *, *::before, *::after {
-        print-color-adjust: exact; -webkit-print-color-adjust: exact;
-        backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
-        animation-delay: -99s !important; animation-duration: .001s !important;
-        animation-iteration-count: 1 !important; animation-fill-mode: both !important;
-        animation-play-state: running !important; transition-duration: 0s !important;
-      }
-    }
-  
-x-dc{display:none!important}
-
-body{margin:0}
-@property --n { syntax: '<integer>'; initial-value: 0; inherits: false; }
-.cnt{counter-reset:c var(--n);font-variant-numeric:tabular-nums;animation:cnt0 1.8s cubic-bezier(0.16,1,0.3,1) 0.15s both paused}
-.cnt::before{content:counter(c)}
-.cnt-1{animation-name:cnt1}
-.contar-on .cnt{animation-play-state:running}
-.n3{--n:3}.n5{--n:5}.n8{--n:8}.n10{--n:10}.n13{--n:13}.n16{--n:16}.n36{--n:36}.n95{--n:95}
-@keyframes cnt0{from{--n:0}}
-@keyframes cnt1{from{--n:1}}
-@media (prefers-reduced-motion: reduce){.cnt{animation:none}}
-html{scroll-behavior:smooth}
-.nav-a{display:inline-flex;align-items:center;gap:6px;color:inherit;text-decoration:none}
-.nav-a svg{transition:transform 0.25s cubic-bezier(0.16,1,0.3,1)}
-.nav-a:hover svg{transform:translateY(3px)}
-.nav-more{position:relative}
-.nav-more>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:4px;box-shadow:inset 0 0 0 1px currentColor}
-.nav-more>summary::-webkit-details-marker{display:none}
-.nav-more>summary:focus-visible{outline:2px solid #58e9ae;outline-offset:2px}
-.nav-panel{position:absolute;right:0;top:52px;width:300px;padding:8px;border-radius:12px;background:rgba(10,16,12,0.97);color:#f4f2ec;box-shadow:0 16px 40px rgba(10,16,12,0.28);display:flex;flex-direction:column;z-index:40}
-.nav-panel .nav-h{padding:10px 14px 6px;font-family:'Geist Mono',Menlo,monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#a1a69f}
-.nav-panel a,.nav-panel .nav-soon{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 14px;border-radius:8px;color:#f4f2ec;text-decoration:none;font-size:16px;line-height:22px}
-.nav-panel a:hover{background:rgba(244,242,236,0.08)}
-.nav-panel a[aria-current]{box-shadow:inset 2px 0 0 #58e9ae}
-.nav-panel small{font-family:'Geist Mono',Menlo,monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#a1a69f}
-.nav-panel .nav-soon{color:#a1a69f;cursor:default}
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.nav-a svg{transition:none}}
-
-
-body{margin:0}
-@property --c{syntax:'<integer>';initial-value:0;inherits:false}
-.cp-cnt{counter-reset:c var(--c);font-variant-numeric:tabular-nums}.cp-cnt::before{content:counter(c)}
-@keyframes cp-borde{0.0%{stroke-dashoffset:1880}0.833%{stroke-dashoffset:1880;animation-timing-function:cubic-bezier(0.65,0,0.35,1)}7.5%{stroke-dashoffset:0}100.0%{stroke-dashoffset:0}}
-.cp-borde{animation:cp-borde 12.0s infinite}
-@keyframes cp-s0{0.0%{transform:scaleX(0)}7.5%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}12.5%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
-.cp-s0{animation:cp-s0 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
-@keyframes cp-s1{0.0%{transform:scaleX(0)}8.75%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}13.75%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
-.cp-s1{animation:cp-s1 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
-@keyframes cp-s2{0.0%{transform:scaleX(0)}10.0%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}15.0%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
-.cp-s2{animation:cp-s2 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
-@keyframes cp-s3{0.0%{transform:scaleX(0)}11.25%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}16.25%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
-.cp-s3{animation:cp-s3 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
-@keyframes cp-s4{0.0%{transform:scaleX(0)}12.5%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}17.5%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
-.cp-s4{animation:cp-s4 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
-@keyframes cp-s5{0.0%{transform:scaleX(0)}13.75%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}18.75%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
-.cp-s5{animation:cp-s5 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
-@keyframes cp-s6{0.0%{transform:scaleX(0)}15.0%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}20.0%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
-.cp-s6{animation:cp-s6 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
-@keyframes cp-s7{0.0%{transform:scaleX(0)}16.25%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}21.25%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
-.cp-s7{animation:cp-s7 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
-@keyframes cp-s8{0.0%{transform:scaleX(0)}17.5%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}22.5%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
-.cp-s8{animation:cp-s8 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
-@keyframes cp-s9{0.0%{transform:scaleX(0)}18.75%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}23.75%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
-.cp-s9{animation:cp-s9 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
-@keyframes cp-s10{0.0%{transform:scaleX(0)}20.0%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}25.0%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
-.cp-s10{animation:cp-s10 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
-@keyframes cp-s11{0.0%{transform:scaleX(0)}21.25%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}26.25%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
-.cp-s11{animation:cp-s11 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
-@keyframes cp-s12{0.0%{transform:scaleX(0)}22.5%{transform:scaleX(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}27.5%{transform:scaleX(1)}100.0%{transform:scaleX(1)}}
-.cp-s12{animation:cp-s12 12.0s infinite;transform-box:fill-box;transform-origin:0% 50%}
-@keyframes cp-r0{0.0%{transform:scaleY(0)}25.833%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}31.667%{transform:scaleY(1)}100.0%{transform:scaleY(1)}}
-.cp-r0{animation:cp-r0 12.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes cp-r1{0.0%{transform:scaleY(0)}26.833%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}32.667%{transform:scaleY(1)}100.0%{transform:scaleY(1)}}
-.cp-r1{animation:cp-r1 12.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes cp-r2{0.0%{transform:scaleY(0)}27.833%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}33.667%{transform:scaleY(1)}100.0%{transform:scaleY(1)}}
-.cp-r2{animation:cp-r2 12.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes cp-r3{0.0%{transform:scaleY(0)}28.833%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}34.667%{transform:scaleY(1)}100.0%{transform:scaleY(1)}}
-.cp-r3{animation:cp-r3 12.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes cp-r4{0.0%{transform:scaleY(0)}29.833%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}35.667%{transform:scaleY(1)}100.0%{transform:scaleY(1)}}
-.cp-r4{animation:cp-r4 12.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes cp-r5{0.0%{transform:scaleY(0)}30.833%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}36.667%{transform:scaleY(1)}100.0%{transform:scaleY(1)}}
-.cp-r5{animation:cp-r5 12.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes cp-r6{0.0%{transform:scaleY(0)}31.833%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}37.667%{transform:scaleY(1)}100.0%{transform:scaleY(1)}}
-.cp-r6{animation:cp-r6 12.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes cp-c0{0.0%{opacity:0}39.167%{opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}43.333%{opacity:1}100.0%{opacity:1}}
-.cp-c0{animation:cp-c0 12.0s infinite}
-@keyframes cp-c1{0.0%{opacity:0}40.667%{opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}44.833%{opacity:1}100.0%{opacity:1}}
-.cp-c1{animation:cp-c1 12.0s infinite}
-@keyframes cp-c2{0.0%{opacity:0}42.167%{opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}46.333%{opacity:1}100.0%{opacity:1}}
-.cp-c2{animation:cp-c2 12.0s infinite}
-@keyframes cp-c3{0.0%{opacity:0}43.667%{opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}47.833%{opacity:1}100.0%{opacity:1}}
-.cp-c3{animation:cp-c3 12.0s infinite}
-@keyframes cp-c4{0.0%{opacity:0}45.167%{opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}49.333%{opacity:1}100.0%{opacity:1}}
-.cp-c4{animation:cp-c4 12.0s infinite}
-@keyframes cp-c5{0.0%{opacity:0}46.667%{opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}50.833%{opacity:1}100.0%{opacity:1}}
-.cp-c5{animation:cp-c5 12.0s infinite}
-@keyframes cp-n100{0.0%{--c:0}7.5%{--c:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}25.0%{--c:100}100.0%{--c:100}}
-.cp-n100{animation:cp-n100 12.0s infinite}
-@keyframes cp-n5{0.0%{--c:0}25.833%{--c:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}36.667%{--c:5}100.0%{--c:5}}
-.cp-n5{animation:cp-n5 12.0s infinite}
-@keyframes cp-tag{0.0%{opacity:0;transform:scale(0.8)}52.5%{opacity:0;transform:scale(0.8);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}57.5%{opacity:1;transform:scale(1)}100.0%{opacity:1;transform:scale(1)}}
-.cp-tag{animation:cp-tag 12.0s infinite}
-@keyframes cp-velo{0.0%{opacity:1}2.5%{opacity:0}94.167%{opacity:0}100.0%{opacity:1}}
-.cp-velo{animation:cp-velo 12.0s infinite}
-.cp-n100{--c:100}.cp-n5{--c:5}
-@media (prefers-reduced-motion: reduce){[class^='cp-'],[class*=' cp-']{animation:none !important}}
-
-
-body{margin:0}
-@property --g { syntax: '<integer>'; initial-value: 0; inherits: false; }
-.gr-cnt{counter-reset:g var(--g);font-variant-numeric:tabular-nums}.gr-cnt::before{content:counter(g)}
-@keyframes gr-velo{0%{opacity:1}1.786%,95.0%{opacity:0}99.286%,100%{opacity:1}}
-.gr-velo{animation:gr-velo 14.0s infinite}
-@keyframes gr-borde{0%,1.429%{stroke-dashoffset:100;animation-timing-function:cubic-bezier(0.65,0,0.35,1)}10.0%,100%{stroke-dashoffset:0}}
-.gr-borde{animation:gr-borde 14.0s infinite}
-@keyframes gr-cota{0%,6.429%{opacity:0}10.714%,100%{opacity:1}}
-.gr-cota{animation:gr-cota 14.0s infinite}
-@keyframes gr-p0{0%,11.429%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.65,0,0.35,1)}14.286%,100%{transform:scaleY(1)}}
-.gr-p0{animation:gr-p0 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes gr-l0{0%,68.571%{opacity:0}75.714%,84.286%{opacity:1}90.0%,100%{opacity:0}}
-.gr-l0{animation:gr-l0 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes gr-p1{0%,13.571%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.65,0,0.35,1)}16.429%,100%{transform:scaleY(1)}}
-.gr-p1{animation:gr-p1 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes gr-l1{0%,69.429%{opacity:0}76.571%,85.143%{opacity:1}90.0%,100%{opacity:0}}
-.gr-l1{animation:gr-l1 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes gr-p2{0%,15.714%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.65,0,0.35,1)}18.571%,100%{transform:scaleY(1)}}
-.gr-p2{animation:gr-p2 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes gr-l2{0%,70.286%{opacity:0}77.429%,86.0%{opacity:1}90.0%,100%{opacity:0}}
-.gr-l2{animation:gr-l2 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes gr-p3{0%,17.857%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.65,0,0.35,1)}20.714%,100%{transform:scaleY(1)}}
-.gr-p3{animation:gr-p3 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes gr-l3{0%,71.143%{opacity:0}78.286%,86.857%{opacity:1}90.0%,100%{opacity:0}}
-.gr-l3{animation:gr-l3 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes gr-p4{0%,20.0%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.65,0,0.35,1)}22.857%,100%{transform:scaleY(1)}}
-.gr-p4{animation:gr-p4 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes gr-l4{0%,72.0%{opacity:0}79.143%,87.714%{opacity:1}90.0%,100%{opacity:0}}
-.gr-l4{animation:gr-l4 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes gr-p5{0%,22.143%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.65,0,0.35,1)}25.0%,100%{transform:scaleY(1)}}
-.gr-p5{animation:gr-p5 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes gr-l5{0%,72.857%{opacity:0}80.0%,88.571%{opacity:1}90.0%,100%{opacity:0}}
-.gr-l5{animation:gr-l5 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes gr-p6{0%,24.286%{transform:scaleY(0);animation-timing-function:cubic-bezier(0.65,0,0.35,1)}27.143%,100%{transform:scaleY(1)}}
-.gr-p6{animation:gr-p6 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes gr-l6{0%,73.714%{opacity:0}80.857%,89.429%{opacity:1}90.0%,100%{opacity:0}}
-.gr-l6{animation:gr-l6 14.0s infinite;transform-box:fill-box;transform-origin:50% 0%}
-@keyframes gr-huella{0%,15.714%{--g:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}27.143%,100%{--g:95}}
-.gr-huella{--g:95;animation:gr-huella 14.0s infinite}
-@keyframes gr-rev{0%,85.714%{--g:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}92.857%,100%{--g:13}}
-.gr-rev{--g:13;animation:gr-rev 14.0s infinite}
-@keyframes gr-tractor{0%,26.786%{offset-distance:0%;opacity:0}28.571%{offset-distance:0%;opacity:1}52.857%{offset-distance:100%;opacity:1}55.0%,100%{offset-distance:100%;opacity:0}}
-.gr-tractor{offset-path:path('M 141.0 164 L 141.0 576 L 231.0 576 L 231.0 164 L 321.0 164 L 321.0 576 L 411.0 576 L 411.0 164 L 501.0 164 L 501.0 576 L 591.0 576 L 591.0 164 L 681.0 164 L 681.0 576 L 771.0 576 L 771.0 164');offset-rotate:auto;offset-anchor:50% 50%;animation:gr-tractor 14.0s linear infinite}
-@keyframes gr-s0{0%,28.571%{transform:scaleY(0)}31.12%,100%{transform:scaleY(1)}}
-.gr-s0{transform-box:fill-box;transform-origin:50% 0%;animation:gr-s0 14.0s linear infinite}
-@keyframes gr-c0{0%,53.571%{transform:scaleY(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}60.0%,100%{transform:scaleY(1);opacity:1}}
-.gr-c0{transform-box:fill-box;transform-origin:50% 100%;animation:gr-c0 14.0s infinite}
-@keyframes gr-s1{0%,31.677%{transform:scaleY(0)}34.225%,100%{transform:scaleY(1)}}
-.gr-s1{transform-box:fill-box;transform-origin:50% 100%;animation:gr-s1 14.0s linear infinite}
-@keyframes gr-c1{0%,54.857%{transform:scaleY(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}61.286%,100%{transform:scaleY(1);opacity:1}}
-.gr-c1{transform-box:fill-box;transform-origin:50% 100%;animation:gr-c1 14.0s infinite}
-@keyframes gr-s2{0%,34.782%{transform:scaleY(0)}37.331%,100%{transform:scaleY(1)}}
-.gr-s2{transform-box:fill-box;transform-origin:50% 0%;animation:gr-s2 14.0s linear infinite}
-@keyframes gr-c2{0%,56.143%{transform:scaleY(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}62.571%,100%{transform:scaleY(1);opacity:1}}
-.gr-c2{transform-box:fill-box;transform-origin:50% 100%;animation:gr-c2 14.0s infinite}
-@keyframes gr-s3{0%,37.887%{transform:scaleY(0)}40.436%,100%{transform:scaleY(1)}}
-.gr-s3{transform-box:fill-box;transform-origin:50% 100%;animation:gr-s3 14.0s linear infinite}
-@keyframes gr-c3{0%,57.429%{transform:scaleY(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}63.857%,100%{transform:scaleY(1);opacity:1}}
-.gr-c3{transform-box:fill-box;transform-origin:50% 100%;animation:gr-c3 14.0s infinite}
-@keyframes gr-s4{0%,40.993%{transform:scaleY(0)}43.541%,100%{transform:scaleY(1)}}
-.gr-s4{transform-box:fill-box;transform-origin:50% 0%;animation:gr-s4 14.0s linear infinite}
-@keyframes gr-c4{0%,58.714%{transform:scaleY(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}65.143%,100%{transform:scaleY(1);opacity:1}}
-.gr-c4{transform-box:fill-box;transform-origin:50% 100%;animation:gr-c4 14.0s infinite}
-@keyframes gr-s5{0%,44.098%{transform:scaleY(0)}46.647%,100%{transform:scaleY(1)}}
-.gr-s5{transform-box:fill-box;transform-origin:50% 100%;animation:gr-s5 14.0s linear infinite}
-@keyframes gr-c5{0%,60.0%{transform:scaleY(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}66.429%,100%{transform:scaleY(1);opacity:1}}
-.gr-c5{transform-box:fill-box;transform-origin:50% 100%;animation:gr-c5 14.0s infinite}
-@keyframes gr-s6{0%,47.203%{transform:scaleY(0)}49.752%,100%{transform:scaleY(1)}}
-.gr-s6{transform-box:fill-box;transform-origin:50% 0%;animation:gr-s6 14.0s linear infinite}
-@keyframes gr-c6{0%,61.286%{transform:scaleY(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}67.714%,100%{transform:scaleY(1);opacity:1}}
-.gr-c6{transform-box:fill-box;transform-origin:50% 100%;animation:gr-c6 14.0s infinite}
-@keyframes gr-s7{0%,50.309%{transform:scaleY(0)}52.857%,100%{transform:scaleY(1)}}
-.gr-s7{transform-box:fill-box;transform-origin:50% 100%;animation:gr-s7 14.0s linear infinite}
-@keyframes gr-c7{0%,62.571%{transform:scaleY(0);opacity:0;animation-timing-function:cubic-bezier(0.16,1,0.3,1)}69.0%,100%{transform:scaleY(1);opacity:1}}
-.gr-c7{transform-box:fill-box;transform-origin:50% 100%;animation:gr-c7 14.0s infinite}
-@keyframes gr-sol{0%,67.143%{offset-distance:0%;opacity:0}68.571%{offset-distance:0%;opacity:1}90.0%{offset-distance:100%;opacity:1}92.143%,100%{offset-distance:100%;opacity:0}}
-.gr-sol{offset-path:path('M 86 132 Q 456.0 -20 826 132');offset-rotate:0deg;offset-anchor:50% 50%;animation:gr-sol 14.0s cubic-bezier(0.45,0,0.55,1) infinite}
-@keyframes gr-curva{0%,68.571%{stroke-dashoffset:100}90.0%,100%{stroke-dashoffset:0}}
-.gr-curva{animation:gr-curva 14.0s infinite}
-@keyframes gr-e0{0%,11.071%{opacity:1}11.429%,100%{opacity:0.35}}
-.gr-e0{animation:gr-e0 14.0s infinite}
-@keyframes gr-m0{0%,11.071%{background:#ffd54a}11.429%,100%{background:transparent}}
-.gr-m0{animation:gr-m0 14.0s infinite}
-@keyframes gr-e1{0%,11.071%{opacity:0.35}11.429%,28.214%{opacity:1}28.571%,100%{opacity:0.35}}
-.gr-e1{animation:gr-e1 14.0s infinite}
-@keyframes gr-m1{0%,11.071%{background:transparent}11.429%,28.214%{background:#ffd54a}28.571%,100%{background:transparent}}
-.gr-m1{animation:gr-m1 14.0s infinite}
-@keyframes gr-e2{0%,28.214%{opacity:0.35}28.571%,52.5%{opacity:1}52.857%,100%{opacity:0.35}}
-.gr-e2{animation:gr-e2 14.0s infinite}
-@keyframes gr-m2{0%,28.214%{background:transparent}28.571%,52.5%{background:#ffd54a}52.857%,100%{background:transparent}}
-.gr-m2{animation:gr-m2 14.0s infinite}
-@keyframes gr-e3{0%,52.5%{opacity:0.35}52.857%,66.786%{opacity:1}67.143%,100%{opacity:0.35}}
-.gr-e3{animation:gr-e3 14.0s infinite}
-@keyframes gr-m3{0%,52.5%{background:transparent}52.857%,66.786%{background:#ffd54a}67.143%,100%{background:transparent}}
-.gr-m3{animation:gr-m3 14.0s infinite}
-@keyframes gr-e4{0%,66.786%{opacity:0.35}67.143%,100%{opacity:1}}
-.gr-e4{animation:gr-e4 14.0s infinite}
-@keyframes gr-m4{0%,66.786%{background:transparent}67.143%,100%{background:#ffd54a}}
-.gr-m4{animation:gr-m4 14.0s infinite}
-@media (prefers-reduced-motion: reduce){[class^='gr-'],[class*=' gr-']{animation:none !important}}
-
-.n7{--n:7}.n2024{--n:2024}
-html,body{margin:0;background:rgb(10, 16, 12)}
-.wrap{width:1280px;margin:0 auto;position:relative}
-
-html,body{overflow-x:hidden}
-#top > div{width:100vw;margin-left:calc(50% - 50vw);height:clamp(860px,100vh,1080px) !important}
-#top canvas{object-fit:cover}
-#top div[style*="grid-template-columns: 1.3fr 1fr"]{max-width:1280px;width:100%;margin:0 auto;box-sizing:border-box}
-
-/* ---------- responsive layer (preview only) ---------- */
-.r-mob{display:none !important}
-.r-root{box-sizing:border-box}
-.r-how{border-radius:0}
-@media (max-width: 1279px){
-  .wrap{width:100% !important}
-  .r-root{width:100% !important}
-  .r-px52{padding-left:40px !important; padding-right:40px !important}
-  .r-mx52{margin-left:40px !important; margin-right:40px !important}
-  .r-px64{padding-left:52px !important; padding-right:52px !important}
-  .r-fsh1{font-size:96px !important}
-  .r-fs70{font-size:60px !important}
-  .r-g12{column-gap:20px !important}
-  .r-nav{gap:18px !important}
-  .r-hdr{gap:28px !important}
-  .r-deco{margin-left:-40px !important; margin-right:-40px !important}
-  form input, form select, form textarea{box-sizing:border-box !important; max-width:100%}
-  .r-stat{font-size:36px !important}
-  .r-backed{flex-wrap:wrap; gap:20px 32px !important}
-  .r-gmem{grid-template-columns:96px minmax(0,1fr) !important; gap:16px !important}
-  .r-gmem > img{width:96px !important; height:96px !important}
-}
-@media (max-width: 1100px){
-  .r-gteam{grid-template-columns:repeat(2, minmax(0,1fr)) !important}
-}
-@media (max-width: 1023px){
-  html,body{overflow-x:hidden}
-  .r-nav,.r-hide-t{display:none !important}
-  .nav-panel .r-mob{display:flex !important}
-  .nav-panel .nav-h.r-mob{display:block !important}
-  .r-hdr{top:16px !important; left:16px !important; right:16px !important; gap:16px !important; justify-content:space-between}
-  .r-hdr-r{margin-left:auto}
-  .nav-panel{max-height:calc(100vh - 120px); overflow-y:auto}
-  .r-g12{display:flex !important; flex-direction:column; align-items:flex-start !important; gap:20px}
-  .r-g12 > .r-gc{width:100%; max-width:640px}
-  #funding .r-gc{max-width:540px}
-  section.r-pt144{padding-top:112px !important}
-  .r-mt144{margin-top:112px !important}
-  .r-pt96{padding-top:72px !important}
-  .r-pb96{padding-bottom:72px !important}
-  .r-pt72{padding-top:56px !important}
-  .r-px52{padding-left:28px !important; padding-right:28px !important}
-  .r-mx52{margin-left:28px !important; margin-right:28px !important}
-  .r-px64{padding-left:40px !important; padding-right:40px !important}
-  .r-fsh1{font-size:76px !important}
-  .r-fs70{font-size:52px !important}
-  .r-fs48{font-size:40px !important}
-  .r-fs40{font-size:32px !important; line-height:1.2 !important}
-  .r-fs34{font-size:28px !important}
-  .r-fs30{font-size:25px !important}
-  #mission > div.r-hero{height:clamp(640px, 82vh, 920px) !important}
-  .r-ghero{display:flex !important; flex-direction:column; align-items:stretch !important; gap:24px !important; padding:120px 28px 40px !important}
-  .r-ghero h1{max-width:12ch !important}
-  .r-ref{top:88px !important}
-  .r-partners{padding:48px 40px 0 !important}
-  .r-partners .r-g12{gap:16px}
-  .r-partners .lg-marquee{width:100%}
-  .r-h300{height:240px !important}
-  .r-h480{height:380px !important}
-  .r-h580{height:440px !important}
-  .r-h500{height:460px !important}
-  .r-h560{height:480px !important}
-  .r-g21{grid-template-columns:1fr 1fr !important}
-  .r-gteam{grid-template-columns:repeat(2, minmax(0,1fr)) !important}
-  .r-gmem{grid-template-columns:96px minmax(0,1fr) !important}
-  .r-gmem > img{width:96px !important; height:96px !important}
-  .r-partners .lg-marquee{max-width:none !important}
-  .r-card-in{padding:28px 28px 36px !important; gap:28px !important}
-  .r-teamcard{padding:36px 32px !important}
-  .r-g5{grid-template-columns:repeat(3, minmax(0,1fr)) !important}
-  .r-stat{font-size:40px !important}
-  .r-support{flex-wrap:wrap}
-  .r-marca-logo{width:min(520px, 70vw) !important; height:auto !important}
-  .r-marca-row{flex-wrap:wrap; justify-content:center; gap:10px 28px !important; padding:0 20px; text-align:center}
-  .r-how{aspect-ratio:800/620 !important}
-  .r-gfoot{grid-template-columns:1fr !important; gap:36px !important}
-  .r-deco{margin-left:-28px !important; margin-right:-28px !important}
-  .r-flogos{flex-wrap:wrap; gap:24px 40px !important}
-}
-@media (max-width: 639px){
-  .r-hdr{top:8px !important; left:8px !important; right:8px !important; height:56px !important; padding:0 8px 0 16px !important; gap:10px !important}
-  .r-cta{display:none !important}
-  .r-fs11{font-size:12px !important}
-  .r-hdr > a{padding:11px 0}
-  footer .r-g3 a{padding:6px 0}
-  footer .r-g3 > div{gap:2px !important}
-  .nav-panel{position:fixed !important; top:72px !important; left:8px !important; right:8px !important; width:auto !important; background:#0a100c !important}
-  .nav-panel a,.nav-panel .nav-soon{min-height:44px; box-sizing:border-box; align-items:center !important}
-  .r-mx12{margin-left:8px !important; margin-right:8px !important}
-  .r-px12{padding-left:8px !important; padding-right:8px !important}
-  section.r-pt144{padding-top:88px !important}
-  .r-mt144{margin-top:88px !important}
-  .r-pt96{padding-top:56px !important}
-  .r-pb96{padding-bottom:56px !important}
-  .r-pt72{padding-top:44px !important}
-  .r-px52{padding-left:12px !important; padding-right:12px !important}
-  .r-mx52{margin-left:12px !important; margin-right:12px !important}
-  .r-px64{padding-left:20px !important; padding-right:20px !important}
-  #story.r-px52,#contact.r-px52{padding-left:20px !important; padding-right:20px !important}
-  footer .r-px52{padding-left:20px !important; padding-right:20px !important}
-  footer .r-mx52{margin-left:20px !important; margin-right:20px !important}
-  #careers.r-px52{padding-left:20px !important; padding-right:20px !important}
-  .r-fsh1{font-size:clamp(46px, 13vw, 58px) !important; line-height:1 !important}
-  .r-fs70{font-size:40px !important; line-height:1.05 !important}
-  .r-fs48{font-size:32px !important; line-height:1.12 !important}
-  .r-fs40{font-size:27px !important; line-height:1.22 !important}
-  .r-fs34{font-size:25px !important; line-height:1.2 !important}
-  .r-fs30{font-size:21px !important; line-height:1.4 !important}
-  .r-fs28{font-size:22px !important}
-  .r-fs24{font-size:21px !important}
-  .r-fs22{font-size:20px !important}
-  .r-fs20,.r-fs19{font-size:17px !important; line-height:1.5 !important}
-  #mission > div.r-hero{height:min(100vh, 760px) !important; height:min(100svh, 760px) !important}
-  .r-ghero{padding:0 20px 28px !important; gap:18px !important; margin-top:auto}
-  .r-ref{top:76px !important; right:12px !important}
-  .r-ref2{top:12px !important; left:12px !important}
-  .r-partners{padding:40px 20px 0 !important}
-  .lg-cell{padding:0 22px !important}
-  .r-g2{grid-template-columns:1fr !important; gap:8px !important}
-  .r-g3{grid-template-columns:1fr !important; gap:8px !important}
-  .r-g21{grid-template-columns:1fr !important; gap:8px !important}
-  .r-g5{grid-template-columns:repeat(2, minmax(0,1fr)) !important; gap:8px !important}
-  .r-g5 > :last-child{grid-column:1 / -1}
-  .r-stat{font-size:32px !important}
-  .r-gmem{grid-template-columns:88px minmax(0,1fr) !important; gap:16px !important; padding:12px !important}
-  .r-gmem > img{width:88px !important; height:88px !important}
-  .r-h300{height:210px !important}
-  .r-h480{height:280px !important}
-  .r-h580{height:420px !important}
-  .r-h500{height:auto !important; min-height:340px}
-  figure.r-h500{height:440px !important}
-  .r-h560{height:400px !important}
-  .r-mh196{min-height:150px !important}
-  .r-gteam{grid-template-columns:1fr !important}
-  .r-card-in{padding:24px 20px 28px !important; gap:24px !important}
-  .r-teamcard{padding:28px 24px !important; gap:24px}
-  .r-how{aspect-ratio:390/760 !important}
-  .r-support{flex-direction:column; align-items:flex-start !important; gap:16px !important}
-  .r-marca-logo{width:78vw !important}
-  .r-marca-row{flex-direction:column; align-items:center; gap:6px !important; bottom:22px !important; font-size:12px !important; letter-spacing:0.04em !important}
-  .nav-panel small,.nav-panel .nav-h{font-size:12px !important}
-  .r-gfoot{gap:28px !important}
-  .r-gfoot .r-g3{grid-template-columns:repeat(2, minmax(0,1fr)) !important; gap:24px 16px !important}
-  .r-deco{margin:40px -20px -56px !important; height:180px !important}
-  .r-legal{flex-direction:column; gap:8px}
-  .r-flogos{padding:24px 20px 32px !important; gap:20px 28px !important}
-  .r-flogos img{height:34px !important; width:auto !important}
-}
-
-/* ---------- responsive layer, microsites ---------- */
-.r-vwrap{height:auto !important}
-.r-vwrap > div{margin-left:0 !important}
-.r-vid{display:block; width:100% !important; height:auto !important}
-@media (max-width: 1279px){
-  .r-fs88{font-size:76px !important}
-  .r-mx64{margin-left:52px !important; margin-right:52px !important}
-  #top .r-fsh1{font-size:76px !important}
-}
-@media (max-width: 1180px){
-  /* the section links no longer fit next to the logo: they move into the menu */
-  .r-nav,.r-hide-t{display:none !important}
-  .nav-panel .r-mob{display:flex !important}
-  .nav-panel .nav-h.r-mob{display:block !important}
-  .r-hdr-r{margin-left:auto}
-}
-@media (max-width: 1023px){
-  #top > div.r-hero{height:clamp(640px, 82vh, 920px) !important}
-  .r-g4{grid-template-columns:repeat(2, minmax(0,1fr)) !important; row-gap:32px !important}
-  .r-fs88{font-size:64px !important}
-  .r-fs64{font-size:52px !important}
-  .r-fs26{font-size:24px !important}
-  .r-gkv2{grid-template-columns:120px minmax(0,1fr) !important}
-  img.r-h380{height:320px !important}
-  div.r-h380{height:auto !important; min-height:320px}
-  .r-gchart{grid-template-columns:132px minmax(0,1fr) !important}
-  .r-wrap{flex-wrap:wrap; row-gap:10px !important}
-  .r-tline{display:none !important}
-  #next .r-g4 > #ai-infrastructure{grid-column:1 / -1 !important}
-  .r-mx64{margin-left:40px !important; margin-right:40px !important}
-  .r-fig{margin-top:48px !important}
-  .r-ctarow{flex-wrap:wrap; gap:24px 40px !important}
-  #field .r-g4 > div{justify-content:space-between}
-  #field .r-g4 > div > .r-fs30{min-height:0 !important}
-}
-@media (max-width: 639px){
-  #top > div.r-hero{height:min(100vh, 760px) !important; height:min(100svh, 760px) !important}
-  .r-g4{gap:28px 12px !important}
-  #next .r-g4{grid-template-columns:1fr !important; gap:36px !important}
-  .r-fs88{font-size:52px !important}
-  .r-fs64{font-size:44px !important}
-  .r-fs26{font-size:23px !important}
-  .r-gkv{grid-template-columns:100px minmax(0,1fr) !important; gap:12px !important}
-  .r-gkv2{grid-template-columns:1fr !important; gap:4px !important}
-  img.r-h380{height:240px !important}
-  div.r-h380{min-height:0}
-  .r-cardp{padding:24px 20px 28px !important}
-  .r-chartbox{padding:24px 16px 20px !important}
-  .r-gchart{grid-template-columns:1fr !important; gap:8px !important}
-  .r-mh240,.r-mh300{min-height:0 !important}
-  .r-ctarow{flex-direction:column; align-items:flex-start !important; gap:24px !important}
-  .r-mx64{margin-left:20px !important; margin-right:20px !important}
-  .r-linkrow{flex-direction:column; align-items:flex-start !important; gap:16px !important}
-  .r-linkrow > div{flex-wrap:wrap; gap:20px 28px !important}
-  .r-linkrow a{white-space:nowrap}
-  .r-hide-m{display:none !important}
-  .r-fighead{flex-direction:column; align-items:flex-start !important; gap:6px}
-  .r-fig{margin-top:36px !important; gap:16px !important}
-}
-
-.n10{--n:10}.n13{--n:13}.n95{--n:95}
+:root{--noche:#0A100C;--arena:#F4F2EC;--piedra:#EBE6D8;--linea:#D6D1C3;--pizarra:#555A52;--niebla:#A1A69F;--yhonda:#056C4A;--sol:#FFD54A}
+*{box-sizing:border-box}html,body{margin:0;background:var(--noche);color:var(--noche);font-family:'Work Sans',Arial,sans-serif}
+a{color:var(--yhonda)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:24px;max-width:1280px;margin:0 auto;padding:28px 40px;color:var(--arena)}
+.top a{color:var(--arena);text-decoration:none;font-family:'Geist Mono',Menlo,monospace;font-size:14px}
+.card{max-width:1256px;margin:0 auto;border-radius:20px;background:var(--arena);padding:88px 52px 96px}
+.inner{max-width:760px}
+.eyebrow{font-family:'Geist Mono',Menlo,monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--pizarra);margin:0 0 24px}
+.eyebrow span{display:inline-block;width:6px;height:6px;margin-right:10px;vertical-align:1px;background:var(--yhonda)}
+h1{font-family:'Zilla Slab',Georgia,serif;font-weight:400;font-size:56px;line-height:1.05;letter-spacing:-.015em;margin:0 0 28px}
+h2{font-family:'Zilla Slab',Georgia,serif;font-weight:400;font-size:28px;line-height:1.2;margin:48px 0 12px}
+h3{font-size:17px;font-weight:500;margin:28px 0 8px}
+p,li,dd{font-size:17px;line-height:27px}p{margin:0 0 14px}ul{padding-left:20px;margin:0 0 14px}
+dl{display:grid;grid-template-columns:200px minmax(0,1fr);gap:10px 24px;margin:0 0 14px;padding:16px 0;border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+dt{font-family:'Geist Mono',Menlo,monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--pizarra);padding-top:5px}dd{margin:0}
+.draft{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;border-radius:12px;background:var(--piedra);margin:0 0 40px;font-size:15px;line-height:23px}
+.draft b{font-weight:500}
+.ph{background:rgba(255,213,74,.35);padding:0 4px;border-radius:3px}
+.muted{color:var(--pizarra);font-size:15px;line-height:23px}
+.lang{margin-top:72px;padding-top:40px;border-top:1px solid var(--linea)}
+.foot{max-width:1280px;margin:0 auto;padding:40px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;color:var(--niebla);font-family:'Geist Mono',Menlo,monospace;font-size:12px}
+.foot a{color:var(--niebla)}
+.fund{max-width:1280px;margin:0 auto;padding:40px 40px 0;display:grid;grid-template-columns:200px minmax(0,1fr);gap:8px 24px;color:var(--niebla)}
+.fund span{font-family:'Geist Mono',Menlo,monospace;font-size:11px;line-height:22px;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+.fund p{margin:0;max-width:640px;font-size:14px;line-height:22px}
+.fund p span{font-family:inherit;font-size:inherit;letter-spacing:0;text-transform:none;font-weight:400;color:var(--arena)}
+.logos{max-width:1256px;margin:0 auto 12px;padding:28px 40px;border-radius:20px;background:var(--arena);display:flex;flex-wrap:wrap;align-items:center;gap:28px 48px}
+.logos img{display:block;height:44px;width:auto}
+@media (max-width:639px){.top{padding:20px}.card{margin:0 8px;padding:56px 20px 64px;border-radius:16px}h1{font-size:40px}dl{grid-template-columns:1fr;gap:2px}dt{padding-top:12px}.foot{padding:28px 20px}.fund{grid-template-columns:1fr;padding:32px 20px 0}.logos{margin:0 8px 8px;padding:24px 20px;gap:20px 28px;border-radius:16px}.logos img{height:34px}}
 </style>
 </head>
 <body>
-<div class="wrap">
-<div class="r-root" style='position: relative; width: 1280px;  background: rgb(10, 16, 12); color: rgb(244, 242, 236); font-family: "Work Sans", Arial, sans-serif;'><div data-hdr="1" style="position: sticky; top: 0px; z-index: 30; height: 0px;"><header class="r-hdr" style="position: absolute; top: 24px; left: 24px; right: 24px; height: 60px; box-sizing: border-box; padding: 0px 10px 0px 20px; border-radius: 12px; display: flex; align-items: center; gap: 44px; background: rgba(10, 16, 12, 0.55); color: rgb(244, 242, 236); box-shadow: none; backdrop-filter: blur(14px); transition: background-color 240ms cubic-bezier(0.16, 1, 0.3, 1), color 240ms cubic-bezier(0.16, 1, 0.3, 1);"><a aria-label="eki.labs, inicio" href="../" style="display: block; line-height: 0;"><img alt="eki.labs" src="../assets/cd5507e4423d.svg" style="height: 22px; width: 120px; display: block;"/><img alt="eki.labs" src="../assets/935050cd151d.svg" style="height: 22px; width: 120px; display: none;"/></a><nav class="r-nav" style="display: flex; gap: 26px; font-size: 15px;"><a class="nav-a" href="#compare">Land use<svg aria-hidden="true" fill="none" height="12" style="display: block;" viewbox="0 0 16 16" width="12"><path d="M8 2.5V13M3.5 8.5L8 13L12.5 8.5" stroke="currentColor" stroke-linecap="square" stroke-width="1.6"></path></svg></a><a class="nav-a" href="#science">Aligned with demand<svg aria-hidden="true" fill="none" height="12" style="display: block;" viewbox="0 0 16 16" width="12"><path d="M8 2.5V13M3.5 8.5L8 13L12.5 8.5" stroke="currentColor" stroke-linecap="square" stroke-width="1.6"></path></svg></a><a class="nav-a" href="#field">Field tests<svg aria-hidden="true" fill="none" height="12" style="display: block;" viewbox="0 0 16 16" width="12"><path d="M8 2.5V13M3.5 8.5L8 13L12.5 8.5" stroke="currentColor" stroke-linecap="square" stroke-width="1.6"></path></svg></a><a class="nav-a" href="#farm">The process<svg aria-hidden="true" fill="none" height="12" style="display: block;" viewbox="0 0 16 16" width="12"><path d="M8 2.5V13M3.5 8.5L8 13L12.5 8.5" stroke="currentColor" stroke-linecap="square" stroke-width="1.6"></path></svg></a></nav><div class="r-hdr-r" style="margin-left: auto; display: flex; align-items: center; gap: 20px;"><a class="nav-a r-hide-t" href="../#contact" style='font-family: "Geist Mono", Menlo, monospace; font-size: 14px;'>Contact<svg aria-hidden="true" fill="none" height="14" style="display: block;" viewbox="0 0 16 16" width="14"><path d="M3.34 8H12M8 3.33L12.67 8L8 12.67" stroke="currentColor" stroke-linecap="square" stroke-width="1.5"></path></svg></a><a class="r-cta" href="../model/" style='display: inline-flex; align-items: center; height: 40px; padding: 0px 16px; border-radius: 4px; background: rgb(88, 233, 174); color: rgb(10, 16, 12); font-family: "Geist Mono", Menlo, monospace; font-size: 14px; font-weight: 500; text-decoration: none;'>See the model</a><details class="nav-more"><summary aria-label="More eki.labs sites"><svg aria-hidden="true" fill="none" height="18" style="display: block;" viewbox="0 0 18 18" width="18"><path d="M2 4.5H16M2 9H16M2 13.5H16" stroke="currentColor" stroke-linecap="square" stroke-width="1.6"></path></svg></summary><div class="nav-panel"><span class="nav-h r-mob">On this page</span><a class="r-mob" href="#compare">Land use</a><a class="r-mob" href="#science">Aligned with demand</a><a class="r-mob" href="#field">Field tests</a><a class="r-mob" href="#farm">The process</a><a class="r-mob" href="../#contact">Contact</a><span class="nav-h r-mob">eki.labs sites</span><a href="../">Home<small>eki.labs</small></a><a aria-current="page" href="../technology/">Technology<small>Microsite</small></a><a href="../model/">Model<small>Microsite</small></a><a href="../video/">Film<small>79 s</small></a><a href="../brand/">Brand<small>Guidelines</small></a><a href="../signature/">Email signature<small>For the team</small></a><a href="../decks/">Slides<small>Private</small></a></div></details></div></header></div><section data-tono="oscuro" id="top" style="padding: 0px;"><div class="r-h860 r-hero" style="position: relative; height: 860px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; background: rgb(15, 42, 27);"><canvas data-hero-fot="1" height="860" style="position: absolute; inset: 0px; width: 100%; height: 100%; display: block; z-index: 1;" width="1280"></canvas><img alt="eki.labs solar rows on a cereal field in Zamora" data-hero-img="1" src="../assets/c11101b9c808.jpg" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; display: block; transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1); opacity: 1;"/><div style="position: absolute; inset: 0px; z-index: 2; pointer-events: none; background: linear-gradient(90deg, rgba(10, 16, 12, 0.42) 0px, rgba(10, 16, 12, 0.16) 36%, rgba(10, 16, 12, 0) 56%), linear-gradient(rgba(10, 16, 12, 0.45) 0px, rgba(10, 16, 12, 0) 22%, rgba(10, 16, 12, 0) 34%, rgba(10, 16, 12, 0.9) 100%);"></div><div class="r-ghero" style="position: relative; z-index: 3; pointer-events: none; display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: end; padding: 48px 36px;"><div style="display: flex; flex-direction: column; gap: 20px;"><span style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(213, 216, 210);'><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: rgb(88, 233, 174);"></span>Technology</span><h1 class="r-fsh1 r-mw" style='margin: 0px; font-family: "Zilla Slab", Georgia, serif; font-weight: 400; font-size: 94px; line-height: 0.98; letter-spacing: -0.025em; color: rgb(244, 242, 236); max-width: 13ch;'>Solar power that is compatible with farming, at scale.</h1></div><p class="r-fs20" style="margin: 0px; font-size: 20px; line-height: 29px; color: rgb(244, 242, 236); text-wrap: pretty;">Bifacial rows facing east and west, 10–18 m apart. Machinery keeps working; the crops keep growing.</p></div></div></section><section class="r-pt144" data-tono="oscuro" id="compare" style="padding: 144px 0px 0px;"><div class="r-g12 r-px64" style="padding: 0px 64px 40px; display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); column-gap: 24px; align-items: end;"><div class="r-gc" style="grid-column: 1 / span 7;"><div style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 24px;'><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: rgb(88, 233, 174);"></span><span style="color: rgb(244, 242, 236);">01</span> · Single-use vs. dual-use land</div><h2 class="r-fs48" style='margin: 0px; font-family: "Zilla Slab", Georgia, serif; font-weight: 400; font-size: 48px; line-height: 52px; letter-spacing: -0.015em;'>Farmers and solar developers are competing for the same lands.</h2></div><p class="r-gc" style="grid-column: 9 / span 4; margin: 0px; font-size: 17px; line-height: 26px; color: rgb(161, 166, 159);">Solar farms favour flat, sun-rich terrain: the same land as our best farms. Our rows take 5% of it; the rest keeps farming.</p></div><div class="r-mx12 r-h720 r-vwrap" style="margin: 0px 12px; border-radius: 20px; overflow: hidden; height: 720px;"><div style="margin-left: -12px;"><video autoplay="" class="r-root r-h720 r-vid" data-ar-d="1920/1080" data-ar-m="1170/2612" data-ar-t="1600/1040" data-poster-d="../assets/still-comparativa.jpg" data-poster-m="../assets/still-comp-m.jpg" data-poster-t="../assets/still-comp-t.jpg" data-src-d="../assets/clip-comparativa.mp4" data-src-m="../assets/clip-comp-m.mp4" data-src-t="../assets/clip-comp-t.mp4" loop="" muted="" playsinline="" preload="none" style="display:block; width:100%; height:auto; aspect-ratio:1920/1080; object-fit:cover;"></video></div></div><div class="r-g2 r-mx12" style="margin: 24px 12px 0px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;"><div class="r-cardp" style="padding: 32px 32px 36px; border-radius: 12px; background: rgb(20, 27, 22); display: flex; flex-direction: column; gap: 20px;"><div style="display: flex; justify-content: space-between; align-items: baseline;"><h3 class="r-fs30" style='margin: 0px; font-family: "Zilla Slab", Georgia, serif; font-weight: 400; font-size: 30px; line-height: 36px;'>Single-use land</h3><span style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);'>Conventional solar</span></div><div class="r-gkv" style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid rgb(43, 51, 45);"><span style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);'>Panels</span><span style="font-size: 16px; line-height: 24px;">Fixed, facing south, tilted at about 30°</span></div><div class="r-gkv" style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid rgb(43, 51, 45);"><span style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);'>Between rows</span><span style="font-size: 16px; line-height: 24px;">About 5 m</span></div><div class="r-gkv" style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid rgb(43, 51, 45);"><span style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);'>Sunlight</span><span style="font-size: 16px; line-height: 24px;">Blocked: the land stops being farmland</span></div><div class="r-gkv" style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid rgb(43, 51, 45);"><span style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);'>Machinery</span><span style="font-size: 16px; line-height: 24px;">Restricted access</span></div></div><div class="r-cardp" style="padding: 32px 32px 36px; border-radius: 12px; background: rgb(20, 27, 22); display: flex; flex-direction: column; gap: 20px;"><div style="display: flex; justify-content: space-between; align-items: baseline;"><h3 class="r-fs30" style='margin: 0px; font-family: "Zilla Slab", Georgia, serif; font-weight: 400; font-size: 30px; line-height: 36px;'>Dual-use land</h3><span style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(255, 213, 74);'><span style="text-transform: none; letter-spacing: 0.02em;">eki.labs</span></span></div><div class="r-gkv" style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid rgb(43, 51, 45);"><span style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);'>Panels</span><span style="font-size: 16px; line-height: 24px;">Bifacial, in rows facing east and west</span></div><div class="r-gkv" style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid rgb(43, 51, 45);"><span style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);'>Between rows</span><span style="font-size: 16px; line-height: 24px;">10–18 m</span></div><div class="r-gkv" style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid rgb(43, 51, 45);"><span style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);'>Sunlight</span><span style="font-size: 16px; line-height: 24px;">Reaches the crops; morning and evening shade helps the soil keep its moisture</span></div><div class="r-gkv" style="display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding-top: 14px; border-top: 1px solid rgb(43, 51, 45);"><span style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);'>Machinery</span><span style="font-size: 16px; line-height: 24px;">Full compatibility</span></div></div></div></section><section class="r-px52 r-pt96 r-pb96 r-mx12 r-mt144" data-tono="oscuro" id="science" style="margin: 144px 12px 0px; padding: 96px 52px; border-radius: 20px; background: rgb(10, 16, 12); color: rgb(244, 242, 236);"><div class="r-g12" style="display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); column-gap: 24px; align-items: end;"><div class="r-gc" style="grid-column: 1 / span 6;"><div style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 24px;'><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: rgb(88, 233, 174);"></span><span style="color: rgb(244, 242, 236);">02</span> · The science</div><h2 class="r-fs70" style='margin: 0px; font-family: "Zilla Slab", Georgia, serif; font-weight: 400; font-size: 70px; line-height: 1.02; letter-spacing: -0.025em;'>Aligned with demand.</h2></div><p class="r-gc r-fs19 r-mw" style="grid-column: 7 / span 6; margin: 0px; font-size: 19px; line-height: 28px; color: rgb(161, 166, 159); max-width: 56ch;">Our rows face east and west, so they produce in the morning and in the evening, when demand peaks and electricity is worth the most. Conventional panels produce mostly at midday, when solar floods the grid and prices fall: then the light goes to our crops.</p></div><figure class="r-fig" style="margin: 72px 0px 0px; display: flex; flex-direction: column; gap: 24px;"><div class="r-fighead" style='display: flex; justify-content: space-between; font-family: "Geist Mono", Menlo, monospace; font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding-bottom: 16px; border-bottom: 1px solid rgb(43, 51, 45);'><span>One day in June, hour by hour</span><span style="color: rgb(161, 166, 159); font-weight: 400; letter-spacing: 0.02em; text-transform: none;">Illustrative data</span></div><video autoplay="" class="r-h784 r-vid" data-ar-d="1728/1176" data-ar-m="1050/2210" data-ar-t="1440/1244" data-poster-d="../assets/still-science.jpg" data-poster-m="../assets/still-sci-m.jpg" data-poster-t="../assets/still-sci-t.jpg" data-src-d="../assets/clip-science.mp4" data-src-m="../assets/clip-sci-m.mp4" data-src-t="../assets/clip-sci-t.mp4" loop="" muted="" playsinline="" preload="none" style="display:block; width:100%; height:auto; aspect-ratio:1728/1176; object-fit:cover;"></video><figcaption style="font-size: 13px; line-height: 20px; color: rgb(161, 166, 159);">The +10% energy and +13% revenue come from one year of real data from our field test in Zamora. The day shown is a model: clear-sky June day in Castilla y León, 1 MW of each system. The price profile is illustrative and follows the midday dip of the Iberian day-ahead market (OMIE).</figcaption></figure></section><section class="r-px52 r-pt96 r-pb96 r-mx12 r-mt144" data-contar="campo" data-tono="oscuro" id="field" style="margin: 144px 12px 0px; padding: 96px 52px; border-radius: 20px; background: rgb(10, 16, 12); color: rgb(244, 242, 236);"><div style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 24px;'><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: rgb(88, 233, 174);"></span><span style="color: rgb(244, 242, 236);">03</span> · Field tests</div><h2 class="r-fs48 r-mw" style='margin: 0px; font-family: "Zilla Slab", Georgia, serif; font-weight: 400; font-size: 48px; line-height: 52px; letter-spacing: -0.015em; max-width: 24ch;'>Tested on real cereal farmlands (wheat and barley) in Zamora, Spain.</h2><p class="r-mw" style="margin: 20px 0px 0px; max-width: 60ch; font-size: 17px; line-height: 26px; color: rgb(161, 166, 159);">One year of real data from our pilot in Zamora, installed with grants from Harvard and MIT and compared with a control plant of fixed, south-facing panels.</p><div class="r-g4" style="margin-top: 56px; display: grid; grid-template-columns: repeat(4, minmax(0px, 1fr)); gap: 24px;"><div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 2px solid rgb(244, 242, 236);"><span class="r-fs88 r-stat88" style='font-family: "Geist Mono", Menlo, monospace; font-size: 88px; line-height: 88px; letter-spacing: -0.05em;'>−<span class="cnt n95"></span><span style="font-size: 0.4em; margin-left: 0.12em; color: rgb(161, 166, 159);">%</span></span><span style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;'>Land</span></div><div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 2px solid rgb(244, 242, 236);"><span class="r-fs88 r-stat88" style='font-family: "Geist Mono", Menlo, monospace; font-size: 88px; line-height: 88px; letter-spacing: -0.05em;'>+<span class="cnt n10"></span><span style="font-size: 0.4em; margin-left: 0.12em; color: rgb(161, 166, 159);">%</span></span><span style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;'>Energy</span></div><div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 2px solid rgb(244, 242, 236);"><span class="r-fs88 r-stat88" style='font-family: "Geist Mono", Menlo, monospace; font-size: 88px; line-height: 88px; letter-spacing: -0.05em;'>+<span class="cnt n13"></span><span style="font-size: 0.4em; margin-left: 0.12em; color: rgb(161, 166, 159);">%</span></span><span style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;'>Revenue</span></div><div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 2px solid rgb(244, 242, 236);"><span class="r-fs30 r-stat88" style="font-size: 30px; line-height: 38px; letter-spacing: -0.02em; min-height: 88px; display: flex; align-items: flex-end;">Less dust on the panels</span><span style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;'>Maintenance</span></div></div><div class="r-g2" style="margin-top: 56px; display: grid; grid-template-columns: repeat(2, minmax(0px, 1fr)); gap: 24px;"><div style="position: relative;"><img alt="eki.labs pilot plant among sunflowers" class="r-h380" src="../assets/02a74abf6f8d.jpg" style="width: 100%; height: 380px; object-fit: cover; border-radius: 12px; display: block;"/></div><div class="r-h380" style="height: 380px; box-sizing: border-box; border-radius: 12px; background: rgba(244, 242, 236, 0.05); box-shadow: rgba(244, 242, 236, 0.12) 0px 0px 0px 1px inset; display: flex; flex-direction: column; justify-content: space-between; padding: 28px;"><span style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);'>Validated in the field</span><div style="display: flex; flex-direction: column; gap: 12px;"><div class="r-gkv2" style="display: grid; grid-template-columns: 170px minmax(0px, 1fr); gap: 16px; padding-top: 12px; border-top: 1px solid rgb(43, 51, 45);"><span class="r-fs11" style='font-family: "Geist Mono", Menlo, monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);'>Structure</span><span style="font-size: 15px; line-height: 22px;">Patented racking, anchored without cement. Less shade on the crops, more airflow, machinery-ready.</span></div><div class="r-gkv2" style="display: grid; grid-template-columns: 170px minmax(0px, 1fr); gap: 16px; padding-top: 12px; border-top: 1px solid rgb(43, 51, 45);"><span class="r-fs11" style='font-family: "Geist Mono", Menlo, monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);'>Panels</span><span style="font-size: 15px; line-height: 22px;">Bifacial modules selected for east-west rows and diffuse light, with extra yield from light reflected by the crops (albedo) and cooler panels.</span></div><div class="r-gkv2" style="display: grid; grid-template-columns: 170px minmax(0px, 1fr); gap: 16px; padding-top: 12px; border-top: 1px solid rgb(43, 51, 45);"><span class="r-fs11" style='font-family: "Geist Mono", Menlo, monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);'>Resilience</span><span style="font-size: 15px; line-height: 22px;">Withstood winds of over 130 km/h in real farming conditions.</span></div></div></div></div></section><section class="r-pt144" data-tono="oscuro" id="farm" style="padding: 144px 0px 0px;"><div class="r-g12 r-px64" style="padding: 0px 64px 40px; display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); column-gap: 24px; align-items: end;"><div class="r-gc" style="grid-column: 1 / span 7;"><div style='font-family: "Geist Mono", Menlo, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 24px;'><span style="display: inline-block; width: 6px; height: 6px; margin-right: 10px; vertical-align: 1px; background: rgb(88, 233, 174);"></span><span style="color: rgb(244, 242, 236);">04</span> · The process</div><h2 class="r-fs48" style='margin: 0px; font-family: "Zilla Slab", Georgia, serif; font-weight: 400; font-size: 48px; line-height: 52px; letter-spacing: -0.015em;'>From survey to the first kilowatt-hour.</h2></div><p class="r-gc" style="grid-column: 9 / span 4; margin: 0px; font-size: 17px; line-height: 26px; color: rgb(161, 166, 159);">The rows go in, the tractor keeps working the land, the crops grow and the sun does the rest.</p></div><div class="r-mx12 r-h720 r-vwrap" style="margin: 0px 12px; border-radius: 20px; overflow: hidden; height: 720px;"><div style="margin-left: -12px;"><video autoplay="" class="r-root r-h720 r-vid" data-ar-d="1920/1080" data-ar-m="1170/2400" data-ar-t="1600/1580" data-poster-d="../assets/still-granja.jpg" data-poster-m="../assets/still-granja-m.jpg" data-poster-t="../assets/still-granja-t.jpg" data-src-d="../assets/clip-granja.mp4" data-src-m="../assets/clip-granja-m.mp4" data-src-t="../assets/clip-granja-t.mp4" loop="" muted="" playsinline="" preload="none" style="display:block; width:100%; height:auto; aspect-ratio:1920/1080; object-fit:cover;"></video></div></div></section><section class="r-px64 r-pt144" data-tono="oscuro" style="padding: 144px 64px 0px;"><div class="r-ctarow" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; padding-bottom: 8px;"><div style="display: flex; flex-direction: column; gap: 16px;"><h2 class="r-fs48 r-mw" style='margin: 0px; font-family: "Zilla Slab", Georgia, serif; font-weight: 400; font-size: 48px; line-height: 52px; letter-spacing: -0.015em; max-width: 24ch;'>From field tests to commercial plants.</h2><p class="r-fs19" style="margin: 0px; font-size: 19px; line-height: 28px; color: rgb(161, 166, 159);">If you are an investor, get in touch.</p></div><a href="../#contact" style='flex-shrink: 0; display: inline-flex; align-items: center; height: 48px; padding: 0px 20px; border-radius: 4px; background: rgb(88, 233, 174); color: rgb(10, 16, 12); font-family: "Geist Mono", Menlo, monospace; font-size: 14px; font-weight: 500; text-decoration: none;'>Get in touch →</a></div></section><div style="height: 96px;"></div><footer class="r-mx12" data-tono="oscuro" style="margin: 12px; border-radius: 20px; background: rgb(10, 16, 12); color: rgb(244, 242, 236);"><div class="r-gfoot r-px52 r-pt72" style="padding: 56px 52px; display: grid; grid-template-columns: 1fr 2fr; gap: 48px;"><div><img alt="eki.labs · Farming soil &amp; sun, together" src="../assets/759d73f045c4.svg" style="height: 74px; width: 248px; display: block;"/></div><div class="r-g3" style="display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 24px;"><div style="display: flex; flex-direction: column; gap: 8px;"><span class="r-fs11" style='font-family: "Geist Mono", Menlo, monospace; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 4px;'><span style="text-transform: none; letter-spacing: 0.02em;">eki.labs</span></span><a href="../technology/" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Technology</a><a href="../model/" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Model</a><a href="../video/" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Film</a><a href="../#impact" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Impact</a><a href="../#team" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Team</a><a href="../#story" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Origins</a><a href="../#contact" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Contact</a><a href="../#careers" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Careers</a><a href="../brand/" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">Brand</a></div><div style="display: flex; flex-direction: column; gap: 8px;"><span class="r-fs11" style='font-family: "Geist Mono", Menlo, monospace; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 4px;'>Offices</span><span style="font-size: 15px;">Boston</span><span style="font-size: 15px;">San Sebastián</span><span style="font-size: 15px;">Valladolid</span></div><div style="display: flex; flex-direction: column; gap: 8px;"><span class="r-fs11" style='font-family: "Geist Mono", Menlo, monospace; font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159); margin-bottom: 4px;'>Contact</span><a href="mailto:hola@ekilabs.com" style="color: rgb(244, 242, 236); text-decoration: none; font-size: 15px;">hola@ekilabs.com</a><span style="font-size: 15px;">Eki Labs Corp.</span></div></div></div><div class="r-g12 r-mx52" id="funding" style="margin: 0px 52px; padding: 28px 0px; border-top: 1px solid rgb(43, 51, 45); display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); column-gap: 24px;"><span class="r-gc r-fs11" style='grid-column: 1 / span 3; font-family: "Geist Mono", Menlo, monospace; font-size: 11px; line-height: 22px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(161, 166, 159);'>Funding</span><p class="r-gc" style="grid-column: 4 / span 6; margin: 0px; font-size: 14px; line-height: 22px; color: rgb(161, 166, 159);">Project supported by IDAE (Instituto para la Diversificación y Ahorro de la Energía) and funded by the European Union – NextGenerationEU, within Spain’s Recovery, Transformation and Resilience Plan (PRTR). <span style="color: rgb(244, 242, 236);">[Programa, componente e inversión del PRTR y breve descripción del proyecto: pendiente]</span></p></div><div class="r-mx52 r-legal" style='margin: 0px 52px; padding: 24px 0px; border-top: 1px solid rgb(43, 51, 45); display: flex; justify-content: space-between; font-family: "Geist Mono", Menlo, monospace; font-size: 12px; line-height: 16px; color: rgb(161, 166, 159);'><span>© Eki Agrivoltaic, S.L.U.</span><span><a href="../legal/" style="color: inherit;">Legal notice</a> · <a href="../privacy/" style="color: inherit;">Privacy</a></span></div></footer><div class="r-mx12 r-flogos" id="funding-logos" style="margin: 0px 12px; padding: 28px 40px 40px; display: flex; align-items: center; gap: 48px;"><img alt="Gobierno de España, Ministerio para la Transición Ecológica y el Reto Demográfico" src="../assets/7757b4dfa85f.svg" style="height: 44px; width: 154px; display: block; filter: invert(0.93);"/><img alt="IDAE, Instituto para la Diversificación y Ahorro de la Energía" src="../assets/8a77b976132e.png" style="height: 44px; width: 126px; display: block; filter: invert(0.93);"/><img alt="Plan de Recuperación, Transformación y Resiliencia" src="../assets/b1ab4f33d848.png" style="height: 44px; width: 253px; display: block; filter: invert(0.93);"/><img alt="Financiado por la Unión Europea – NextGenerationEU" src="../assets/f0eb3a6a09d3.png" style="height: 44px; width: 176px; display: block; filter: invert(0.93);"/></div></div>
-</div>
-
-<script>
-(function () {
-  // header: light or dark depending on the section under it
-  var hd = document.querySelector('[data-hdr] header');
-  if (hd) {
-    var imgs = hd.querySelectorAll('a img');
-    var set = function () {
-      var y = hd.getBoundingClientRect().top + 30, x = window.innerWidth / 2, tono = 'oscuro';
-      var els = document.elementsFromPoint ? document.elementsFromPoint(x, y) : [];
-      for (var i = 0; i < els.length; i++) { var el = els[i]; if (el.closest('[data-hdr]')) continue; var s = el.closest('[data-tono]'); if (s) { tono = s.getAttribute('data-tono'); break; } }
-      var c = tono === 'claro';
-      hd.style.background = c ? 'rgba(244,242,236,0.86)' : 'rgba(10,16,12,0.55)'; hd.style.color = c ? '#0a100c' : '#f4f2ec';
-      hd.style.boxShadow = c ? '0 1px 0 rgba(10,16,12,0.06), 0 8px 24px rgba(10,16,12,0.06)' : 'none';
-      if (imgs.length > 1) { imgs[0].style.display = c ? 'none' : 'block'; imgs[1].style.display = c ? 'block' : 'none'; }
-    };
-    document.addEventListener('scroll', set, { passive: true }); set();
-  }
-  // counters count up when their block comes into view
-  var cs = document.querySelectorAll('[data-contar]');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('contar-on'); }); }, { threshold: 0.3 });
-    cs.forEach(function (c) { io.observe(c); });
-  } else cs.forEach(function (c) { c.classList.add('contar-on'); });
-})();
-</script>
-<script>(function(){ var self = {props:{intro:false}};     var hc = document.querySelector('canvas[data-hero-fot]');
-    if (hc) {
-      var HW = 1280, HH = 860, HG = 3, HC = Math.floor(HW / HG), HR = Math.floor(HH / HG), HN = HC * HR;
-      var hctx = hc.getContext('2d'), himg = hctx.createImageData(HW, HH), hbuf = new Uint32Array(himg.data.buffer);
-      var hs = 777; var hr = function () { hs |= 0; hs = hs + 0x6D2B79F5 | 0; var q = Math.imul(hs ^ hs >>> 15, 1 | hs); q = q + Math.imul(q ^ q >>> 7, 61 | q) ^ q; return ((q ^ q >>> 14) >>> 0) / 4294967296; };
-      var pk = function (h) { return (255 << 24) | (parseInt(h.substr(5, 2), 16) << 16) | (parseInt(h.substr(3, 2), 16) << 8) | parseInt(h.substr(1, 2), 16); };
-      var hpal = [0, pk('#964a2f'), pk('#cf8166'), pk('#ffd54a')];
-      var hx = new Float32Array(HN), hy = new Float32Array(HN), hn = new Float32Array(HN), hL = new Float32Array(HN), hd = new Float32Array(HN);
-      var CXC = HW, CYC = 0;
-      for (var i = 0; i < HN; i++) { hx[i] = (i % HC) * HG + (hr() - 0.5) * 1.4; hy[i] = Math.floor(i / HC) * HG + (hr() - 0.5) * 1.4; hn[i] = hr(); var ddx = hx[i] - CXC, ddy = hy[i] - CYC; hd[i] = Math.sqrt(ddx * ddx + ddy * ddy); }
-      var mx = -9999, my = -9999, hvis = true;
-      var hImgEl = document.querySelector('img[data-hero-img]');
-      var fot = hc.style.display !== 'none' && getComputedStyle(hc).display !== 'none';
-      var REV = 2.8, SETTLE = 1.8, revealed = false;
-      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (hImgEl && fot && !reduce) { hImgEl.style.transition = 'opacity 1.6s cubic-bezier(0.16,1,0.3,1)'; hImgEl.style.opacity = '0'; }
-      var host = hc.parentNode;
-      host.addEventListener('mousemove', function (e) { var r = hc.getBoundingClientRect(); mx = (e.clientX - r.left) * HW / r.width; my = (e.clientY - r.top) * HH / r.height; });
-      host.addEventListener('mouseleave', function () { mx = -9999; my = -9999; });
-      if ('IntersectionObserver' in window) { self._hio = new IntersectionObserver(function (es) { hvis = es[0].isIntersecting; }); self._hio.observe(hc); }
-      var him = new Image();
-      him.onload = function () {
-        try {
-          var oc = document.createElement('canvas'); oc.width = HC; oc.height = HR; var ox = oc.getContext('2d');
-          var sc = Math.max(HC / him.width, HR / him.height), w = him.width * sc, h = him.height * sc; ox.drawImage(him, (HC - w) / 2, (HR - h) / 2, w, h);
-          var d = ox.getImageData(0, 0, HC, HR).data;
-          for (var k = 0; k < HN; k++) hL[k] = (0.2126 * d[k * 4] + 0.7152 * d[k * 4 + 1] + 0.0722 * d[k * 4 + 2]) / 255;
-          var srt = Array.prototype.slice.call(hL).sort(function (p, q) { return p - q; }), lo = srt[Math.floor(HN * 0.03)], hi = srt[Math.floor(HN * 0.97)], sp = Math.max(0.05, hi - lo);
-          for (var k2 = 0; k2 < HN; k2++) hL[k2] = Math.min(1, Math.max(0, (hL[k2] - lo) / sp));
-        } catch (err) { return; }
-        var last = 0, RAD = 110, R2 = RAD * RAD, DIAG = Math.sqrt(HW * HW + HH * HH), EDGE = 150, t0 = performance.now() + (reduce ? 0 : (self.props.intro === false ? -REV * 1000 : 2900));   // without the intro the photo is there at once and the photons settle over it
-        var frame = function (now) {
-          self._hraf = requestAnimationFrame(frame);
-          if (hc.offsetParent === null || !hvis || now - last < 33) return; last = now;
-          var t = (now - t0) / 1000;
-          if (t < 0) { hbuf.fill(0); hctx.putImageData(himg, 0, 0); return; }
-          var Ramb = DIAG * Math.max(0.04, 0.2 + 0.1 * Math.sin(t * 1.25) + 0.06 * Math.sin(t * 2.9 + 1.3) + 0.035 * Math.sin(t * 6.1 + 0.4));
-          var eo = function (x) { x = Math.min(1, Math.max(0, x)); return 1 - Math.pow(1 - x, 3); };
-          var R = reduce ? Ramb : (t < REV ? (DIAG + EDGE) * eo(t / REV) : (DIAG + EDGE) + (Ramb - DIAG - EDGE) * eo((t - REV) / SETTLE));
-          if (!revealed && (reduce || t > REV * 0.62)) { revealed = true; if (hImgEl) hImgEl.style.opacity = '1'; }
-          for (var z = 0; z < 9000; z++) { var zi = Math.floor(hr() * HN); hn[zi] = hr(); }
-          hbuf.fill(0);
-          for (var k3 = 0; k3 < HN; k3++) {
-            var dist = hd[k3];
-            if (dist > R + EDGE) continue;
-            var p = (R - dist) / EDGE + 0.5; if (hn[k3] > p) continue;
-            var v = hL[k3] + (hn[k3] - 0.5) * 0.45, ti = v < 0.35 ? 0 : (v < 0.6 ? 1 : (v < 0.8 ? 2 : 3));
-            if (ti === 0) continue;
-            var x = hx[k3], y = hy[k3], dx = x - mx, dy = y - my, d2 = dx * dx + dy * dy;
-            if (d2 < R2) { var dd = Math.sqrt(d2) || 1, f = (1 - dd / RAD); x += dx / dd * f * f * 34; y += dy / dd * f * f * 34; }
-            var ix = x | 0, iy = y | 0; if (ix < 0 || iy < 0 || ix >= HW - 1 || iy >= HH - 1) continue;
-            var o = iy * HW + ix, c = hpal[ti]; hbuf[o] = c; hbuf[o + 1] = c; hbuf[o + HW] = c; hbuf[o + HW + 1] = c;
-          }
-          hctx.putImageData(himg, 0, 0);
-        };
-        self._hraf = requestAnimationFrame(frame);
-      };
-      him.onerror = function () { if (hImgEl) hImgEl.style.opacity = '1'; };
-      him.src = hImgEl ? hImgEl.getAttribute('src') : '../assets/3d993fe5e041.jpg';
-    }
-  
-})();</script>
-
-<script>
-(function () {
-  // videos: posters at once, files and playback only near the viewport (phone, tablet or desktop clip)
-  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var picks = [].slice.call(document.querySelectorAll('video[data-src-d]'));
-  var loops = [].slice.call(document.querySelectorAll('video[autoplay]'));
-  function fmt() { var w = window.innerWidth; return w < 640 ? 'm' : (w < 1024 ? 't' : 'd'); }
-  function setPoster(v) { var k = fmt(), p = v.getAttribute('data-poster-' + k), ar = v.getAttribute('data-ar-' + k); if (p) v.poster = p; if (ar) v.style.aspectRatio = ar; }
-  function load(v) { var k = fmt(); if (v.getAttribute('data-cur') === k) return false; v.setAttribute('data-cur', k); setPoster(v); v.src = v.getAttribute('data-src-' + k); return true; }
-  function play(v) { if (still || v.hasAttribute('data-noplay')) return; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-  function lazy(v) { var s = v.getAttribute('data-lazy'); if (s && !v.getAttribute('src')) { v.src = s; v.preload = 'auto'; } }
-  picks.forEach(setPoster);
-  loops.forEach(function (v) { v.removeAttribute('autoplay'); if (!v.hasAttribute('data-src-d')) v.setAttribute('preload', 'none'); });
-  var all = loops.concat(picks.filter(function (v) { return loops.indexOf(v) < 0; }));
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        var v = e.target;
-        if (e.isIntersecting) { if (v.hasAttribute('data-src-d')) load(v); lazy(v); if (v.loop) play(v); }
-        else if (!v.paused && v.loop) v.pause();
-      });
-    }, { rootMargin: '300px 0px' });
-    all.forEach(function (v) { io.observe(v); });
-  } else { picks.forEach(load); loops.forEach(function (v) { lazy(v); play(v); }); }
-  var tm;
-  window.addEventListener('resize', function () {
-    clearTimeout(tm);
-    tm = setTimeout(function () { picks.forEach(function (v) { var r = v.getBoundingClientRect(); if (r.bottom > -300 && r.top < innerHeight + 300) { if (load(v) && v.loop) play(v); } else setPoster(v); }); }, 200);
-  });
-  // the menu closes after choosing a section
-  document.querySelectorAll('.nav-panel a[href^="#"]').forEach(function (a) { a.addEventListener('click', function () { var d = a.closest('details'); if (d) d.removeAttribute('open'); }); });
-})();
-</script>
+<header class="top"><a href="/" aria-label="eki.labs, home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0.0 -816.5 5002.92 923.0" width="120" height="22.1" role="img" aria-label="eki.labs"><defs><linearGradient id="eki-sun-full" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100"><stop offset="0" stop-color="#FF8F00"/><stop offset="0.1" stop-color="#FF8F00"/><stop offset="0.42" stop-color="#FFD54A"/><stop offset="0.66" stop-color="#FFD54A"/><stop offset="1" stop-color="#58E9AE"/></linearGradient></defs><g transform="translate(0 -816.5) scale(9.23)"><path d="M0 50A50 50 0 0 1 100 50Z" fill="url(#eki-sun-full)"/><path d="M0.38 56.14L99.62 56.14A50 50 0 0 1 97.14 66.67L2.86 66.67A50 50 0 0 1 0.38 56.14Z" fill="url(#eki-sun-full)"/><path d="M5.5 72.81L94.5 72.81A50 50 0 0 1 87.27 83.33L12.73 83.33A50 50 0 0 1 5.5 72.81Z" fill="url(#eki-sun-full)"/><path d="M19.31 89.47L80.69 89.47A50 50 0 0 1 50 100L50 100A50 50 0 0 1 19.31 89.47Z" fill="url(#eki-sun-full)"/></g><g transform="translate(1115 0)"><path d="M300.6 12Q220.8 12 162.1 -22.4Q103.4 -56.8 71.3 -119.7Q39.2 -182.6 39.2 -267Q39.2 -351.4 71.3 -413.8Q103.4 -476.2 161.5 -511.1Q219.6 -546 298.2 -546Q374.4 -546 431.6 -511.9Q488.8 -477.8 520.1 -413.8Q551.4 -349.8 551.4 -260V-231.4H172Q175.8 -160.8 210.3 -125.6Q244.8 -90.4 302.2 -90.4Q345 -90.4 373.3 -109.5Q401.6 -128.6 413 -163.8L543.8 -155.6Q522.4 -78.2 457.7 -33.1Q393 12 300.6 12ZM172 -317.4H418.6Q414.6 -382.4 381.9 -413.8Q349.2 -445.2 298.2 -445.2Q246.8 -445.2 213.3 -412.3Q179.8 -379.4 172 -317.4Z" fill="#F4F2EC"/><path d="M661.4 0V-710H789.4V-292.6L1008.2 -534H1165.8L957.2 -311.8L1172.8 0H1029.2L873.4 -236L789.4 -146.8V0Z" fill="#F4F2EC"/><path d="M1289.4 0V-534H1417.4V0ZM1287 -605.4V-718.6H1419.8V-605.4Z" fill="#F4F2EC"/><path d="M1527.2 0V-139.8H1673.4V0Z" fill="#F4F2EC"/><path d="M1897 0Q1851 0 1822 -24Q1793 -48 1793 -100V-710H1877V-107Q1877 -91 1885.5 -82.5Q1894 -74 1910 -74H1956V0Z" fill="#F4F2EC"/><path d="M2203 12Q2121 12 2072.5 -26Q2024 -64 2024 -132Q2024 -200 2064 -239Q2104 -278 2191 -294L2379 -329Q2379 -396 2347.5 -429Q2316 -462 2253 -462Q2198 -462 2166 -437.5Q2134 -413 2122 -367L2033 -374Q2048 -449 2105.5 -495.5Q2163 -542 2253 -542Q2355 -542 2409 -484.5Q2463 -427 2463 -326V-107Q2463 -89 2469.5 -81.5Q2476 -74 2491 -74H2512V0Q2508 1 2499 1.5Q2490 2 2480 2Q2444 2 2421.5 -9.5Q2399 -21 2389 -45.5Q2379 -70 2379 -110L2389 -108Q2382 -74 2355 -46.5Q2328 -19 2288 -3.5Q2248 12 2203 12ZM2211 -62Q2264 -62 2301.5 -82.5Q2339 -103 2359 -138.5Q2379 -174 2379 -218V-256L2207 -224Q2153 -214 2132.5 -193.5Q2112 -173 2112 -140Q2112 -103 2138.5 -82.5Q2165 -62 2211 -62Z" fill="#F4F2EC"/><path d="M2854 12Q2799 12 2756 -12.5Q2713 -37 2690 -80L2687 0H2611V-710H2695V-456Q2715 -489 2757 -515.5Q2799 -542 2854 -542Q2924 -542 2975 -508Q3026 -474 3054 -412Q3082 -350 3082 -265Q3082 -180 3054 -118Q3026 -56 2975 -22Q2924 12 2854 12ZM2849 -68Q2916 -68 2955 -121Q2994 -174 2994 -265Q2994 -357 2955 -409.5Q2916 -462 2851 -462Q2802 -462 2767 -438.5Q2732 -415 2713.5 -371Q2695 -327 2695 -265Q2695 -205 2713.5 -160.5Q2732 -116 2766.5 -92Q2801 -68 2849 -68Z" fill="#F4F2EC"/><path d="M3399 12Q3326 12 3276.5 -11Q3227 -34 3200.5 -74.5Q3174 -115 3170 -167L3258 -173Q3266 -125 3297.5 -96.5Q3329 -68 3399 -68Q3453 -68 3482.5 -85.5Q3512 -103 3512 -142Q3512 -163 3502.5 -177Q3493 -191 3465 -201.5Q3437 -212 3383 -222Q3309 -236 3267 -257Q3225 -278 3208 -308Q3191 -338 3191 -380Q3191 -451 3243.5 -496.5Q3296 -542 3392 -542Q3462 -542 3506.5 -517.5Q3551 -493 3574 -454Q3597 -415 3602 -372L3514 -366Q3512 -391 3499 -413Q3486 -435 3460 -448.5Q3434 -462 3390 -462Q3333 -462 3306 -440Q3279 -418 3279 -384Q3279 -358 3289.5 -341.5Q3300 -325 3326.5 -314.5Q3353 -304 3399 -296Q3477 -283 3521 -263Q3565 -243 3582.5 -213.5Q3600 -184 3600 -142Q3600 -69 3543.5 -28.5Q3487 12 3399 12Z" fill="#F4F2EC"/></g></svg></a><a href="/#contact">Contact →</a></header>
+<main class="card"><div class="inner">
+<p class="eyebrow"><span></span>Technology</p>
+<h1>One acre. Two harvests.</h1>
+<p>Bifacial panels in rows, facing east and west, with room between them for the farm machinery. We share the technical details one to one: write to us and tell us who you are.</p>
+<p style="margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px"><a href="/#contact" style="display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 20px;border-radius:4px;background:#58E9AE;color:#0A100C;font-family:'Geist Mono',Menlo,monospace;font-size:14px;font-weight:500;text-decoration:none">Write to us →</a>
+<a href="mailto:hola@ekilabs.com">hola@ekilabs.com</a></p>
+</div></main>
+<footer><div class="fund"><span>Funding</span><p>Project supported by IDAE (Instituto para la Diversificación y Ahorro de la Energía) and funded by the European Union – NextGenerationEU, within Spain’s Recovery, Transformation and Resilience Plan (PRTR).</p></div>
+<div class="foot"><span>© Eki Agrivoltaic, S.L.U.</span><span><a href="/legal/">Legal notice</a> · <a href="/privacy/">Privacy</a></span></div></footer>
+<div class="logos"><img alt="Gobierno de España, Ministerio para la Transición Ecológica y el Reto Demográfico" src="/assets/7757b4dfa85f.svg"/><img alt="IDAE, Instituto para la Diversificación y Ahorro de la Energía" src="/assets/8a77b976132e.png"/><img alt="Plan de Recuperación, Transformación y Resiliencia" src="/assets/b1ab4f33d848.png"/><img alt="Financiado por la Unión Europea – NextGenerationEU" src="/assets/f0eb3a6a09d3.png"/></div>
 </body>
 </html>
